@@ -9,20 +9,15 @@ import { EcuadorB2BSection } from './components/EcuadorB2BSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { PORTFOLIO_PROJECTS, type Project } from './data/portfolioData';
-import { Layers } from 'lucide-react';
 
 export function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
-  const categories = [
-    'all',
-    'SaaS & Web',
-    'AI & Agents',
-    'Mobile',
-    'Security & Desktop',
-    'Affiliate & Tools',
-  ];
+  const categories = useMemo(() => {
+    const cats = new Set(PORTFOLIO_PROJECTS.map(p => p.category));
+    return ['all', ...cats];
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'all') return PORTFOLIO_PROJECTS;
@@ -47,15 +42,11 @@ export function App() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950 border border-red-500/30 text-red-400 text-xs font-mono font-medium shadow-glow-red">
-              <Layers className="w-3.5 h-3.5" />
-              <span>CORE ARCHITECTURE & SYSTEMS</span>
-            </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Featured <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Engineering Work</span>.
+              Selected <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Work</span>.
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-400">
-              Each system is engineered for low latency, zero-trust security, and high commercial conversion. Click any project to open the live application.
+            <p className="text-sm text-zinc-400">
+              Real projects, live in production. Click any project to explore.
             </p>
           </div>
 

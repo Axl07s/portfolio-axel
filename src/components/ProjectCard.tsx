@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { Project } from '../data/portfolioData';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ProjectCardProps {
   project: Project;
@@ -8,92 +8,65 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
-  const [currentImageIdx, setCurrentImageIdx] = useState(0);
-
-  const images = project.images && project.images.length > 0
-    ? project.images
-    : [{ url: '/projects/syntrosaas_01.png', caption: project.title }];
-
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentImageIdx(prev => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentImageIdx(prev => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  const currentImage = images[currentImageIdx];
+  const mainImage = project.images[0]?.url || '/projects/syntrosaas_01.png';
 
   return (
-    <div 
-      className="bg-[#0b0c10] rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 border border-zinc-800/80 hover:border-red-500/50 group cursor-pointer"
+    <div
+      className="relative rounded-2xl overflow-hidden cursor-pointer group border border-zinc-800/80 hover:border-red-500/50 transition-all duration-300 bg-zinc-950 shadow-xl"
       onClick={() => onSelect(project)}
     >
-      
-      {/* Top Media Header / Carousel Frame */}
-      <div className="relative aspect-video w-full overflow-hidden bg-zinc-950 select-none border-b border-zinc-800/80">
+      {/* Screenshot Frame */}
+      <div className="aspect-[16/10] w-full overflow-hidden bg-zinc-950">
         <img
-          key={currentImage.url}
-          src={currentImage.url}
-          alt={currentImage.caption || project.title}
-          className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-all duration-300 transform-gpu group-hover:scale-105"
+          src={mainImage}
+          alt={project.title}
+          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
         />
-
-        {/* Subtle Gradient Shadow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10] via-transparent to-black/30 pointer-events-none" />
-
-        {/* Carousel Navigation Arrows */}
-        {images.length > 1 && (
-          <div className="absolute inset-y-0 inset-x-2 flex items-center justify-between z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
-            <button
-              onClick={handlePrev}
-              className="p-1.5 rounded-full bg-black/75 hover:bg-red-600 text-white border border-white/10 backdrop-blur-md transition-all pointer-events-auto active:scale-95"
-              title="Previous capture"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="p-1.5 rounded-full bg-black/75 hover:bg-red-600 text-white border border-white/10 backdrop-blur-md transition-all pointer-events-auto active:scale-95"
-              title="Next capture"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        )}
       </div>
 
-      {/* Main Card Body (Matt Farley style: Minimalist, Direct) */}
-      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center items-center text-center space-y-4">
-        
-        <div>
-          <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-red-400 transition-colors">
-            {project.title}
-          </h3>
-          <p className="mt-3 text-sm text-zinc-400 leading-relaxed font-medium">
-            {project.description}
-          </p>
+      {/* Persistent Info Footer on Mobile / Fallback */}
+      <div className="p-5 sm:hidden bg-zinc-900/90 border-t border-zinc-800">
+        <span className="text-[11px] font-mono uppercase tracking-wider text-red-400 font-semibold block mb-1">
+          {project.category}
+        </span>
+        <h3 className="text-lg font-bold text-white mb-2">
+          {project.title}
+        </h3>
+        <p className="text-xs text-zinc-300 leading-relaxed mb-4">
+          {project.description}
+        </p>
+        <div className="flex items-center gap-1.5 text-xs font-bold text-red-400">
+          <span>View Case Study</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
         </div>
-
-        {/* Action Button Row */}
-        <div className="pt-4 flex items-center justify-center">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(project);
-            }}
-            className="flex items-center justify-center gap-2 py-3 px-6 rounded-full text-sm font-bold bg-transparent text-white border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all group-hover:bg-red-600"
-          >
-            <span>View Case Study</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-
       </div>
 
+      {/* Matt Farley Interactive Hover Overlay (Visible on hover & focus) */}
+      <div
+        className="hidden sm:flex absolute inset-0 flex-col items-center justify-center text-center p-8 bg-zinc-950/95 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out pointer-events-none group-hover:pointer-events-auto"
+      >
+        <span className="text-xs font-mono uppercase tracking-widest text-red-400 font-bold mb-3 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30">
+          {project.category}
+        </span>
+        <h3 className="text-2xl font-extrabold text-white mb-3 tracking-tight">
+          {project.title}
+        </h3>
+        <p className="text-sm text-zinc-300 leading-relaxed max-w-sm mb-6 font-medium">
+          {project.description}
+        </p>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(project);
+          }}
+          className="flex items-center gap-2 px-6 py-2.5 rounded-full border-2 border-red-500 bg-red-600/20 hover:bg-red-600 text-white text-sm font-bold shadow-lg shadow-red-900/40 hover:shadow-red-600/50 transition-all duration-200 active:scale-95"
+        >
+          <span>View Case Study</span>
+          <ArrowUpRight className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 };
