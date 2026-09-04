@@ -37,7 +37,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Multi-tenant SaaS boilerplate that lets startups launch with Stripe billing, team workspaces, and role-based access in under two weeks.',
+    description: 'Plataforma de gestión empresarial escalable con arquitectura multi-tenant.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -64,7 +64,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Cyberpunk executive dashboard that orchestrates 9 autonomous AI subagents with real-time voice synthesis and financial telemetry.',
+    description: 'Centro de comando inteligente con integración de voz ElevenLabs y automatización de flujos.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -91,7 +91,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Premium restaurant website with interactive tasting menus, dietary filters, and a step-by-step table reservation engine.',
+    description: 'Digitalización de experiencia Fine Dining para optimización de reservas y branding de lujo.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -118,7 +118,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Growth agency platform with an interactive ROI calculator, qualification funnel, and enterprise case studies that convert visitors into leads.',
+    description: 'Infraestructura de captación B2B diseñada para escalar agencias de crecimiento acelerado.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -145,7 +145,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'gearstack',
     title: 'GearStack PRO',
     category: 'Affiliate & Tools',
-    description: 'Hardware comparison engine that scans Twitch streamers\u0027 setups, identifies missing peripherals, and generates 1-click Amazon affiliate bundles.',
+    description: 'Motor de escaneo de hardware para Twitch con sistema de monetización vía Amazon Associates.',
     role: 'Full-Stack Developer',
     stack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Twitch API', 'Amazon Associates'],
     metrics: [
@@ -172,7 +172,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Retrieval-augmented generation engine that ingests company docs and returns grounded answers with source citations and anti-hallucination guardrails.',
+    description: 'Motor de recuperación de información empresarial basado en vectores para análisis de datos masivos.',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
