@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #0a0a0a; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .window { background: #1a1b26; border-radius: 12px; width: 900px; height: 600px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); border: 1px solid #333; overflow: hidden; }
+    .titlebar { height: 35px; background: #24283b; display: flex; align-items: center; padding: 0 15px; gap: 8px; border-bottom: 1px solid #1f2335; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+    .content { padding: 30px; color: #a9b1d6; font-size: 18px; line-height: 1.6; }
+    .green-text { color: #9ece6a; }
+    .blue-text { color: #7aa2f7; }
+    .magenta-text { color: #bb9af7; }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+    </div>
+    <div class="content">
+      <div><span class="green-text">axel@macbook</span>:<span class="blue-text">~/projects</span>$ npx gearstack init</div>
+      <br/>
+      <div><span class="magenta-text">⚙️ GearStack CLI v2.1.0</span></div>
+      <div>Initializing new enterprise stack...</div>
+      <br/>
+      <div>[✔] Created Next.js frontend</div>
+      <div>[✔] Configured Prisma ORM</div>
+      <div>[✔] Set up Express microservices</div>
+      <div>[✔] Generated Docker containers</div>
+      <br/>
+      <div><span class="green-text">Success!</span> Your enterprise architecture is ready in <span class="blue-text">./my-app</span></div>
+      <br/>
+      <div><span class="green-text">axel@macbook</span>:<span class="blue-text">~/projects</span>$ █</div>
+    </div>
+  </div>
+</body>
+</html>
