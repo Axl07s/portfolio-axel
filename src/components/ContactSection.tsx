@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Mail, ExternalLink, ShieldCheck, ArrowRight } from 'lucide-react';
+import { MessageCircle, Mail, Globe, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export const ContactSection: React.FC = () => {
