@@ -1,8 +1,41 @@
 import React from 'react';
 import { Layout, Server, Bot } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const DisciplinesSection: React.FC = () => {
-  const disciplines = [
+  const { lang } = useLanguage();
+
+  const disciplinesES = [
+    {
+      icon: <Layout className="w-6 h-6 text-indigo-400" />,
+      title: 'Frontend & UI Craft',
+      tagline: 'Interfaces de usuario perfectas al píxel, accesibles e hiper-responsivas con el ecosistema React.',
+      skillsTitle: 'Mi enfoque:',
+      skills: 'Sistemas de Diseño, Micro-Interacciones, Rendimiento (100 Lighthouse), Arquitectura Responsiva',
+      toolsTitle: 'Stack Principal:',
+      tools: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    },
+    {
+      icon: <Server className="w-6 h-6 text-indigo-400" />,
+      title: 'Ingeniería SaaS Full-Stack',
+      tagline: 'Backends listos para producción diseñados para multi-tenancy, flujos transaccionales y escala.',
+      skillsTitle: 'Especialidades:',
+      skills: 'Auth Multi-Tenant, Facturación Stripe, Zero-Trust RLS, Edge Functions',
+      toolsTitle: 'Infraestructura:',
+      tools: ['Supabase', 'PostgreSQL', 'FastAPI', 'Node.js', 'REST & GraphQL', 'Vercel / Docker'],
+    },
+    {
+      icon: <Bot className="w-6 h-6 text-indigo-400" />,
+      title: 'IA Autónoma & Voz',
+      tagline: 'Redes de agentes inteligentes, pipelines de voz neuronal y sistemas de recuperación RAG empresariales.',
+      skillsTitle: 'Capacidades de IA:',
+      skills: 'Orquestación de Subagentes, Búsqueda Vectorial (RAG), Formas de Onda, Telemetría de Costos',
+      toolsTitle: 'Ecosistema IA:',
+      tools: ['ElevenLabs API', 'LangChain', 'pgvector', 'OpenAI / Anthropic', 'n8n Automations'],
+    },
+  ];
+
+  const disciplinesEN = [
     {
       icon: <Layout className="w-6 h-6 text-indigo-400" />,
       title: 'Frontend & UI Craft',
@@ -32,18 +65,21 @@ export const DisciplinesSection: React.FC = () => {
     },
   ];
 
+  const disciplines = lang === 'es' ? disciplinesES : disciplinesEN;
+
   return (
     <section id="disciplines" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div className="rounded-3xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-md overflow-hidden p-8 sm:p-12 lg:p-16 shadow-2xl">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
-            Core Competencies
+            {lang === 'es' ? 'Competencias Centrales' : 'Core Competencies'}
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-white">
-            Engineered for <span className="text-zinc-500">Excellence.</span>
+            {lang === 'es' ? 'Diseñado para la ' : 'Engineered for '}
+            <span className="text-zinc-400">{lang === 'es' ? 'Excelencia.' : 'Excellence.'}</span>
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-            I bridge the gap between world-class visual design and robust, scalable software engineering.
+            {lang === 'es' ? 'Cierro la brecha entre el diseño visual de clase mundial y la ingeniería de software robusta y escalable.' : 'I bridge the gap between world-class visual design and robust, scalable software engineering.'}
           </p>
         </div>
 
@@ -65,7 +101,7 @@ export const DisciplinesSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-500 mb-2.5">
+                  <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 mb-2.5">
                     {d.toolsTitle}
                   </h4>
                   <div className="flex flex-wrap justify-center gap-1.5">
@@ -87,3 +123,4 @@ export const DisciplinesSection: React.FC = () => {
     </section>
   );
 };
+

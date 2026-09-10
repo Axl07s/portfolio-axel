@@ -32,12 +32,150 @@ export interface Certification {
   skills: string[];
 }
 
-export const PORTFOLIO_PROJECTS: Project[] = [
+const projectsES: Project[] = [
   {
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
     description: 'Plataforma de gestión empresarial escalable con arquitectura multi-tenant.',
+    role: 'Full-Stack Architect',
+    stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
+    metrics: [
+      { label: 'Time-to-Market', value: '< 2 Semanas' },
+      { label: 'Lighthouse', value: '99/100' },
+      { label: 'Auth', value: 'Zero-Trust RLS' },
+    ],
+    features: [
+      'Organización de multi-tenant con invitaciones de equipo y RBAC',
+      'Webhooks automatizados de Stripe con facturación mensual/anual por niveles',
+      'Supabase Auth con Google OAuth, Magic Links y persistencia de sesión',
+      'Rotación de API keys con tracking de telemetría',
+    ],
+    images: [
+      { url: '/projects/syntrosaas_01.png', caption: 'Landing Page & Arquitectura' },
+      { url: '/projects/syntrosaas_02.png', caption: 'Cuotas de Uso & Upgrade de Plan' },
+      { url: '/projects/syntrosaas_03.png', caption: 'Gestión de API Keys & Control de Acceso' },
+    ],
+    liveUrl: 'https://syntrosaas-app.vercel.app',
+    githubUrl: 'https://github.com/AxelSamMoli/syntrosaas-nextjs-boilerplate',
+    featured: true,
+  },
+  {
+    id: 'jarvis-hud',
+    title: 'Jarvis AI Command Center',
+    category: 'AI Dashboard',
+    description: 'Centro de comando inteligente con integración de voz ElevenLabs y automatización de flujos.',
+    role: 'Lead Frontend Engineer',
+    stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
+    metrics: [
+      { label: 'Client Rating', value: '5.0 / 5.0' },
+      { label: 'Agent Network', value: '9 Subagents' },
+      { label: 'Voice Latency', value: '< 180ms' },
+    ],
+    features: [
+      'Malla neuronal coordinando subagentes de investigación, código y finanzas en paralelo',
+      'Voz neuronal ElevenLabs con visualización animada de forma de onda de audio',
+      'Libro mayor de tokens en tiempo real rastreando costos de OpenAI y Anthropic',
+      'Entregado en Fiverr con calificación verificada de 5 estrellas del cliente',
+    ],
+    images: [
+      { url: '/projects/jarvis_01.png', caption: 'Chief Brain HUD con Forma de Onda' },
+      { url: '/projects/jarvis_02.png', caption: 'Topología de Red de Agentes' },
+      { url: '/projects/jarvis_03.png', caption: 'Registro de Gasto de Tokens' },
+    ],
+    liveUrl: 'https://jarvis-command-center-ui.vercel.app',
+    githubUrl: 'https://github.com/Axl07s/jarvis-command-center-axel',
+    featured: true,
+  },
+  {
+    id: 'kure-gastronomy',
+    title: 'KURE Fine Dining',
+    category: 'Hospitality Platform',
+    description: 'Digitalización de experiencia Fine Dining para optimización de reservas y branding de lujo.',
+    role: 'Frontend Developer & Designer',
+    stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
+    metrics: [
+      { label: 'Secciones', value: '7 Completas' },
+      { label: 'Reservas', value: 'Multi-Paso' },
+      { label: 'Mobile', value: '100% Responsivo' },
+    ],
+    features: [
+      'Navegador de menú categorizado con tarjetas de platos, precios y descripciones',
+      'Formulario de reserva con fecha, hora, tamaño del grupo y zona VIP',
+      'Sección de validación social con reseñas de prensa y calificaciones',
+      'Acordeón de FAQ y pie de página de contacto con mapa y horarios',
+    ],
+    images: [
+      { url: '/projects/kure_01.png', caption: 'Hero & Navegación' },
+      { url: '/projects/kure_02.png', caption: 'Sección de Menú & Tarjetas de Platos' },
+      { url: '/projects/kure_03.png', caption: 'Formulario de Reserva & FAQ' },
+    ],
+    liveUrl: 'https://restaurant-landing-pro.vercel.app',
+    githubUrl: 'https://github.com/Axl07s/restaurant-landing-pro',
+    featured: true,
+  },
+  {
+    id: 'nexuscorp-b2b',
+    title: 'NexusCorp B2B Agency',
+    category: 'B2B Lead Generation',
+    description: 'Infraestructura de captación B2B diseñada para escalar agencias de crecimiento acelerado.',
+    role: 'Frontend Developer & UX',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    metrics: [
+      { label: 'Funnel', value: 'Wizard 3 Pasos' },
+      { label: 'Calculadora', value: 'ROI Real-Time' },
+      { label: 'Target', value: 'Enterprise B2B' },
+    ],
+    features: [
+      'Calculadora de ROI interactiva proyectando crecimiento de pipeline anual',
+      'Modales de casos de estudio con desglose de problemas y métricas verificadas',
+      'Wizard de calificación de 3 pasos evaluando madurez digital',
+      'Diagrama de arquitectura del sistema visual para el flujo de lead a cierre',
+    ],
+    images: [
+      { url: '/projects/nexus_01.png', caption: 'Hero & Funnel de Diagnóstico' },
+      { url: '/projects/nexus_02.png', caption: 'Calculadora de Pipeline ROI' },
+      { url: '/projects/nexus_03.png', caption: 'Casos de Estudio & Arquitectura' },
+    ],
+    liveUrl: 'https://agency-landing-pro-ruddy.vercel.app',
+    githubUrl: 'https://github.com/Axl07s/agency-landing-pro',
+    featured: true,
+  },
+  {
+    id: 'ai-rag-knowledge',
+    title: 'Enterprise RAG Engine',
+    category: 'AI Knowledge Base',
+    description: 'Motor de recuperación de información empresarial basado en vectores para análisis de datos masivos.',
+    role: 'AI/ML Engineer',
+    stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
+    metrics: [
+      { label: 'Precisión', value: '99.2%' },
+      { label: 'Latencia', value: '< 240ms' },
+      { label: 'Guardrails', value: 'Anti-Alucinación' },
+    ],
+    features: [
+      'Pipeline de ingesta multi-formato para PDF, DOCX, Notion y Markdown',
+      'Búsqueda vectorial semántica híbrida con PGVector y reranking BM25',
+      'Guardrails estrictos de citación de fuentes que evitan alucinaciones',
+      'Panel de admin con editor de fragmentos de documentos y analítica de costos',
+    ],
+    images: [
+      { url: '/projects/rag_01.png', caption: 'Interfaz de Chat con Citas' },
+      { url: '/projects/rag_02.png', caption: 'Pipeline de Ingesta de Documentos' },
+      { url: '/projects/rag_03.png', caption: 'Navegador de Fragmentos Vectoriales' },
+    ],
+    liveUrl: 'https://enterprise-rag-app-plum.vercel.app',
+    githubUrl: 'https://github.com/AxelSamMoli/enterprise-ai-rag-fastapi',
+    featured: true,
+  },
+];
+
+const projectsEN: Project[] = [
+  {
+    id: 'syntrosaas',
+    title: 'SyntroSaaS',
+    category: 'Full-Stack SaaS',
+    description: 'Scalable enterprise management platform with multi-tenant architecture.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -64,7 +202,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Centro de comando inteligente con integración de voz ElevenLabs y automatización de flujos.',
+    description: 'Intelligent command center with ElevenLabs voice integration and workflow automation.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -91,7 +229,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Digitalización de experiencia Fine Dining para optimización de reservas y branding de lujo.',
+    description: 'Fine Dining experience digitization for booking optimization and luxury branding.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -118,7 +256,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Infraestructura de captación B2B diseñada para escalar agencias de crecimiento acelerado.',
+    description: 'B2B acquisition infrastructure designed to scale high-growth agencies.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -142,37 +280,10 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     featured: true,
   },
   {
-    id: 'gearstack',
-    title: 'GearStack PRO',
-    category: 'Affiliate & Tools',
-    description: 'Motor de escaneo de hardware para Twitch con sistema de monetización vía Amazon Associates.',
-    role: 'Full-Stack Developer',
-    stack: ['React 19', 'TypeScript', 'Tailwind CSS', 'Twitch API', 'Amazon Associates'],
-    metrics: [
-      { label: 'Conversion', value: '1-Click Direct' },
-      { label: 'Scanner', value: '< 1.2s Audit' },
-      { label: 'Affiliate', value: 'axeltech0b-20' },
-    ],
-    features: [
-      'Automated Twitch panel parsing and peripheral gap identification',
-      'Direct Amazon Associates bundle links with affiliate tracking',
-      'Side-by-side hardware comparator with ergonomic radar scoring',
-      'Setup Architect preset calculator for different workstation profiles',
-    ],
-    images: [
-      { url: '/projects/gearstack_twitch_01.jpg', caption: 'Twitch Scanner & CLI Audit' },
-      { url: '/projects/gearstack_02.png', caption: 'Hardware Benchmark Matrix' },
-      { url: '/projects/gearstack_03.png', caption: 'Setup Architect & 1-Click Buy' },
-    ],
-    liveUrl: 'https://gearstack-pi.vercel.app',
-    githubUrl: 'https://github.com/AxelSamMoli/gearstack-workspace-engine',
-    featured: true,
-  },
-  {
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Motor de recuperación de información empresarial basado en vectores para análisis de datos masivos.',
+    description: 'Vector-based enterprise information retrieval engine for massive data analysis.',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
@@ -196,6 +307,11 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     featured: true,
   },
 ];
+
+export const getPortfolioProjects = (lang: 'en' | 'es'): Project[] => lang === 'es' ? projectsES : projectsEN;
+
+// Default export for backward compatibility where needed, but we will migrate to getPortfolioProjects
+export const PORTFOLIO_PROJECTS = projectsES;
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
