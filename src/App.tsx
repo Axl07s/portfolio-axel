@@ -8,6 +8,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { getPortfolioProjects, type Project } from './data/portfolioData';
 import { useLanguage } from './context/LanguageContext';
+import { PersonalProjectsSection } from './components/PersonalProjectsSection';
 
 export function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -61,6 +62,9 @@ export function App() {
           </div>
 
         </section>
+
+        {/* Phase C: Personal Projects (Hover UI) */}
+        <PersonalProjectsSection lang={lang.toUpperCase() as 'ES' | 'EN'} />
 
         {/* Direct Contact Section */}
         <ContactSection />
