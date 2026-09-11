@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { personalProjects } from '../data/personalProjectsData';
 import { ExternalLink, Database, Server, Smartphone, Monitor } from 'lucide-react';
 
@@ -41,7 +42,8 @@ export function PersonalProjectsSection({ lang }: { lang: 'ES' | 'EN' }) {
 
         <div className="flex flex-col border-t border-zinc-800">
           {personalProjects.map((project) => (
-            <div 
+            <Link 
+              to={`/project/${project.id}`}
               key={project.id}
               className="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800 transition-colors hover:bg-zinc-900/50 relative cursor-pointer"
               onMouseEnter={() => setHoveredProject(project.id)}
@@ -52,7 +54,7 @@ export function PersonalProjectsSection({ lang }: { lang: 'ES' | 'EN' }) {
                     {project.title}
                   </h3>
                   {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
                       <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
@@ -85,7 +87,7 @@ export function PersonalProjectsSection({ lang }: { lang: 'ES' | 'EN' }) {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,87 +1,38 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { DisciplinesSection } from './components/DisciplinesSection';
-import { ProjectCard } from './components/ProjectCard';
-import { ProjectModal } from './components/ProjectModal';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { getPortfolioProjects, type Project } from './data/portfolioData';
-import { useLanguage } from './context/LanguageContext';
-import { PersonalProjectsSection } from './components/PersonalProjectsSection';
+import { Home } from './pages/Home';
+import { ProjectDetail } from './pages/ProjectDetail';
+import { NotFound } from './pages/NotFound';
 
 export function App() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const { lang, t } = useLanguage();
-  const portfolioProjects = getPortfolioProjects(lang);
-
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-white">
-      
-      {/* Top Fixed Navbar */}
-      <Navbar onOpenContact={() => {
-        const el = document.getElementById('contact');
-        el?.scrollIntoView({ behavior: 'smooth' });
-      }} />
+    <HelmetProvider>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-white">
+          <Navbar onOpenContact={() => {
+            const el = document.getElementById('contact');
+            el?.scrollIntoView({ behavior: 'smooth' });
+          }} />
 
-      <main className="flex-1 flex flex-col w-full">
-        {/* Hero Section */}
-        <Hero />
+          <main className="flex-1 flex flex-col w-full">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/project/:id" element={<ProjectDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            
+            {/* Direct Contact Section (Shared across all pages at the bottom) */}
+            <ContactSection />
+          </main>
 
-        {/* Matt Farley 3-Pillars Disciplines */}
-        <DisciplinesSection />
-
-        {/* Featured Projects Showcase (Clean, No Filters) */}
-        <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-          
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
-              {t('projects.title')}
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-white">
-              {lang === 'es' ? 'Construido para ' : 'Crafted for '}
-              <span className="text-zinc-400">
-                {lang === 'es' ? 'Producción.' : 'Production.'}
-              </span>
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-400">
-              {t('projects.subtitle')}
-            </p>
-          </div>
-
-          {/* Projects Grid (Clean) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onSelect={setSelectedProject}
-              />
-            ))}
-          </div>
-
-        </section>
-
-        {/* Phase C: Personal Projects (Hover UI) */}
-        <PersonalProjectsSection lang={lang.toUpperCase() as 'ES' | 'EN'} />
-
-        {/* Direct Contact Section */}
-        <ContactSection />
-      </main>
-
-      {/* Footer */}
-      <Footer />
-
-      {/* Van Holtz 60/40 Deep Dive Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-
-    </div>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
 export default App;
-
