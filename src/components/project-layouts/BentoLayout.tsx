@@ -34,29 +34,29 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
         </div>
 
         {/* Main Image Card (Row 2, Span 2, Row-Span 2) */}
-        <div className="md:col-span-2 md:row-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl p-4 md:p-8 relative flex flex-col items-center justify-center overflow-hidden group min-h-[400px] md:min-h-[550px]">
+        <div className="md:col-span-2 md:row-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl relative flex flex-col items-center justify-end overflow-hidden group min-h-[400px] md:min-h-[600px] pt-12 md:pt-20 px-4 md:px-0">
           
           {/* External Monitor Frame (Background) */}
-          <div className="absolute top-6 right-[-20%] md:top-12 md:right-[-5%] w-[350px] md:w-[550px] -rotate-3 opacity-50 group-hover:opacity-80 group-hover:-rotate-1 transition-all duration-700 pointer-events-none">
-            <div className="bg-zinc-800 p-2 rounded-xl border border-zinc-700 shadow-2xl">
+          <div className="absolute top-4 right-[-10%] md:top-8 md:right-[-5%] w-[350px] md:w-[650px] -rotate-3 opacity-40 group-hover:opacity-70 group-hover:-rotate-1 transition-all duration-700 pointer-events-none z-0">
+            <div className="bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl border border-zinc-700 shadow-2xl">
               <div className="bg-black rounded-lg overflow-hidden border border-zinc-900 aspect-video relative">
                 <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-full object-cover object-left-top" />
               </div>
-              <div className="h-4 w-16 bg-zinc-700 mx-auto mt-2 rounded-b-sm"></div>
-              <div className="h-1 w-24 bg-zinc-600 mx-auto mt-0.5 rounded-full"></div>
+              <div className="h-4 md:h-6 w-16 md:w-24 bg-zinc-700 mx-auto mt-2 rounded-b-sm"></div>
+              <div className="h-1 md:h-1.5 w-24 md:w-36 bg-zinc-600 mx-auto mt-0.5 rounded-full"></div>
             </div>
           </div>
 
           {/* MacBook Frame (Foreground) */}
-          <div className="relative z-10 w-full max-w-[400px] md:max-w-[700px] mt-16 md:mt-32 md:-ml-8 group-hover:scale-[1.02] transition-transform duration-700">
+          <div className="relative z-10 w-[110%] md:w-[115%] md:-ml-[5%] group-hover:translate-y-[-10px] transition-transform duration-700 flex flex-col items-center mt-auto">
             {/* Screen */}
-            <div className="bg-zinc-800 p-1.5 md:p-2.5 rounded-t-xl md:rounded-t-2xl border-t border-l border-r border-zinc-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-              <div className="bg-black rounded-lg overflow-hidden border border-zinc-900 aspect-[16/10] relative">
+            <div className="bg-zinc-800 p-1.5 md:p-3 rounded-t-xl md:rounded-t-3xl border-t border-l border-r border-zinc-700 shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-full">
+              <div className="bg-black rounded-lg md:rounded-xl overflow-hidden border border-zinc-900 aspect-[16/10] relative">
                 <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad MacBook" className="w-full h-full object-cover object-top" />
               </div>
             </div>
             {/* Keyboard base */}
-            <div className="bg-zinc-700 h-2 md:h-4 w-[105%] -ml-[2.5%] rounded-b-xl md:rounded-b-2xl border-b border-l border-r border-zinc-600 relative flex justify-center shadow-xl">
+            <div className="bg-zinc-700 h-2 md:h-5 w-[104%] rounded-b-xl md:rounded-b-3xl border-b border-l border-r border-zinc-600 relative flex justify-center shadow-2xl z-20">
               <div className="w-1/6 h-1 md:h-1.5 bg-zinc-500 rounded-b-lg"></div>
             </div>
           </div>
