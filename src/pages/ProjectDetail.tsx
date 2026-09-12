@@ -27,10 +27,10 @@ export function ProjectDetail() {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      <div className="project-detail-loaded relative w-full flex-1 flex flex-col min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="project-detail-loaded relative w-full flex-1 flex flex-col min-h-screen pt-24 pb-12">
         
-        {/* Navigation / Back button */}
-        <div className="mb-8">
+        {/* Navigation / Back button - Constrained width */}
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 z-50 relative">
           <Link 
             to="/" 
             className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group"
@@ -41,7 +41,9 @@ export function ProjectDetail() {
         </div>
 
         {project.layoutStyle === 'bento' ? (
-          <BentoLayout project={project} />
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <BentoLayout project={project} />
+          </div>
         ) : (
           <EditorialLayout project={project} />
         )}

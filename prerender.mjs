@@ -16,7 +16,7 @@ const projects = [
     seoImage: '/projects/suitesecurity_01.png'
   },
   {
-    id: 'puce-integrador',
+    id: 'puce-connect-hub',
     title: 'PUCE Connect Hub',
     seoDescription: 'Offline-first mobile portal built with Flutter and Spring Boot, featuring background synchronization and secure local caching.',
     seoImage: '/projects/puce_mockup.png'

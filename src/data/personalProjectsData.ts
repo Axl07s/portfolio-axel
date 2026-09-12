@@ -28,7 +28,7 @@ export const personalProjects: PersonalProject[] = [
     seoImage: '/projects/suitesecurity_01.png'
   },
   {
-    id: 'puce-integrador',
+    id: 'puce-connect-hub',
     title: 'PUCE Connect Hub',
     descriptionES: 'Portal móvil offline-first para sincronización robusta de notas y asistencia académica bajo conectividad intermitente.',
     descriptionEN: 'Offline-first mobile portal for robust synchronization of grades and academic attendance under intermittent connectivity.',
