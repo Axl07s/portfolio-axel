@@ -13,7 +13,7 @@ const projects = [
     id: 'suiteseguridad',
     title: 'SuiteSeguridad EDR',
     seoDescription: 'A hybrid EDR system for Windows that blocks ransomware and monitors malicious activity in real time using YARA and ETW.',
-    seoImage: '/projects/suite_mockup.png'
+    seoImage: '/projects/suitesecurity_01.png'
   },
   {
     id: 'puce-integrador',

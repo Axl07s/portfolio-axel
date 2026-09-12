@@ -22,10 +22,10 @@ export const personalProjects: PersonalProject[] = [
     architectureES: 'Arquitectura C/C++ y Python dividida en un driver de baja latencia para recolección de telemetría y un motor en espacio de usuario para análisis heurístico usando YARA y Sysmon.',
     architectureEN: 'C/C++ & Python architecture divided into a low-latency driver for telemetry collection and a user-space engine for heuristic analysis using YARA and Sysmon.',
     tech: ['Python', 'C++', 'YARA', 'Sysmon', 'ETW API'],
-    image: '/projects/suite_mockup.svg',
+    image: '/projects/suitesecurity_01.png',
     layoutStyle: 'bento',
     seoDescription: 'A hybrid EDR system for Windows that blocks ransomware and monitors malicious activity in real time using YARA and ETW.',
-    seoImage: '/projects/suite_mockup.svg'
+    seoImage: '/projects/suitesecurity_01.png'
   },
   {
     id: 'puce-integrador',
