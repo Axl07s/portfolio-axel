@@ -8,11 +8,13 @@ import { Projects } from './pages/Projects';
 import { Labs } from './pages/Labs';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { NotFound } from './pages/NotFound';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-white">
           <Navbar onOpenContact={() => {
             const el = document.getElementById('contact');

@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowDown, MessageCircle, Code2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
+import { Link } from 'react-router-dom';
+
 export const Hero: React.FC = () => {
   const { lang, t } = useLanguage();
 
@@ -48,13 +50,13 @@ export const Hero: React.FC = () => {
           </a>
 
           {/* Secondary CTA: Portfolio */}
-          <a
-            href="#projects"
+          <Link
+            to="/projects"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-all"
           >
             <span>{t('hero.cta.secondary')}</span>
             <ArrowDown className="w-4 h-4 text-zinc-400" />
-          </a>
+          </Link>
 
           <a
             href="https://github.com/Axl07s"
