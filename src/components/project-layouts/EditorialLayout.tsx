@@ -1,26 +1,48 @@
 import type { PersonalProject } from '../../data/personalProjectsData';
-import { ArrowRight, GitBranch, Smartphone } from 'lucide-react';
+import { ArrowRight, GitBranch, Smartphone, WifiOff } from 'lucide-react';
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
-  // Mobile frame placeholder since we don't have real app screenshots
-  const MobileFrame = ({ title }: { title: string }) => (
-    <div className="relative mx-auto border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] h-[600px] w-[300px] shadow-2xl overflow-hidden ring-1 ring-white/10">
-      <div className="absolute top-0 inset-x-0 h-6 bg-zinc-950 flex justify-center rounded-t-[2rem]">
-        <div className="w-20 h-4 bg-zinc-950 rounded-b-xl border border-t-0 border-zinc-800"></div>
+  // Enhanced Mobile frame with notch, buttons, and dynamic lighting
+  const MobileFrame = ({ title, className = "", imagePath = "" }: { title: string, className?: string, imagePath?: string }) => (
+    <div className={`relative flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] h-[550px] md:h-[650px] w-[260px] md:w-[310px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden ring-1 ring-white/10 ${className}`}>
+      
+      {/* Side Buttons */}
+      <div className="absolute top-28 -left-[10px] w-1 h-10 bg-zinc-800 rounded-l-md"></div>
+      <div className="absolute top-44 -left-[10px] w-1 h-16 bg-zinc-800 rounded-l-md"></div>
+      <div className="absolute top-32 -right-[10px] w-1 h-20 bg-zinc-800 rounded-r-md"></div>
+      
+      {/* Dynamic Island / Notch */}
+      <div className="absolute top-2 inset-x-0 flex justify-center z-20">
+        <div className="w-20 md:w-24 h-6 md:h-7 bg-black rounded-full border border-zinc-800 flex items-center justify-between px-2">
+           <div className="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
+           <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/30 shadow-[0_0_8px_rgba(99,102,241,0.5)]"></div>
+        </div>
       </div>
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-        <Smartphone className="w-12 h-12 text-zinc-700 mb-4" />
-        <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest border border-dashed border-zinc-700 p-2 rounded w-full">
-          PLACEHOLDER: {title}
-        </p>
+
+      {/* Screen Content */}
+      <div className="absolute inset-0 pt-10 flex flex-col items-center justify-center p-6 text-center z-10 bg-zinc-900/40 backdrop-blur-sm">
+        {imagePath ? (
+          <img src={imagePath} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+        ) : (
+          <>
+            <Smartphone className="w-10 h-10 md:w-12 md:h-12 text-zinc-700 mb-4" />
+            <p className="text-zinc-500 font-mono text-[9px] md:text-[10px] uppercase tracking-widest border border-dashed border-zinc-700 p-2 md:p-3 rounded w-full">
+              PLACEHOLDER:<br/><span className="text-zinc-400 font-bold">{title}</span>
+            </p>
+          </>
+        )}
       </div>
+
+      {/* Screen Glare effect */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none z-30"></div>
     </div>
   );
 
   return (
-    <article className="w-full bg-zinc-950 text-zinc-100 min-h-screen font-sans selection:bg-indigo-500/30 selection:text-white">
+    <article className="w-full bg-zinc-950 text-zinc-100 min-h-screen font-sans selection:bg-indigo-500/30 selection:text-white overflow-hidden">
+      
       {/* Hero Header */}
-      <header className="px-4 sm:px-6 lg:px-8 pt-32 pb-16 max-w-7xl mx-auto border-b border-zinc-800/50">
+      <header className="px-4 sm:px-6 lg:px-8 pt-32 pb-16 max-w-7xl mx-auto">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-bold leading-[0.9] tracking-tighter uppercase break-words text-white">
             {project.title}
@@ -42,18 +64,75 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         </div>
       </header>
 
-      {/* Mockups Hero */}
-      <div className="w-full py-20 relative group overflow-hidden bg-zinc-900/20 border-b border-zinc-800/50">
-        <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row gap-8 justify-center items-center">
-          <MobileFrame title="Reemplazar con captura real de Calificaciones" />
-          <div className="hidden md:block mt-24">
-            <MobileFrame title="Reemplazar con captura real de Sincronización Offline" />
-          </div>
-        </div>
-      </div>
+      {/* Storytelling Block 1 */}
+      <section className="px-4 py-16 md:py-24 max-w-3xl mx-auto text-center space-y-8 relative z-20">
+         <div className="flex justify-center mb-6">
+           <WifiOff className="w-8 h-8 text-zinc-700" />
+         </div>
+         <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+           La conectividad es un privilegio,<br className="hidden md:block"/>
+           <span className="text-zinc-500">no una garantía.</span>
+         </h2>
+         <p className="text-base md:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
+           Los estudiantes que transitan entre bloques de concreto grueso o viajan desde zonas rurales suelen enfrentar desconexiones severas. 
+           Este proyecto nació de una premisa innegociable: el acceso a la vida académica no debería pausarse cuando se cae el Wi-Fi.
+         </p>
+      </section>
 
-      {/* Content Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-24 max-w-7xl mx-auto">
+      {/* Collage 1: 3 Phones (Home, Grades, Attendance) */}
+      <section className="relative w-full py-20 md:py-32 bg-zinc-950 flex items-center justify-center min-h-[600px] md:min-h-[900px]">
+         {/* Ambient Glow */}
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
+
+         <div className="relative w-full max-w-5xl h-[500px] md:h-[700px] flex justify-center items-center">
+           {/* Left Phone (Grades) */}
+           <MobileFrame 
+             title="Captura de Calificaciones" 
+             className="absolute z-10 -rotate-6 -translate-x-[40%] sm:-translate-x-[60%] lg:-translate-x-[90%] translate-y-8 md:translate-y-16 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-40" 
+           />
+           
+           {/* Right Phone (Attendance) */}
+           <MobileFrame 
+             title="Captura de Asistencia" 
+             className="absolute z-10 rotate-6 translate-x-[40%] sm:translate-x-[60%] lg:translate-x-[90%] translate-y-12 md:translate-y-24 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-40" 
+           />
+
+           {/* Center Phone (Home/Login) */}
+           <MobileFrame 
+             title="Captura de Inicio / Home" 
+             className="absolute z-30 rotate-0 scale-90 md:scale-100 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
+           />
+         </div>
+      </section>
+
+      {/* Storytelling Block 2 */}
+      <section className="px-4 py-16 md:py-24 max-w-3xl mx-auto text-center space-y-8 relative z-20">
+         <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+           Arquitectura <span className="text-indigo-400 font-normal italic">Offline-First.</span>
+         </h2>
+         <p className="text-base md:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
+           Mediante el uso de una caché local en SQLite y colas de procesos en segundo plano, la app permite consultar horarios, notas y faltas incluso en modo avión. En el instante en que se recupera la señal, workers silenciosos sincronizan las mutaciones con el backend en Spring Boot sin interrumpir al usuario.
+         </p>
+      </section>
+
+      {/* Collage 2: Sync State */}
+      <section className="relative w-full pb-20 md:pb-40 bg-zinc-950 flex items-center justify-center min-h-[500px] md:min-h-[800px] border-b border-zinc-800/50">
+         <div className="relative w-full max-w-4xl h-[500px] md:h-[600px] flex justify-center items-center">
+           {/* Back phone */}
+           <MobileFrame 
+             title="Estado de Sincronización" 
+             className="absolute z-10 rotate-[12deg] translate-x-20 md:translate-x-40 translate-y-12 md:translate-y-16 scale-75 md:scale-90 opacity-40 md:opacity-60 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-30" 
+           />
+           {/* Front phone */}
+           <MobileFrame 
+             title="Perfil Estudiantil" 
+             className="absolute z-20 -rotate-2 -translate-x-8 md:-translate-x-16 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
+           />
+         </div>
+      </section>
+
+      {/* Specs Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-24 md:py-32 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
           {/* Tech Stack - Left column on large screens */}
@@ -73,20 +152,20 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
           </div>
 
           {/* Text Content - Right side */}
-          <div className="lg:col-span-9 space-y-32">
+          <div className="lg:col-span-9 space-y-24 md:space-y-32">
             
             {/* Overview */}
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-12 border-b border-zinc-800 pb-4">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-8 md:mb-12 border-b border-zinc-800 pb-4">
                 The Project
               </h2>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 xl:gap-12">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
                 <div className="space-y-6">
                   <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
                     Español
                   </p>
-                  <p className="text-xl md:text-3xl font-light leading-snug text-zinc-200">
+                  <p className="text-lg md:text-2xl font-light leading-relaxed text-zinc-300">
                     {project.descriptionES}
                   </p>
                 </div>
@@ -95,7 +174,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
                     <span className="w-2 h-2 rounded-full bg-zinc-600"></span>
                     English
                   </p>
-                  <p className="text-xl md:text-3xl font-light leading-snug text-zinc-400">
+                  <p className="text-lg md:text-2xl font-light leading-relaxed text-zinc-500">
                     {project.descriptionEN}
                   </p>
                 </div>
@@ -104,19 +183,19 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
 
             {/* Architecture */}
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-12 border-b border-zinc-800 pb-4">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-8 md:mb-12 border-b border-zinc-800 pb-4">
                 Architecture & Design
               </h2>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 xl:gap-12">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
                 <div className="space-y-6">
                   <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">ESP</p>
-                  <p className="text-lg md:text-xl font-light leading-relaxed text-zinc-400">
+                  <p className="text-base md:text-lg font-light leading-relaxed text-zinc-400">
                     {project.architectureES}
                   </p>
                 </div>
                 <div className="space-y-6">
                   <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">ENG</p>
-                  <p className="text-lg md:text-xl font-light leading-relaxed text-zinc-400">
+                  <p className="text-base md:text-lg font-light leading-relaxed text-zinc-500">
                     {project.architectureEN}
                   </p>
                 </div>
