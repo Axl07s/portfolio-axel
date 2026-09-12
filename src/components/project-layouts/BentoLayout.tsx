@@ -157,6 +157,47 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
           </div>
         </div>
 
+        {/* Architecture Diagram Card */}
+        <div className="md:col-span-4 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col items-center justify-center min-h-[300px]">
+          <div className="w-full max-w-3xl flex items-center justify-center p-8 bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-inner">
+             {/* A simple low-level architecture diagram in SVG */}
+             <svg viewBox="0 0 800 400" className="w-full h-auto text-[#8b949e] font-mono text-xs">
+                {/* ETW Provider */}
+                <rect x="50" y="50" width="160" height="80" rx="8" fill="#21262d" stroke="#30363d" strokeWidth="2" />
+                <text x="130" y="90" textAnchor="middle" fill="#c9d1d9" className="font-bold">Windows ETW</text>
+                <text x="130" y="110" textAnchor="middle" fill="#8b949e" className="text-[10px]">Kernel Telemetry</text>
+                
+                {/* Sysmon */}
+                <rect x="50" y="250" width="160" height="80" rx="8" fill="#21262d" stroke="#30363d" strokeWidth="2" />
+                <text x="130" y="290" textAnchor="middle" fill="#c9d1d9" className="font-bold">Sysmon</text>
+                <text x="130" y="310" textAnchor="middle" fill="#8b949e" className="text-[10px]">Process Monitor</text>
+
+                {/* Arrows to Data Ingestion */}
+                <path d="M 210 90 L 320 170" stroke="#79c0ff" strokeWidth="2" fill="none" strokeDasharray="4,4" />
+                <path d="M 210 290 L 320 210" stroke="#79c0ff" strokeWidth="2" fill="none" strokeDasharray="4,4" />
+
+                {/* Data Ingestion (C++) */}
+                <rect x="320" y="150" width="160" height="100" rx="8" fill="#1f2428" stroke="#79c0ff" strokeWidth="2" />
+                <text x="400" y="190" textAnchor="middle" fill="#79c0ff" className="font-bold">C++ Event Parser</text>
+                <text x="400" y="210" textAnchor="middle" fill="#8b949e" className="text-[10px]">Low Latency Ingestion</text>
+
+                {/* Arrow to Python Engine */}
+                <path d="M 480 200 L 590 200" stroke="#7ee787" strokeWidth="2" fill="none" />
+                <polygon points="590,200 580,195 580,205" fill="#7ee787" />
+
+                {/* Python Detection Engine */}
+                <rect x="590" y="150" width="160" height="100" rx="8" fill="#1f2428" stroke="#7ee787" strokeWidth="2" />
+                <text x="670" y="190" textAnchor="middle" fill="#7ee787" className="font-bold">Python Engine</text>
+                <text x="670" y="210" textAnchor="middle" fill="#8b949e" className="text-[10px]">YARA + Heuristics</text>
+
+                {/* Mitigation Action */}
+                <path d="M 670 150 L 670 90 L 210 90" stroke="#ff7b72" strokeWidth="2" fill="none" strokeDasharray="6,4" />
+                <polygon points="210,90 220,85 220,95" fill="#ff7b72" />
+                <text x="440" y="80" textAnchor="middle" fill="#ff7b72" className="text-[10px]">Kill Process (Mitigation)</text>
+             </svg>
+          </div>
+        </div>
+
       </div>
     </div>
   );

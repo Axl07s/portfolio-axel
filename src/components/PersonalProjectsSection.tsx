@@ -96,7 +96,7 @@ export function PersonalProjectsSection({ lang }: { lang: 'ES' | 'EN' }) {
       <div 
         className="pointer-events-none hidden md:block absolute top-0 left-0 w-80 h-48 rounded-xl overflow-hidden shadow-2xl border border-zinc-800 z-0 transition-opacity duration-300 ease-out"
         style={{
-          opacity: hoveredProject ? 1 : 0,
+          opacity: (hoveredProject && (mousePos.x !== 0 || mousePos.y !== 0)) ? 1 : 0,
           transform: `translate3d(${mousePos.x + 20}px, ${mousePos.y - 100}px, 0)`,
           transition: 'transform 0.15s ease-out, opacity 0.3s ease'
         }}
