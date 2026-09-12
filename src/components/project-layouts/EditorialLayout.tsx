@@ -88,18 +88,21 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            {/* Left Phone (Grades) */}
            <MobileFrame 
              title="Captura de Calificaciones" 
+             imagePath="/projects/puce_grades.png"
              className="absolute z-10 -rotate-6 -translate-x-[40%] sm:-translate-x-[60%] lg:-translate-x-[90%] translate-y-8 md:translate-y-16 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-40" 
            />
            
            {/* Right Phone (Attendance) */}
            <MobileFrame 
              title="Captura de Asistencia" 
+             imagePath="/projects/puce_attendance.png"
              className="absolute z-10 rotate-6 translate-x-[40%] sm:translate-x-[60%] lg:translate-x-[90%] translate-y-12 md:translate-y-24 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-40" 
            />
 
            {/* Center Phone (Home/Login) */}
            <MobileFrame 
              title="Captura de Inicio / Home" 
+             imagePath="/projects/puce_home.png"
              className="absolute z-30 rotate-0 scale-90 md:scale-100 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
            />
          </div>
@@ -121,11 +124,13 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            {/* Back phone */}
            <MobileFrame 
              title="Estado de Sincronización" 
+             imagePath="/projects/puce_login.png"
              className="absolute z-10 rotate-[12deg] translate-x-20 md:translate-x-40 translate-y-12 md:translate-y-16 scale-75 md:scale-90 opacity-40 md:opacity-60 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-30" 
            />
            {/* Front phone */}
            <MobileFrame 
              title="Perfil Estudiantil" 
+             imagePath="/projects/puce_profile.png"
              className="absolute z-20 -rotate-2 -translate-x-8 md:-translate-x-16 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
            />
          </div>
