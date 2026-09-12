@@ -43,22 +43,34 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
           </div>
         </div>
 
-        {/* Visual / Image Card */}
-        <div className="md:col-span-2 md:row-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl overflow-hidden relative group min-h-[300px]">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/20 to-transparent opacity-80 z-10 pointer-events-none"></div>
+        {/* Main Image Card (Device Mockups) */}
+        <div className="md:col-span-2 md:row-span-4 bg-[#0d1117] border border-[#30363d] rounded-2xl p-8 relative flex flex-col items-center justify-center overflow-hidden group">
           
-          <div className="absolute top-4 left-4 z-20 flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+          {/* External Monitor Frame (Background) */}
+          <div className="absolute top-8 right-0 md:-right-12 w-[300px] md:w-[400px] -rotate-3 opacity-60 group-hover:opacity-100 group-hover:-rotate-1 transition-all duration-700">
+            <div className="bg-zinc-800 p-2 rounded-xl border border-zinc-700 shadow-2xl">
+              <div className="bg-black rounded-lg overflow-hidden border border-zinc-900 aspect-video relative">
+                <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-full object-cover object-left-top" />
+              </div>
+              <div className="h-4 w-16 bg-zinc-700 mx-auto mt-2 rounded-b-sm"></div>
+              <div className="h-1 w-24 bg-zinc-600 mx-auto mt-0.5 rounded-full"></div>
+            </div>
           </div>
 
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
-          />
-          
+          {/* MacBook Frame (Foreground) */}
+          <div className="relative z-10 w-full max-w-[500px] mt-12 md:mt-24 md:-ml-12 group-hover:scale-105 transition-transform duration-700">
+            {/* Screen */}
+            <div className="bg-zinc-800 p-2 rounded-t-2xl border-t border-l border-r border-zinc-700 shadow-2xl">
+              <div className="bg-black rounded-xl overflow-hidden border border-zinc-900 aspect-[16/10] relative">
+                <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad MacBook" className="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+            {/* Keyboard base */}
+            <div className="bg-zinc-700 h-3 w-[105%] -ml-[2.5%] rounded-b-2xl border-b border-l border-r border-zinc-600 relative flex justify-center shadow-xl">
+              <div className="w-1/6 h-1 bg-zinc-500 rounded-b-lg"></div>
+            </div>
+          </div>
+
           {project.githubUrl && (
             <div className="absolute bottom-4 right-4 z-20">
               <a 
@@ -159,6 +171,13 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
 
         {/* Architecture Diagram Card */}
         <div className="md:col-span-4 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col items-center justify-center min-h-[300px]">
+          <div className="w-full flex items-center justify-between mb-8">
+            <h3 className="text-xl font-bold text-white tracking-tight">Flujo de Detección y Mitigación</h3>
+            <div className="flex items-center gap-2 text-[#8b949e]">
+              <Cpu size={16} />
+              <span className="text-xs font-mono uppercase tracking-wider">Architecture Diagram</span>
+            </div>
+          </div>
           <div className="w-full max-w-3xl flex items-center justify-center p-8 bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-inner">
              {/* A simple low-level architecture diagram in SVG */}
              <svg viewBox="0 0 800 400" className="w-full h-auto text-[#8b949e] font-mono text-xs">

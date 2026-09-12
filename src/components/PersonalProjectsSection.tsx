@@ -10,7 +10,7 @@ const TECH_ICONS: Record<string, React.ReactNode> = {
   'SQLite': <Database className="w-4 h-4" />,
 };
 
-export function PersonalProjectsSection({ lang }: { lang: 'ES' | 'EN' }) {
+export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'ES' | 'EN', hideHeader?: boolean }) {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,16 +29,18 @@ export function PersonalProjectsSection({ lang }: { lang: 'ES' | 'EN' }) {
     <section className="py-24 bg-zinc-950 relative overflow-hidden" ref={containerRef} onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredProject(null)}>
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            {lang === 'ES' ? 'Laboratorio & Experimentos' : 'Labs & Experiments'}
-          </h2>
-          <p className="text-zinc-400 max-w-2xl">
-            {lang === 'ES' 
-              ? 'Proyectos académicos y de investigación personal donde exploro arquitecturas complejas a bajo nivel, seguridad y desarrollo móvil offline-first.'
-              : 'Academic and personal research projects exploring low-level architecture, security, and offline-first mobile development.'}
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              {lang === 'ES' ? 'Laboratorio & Experimentos' : 'Labs & Experiments'}
+            </h2>
+            <p className="text-zinc-400 max-w-2xl">
+              {lang === 'ES' 
+                ? 'Proyectos académicos y de investigación personal donde exploro arquitecturas complejas a bajo nivel, seguridad y desarrollo móvil offline-first.'
+                : 'Academic and personal research projects exploring low-level architecture, security, and offline-first mobile development.'}
+            </p>
+          </div>
+        )}
 
         <div className="flex flex-col border-t border-zinc-800">
           {personalProjects.map((project) => (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, MessageCircle, Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   onOpenContact: () => void;
@@ -10,6 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, setLang, t } = useLanguage();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     setLang(lang === 'es' ? 'en' : 'es');
   };
 
+  const navLinks = [
+    { path: '/projects', labelES: 'Proyectos B2B', labelEN: 'B2B Projects' },
+    { path: '/labs', labelES: 'Laboratorio', labelEN: 'Labs' }
+  ];
+
   return (
     <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
       scrolled 
@@ -32,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-900 flex items-center justify-center border border-indigo-500/40 shadow-glow-indigo group-hover:scale-105 transition-transform">
             <Terminal className="w-5 h-5 text-white" />
           </div>
@@ -46,11 +53,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             </div>
             <p className="text-[11px] text-zinc-400 font-mono hidden sm:block">SaaS Architect & Consultant</p>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 text-xs font-medium text-zinc-300">
-          <a href="#projects" className="hover:text-indigo-400 transition-colors">{t('nav.projects')}</a>
+          {navLinks.map((link) => {
+            const isActive = location.pathname.startsWith(link.path);
+            return (
+              <Link 
+                key={link.path}
+                to={link.path} 
+                className={`transition-colors uppercase tracking-widest ${isActive ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}
+              >
+                {lang === 'es' ? link.labelES : link.labelEN}
+              </Link>
+            );
+          })}
           <button 
             onClick={toggleLanguage} 
             className="flex items-center gap-1.5 text-zinc-400 hover:text-indigo-400 transition-colors uppercase font-bold"
@@ -86,13 +104,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-zinc-950/95 backdrop-blur-md border-b border-indigo-500/20 px-6 py-4 space-y-3 animate-fadeIn">
-          <a
-            href="#projects"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm text-zinc-200 hover:text-indigo-400 py-1"
-          >
-            {t('nav.projects')}
-          </a>
+          {navLinks.map((link) => {
+            const isActive = location.pathname.startsWith(link.path);
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block text-sm py-1 font-medium ${isActive ? 'text-indigo-400' : 'text-zinc-200 hover:text-indigo-400'}`}
+              >
+                {lang === 'es' ? link.labelES : link.labelEN}
+              </Link>
+            );
+          })}
           <button
             onClick={() => {
               toggleLanguage();

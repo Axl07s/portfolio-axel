@@ -4,6 +4,8 @@ import { Navbar } from './components/Navbar';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
+import { Projects } from './pages/Projects';
+import { Labs } from './pages/Labs';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { NotFound } from './pages/NotFound';
 
@@ -20,6 +22,8 @@ export function App() {
           <main className="flex-1 flex flex-col w-full">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/labs" element={<Labs />} />
               <Route path="/project/:id" element={<ProjectDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
