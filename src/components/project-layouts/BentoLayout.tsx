@@ -4,50 +4,40 @@ import { Terminal, Code2, Cpu, FileJson, GitBranch, Shield } from 'lucide-react'
 export function BentoLayout({ project }: { project: PersonalProject }) {
   return (
     <div className="w-full font-sans selection:bg-emerald-500/30">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto">
         
-        {/* Header / Title Card */}
-        <div className="md:col-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col relative group overflow-hidden">
-          <div className="absolute -right-6 -top-6 text-[#21262d] group-hover:text-[#30363d] transition-colors duration-500">
-            <Terminal size={120} strokeWidth={1} />
+        {/* Header & Tech Stack (Row 1, Span 3) */}
+        <div className="md:col-span-3 bg-[#0d1117] border border-[#30363d] rounded-2xl p-5 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 relative overflow-hidden">
+          <div className="absolute -right-4 -top-8 text-[#21262d] opacity-50 pointer-events-none">
+            <Terminal size={140} strokeWidth={1} />
           </div>
-          <div className="relative z-10 flex flex-col h-full min-h-[140px]">
-            <h3 className="text-3xl font-bold text-[#c9d1d9] mb-2 tracking-tight">
+          <div className="relative z-10 flex flex-col">
+            <h3 className="text-2xl md:text-3xl font-bold text-[#c9d1d9] tracking-tight mb-1">
               {project.title}
             </h3>
-            <div className="flex items-center gap-2 text-[#7ee787] text-sm font-mono mt-auto pt-4">
+            <div className="flex items-center gap-2 text-[#7ee787] text-xs md:text-sm font-mono">
               <span className="text-[#8b949e]">~/</span> {project.id}
               <span className="animate-pulse w-2 h-4 bg-[#7ee787] inline-block ml-1"></span>
             </div>
           </div>
-        </div>
-
-        {/* Tech Stack Card */}
-        <div className="md:col-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col">
-          <div className="flex items-center gap-2 text-[#8b949e] mb-4">
-            <Code2 size={16} />
-            <span className="text-xs font-mono uppercase tracking-wider">dependencies.json</span>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            {project.tech.map((t, i) => (
+          <div className="relative z-10 flex flex-wrap gap-2 items-center">
+            <Code2 size={16} className="text-[#8b949e] hidden lg:block mr-1" />
+            {project.tech.map((t) => (
               <span 
                 key={t} 
-                className="px-3 py-1.5 bg-[#161b22] border border-[#21262d] rounded-lg text-xs font-mono text-[#79c0ff] hover:border-[#79c0ff]/50 transition-colors cursor-default"
+                className="px-2.5 py-1 bg-[#161b22] border border-[#30363d] rounded-md text-[11px] md:text-xs font-mono text-[#79c0ff] cursor-default"
               >
-                <span className="text-[#ff7b72]">"</span>
                 {t}
-                <span className="text-[#ff7b72]">"</span>
-                {i < project.tech.length - 1 && <span className="text-[#c9d1d9]">,</span>}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Main Image Card (Device Mockups) */}
-        <div className="md:col-span-2 md:row-span-4 bg-[#0d1117] border border-[#30363d] rounded-2xl p-8 relative flex flex-col items-center justify-center overflow-hidden group">
+        {/* Main Image Card (Row 2, Span 2, Row-Span 2) */}
+        <div className="md:col-span-2 md:row-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl p-4 md:p-8 relative flex flex-col items-center justify-center overflow-hidden group min-h-[400px] md:min-h-[550px]">
           
           {/* External Monitor Frame (Background) */}
-          <div className="absolute top-8 right-0 md:-right-12 w-[300px] md:w-[400px] -rotate-3 opacity-60 group-hover:opacity-100 group-hover:-rotate-1 transition-all duration-700">
+          <div className="absolute top-6 right-[-20%] md:top-12 md:right-[-5%] w-[350px] md:w-[550px] -rotate-3 opacity-50 group-hover:opacity-80 group-hover:-rotate-1 transition-all duration-700 pointer-events-none">
             <div className="bg-zinc-800 p-2 rounded-xl border border-zinc-700 shadow-2xl">
               <div className="bg-black rounded-lg overflow-hidden border border-zinc-900 aspect-video relative">
                 <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-full object-cover object-left-top" />
@@ -58,16 +48,16 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
           </div>
 
           {/* MacBook Frame (Foreground) */}
-          <div className="relative z-10 w-full max-w-[500px] mt-12 md:mt-24 md:-ml-12 group-hover:scale-105 transition-transform duration-700">
+          <div className="relative z-10 w-full max-w-[400px] md:max-w-[700px] mt-16 md:mt-32 md:-ml-8 group-hover:scale-[1.02] transition-transform duration-700">
             {/* Screen */}
-            <div className="bg-zinc-800 p-2 rounded-t-2xl border-t border-l border-r border-zinc-700 shadow-2xl">
-              <div className="bg-black rounded-xl overflow-hidden border border-zinc-900 aspect-[16/10] relative">
+            <div className="bg-zinc-800 p-1.5 md:p-2.5 rounded-t-xl md:rounded-t-2xl border-t border-l border-r border-zinc-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <div className="bg-black rounded-lg overflow-hidden border border-zinc-900 aspect-[16/10] relative">
                 <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad MacBook" className="w-full h-full object-cover object-top" />
               </div>
             </div>
             {/* Keyboard base */}
-            <div className="bg-zinc-700 h-3 w-[105%] -ml-[2.5%] rounded-b-2xl border-b border-l border-r border-zinc-600 relative flex justify-center shadow-xl">
-              <div className="w-1/6 h-1 bg-zinc-500 rounded-b-lg"></div>
+            <div className="bg-zinc-700 h-2 md:h-4 w-[105%] -ml-[2.5%] rounded-b-xl md:rounded-b-2xl border-b border-l border-r border-zinc-600 relative flex justify-center shadow-xl">
+              <div className="w-1/6 h-1 md:h-1.5 bg-zinc-500 rounded-b-lg"></div>
             </div>
           </div>
 
@@ -77,32 +67,32 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 href={project.githubUrl} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="flex items-center gap-2 bg-[#21262d]/90 backdrop-blur-md px-4 py-2 rounded-xl border border-[#30363d] hover:bg-[#30363d] hover:text-[#c9d1d9] transition-all text-[#8b949e] font-mono text-sm"
+                className="flex items-center gap-2 bg-[#21262d]/90 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-xl border border-[#30363d] hover:bg-[#30363d] hover:text-[#c9d1d9] transition-all text-[#8b949e] font-mono text-xs md:text-sm"
               >
-                <GitBranch size={16} />
+                <GitBranch size={14} />
                 <span>Source</span>
               </a>
             </div>
           )}
           
           <div className="absolute bottom-4 left-4 z-20">
-            <div className="flex items-center gap-2 text-[#8b949e] text-xs font-mono">
-              <Shield size={14} className="text-[#ff7b72]"/>
+            <div className="flex items-center gap-1.5 md:gap-2 text-[#8b949e] text-[10px] md:text-xs font-mono bg-[#0d1117]/80 px-2 py-1 rounded-md">
+              <Shield size={12} className="text-[#ff7b72]"/>
               <span>SYS_SEC_ACTIVE</span>
             </div>
           </div>
         </div>
 
-        {/* Description Card */}
-        <div className="md:col-span-1 md:row-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col">
-          <div className="flex items-center gap-2 text-[#8b949e] mb-5">
+        {/* Description Card (Manifest) */}
+        <div className="md:col-span-1 bg-[#0d1117] border border-[#30363d] rounded-2xl p-5 md:p-6 flex flex-col">
+          <div className="flex items-center gap-2 text-[#8b949e] mb-4">
             <FileJson size={16} />
-            <span className="text-xs font-mono uppercase tracking-wider">manifest.xml</span>
+            <span className="text-[10px] md:text-xs font-mono uppercase tracking-wider">manifest.xml</span>
           </div>
           
-          <div className="flex flex-col gap-6 mt-auto">
+          <div className="flex flex-col gap-5 mt-auto">
             <div className="group/desc">
-              <div className="text-[10px] font-mono text-[#8b949e] mb-1.5 flex items-center gap-2">
+              <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mb-1.5 flex items-center gap-2">
                 <span className="text-[#ff7b72]">&lt;</span>
                 <span className="text-[#7ee787]">desc</span>
                 <span className="text-[#79c0ff]"> lang</span>
@@ -110,10 +100,10 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 <span className="text-[#a5d6ff]">"en"</span>
                 <span className="text-[#ff7b72]">&gt;</span>
               </div>
-              <p className="text-sm text-[#c9d1d9] leading-relaxed group-hover/desc:text-white transition-colors">
+              <p className="text-xs md:text-sm text-[#c9d1d9] leading-relaxed group-hover/desc:text-white transition-colors">
                 {project.descriptionEN}
               </p>
-              <div className="text-[10px] font-mono text-[#8b949e] mt-1.5">
+              <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mt-1.5">
                 <span className="text-[#ff7b72]">&lt;/</span>
                 <span className="text-[#7ee787]">desc</span>
                 <span className="text-[#ff7b72]">&gt;</span>
@@ -121,7 +111,7 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
             </div>
 
             <div className="group/desc">
-              <div className="text-[10px] font-mono text-[#8b949e] mb-1.5 flex items-center gap-2">
+              <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mb-1.5 flex items-center gap-2">
                 <span className="text-[#ff7b72]">&lt;</span>
                 <span className="text-[#7ee787]">desc</span>
                 <span className="text-[#79c0ff]"> lang</span>
@@ -129,10 +119,10 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 <span className="text-[#a5d6ff]">"es"</span>
                 <span className="text-[#ff7b72]">&gt;</span>
               </div>
-              <p className="text-sm text-[#8b949e] leading-relaxed group-hover/desc:text-[#c9d1d9] transition-colors">
+              <p className="text-xs md:text-sm text-[#8b949e] leading-relaxed group-hover/desc:text-[#c9d1d9] transition-colors">
                 {project.descriptionES}
               </p>
-              <div className="text-[10px] font-mono text-[#8b949e] mt-1.5">
+              <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mt-1.5">
                 <span className="text-[#ff7b72]">&lt;/</span>
                 <span className="text-[#7ee787]">desc</span>
                 <span className="text-[#ff7b72]">&gt;</span>
@@ -141,55 +131,54 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
           </div>
         </div>
 
-        {/* Architecture Card */}
-        <div className="md:col-span-1 md:row-span-2 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col">
-          <div className="flex items-center gap-2 text-[#8b949e] mb-5">
+        {/* Architecture Text Card */}
+        <div className="md:col-span-1 bg-[#0d1117] border border-[#30363d] rounded-2xl p-5 md:p-6 flex flex-col">
+          <div className="flex items-center gap-2 text-[#8b949e] mb-4">
             <Cpu size={16} />
-            <span className="text-xs font-mono uppercase tracking-wider">system_arch.yml</span>
+            <span className="text-[10px] md:text-xs font-mono uppercase tracking-wider">system_arch.yml</span>
           </div>
 
-          <div className="flex flex-col gap-6 mt-auto">
+          <div className="flex flex-col gap-5 mt-auto">
             <div className="group/arch">
-              <div className="text-[10px] font-mono text-[#79c0ff] mb-1.5">
+              <div className="text-[9px] md:text-[10px] font-mono text-[#79c0ff] mb-1.5">
                 architecture_en: <span className="text-[#d2a8ff]">|</span>
               </div>
-              <p className="text-sm text-[#c9d1d9] leading-relaxed border-l-2 border-[#30363d] pl-3 py-1 group-hover/arch:border-[#d2a8ff] transition-colors">
+              <p className="text-xs md:text-sm text-[#c9d1d9] leading-relaxed border-l-2 border-[#30363d] pl-3 py-1 group-hover/arch:border-[#d2a8ff] transition-colors">
                 {project.architectureEN}
               </p>
             </div>
 
             <div className="group/arch">
-              <div className="text-[10px] font-mono text-[#79c0ff] mb-1.5">
+              <div className="text-[9px] md:text-[10px] font-mono text-[#79c0ff] mb-1.5">
                 architecture_es: <span className="text-[#d2a8ff]">|</span>
               </div>
-              <p className="text-sm text-[#8b949e] leading-relaxed border-l-2 border-[#30363d] pl-3 py-1 group-hover/arch:border-[#d2a8ff] transition-colors">
+              <p className="text-xs md:text-sm text-[#8b949e] leading-relaxed border-l-2 border-[#30363d] pl-3 py-1 group-hover/arch:border-[#d2a8ff] transition-colors">
                 {project.architectureES}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Architecture Diagram Card */}
-        <div className="md:col-span-4 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 flex flex-col items-center justify-center min-h-[300px]">
-          <div className="w-full flex items-center justify-between mb-8">
-            <h3 className="text-xl font-bold text-white tracking-tight">Flujo de Detección y Mitigación</h3>
+        {/* Architecture Diagram Card (Row 4, Span 3) */}
+        <div className="md:col-span-3 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center min-h-[300px]">
+          <div className="w-full flex flex-col md:flex-row md:items-center justify-between mb-8 gap-2">
+            <h3 className="text-lg md:text-xl font-bold text-white tracking-tight">Flujo de Detección y Mitigación</h3>
             <div className="flex items-center gap-2 text-[#8b949e]">
               <Cpu size={16} />
-              <span className="text-xs font-mono uppercase tracking-wider">Architecture Diagram</span>
+              <span className="text-[10px] md:text-xs font-mono uppercase tracking-wider">Architecture Diagram</span>
             </div>
           </div>
-          <div className="w-full max-w-3xl flex items-center justify-center p-8 bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-inner">
-             {/* A simple low-level architecture diagram in SVG */}
-             <svg viewBox="0 0 800 400" className="w-full h-auto text-[#8b949e] font-mono text-xs">
+          <div className="w-full max-w-4xl flex items-center justify-center p-4 md:p-8 bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-inner">
+             <svg viewBox="0 0 800 400" className="w-full h-auto text-[#8b949e] font-mono text-[10px] md:text-xs">
                 {/* ETW Provider */}
                 <rect x="50" y="50" width="160" height="80" rx="8" fill="#21262d" stroke="#30363d" strokeWidth="2" />
                 <text x="130" y="90" textAnchor="middle" fill="#c9d1d9" className="font-bold">Windows ETW</text>
-                <text x="130" y="110" textAnchor="middle" fill="#8b949e" className="text-[10px]">Kernel Telemetry</text>
+                <text x="130" y="110" textAnchor="middle" fill="#8b949e" className="text-[8px] md:text-[10px]">Kernel Telemetry</text>
                 
                 {/* Sysmon */}
                 <rect x="50" y="250" width="160" height="80" rx="8" fill="#21262d" stroke="#30363d" strokeWidth="2" />
                 <text x="130" y="290" textAnchor="middle" fill="#c9d1d9" className="font-bold">Sysmon</text>
-                <text x="130" y="310" textAnchor="middle" fill="#8b949e" className="text-[10px]">Process Monitor</text>
+                <text x="130" y="310" textAnchor="middle" fill="#8b949e" className="text-[8px] md:text-[10px]">Process Monitor</text>
 
                 {/* Arrows to Data Ingestion */}
                 <path d="M 210 90 L 320 170" stroke="#79c0ff" strokeWidth="2" fill="none" strokeDasharray="4,4" />
@@ -198,7 +187,7 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 {/* Data Ingestion (C++) */}
                 <rect x="320" y="150" width="160" height="100" rx="8" fill="#1f2428" stroke="#79c0ff" strokeWidth="2" />
                 <text x="400" y="190" textAnchor="middle" fill="#79c0ff" className="font-bold">C++ Event Parser</text>
-                <text x="400" y="210" textAnchor="middle" fill="#8b949e" className="text-[10px]">Low Latency Ingestion</text>
+                <text x="400" y="210" textAnchor="middle" fill="#8b949e" className="text-[8px] md:text-[10px]">Low Latency Ingestion</text>
 
                 {/* Arrow to Python Engine */}
                 <path d="M 480 200 L 590 200" stroke="#7ee787" strokeWidth="2" fill="none" />
@@ -207,12 +196,12 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 {/* Python Detection Engine */}
                 <rect x="590" y="150" width="160" height="100" rx="8" fill="#1f2428" stroke="#7ee787" strokeWidth="2" />
                 <text x="670" y="190" textAnchor="middle" fill="#7ee787" className="font-bold">Python Engine</text>
-                <text x="670" y="210" textAnchor="middle" fill="#8b949e" className="text-[10px]">YARA + Heuristics</text>
+                <text x="670" y="210" textAnchor="middle" fill="#8b949e" className="text-[8px] md:text-[10px]">YARA + Heuristics</text>
 
                 {/* Mitigation Action */}
                 <path d="M 670 150 L 670 90 L 210 90" stroke="#ff7b72" strokeWidth="2" fill="none" strokeDasharray="6,4" />
                 <polygon points="210,90 220,85 220,95" fill="#ff7b72" />
-                <text x="440" y="80" textAnchor="middle" fill="#ff7b72" className="text-[10px]">Kill Process (Mitigation)</text>
+                <text x="440" y="80" textAnchor="middle" fill="#ff7b72" className="text-[8px] md:text-[10px]">Kill Process (Mitigation)</text>
              </svg>
           </div>
         </div>
