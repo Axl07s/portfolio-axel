@@ -103,8 +103,8 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
              <MobileFrame title="Captura de Inicio / Home" imagePath="/projects/puce_home.png" />
            </div>
 
-           {/* --- SVG Connecting Lines --- */}
-           <svg className="absolute inset-0 w-full h-full overflow-visible z-20 pointer-events-none" style={{ width: '100%', height: '100%' }}>
+           {/* --- SVG Connecting Lines (Desktop Only) --- */}
+           <svg className="absolute inset-0 w-full h-full overflow-visible z-20 pointer-events-none hidden sm:block" style={{ width: '100%', height: '100%' }}>
               {/* Line to Top Left */}
               <path d="M -50 150 L 100 200" stroke="#52525b" strokeWidth="1" fill="none" />
               <circle cx="-50" cy="150" r="3" fill="#52525b" />
@@ -129,50 +129,50 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            {/* --- Brutalist Cards --- */}
 
            {/* Card 1: Top Left (Scarcity Tactics style) */}
-           <div className="absolute top-[20%] -left-[60%] md:-left-[85%] w-52 md:w-60 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
-              <h4 className="text-[12px] font-bold tracking-wide text-[#eab308] uppercase mb-1">LOCAL STORAGE ENGINE</h4>
-              <p className="text-xs font-medium text-zinc-300">= Acceso a notas sin internet</p>
+           <div className="absolute top-[5%] sm:top-[20%] -left-4 sm:-left-[60%] md:-left-[85%] w-44 sm:w-52 md:w-60 p-3 rounded-lg bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 transition-transform hover:scale-105">
+              <h4 className="text-[10px] sm:text-[12px] font-bold tracking-wide text-[#eab308] uppercase mb-1">LOCAL STORAGE ENGINE</h4>
+              <p className="text-[10px] sm:text-xs font-medium text-zinc-300">= Acceso a notas sin internet</p>
            </div>
 
            {/* Card 2: Top Right (Sheep style) */}
-           <div className="absolute top-[25%] -right-[50%] md:-right-[75%] w-48 md:w-56 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block flex items-start gap-3">
-              <div className="w-8 h-8 rounded bg-[#b490ff]/20 flex-shrink-0 border border-[#b490ff]/30 overflow-hidden flex items-center justify-center">
-                 <span className="text-[#b490ff] text-lg">★</span>
+           <div className="absolute top-[22%] sm:top-[25%] -right-4 sm:-right-[50%] md:-right-[75%] w-44 sm:w-48 md:w-56 p-2 sm:p-3 rounded-lg bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 flex items-start gap-2 sm:gap-3 transition-transform hover:scale-105">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded bg-[#b490ff]/20 flex-shrink-0 border border-[#b490ff]/30 overflow-hidden flex items-center justify-center">
+                 <span className="text-[#b490ff] text-sm sm:text-lg">★</span>
               </div>
               <div className="flex-1">
-                <h4 className="text-[11px] font-bold tracking-widest text-zinc-100 uppercase mb-0.5">BACKGROUND SYNC</h4>
-                <p className="text-[10px] leading-tight text-zinc-400">Workers en segundo plano sincronizan tus datos silenciosamente.</p>
+                <h4 className="text-[9px] sm:text-[11px] font-bold tracking-widest text-zinc-100 uppercase mb-0.5">BACKGROUND SYNC</h4>
+                <p className="text-[9px] sm:text-[10px] leading-tight text-zinc-400">Workers sincronizan en segundo plano.</p>
               </div>
            </div>
 
            {/* Card 3: Bottom Left (Permissions style) */}
-           <div className="absolute bottom-[35%] -left-[60%] md:-left-[80%] w-56 md:w-64 p-3 rounded-xl bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
-              <ul className="space-y-2 mb-3">
+           <div className="absolute bottom-[28%] sm:bottom-[35%] -left-4 sm:-left-[60%] md:-left-[80%] w-48 sm:w-56 md:w-64 p-3 rounded-xl bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 transition-transform hover:scale-105">
+              <ul className="space-y-1.5 sm:space-y-2 mb-2 sm:mb-3">
                 <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
-                  <span className="text-[10px] text-zinc-300 font-mono">+ Biometría (FaceID)</span>
-                  <div className="w-6 h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full"></div></div>
+                  <span className="text-[9px] sm:text-[10px] text-zinc-300 font-mono">+ Biometría (FaceID)</span>
+                  <div className="w-5 h-2.5 sm:w-6 sm:h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div></div>
                 </li>
                 <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
-                  <span className="text-[10px] text-zinc-300 font-mono">+ Push Notifications</span>
-                  <div className="w-6 h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full"></div></div>
+                  <span className="text-[9px] sm:text-[10px] text-zinc-300 font-mono">+ Push Notifications</span>
+                  <div className="w-5 h-2.5 sm:w-6 sm:h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div></div>
                 </li>
                 <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
-                  <span className="text-[10px] text-zinc-300 font-mono">+ JWT Encryption</span>
-                  <div className="w-6 h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full"></div></div>
+                  <span className="text-[9px] sm:text-[10px] text-zinc-300 font-mono">+ JWT Encryption</span>
+                  <div className="w-5 h-2.5 sm:w-6 sm:h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div></div>
                 </li>
               </ul>
-              <div className="w-full py-1.5 bg-[#b490ff] text-black text-[10px] font-bold text-center rounded uppercase tracking-wider">
+              <div className="w-full py-1 sm:py-1.5 bg-[#b490ff] text-black text-[9px] sm:text-[10px] font-bold text-center rounded uppercase tracking-wider">
                  Security Hub
               </div>
            </div>
 
            {/* Card 4: Bottom Right (Timer style) */}
-           <div className="absolute bottom-[20%] -right-[50%] md:-right-[70%] w-48 md:w-56 p-4 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block text-center">
-              <div className="mb-2 opacity-80">
-                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" strokeWidth="2" className="mx-auto"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+           <div className="absolute bottom-[8%] sm:bottom-[20%] -right-4 sm:-right-[50%] md:-right-[70%] w-36 sm:w-48 md:w-56 p-3 sm:p-4 rounded-lg bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 text-center transition-transform hover:scale-105">
+              <div className="mb-1 sm:mb-2 opacity-80">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" strokeWidth="2" className="mx-auto sm:w-6 sm:h-6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
-              <p className="text-[10px] text-zinc-400 mb-1">Optimizada para consumir...</p>
-              <h4 className="text-[16px] font-black tracking-wide text-[#eab308] uppercase">CERO DATOS</h4>
+              <p className="text-[9px] sm:text-[10px] text-zinc-400 mb-0.5 sm:mb-1">Optimizada para...</p>
+              <h4 className="text-[12px] sm:text-[16px] font-black tracking-wide text-[#eab308] uppercase">CERO DATOS</h4>
            </div>
 
         </div>
