@@ -74,11 +74,11 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         {/* Main Glass Window (Foreground) */}
         <div className="relative w-[95%] md:w-[90%] max-w-5xl z-20 mt-12 md:mt-0 md:-ml-[5%] group/window" style={{ perspective: '2000px' }}>
           
-          <div className="relative w-full aspect-[1920/1009] transition-transform duration-1000 ease-out shadow-[0_0_100px_rgba(16,185,129,0.15)] rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-950 backdrop-blur-3xl overflow-hidden" 
-               style={{ transformStyle: 'preserve-3d', transform: 'rotateY(5deg) rotateX(2deg)' }}>
+          <div className="relative w-full transition-transform duration-1000 ease-out shadow-[0_0_100px_rgba(16,185,129,0.15)] rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-950 backdrop-blur-3xl overflow-hidden flex flex-col" 
+               style={{ transformStyle: 'preserve-3d', transform: 'rotateY(5deg) rotateX(2deg) translateZ(0)' }}>
             
             {/* macOS Window Header */}
-            <div className="absolute top-0 inset-x-0 h-10 md:h-12 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 md:px-6 gap-2 z-30">
+            <div className="h-10 md:h-12 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 md:px-6 gap-2 z-30 shrink-0">
                <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
@@ -89,14 +89,14 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             </div>
             
             {/* Window Content */}
-            <div className="absolute top-10 md:top-12 inset-x-0 bottom-0 overflow-hidden bg-black">
-              <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-left-top opacity-90 group-hover/window:opacity-100 transition-opacity duration-700" />
+            <div className="relative w-full bg-black">
+              <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-auto opacity-90 group-hover/window:opacity-100 transition-opacity duration-700 block" style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }} />
               <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
             </div>
           </div>
 
           {/* Floating Bento Widgets (Breaking out of the screen) */}
-          <div className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 p-4 md:p-6 bg-zinc-950/80 backdrop-blur-2xl border border-zinc-800 rounded-2xl shadow-2xl z-30 transition-transform duration-1000 ease-out hover:scale-105"
+          <div className="absolute -bottom-6 left-0 md:-bottom-10 md:-left-6 p-4 md:p-6 bg-zinc-950/90 backdrop-blur-3xl border border-zinc-800 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 transition-transform duration-1000 ease-out hover:scale-105"
                style={{ transform: 'translateZ(100px)' }}>
              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
@@ -109,7 +109,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
              </div>
           </div>
 
-          <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 p-3 md:p-4 bg-zinc-950/80 backdrop-blur-2xl border border-zinc-800 rounded-2xl shadow-2xl z-30 transition-transform duration-1000 ease-out hover:scale-105"
+          <div className="absolute -top-6 right-0 md:-top-10 md:-right-6 p-3 md:p-4 bg-zinc-950/90 backdrop-blur-3xl border border-zinc-800 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 transition-transform duration-1000 ease-out hover:scale-105"
                style={{ transform: 'translateZ(80px)' }}>
              <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
