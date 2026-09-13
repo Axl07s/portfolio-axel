@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { personalProjects } from '../data/personalProjectsData';
 import { ExternalLink, Database, Server, Smartphone, Monitor } from 'lucide-react';
@@ -11,22 +11,8 @@ const TECH_ICONS: Record<string, React.ReactNode> = {
 };
 
 export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'ES' | 'EN', hideHeader?: boolean }) {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    // Calculate relative position within the container
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
   return (
-    <section className="py-24 bg-zinc-950 relative overflow-hidden" ref={containerRef} onMouseMove={handleMouseMove} onMouseLeave={() => setHoveredProject(null)}>
+    <section className="py-24 bg-zinc-950 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         
         {!hideHeader && (
@@ -48,7 +34,6 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
               to={`/project/${project.id}`}
               key={project.id}
               className="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800 transition-colors hover:bg-zinc-900/50 relative cursor-pointer"
-              onMouseEnter={() => setHoveredProject(project.id)}
             >
               <div className="md:w-1/3 mb-4 md:mb-0 px-4">
                 <div className="flex items-center gap-3 mb-2">
@@ -92,26 +77,6 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
             </Link>
           ))}
         </div>
-      </div>
-
-      {/* Floating Image Preview overlay for Desktop */}
-      <div 
-        className="pointer-events-none hidden md:block absolute top-0 left-0 w-80 h-48 rounded-xl overflow-hidden shadow-2xl border border-zinc-800 z-0 transition-opacity duration-300 ease-out"
-        style={{
-          opacity: (hoveredProject && (mousePos.x !== 0 || mousePos.y !== 0)) ? 1 : 0,
-          transform: `translate3d(${mousePos.x + 20}px, ${mousePos.y - 100}px, 0)`,
-          transition: 'transform 0.15s ease-out, opacity 0.3s ease'
-        }}
-      >
-        {personalProjects.map(p => (
-          <img 
-            key={p.id}
-            src={p.image} 
-            alt={p.title}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hoveredProject === p.id ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          />
-        ))}
-        <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay z-20"></div>
       </div>
     </section>
   );
