@@ -21,7 +21,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
     <article className="min-h-screen bg-[#050505] text-[#f5f2eb] font-serif selection:bg-[#c9a96e]/30 overflow-hidden">
       
       {/* Hero Section */}
-      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+      <header className="relative pt-32 pb-8 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#c9a96e]/30 text-xs font-sans text-[#c9a96e] mb-8 tracking-[0.3em] uppercase">
           <Utensils className="w-3.5 h-3.5" />
           <span>Haute Cuisine OS</span>
@@ -36,37 +36,39 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
 
       {/* DESKTOP: 3D Isometric Cascade (Hidden on Mobile) */}
       <section 
-        className="relative py-32 w-full hidden md:flex items-center justify-center z-20 cursor-crosshair h-[900px]"
+        className="relative py-24 w-full hidden md:flex items-center justify-center z-20 cursor-crosshair h-[800px]"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
-        style={{ perspective: '2500px' }}
+        style={{ perspective: '3000px' }}
       >
          {/* Radial Glow */}
          <div 
-           className="absolute inset-0 bg-[#c9a96e]/5 blur-[100px] rounded-full pointer-events-none transition-transform duration-1000 ease-out"
+           className="absolute inset-0 bg-[#c9a96e]/5 blur-[120px] rounded-full pointer-events-none transition-transform duration-1000 ease-out"
            style={{ transform: `translate(${(mousePos.x - 0.5) * 200}px, ${(mousePos.y - 0.5) * 200}px)` }}
          ></div>
 
          <div 
-           className="relative w-full max-w-5xl h-full transition-transform duration-500 ease-out"
+           className="relative w-full max-w-4xl h-full transition-transform duration-500 ease-out"
            style={{ 
-             transform: `rotateX(${55 + rotateX}deg) rotateZ(${-45 + rotateY}deg)`,
+             transform: `rotateX(${60 + rotateX}deg) rotateZ(${-35 + rotateY}deg) scale(0.9)`,
              transformStyle: 'preserve-3d' 
            }}
          >
             {/* LAYER 1: The POS Terminal (Desktop) */}
+            {/* Centered, pushed slightly back and top-left in the grid */}
             <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] aspect-video bg-[#111] rounded-2xl border border-white/10 shadow-[-20px_20px_60px_rgba(0,0,0,0.8)] overflow-hidden transition-transform duration-500"
-              style={{ transform: `translateZ(-100px) translate(${(mousePos.x - 0.5) * -50}px, ${(mousePos.y - 0.5) * -50}px)` }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] aspect-video bg-[#111] rounded-2xl border border-white/10 shadow-[-20px_20px_60px_rgba(0,0,0,0.8)] overflow-hidden transition-transform duration-500"
+              style={{ transform: `translateZ(-100px) translate(-100px, -100px) translate(${(mousePos.x - 0.5) * -50}px, ${(mousePos.y - 0.5) * -50}px)` }}
             >
                <img src={project.images[0]?.url} alt="POS Terminal" className="w-full h-full object-cover opacity-100" />
             </div>
 
             {/* LAYER 2: The Kitchen Display (Tablet) */}
+            {/* Centered, floating up, pushed bottom-left in the grid */}
             <div 
-              className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[400px] aspect-[4/3] bg-[#000] rounded-[2rem] border-[12px] border-[#1a1a1a] shadow-[-30px_30px_80px_rgba(0,0,0,0.9)] overflow-hidden transition-transform duration-500"
-              style={{ transform: `translateZ(100px) translate(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px)` }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] aspect-[4/3] bg-[#000] rounded-[2rem] border-[12px] border-[#1a1a1a] shadow-[-30px_30px_80px_rgba(0,0,0,0.9)] overflow-hidden transition-transform duration-500"
+              style={{ transform: `translateZ(100px) translate(-250px, 150px) translate(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px)` }}
             >
                <img src={project.images[1]?.url} alt="Kitchen Display" className="w-full h-full object-cover opacity-100" />
                <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-sans font-bold px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-2 shadow-lg">
@@ -75,9 +77,10 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
             </div>
 
             {/* LAYER 3: The Customer App (Phone) */}
+            {/* Centered, floating highest, pushed right in the grid */}
             <div 
-              className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/4 w-[250px] aspect-[9/19.5] bg-[#0a0a0a] rounded-[3rem] border-[14px] border-[#222] shadow-[-40px_40px_100px_rgba(0,0,0,1)] overflow-hidden transition-transform duration-500 flex flex-col"
-              style={{ transform: `translateZ(300px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] aspect-[9/19.5] bg-[#0a0a0a] rounded-[3rem] border-[14px] border-[#222] shadow-[-40px_40px_100px_rgba(0,0,0,1)] overflow-hidden transition-transform duration-500 flex flex-col"
+              style={{ transform: `translateZ(250px) translate(250px, 100px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
             >
                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-6 bg-[#222] rounded-b-2xl z-40"></div>
                
@@ -96,11 +99,11 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
                     <h5 className="font-bold text-black mb-3">Tasting Menu</h5>
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center border-b border-zinc-50 pb-2">
-                        <span className="text-zinc-600">Course 1: Amuse-Bouche</span>
+                        <span className="text-zinc-600">Course 1</span>
                         <span className="text-emerald-600 text-xs font-bold uppercase">Served</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-black font-medium">Course 2: Foie Gras</span>
+                        <span className="text-black font-medium">Course 2</span>
                         <span className="text-amber-500 text-xs font-bold uppercase flex items-center gap-1">
                           <Clock className="w-3 h-3" /> Preparing
                         </span>
