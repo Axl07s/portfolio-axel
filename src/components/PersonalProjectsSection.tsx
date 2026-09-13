@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { personalProjects } from '../data/personalProjectsData';
-import { ExternalLink, Database, Server, Smartphone, Monitor } from 'lucide-react';
+import { ExternalLink, Database, Server, Smartphone, Monitor, Shield, GraduationCap } from 'lucide-react';
 
 const TECH_ICONS: Record<string, React.ReactNode> = {
   'Python': <Monitor className="w-4 h-4" />,
@@ -36,12 +36,24 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'e
               className="group flex flex-col lg:flex-row lg:items-center justify-between py-8 border-b border-zinc-800 transition-colors hover:bg-zinc-900/50 relative cursor-pointer gap-6 px-2 sm:px-4"
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 lg:w-5/12">
-                {project.image && (
+                                {project.id === 'puce-connect-hub' ? (
+                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-blue-900 to-zinc-950 shrink-0 relative group-hover:border-blue-500/50 transition-colors flex items-center justify-center shadow-inner">
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-blue-500/20 blur-2xl rounded-full" />
+                    <GraduationCap className="w-10 h-10 text-blue-400 relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                ) : project.id === 'suiteseguridad' ? (
+                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-emerald-950 to-zinc-950 shrink-0 relative group-hover:border-emerald-500/50 transition-colors flex items-center justify-center shadow-inner">
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-emerald-500/10 blur-2xl rounded-full" />
+                    <Shield className="w-10 h-10 text-emerald-500 relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                ) : project.image && (
                   <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shrink-0 relative group-hover:border-zinc-700 transition-colors flex items-center justify-center">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover object-center`}
+                      className="w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover object-center"
                       loading="lazy"
                     />
                   </div>
@@ -100,6 +112,7 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'e
     </section>
   );
 }
+
 
 
 

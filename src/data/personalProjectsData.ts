@@ -25,7 +25,7 @@ export const personalProjects: PersonalProject[] = [
     image: '/projects/suite_mockup.png',
     layoutStyle: 'enterprise',
     seoDescription: 'A hybrid EDR system for Windows that blocks ransomware and monitors malicious activity in real time using YARA and ETW.',
-    seoimage: '/projects/suite_mockup.png'
+    seoImage: '/projects/suite_mockup.png'
   },
   {
     id: 'puce-connect-hub',
@@ -41,4 +41,5 @@ export const personalProjects: PersonalProject[] = [
     seoImage: '/projects/puce_mockup.png'
   }
 ];
+
 
