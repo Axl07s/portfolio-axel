@@ -2,39 +2,40 @@ import type { PersonalProject } from '../../data/personalProjectsData';
 import { ArrowRight, GitBranch, Smartphone, WifiOff } from 'lucide-react';
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
-  // Enhanced Mobile frame with notch, buttons, and dynamic lighting
+  // Enhanced Mobile frame with minimalist bezel (No Notch)
   const MobileFrame = ({ title, className = "", imagePath = "" }: { title: string, className?: string, imagePath?: string }) => (
-    <div className={`relative flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] h-[550px] md:h-[650px] w-[260px] md:w-[310px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden ring-1 ring-white/10 ${className}`}>
+    <div className={`relative flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] h-[550px] md:h-[650px] w-[275px] md:w-[325px] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ring-1 ring-white/10 flex flex-col ${className}`}>
       
       {/* Side Buttons */}
-      <div className="absolute top-28 -left-[10px] w-1 h-10 bg-zinc-800 rounded-l-md"></div>
-      <div className="absolute top-44 -left-[10px] w-1 h-16 bg-zinc-800 rounded-l-md"></div>
-      <div className="absolute top-32 -right-[10px] w-1 h-20 bg-zinc-800 rounded-r-md"></div>
+      <div className="absolute -right-[14px] top-[120px] w-[6px] h-12 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700"></div>
+      <div className="absolute -right-[14px] top-[180px] w-[6px] h-20 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700"></div>
       
-      {/* Dynamic Island / Notch */}
-      <div className="absolute top-2 inset-x-0 flex justify-center z-20">
-        <div className="w-20 md:w-24 h-6 md:h-7 bg-black rounded-full border border-zinc-800 flex items-center justify-between px-2">
-           <div className="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
-           <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/30 shadow-[0_0_8px_rgba(99,102,241,0.5)]"></div>
-        </div>
+      {/* Top Bezel (Speaker) */}
+      <div className="absolute top-4 inset-x-0 flex justify-center z-20">
+          <div className="w-16 h-1.5 bg-zinc-900 rounded-full shadow-inner border border-zinc-800"></div>
       </div>
 
+      {/* Fake Bezel Margin */}
+      <div className="w-full h-10 bg-black shrink-0 relative z-20"></div>
+
       {/* Screen Content */}
-      <div className="absolute inset-0 pt-10 flex flex-col items-center justify-center p-6 text-center z-10 bg-zinc-900/40 backdrop-blur-sm">
+      <div className="relative w-full h-full flex flex-col items-center justify-center bg-zinc-900 overflow-hidden z-10">
         {imagePath ? (
-          <img src={imagePath} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+          <img src={imagePath} alt={title} className="absolute inset-0 w-full h-full object-cover object-top" />
         ) : (
-          <>
-            <Smartphone className="w-10 h-10 md:w-12 md:h-12 text-zinc-700 mb-4" />
+          <div className="p-6 text-center z-10">
+            <Smartphone className="w-10 h-10 md:w-12 md:h-12 text-zinc-700 mb-4 mx-auto" />
             <p className="text-zinc-500 font-mono text-[9px] md:text-[10px] uppercase tracking-widest border border-dashed border-zinc-700 p-2 md:p-3 rounded w-full">
               PLACEHOLDER:<br/><span className="text-zinc-400 font-bold">{title}</span>
             </p>
-          </>
+          </div>
         )}
+        {/* Screen Glare effect */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none z-30"></div>
       </div>
 
-      {/* Screen Glare effect */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none z-30"></div>
+      {/* Bottom Bezel Margin */}
+      <div className="w-full h-10 bg-black shrink-0 mt-auto relative z-20"></div>
     </div>
   );
 
@@ -106,6 +107,34 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
              className="absolute z-30 rotate-0 scale-90 md:scale-100 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
            />
          </div>
+      </section>
+
+      {/* Key Metrics Section */}
+      <section className="px-4 py-16 md:py-24 max-w-5xl mx-auto relative z-20 border-t border-zinc-800/50 mt-12 md:mt-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          
+          {/* Metric 1 */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Latencia Local</h3>
+            <p className="text-5xl md:text-6xl font-light text-white tracking-tighter">&lt; 50<span className="text-3xl text-indigo-400 font-normal">ms</span></p>
+            <p className="text-sm text-zinc-400 mt-2 max-w-xs">Tiempo de respuesta al consultar la base SQLite en modo offline.</p>
+          </div>
+
+          {/* Metric 2 */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Disponibilidad</h3>
+            <p className="text-5xl md:text-6xl font-light text-white tracking-tighter">100<span className="text-3xl text-indigo-400 font-normal">%</span></p>
+            <p className="text-sm text-zinc-400 mt-2 max-w-xs">Acceso ininterrumpido a datos cacheados sin conexión a internet.</p>
+          </div>
+
+          {/* Metric 3 */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Workers</h3>
+            <p className="text-5xl md:text-6xl font-light text-white tracking-tighter">3</p>
+            <p className="text-sm text-zinc-400 mt-2 max-w-xs">Hilos en segundo plano para sincronización silenciosa bidireccional.</p>
+          </div>
+
+        </div>
       </section>
 
       {/* Storytelling Block 2 */}
