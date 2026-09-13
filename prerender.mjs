@@ -6,8 +6,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distPath = path.join(process.cwd(), 'dist');
 
-// We bypass Playwright entirely and just inject the meta tags via string replacement.
-// This is 100x faster and never fails on Vercel's CI due to missing Chromium dependencies.
 const projects = [
   {
     id: 'suiteseguridad',
@@ -66,24 +64,34 @@ try {
       fs.mkdirSync(routeDir, { recursive: true });
     }
 
-    // Construct the meta tags
-    const metaTags = `
-      <title>${project.title} - Axel Molineros</title>
-      <meta name="description" content="${project.seoDescription}" />
-      <meta property="og:title" content="${project.title} - Axel Molineros" />
-      <meta property="og:description" content="${project.seoDescription}" />
-      <meta property="og:image" content="${DOMAIN}${project.seoImage}" />
-      <meta property="og:url" content="${DOMAIN}/project/${project.id}" />
+    const metaTags = \
+      <title>\ - Axel Molineros</title>
+      <meta name="description" content="\" />
+      <meta property="og:title" content="\ - Axel Molineros" />
+      <meta property="og:description" content="\" />
+      <meta property="og:image" content="\\" />
+      <meta property="og:url" content="\/project/\" />
       <meta name="twitter:card" content="summary_large_image" />
-      <link rel="canonical" href="${DOMAIN}/project/${project.id}" />
-    `;
+      <link rel="canonical" href="\/project/\" />
+    \;
 
-    // Inject into the <head> just before </head>
-    const injectedHtml = templateHtml.replace('</head>', `${metaTags}\n</head>`);
-
-    const outputPath = path.join(routeDir, `${project.id}.html`);
+    const injectedHtml = templateHtml.replace('</head>', \\\n</head>\);
+    const outputPath = path.join(routeDir, \\.html\);
     fs.writeFileSync(outputPath, injectedHtml);
-    console.log(`Generated SEO HTML for /project/${project.id}.html`);
+    console.log(\Generated SEO HTML for /project/\.html\);
+  }
+
+  // PRERENDER MARKETING CLIPS SO VERCEL ROUTING BUGS DON'T 404
+  const marketingDir = path.join(distPath, 'marketing');
+  if (!fs.existsSync(marketingDir)) {
+    fs.mkdirSync(marketingDir, { recursive: true });
+  }
+  
+  for (const project of projects) {
+    // Just copy the base index.html. React Router will take over and render the clip
+    const outputPath = path.join(marketingDir, \\.html\);
+    fs.writeFileSync(outputPath, templateHtml);
+    console.log(\Generated SPA fallback HTML for /marketing/\.html\);
   }
 
   console.log('Fast SSG complete.');
