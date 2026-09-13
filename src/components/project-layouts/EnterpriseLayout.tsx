@@ -53,63 +53,67 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {/* Cinematic 3D Device Showcase */}
       <section className="relative w-full max-w-6xl mx-auto px-4 py-12 md:py-32 z-20 perspective-[2000px] flex items-center justify-center min-h-[50vh] md:min-h-[80vh]">
         
+        {/* Vercel-style Radial Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+        
         {/* Floating External Monitor (Behind) */}
-        <div className="absolute top-[5%] right-[0%] md:right-[5%] w-[85%] md:w-[65%] aspect-video transform rotate-y-[-15deg] rotate-x-[5deg] translate-z-[-200px] hover:translate-z-[-100px] hover:rotate-y-[-5deg] transition-all duration-1000 ease-out group/monitor z-0">
-          <div className="w-full h-full bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl overflow-hidden relative">
+        <div className="absolute top-[5%] right-[0%] md:right-[5%] w-[85%] md:w-[65%] aspect-video transform rotate-y-[-15deg] rotate-x-[5deg] translate-z-[-200px] hover:translate-z-[-100px] hover:rotate-y-[-5deg] transition-all duration-1000 ease-out group/monitor z-10">
+          <div className="w-full h-full bg-zinc-950/80 backdrop-blur-xl rounded-xl border border-zinc-800 shadow-2xl overflow-hidden relative">
             {/* Window Top Bar */}
-            <div className="h-6 bg-zinc-950 border-b border-zinc-800 flex items-center px-3 gap-1.5">
-               <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-               <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50"></div>
-               <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
-               <div className="ml-2 text-[10px] text-zinc-500 font-mono">system_monitor.exe</div>
+            <div className="h-8 bg-zinc-900/50 border-b border-zinc-800/50 flex items-center px-4 gap-2">
+               <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+               <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+               <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+               <div className="ml-2 text-xs text-zinc-500 font-mono">system_monitor.exe</div>
             </div>
-            <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-[calc(100%-1.5rem)] object-cover object-left-top opacity-60 group-hover/monitor:opacity-90 transition-opacity duration-700" />
-            <div className="absolute inset-0 bg-red-500/5 mix-blend-overlay pointer-events-none"></div>
+            <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-[calc(100%-2rem)] object-cover object-left-top opacity-40 group-hover/monitor:opacity-80 transition-opacity duration-700 mix-blend-screen" />
           </div>
         </div>
 
-        {/* Laptop (Foreground) */}
-        <div className="relative w-[95%] md:w-[75%] max-w-4xl z-10 mt-24 md:mt-0 md:-ml-[20%] group/laptop" style={{ perspective: '2000px' }}>
+        {/* Main Glass Window (Foreground) */}
+        <div className="relative w-[95%] md:w-[85%] max-w-5xl z-20 mt-12 md:mt-0 md:-ml-[10%] group/window" style={{ perspective: '2000px' }}>
           
-          <div className="relative w-full aspect-[16/10] transition-transform duration-1000 ease-out" 
-               style={{ transformStyle: 'preserve-3d', transform: 'rotateY(5deg) rotateX(10deg)' }}>
+          <div className="relative w-full aspect-[16/10] transition-transform duration-1000 ease-out shadow-[0_0_100px_rgba(16,185,129,0.15)] rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-950/60 backdrop-blur-3xl overflow-hidden" 
+               style={{ transformStyle: 'preserve-3d', transform: 'rotateY(5deg) rotateX(2deg)' }}>
             
-            {/* Subtle under-glow attached to the whole 3D object */}
-            <div className="absolute -inset-10 bg-red-500/20 blur-[100px] rounded-[3rem] opacity-0 group-hover/laptop:opacity-100 transition-opacity duration-1000 -z-10" style={{ transform: 'translateZ(-50px)' }}></div>
-            
-            {/* Laptop Screen (Lid) */}
-            <div className="absolute inset-0 bg-zinc-950 rounded-t-2xl md:rounded-t-[2rem] border-[4px] md:border-[8px] border-zinc-800 border-b-0 overflow-hidden shadow-[0_-20px_60px_-10px_rgba(0,0,0,0.5)] z-20 group-hover/laptop:rotate-x-[0deg] transition-transform duration-1000 ease-out"
-                 style={{ transformOrigin: 'bottom center', transform: 'rotateX(-5deg)' }}>
-              {/* Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 md:w-24 h-3 md:h-4 bg-zinc-800 rounded-b-lg z-30 flex justify-center items-center">
-                <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-zinc-950/50"></div>
-              </div>
-              <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top opacity-90 group-hover/laptop:opacity-100 transition-opacity duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
-            </div>
-
-            {/* Laptop Base (Keyboard Deck) */}
-            <div className="absolute top-[100%] left-[-2%] w-[104%] aspect-[16/7] bg-gradient-to-b from-zinc-800 to-zinc-900 rounded-b-2xl md:rounded-b-[2rem] border-x border-b border-zinc-700 shadow-[0_50px_100px_rgba(0,0,0,0.9)] z-10 overflow-hidden flex flex-col items-center group-hover/laptop:rotate-x-[70deg] transition-transform duration-1000 ease-out"
-                 style={{ transformOrigin: 'top center', transform: 'rotateX(75deg)' }}>
-                
-                {/* Keyboard Recess */}
-                <div className="w-[85%] h-[55%] bg-zinc-950 rounded-md md:rounded-xl border border-zinc-900/50 shadow-inner mt-[4%] flex p-1 md:p-2">
-                   {/* Fake keys texture using grid */}
-                   <div className="w-full h-full grid grid-cols-12 grid-rows-6 gap-0.5 md:gap-1 opacity-20">
-                     {Array.from({ length: 72 }).map((_, i) => (
-                       <div key={i} className="bg-zinc-700 rounded-[1px] md:rounded-sm"></div>
-                     ))}
-                   </div>
-                </div>
-                
-                {/* Trackpad */}
-                <div className="w-[30%] h-[25%] bg-zinc-800 rounded-sm md:rounded-md border border-zinc-700 shadow-sm mt-[4%]"></div>
-                
-                {/* Lip opening */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[15%] h-1 md:h-2 bg-zinc-950 rounded-t-md"></div>
+            {/* macOS Window Header */}
+            <div className="absolute top-0 inset-x-0 h-10 md:h-12 bg-white/5 border-b border-white/5 flex items-center px-4 md:px-6 gap-2 z-30">
+               <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+               <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+               <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+               <div className="mx-auto flex items-center gap-2 px-3 py-1 bg-black/40 rounded-md border border-white/5">
+                 <Shield className="w-3.5 h-3.5 text-emerald-400" />
+                 <span className="text-[10px] md:text-xs text-zinc-400 font-mono">SuiteSeguridad.exe</span>
+               </div>
             </div>
             
+            <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top pt-10 md:pt-12 opacity-90 group-hover/window:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
           </div>
+
+          {/* Floating Bento Widgets (Breaking out of the screen) */}
+          <div className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 p-4 md:p-6 bg-zinc-950/80 backdrop-blur-2xl border border-zinc-800 rounded-2xl shadow-2xl z-30 transition-transform duration-1000 ease-out hover:scale-105"
+               style={{ transform: 'translateZ(100px)' }}>
+             <div className="flex items-center gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                   <Shield className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="text-zinc-400 text-[10px] md:text-xs font-mono uppercase tracking-wider mb-1">Status</h4>
+                  <p className="text-white text-lg md:text-2xl font-light">Zero-Trust Activo</p>
+                </div>
+             </div>
+          </div>
+
+          <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 p-3 md:p-4 bg-zinc-950/80 backdrop-blur-2xl border border-zinc-800 rounded-2xl shadow-2xl z-30 transition-transform duration-1000 ease-out hover:scale-105"
+               style={{ transform: 'translateZ(80px)' }}>
+             <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                <h4 className="text-white text-xs md:text-sm font-mono tracking-widest">ETW KERNEL</h4>
+             </div>
+          </div>
+
         </div>
       </section>
 
