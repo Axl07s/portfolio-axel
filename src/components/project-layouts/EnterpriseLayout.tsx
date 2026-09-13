@@ -69,21 +69,46 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
 
         {/* Laptop (Foreground) */}
-        <div className="relative w-[95%] md:w-[75%] aspect-[16/10] max-w-4xl transform rotate-x-[12deg] rotate-y-[5deg] translate-z-[100px] hover:rotate-x-[0deg] hover:rotate-y-[0deg] hover:translate-z-[150px] transition-all duration-1000 ease-out group/laptop z-10 mt-24 md:mt-0 md:-ml-[20%]">
-          {/* Subtle under-glow */}
-          <div className="absolute -inset-10 bg-red-500/20 blur-[100px] rounded-[3rem] opacity-0 group-hover/laptop:opacity-100 transition-opacity duration-1000 -z-10"></div>
+        <div className="relative w-[95%] md:w-[75%] max-w-4xl z-10 mt-24 md:mt-0 md:-ml-[20%] group/laptop" style={{ perspective: '2000px' }}>
           
-          {/* Laptop Screen */}
-          <div className="relative w-full h-full bg-zinc-900 rounded-t-2xl md:rounded-t-3xl border-[6px] md:border-[12px] border-zinc-800 border-b-0 overflow-hidden shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] z-10">
-            <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top opacity-90 group-hover/laptop:opacity-100 transition-opacity duration-700" />
+          <div className="relative w-full aspect-[16/10] transition-transform duration-1000 ease-out" 
+               style={{ transformStyle: 'preserve-3d', transform: 'rotateY(5deg) rotateX(10deg)' }}>
             
-            {/* Screen reflection */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
-          </div>
-          
-          {/* Laptop Base */}
-          <div className="relative w-[104%] -ml-[2%] h-3 md:h-8 bg-zinc-700 rounded-b-xl md:rounded-b-2xl border border-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 flex justify-center">
-             <div className="w-1/6 h-1 md:h-2 bg-zinc-800 rounded-b-sm md:rounded-b-md"></div>
+            {/* Subtle under-glow attached to the whole 3D object */}
+            <div className="absolute -inset-10 bg-red-500/20 blur-[100px] rounded-[3rem] opacity-0 group-hover/laptop:opacity-100 transition-opacity duration-1000 -z-10" style={{ transform: 'translateZ(-50px)' }}></div>
+            
+            {/* Laptop Screen (Lid) */}
+            <div className="absolute inset-0 bg-zinc-950 rounded-t-2xl md:rounded-t-[2rem] border-[4px] md:border-[8px] border-zinc-800 border-b-0 overflow-hidden shadow-[0_-20px_60px_-10px_rgba(0,0,0,0.5)] z-20 group-hover/laptop:rotate-x-[0deg] transition-transform duration-1000 ease-out"
+                 style={{ transformOrigin: 'bottom center', transform: 'rotateX(-5deg)' }}>
+              {/* Notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 md:w-24 h-3 md:h-4 bg-zinc-800 rounded-b-lg z-30 flex justify-center items-center">
+                <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-zinc-950/50"></div>
+              </div>
+              <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top opacity-90 group-hover/laptop:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+            </div>
+
+            {/* Laptop Base (Keyboard Deck) */}
+            <div className="absolute top-[100%] left-[-2%] w-[104%] aspect-[16/7] bg-gradient-to-b from-zinc-800 to-zinc-900 rounded-b-2xl md:rounded-b-[2rem] border-x border-b border-zinc-700 shadow-[0_50px_100px_rgba(0,0,0,0.9)] z-10 overflow-hidden flex flex-col items-center group-hover/laptop:rotate-x-[70deg] transition-transform duration-1000 ease-out"
+                 style={{ transformOrigin: 'top center', transform: 'rotateX(75deg)' }}>
+                
+                {/* Keyboard Recess */}
+                <div className="w-[85%] h-[55%] bg-zinc-950 rounded-md md:rounded-xl border border-zinc-900/50 shadow-inner mt-[4%] flex p-1 md:p-2">
+                   {/* Fake keys texture using grid */}
+                   <div className="w-full h-full grid grid-cols-12 grid-rows-6 gap-0.5 md:gap-1 opacity-20">
+                     {Array.from({ length: 72 }).map((_, i) => (
+                       <div key={i} className="bg-zinc-700 rounded-[1px] md:rounded-sm"></div>
+                     ))}
+                   </div>
+                </div>
+                
+                {/* Trackpad */}
+                <div className="w-[30%] h-[25%] bg-zinc-800 rounded-sm md:rounded-md border border-zinc-700 shadow-sm mt-[4%]"></div>
+                
+                {/* Lip opening */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[15%] h-1 md:h-2 bg-zinc-950 rounded-t-md"></div>
+            </div>
+            
           </div>
         </div>
       </section>
