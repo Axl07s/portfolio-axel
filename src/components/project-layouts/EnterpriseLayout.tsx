@@ -72,13 +72,13 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
 
         {/* Main Glass Window (Foreground) */}
-        <div className="relative w-[95%] md:w-[85%] max-w-5xl z-20 mt-12 md:mt-0 md:-ml-[10%] group/window" style={{ perspective: '2000px' }}>
+        <div className="relative w-[95%] md:w-[90%] max-w-5xl z-20 mt-12 md:mt-0 md:-ml-[5%] group/window" style={{ perspective: '2000px' }}>
           
-          <div className="relative w-full aspect-[16/10] transition-transform duration-1000 ease-out shadow-[0_0_100px_rgba(16,185,129,0.15)] rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-950/60 backdrop-blur-3xl overflow-hidden" 
+          <div className="relative w-full aspect-[1920/1009] transition-transform duration-1000 ease-out shadow-[0_0_100px_rgba(16,185,129,0.15)] rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-950 backdrop-blur-3xl overflow-hidden" 
                style={{ transformStyle: 'preserve-3d', transform: 'rotateY(5deg) rotateX(2deg)' }}>
             
             {/* macOS Window Header */}
-            <div className="absolute top-0 inset-x-0 h-10 md:h-12 bg-white/5 border-b border-white/5 flex items-center px-4 md:px-6 gap-2 z-30">
+            <div className="absolute top-0 inset-x-0 h-10 md:h-12 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 md:px-6 gap-2 z-30">
                <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
@@ -88,8 +88,11 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                </div>
             </div>
             
-            <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top pt-10 md:pt-12 opacity-90 group-hover/window:opacity-100 transition-opacity duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
+            {/* Window Content */}
+            <div className="absolute top-10 md:top-12 inset-x-0 bottom-0 overflow-hidden bg-black">
+              <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-left-top opacity-90 group-hover/window:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
+            </div>
           </div>
 
           {/* Floating Bento Widgets (Breaking out of the screen) */}
