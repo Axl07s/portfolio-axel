@@ -51,22 +51,39 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       </header>
 
       {/* Cinematic 3D Device Showcase */}
-      <section className="relative w-full max-w-6xl mx-auto px-4 py-12 md:py-20 z-20 perspective-[2000px]">
-        <div className="relative w-full aspect-[16/10] max-w-4xl mx-auto transform rotate-x-[12deg] hover:rotate-x-[0deg] hover:scale-[1.02] transition-all duration-700 ease-out group">
+      <section className="relative w-full max-w-6xl mx-auto px-4 py-12 md:py-32 z-20 perspective-[2000px] flex items-center justify-center min-h-[50vh] md:min-h-[80vh]">
+        
+        {/* Floating External Monitor (Behind) */}
+        <div className="absolute top-[5%] right-[0%] md:right-[5%] w-[85%] md:w-[65%] aspect-video transform rotate-y-[-15deg] rotate-x-[5deg] translate-z-[-200px] hover:translate-z-[-100px] hover:rotate-y-[-5deg] transition-all duration-1000 ease-out group/monitor z-0">
+          <div className="w-full h-full bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl overflow-hidden relative">
+            {/* Window Top Bar */}
+            <div className="h-6 bg-zinc-950 border-b border-zinc-800 flex items-center px-3 gap-1.5">
+               <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+               <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50"></div>
+               <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+               <div className="ml-2 text-[10px] text-zinc-500 font-mono">system_monitor.exe</div>
+            </div>
+            <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-[calc(100%-1.5rem)] object-cover object-left-top opacity-60 group-hover/monitor:opacity-90 transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-red-500/5 mix-blend-overlay pointer-events-none"></div>
+          </div>
+        </div>
+
+        {/* Laptop (Foreground) */}
+        <div className="relative w-[95%] md:w-[75%] aspect-[16/10] max-w-4xl transform rotate-x-[12deg] rotate-y-[5deg] translate-z-[100px] hover:rotate-x-[0deg] hover:rotate-y-[0deg] hover:translate-z-[150px] transition-all duration-1000 ease-out group/laptop z-10 mt-24 md:mt-0 md:-ml-[20%]">
           {/* Subtle under-glow */}
-          <div className="absolute -inset-4 bg-red-500/20 blur-[80px] rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10"></div>
+          <div className="absolute -inset-10 bg-red-500/20 blur-[100px] rounded-[3rem] opacity-0 group-hover/laptop:opacity-100 transition-opacity duration-1000 -z-10"></div>
           
           {/* Laptop Screen */}
-          <div className="relative w-full h-full bg-zinc-900 rounded-t-3xl border-[12px] border-zinc-800 border-b-0 overflow-hidden shadow-2xl z-10">
-            <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity" />
+          <div className="relative w-full h-full bg-zinc-900 rounded-t-2xl md:rounded-t-3xl border-[6px] md:border-[12px] border-zinc-800 border-b-0 overflow-hidden shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] z-10">
+            <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className="w-full h-full object-cover object-top opacity-90 group-hover/laptop:opacity-100 transition-opacity duration-700" />
             
             {/* Screen reflection */}
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
           </div>
           
           {/* Laptop Base */}
-          <div className="relative w-[104%] -ml-[2%] h-4 md:h-8 bg-zinc-700 rounded-b-2xl border border-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 flex justify-center">
-             <div className="w-1/6 h-2 bg-zinc-800 rounded-b-md"></div>
+          <div className="relative w-[104%] -ml-[2%] h-3 md:h-8 bg-zinc-700 rounded-b-xl md:rounded-b-2xl border border-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 flex justify-center">
+             <div className="w-1/6 h-1 md:h-2 bg-zinc-800 rounded-b-sm md:rounded-b-md"></div>
           </div>
         </div>
       </section>
