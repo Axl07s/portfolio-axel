@@ -90,13 +90,20 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         {/* Subtle Vertical Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
         
-        {/* TOP TYPOGRAPHY */}
-        <h1 className="text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center z-10 select-none">
-          OFFLINE
-        </h1>
+        {/* Massive Opaque Background Typography (Absolute Wallpaper) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10">
+          {/* OFFLINE: Pushed to the absolute top edge, slightly bleeding off screen */}
+          <h1 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[15%] text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
+            OFFLINE
+          </h1>
+          {/* CONNECT: Pushed to the absolute bottom edge, slightly bleeding off screen */}
+          <h1 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[15%] text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
+            CONNECT
+          </h1>
+        </div>
 
         {/* Central Phone & Floating Cards Container */}
-        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 my-10 md:my-16">
+        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-12 mb-12">
            
            {/* Center Phone */}
            <div className="absolute inset-0 z-30 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
@@ -176,11 +183,6 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            </div>
 
         </div>
-
-        {/* BOTTOM TYPOGRAPHY */}
-        <h1 className="text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center z-10 select-none">
-          CONNECT
-        </h1>
 
       </section>
 
