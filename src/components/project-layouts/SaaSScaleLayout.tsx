@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Server, Shield, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Server, Shield, CheckCircle2, ArrowRight, User, Activity, Settings, Database, Cloud } from 'lucide-react';
 
 export function SaaSScaleLayout({ project }: { project: Project }) {
   const [scrollY, setScrollY] = useState(0);
@@ -21,7 +21,6 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
     setMousePos({ x, y });
   };
 
-  // 3D Tilt calculation (max 10 degrees)
   const rotateX = (0.5 - mousePos.y) * 10;
   const rotateY = (mousePos.x - 0.5) * 10;
   const phoneOffset = Math.max(-100, -scrollY * 0.15);
@@ -33,7 +32,6 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
       <header className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         
-        {/* Dynamic Glow following mouse loosely */}
         <div 
           className="absolute left-0 top-0 -z-10 w-[600px] h-[600px] rounded-full bg-indigo-600/20 blur-[120px] transition-transform duration-1000 ease-out pointer-events-none"
           style={{ transform: `translate(${mousePos.x * 200 - 100}px, ${mousePos.y * 200 - 100}px)` }}
@@ -95,7 +93,7 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
 
           {/* Foreground iPhone-esque Container (Parallax + 3D Pop) */}
           <div 
-            className="absolute bottom-[-20%] right-[0%] md:right-[5%] w-[35%] md:w-[22%] aspect-[9/19.5] bg-black rounded-[2rem] md:rounded-[3rem] border-[6px] md:border-[10px] border-zinc-800 overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.9)] z-30 transition-transform duration-300 ease-out"
+            className="absolute bottom-[-20%] right-[0%] md:right-[5%] w-[35%] md:w-[22%] aspect-[9/19.5] bg-[#0c0c0e] rounded-[2rem] md:rounded-[3rem] border-[6px] md:border-[10px] border-zinc-800 overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.9)] z-30 transition-transform duration-300 ease-out flex flex-col"
             style={{ 
               transform: `translateZ(100px) translateY(${phoneOffset}px)`,
               backfaceVisibility: 'hidden' 
@@ -103,14 +101,68 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
           >
             <div className="absolute top-2 md:top-3 left-1/2 -translate-x-1/2 w-1/3 h-5 md:h-7 bg-black rounded-full z-40"></div>
             
-            <img 
-              src={project.images[1]?.url} 
-              alt="Mobile UI" 
-              className="w-full h-full object-cover object-left opacity-95" 
-            />
+            {/* Native Mobile UI Mockup */}
+            <div className="flex-1 overflow-hidden pt-12 md:pt-16 pb-6 px-4 flex flex-col gap-4 relative">
+              {/* Header */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+                    <span className="text-white font-bold text-[10px] md:text-sm">S</span>
+                  </div>
+                  <div>
+                    <h5 className="text-[10px] md:text-xs font-bold text-white">SyntroSaaS</h5>
+                    <p className="text-[8px] md:text-[10px] text-zinc-500">Workspace</p>
+                  </div>
+                </div>
+                <User className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" />
+              </div>
+
+              {/* Mobile Stats Card */}
+              <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-2 mt-2">
+                 <div className="flex justify-between items-center">
+                   <span className="text-[9px] md:text-[11px] text-zinc-400 font-medium">Monthly API Ingest</span>
+                   <Activity className="w-3 h-3 text-indigo-400" />
+                 </div>
+                 <h4 className="text-lg md:text-2xl font-bold text-white tracking-tight">1.42M</h4>
+                 <div className="w-full bg-zinc-800 rounded-full h-1 mt-1">
+                   <div className="bg-indigo-500 h-1 rounded-full w-[71%]"></div>
+                 </div>
+                 <span className="text-[8px] md:text-[9px] text-zinc-500 mt-0.5">71% of 2M Quota</span>
+              </div>
+
+              {/* List Items */}
+              <div className="flex flex-col gap-2 mt-2">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
+                  <div className="p-2 bg-rose-500/10 rounded-lg">
+                    <Database className="w-3 h-3 md:w-4 md:h-4 text-rose-500" />
+                  </div>
+                  <div className="flex-1">
+                    <h6 className="text-[9px] md:text-xs font-semibold text-white">Database Storage</h6>
+                    <p className="text-[8px] md:text-[10px] text-zinc-500">4.8 GB used</p>
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
+                  <div className="p-2 bg-emerald-500/10 rounded-lg">
+                    <Cloud className="w-3 h-3 md:w-4 md:h-4 text-emerald-500" />
+                  </div>
+                  <div className="flex-1">
+                    <h6 className="text-[9px] md:text-xs font-semibold text-white">Edge Gateway</h6>
+                    <p className="text-[8px] md:text-[10px] text-zinc-500">42ms latency (P99)</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Nav Fake */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-12 bg-zinc-900/80 backdrop-blur-md rounded-2xl border border-zinc-800 flex items-center justify-around px-2">
+                <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><Activity className="w-3 h-3 text-indigo-400" /></div>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center"><Database className="w-3 h-3 text-zinc-500" /></div>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center"><Settings className="w-3 h-3 text-zinc-500" /></div>
+              </div>
+            </div>
+
             {/* Dynamic Glass Reflection */}
             <div 
-               className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 pointer-events-none transition-transform duration-500"
+               className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none transition-transform duration-500"
                style={{ transform: `translateX(${(mousePos.x - 0.5) * 100}%) translateY(${(mousePos.y - 0.5) * 100}%)` }}
             ></div>
           </div>
