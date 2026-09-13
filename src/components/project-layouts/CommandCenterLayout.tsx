@@ -63,7 +63,8 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#020617] text-slate-300 font-sans overflow-hidden relative">
-      
+      <ScrollAffordance sections={COMMAND_SECTIONS} accentColor="sky" />
+
       {/* BOOT SEQUENCE OVERLAY */}
       <div 
         className={`fixed inset-0 z-50 bg-black flex flex-col p-12 transition-all duration-1000 ease-in-out ${
@@ -88,7 +89,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
       ></div>
 
       {/* Interactive Space */}
-      <section 
+      <section id="command-interactive"
         className="relative z-10 min-h-screen w-full flex items-center justify-center pt-20 pb-20 px-4"
         ref={containerRef}
         onMouseMove={handleMouseMove}
@@ -199,7 +200,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
       </section>
 
       {/* Project Meta Information (Scroll down to see) */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
+      <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">
               <h2 className="text-3xl font-bold text-white mb-4">{project.title}</h2>
