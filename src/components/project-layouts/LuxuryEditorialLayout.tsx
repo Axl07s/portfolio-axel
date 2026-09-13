@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { ArrowRight, Star, ChefHat, Utensils, CreditCard, TrendingUp, Users, Clock } from 'lucide-react';
+import { ChefHat, CreditCard, Clock, Utensils, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export function LuxuryEditorialLayout({ project }: { project: Project }) {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
@@ -14,37 +14,33 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
     setMousePos({ x, y });
   };
 
-  const rotateX = (0.5 - mousePos.y) * 20;
-  const rotateY = (mousePos.x - 0.5) * 20;
+  const rotateX = (0.5 - mousePos.y) * 15;
+  const rotateY = (mousePos.x - 0.5) * 15;
 
   return (
-    <article className="min-h-screen bg-[#0a0908] text-[#f5f2eb] font-serif selection:bg-[#c9a96e]/30 overflow-hidden">
+    <article className="min-h-screen bg-[#050505] text-[#f5f2eb] font-serif selection:bg-[#c9a96e]/30 overflow-hidden">
       
       {/* Hero Section */}
-      <header className="relative pt-32 pb-8 flex flex-col items-center justify-center text-center px-4 z-10">
-        <div className="flex flex-col items-center">
-          <div className="flex gap-1 mb-8 animate-pulse">
-             {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 text-[#c9a96e] fill-[#c9a96e]" />)}
-          </div>
-          
-          <h1 className="text-6xl md:text-8xl font-light tracking-tight text-[#f5f2eb] mb-8 font-serif leading-none">
-            {project.title}
-          </h1>
-          <div className="h-px w-32 bg-[#c9a96e]/50 mb-8"></div>
-          
-          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl font-light italic leading-relaxed tracking-wide mb-8">
-            {project.description}
-          </p>
+      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#c9a96e]/30 text-xs font-sans text-[#c9a96e] mb-8 tracking-[0.3em] uppercase">
+          <Utensils className="w-3.5 h-3.5" />
+          <span>Haute Cuisine OS</span>
         </div>
+        <h1 className="text-5xl md:text-8xl font-medium tracking-tight text-white mb-6">
+          {project.title}
+        </h1>
+        <p className="text-xl text-zinc-400 font-sans font-light max-w-2xl leading-relaxed">
+          {project.description}
+        </p>
       </header>
 
-      {/* The Isometric Cascade */}
+      {/* DESKTOP: 3D Isometric Cascade (Hidden on Mobile) */}
       <section 
-         className="relative w-full h-[600px] md:h-[800px] py-12 z-20 flex items-center justify-center cursor-crosshair"
-         ref={containerRef}
-         onMouseMove={handleMouseMove}
-         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
-         style={{ perspective: '2000px' }}
+        className="relative py-32 w-full hidden md:flex items-center justify-center z-20 cursor-crosshair h-[900px]"
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
+        style={{ perspective: '2500px' }}
       >
          {/* Radial Glow */}
          <div 
@@ -61,67 +57,68 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
          >
             {/* LAYER 1: The POS Terminal (Desktop) */}
             <div 
-               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] aspect-video bg-[#111] rounded-2xl border border-white/10 shadow-[-20px_20px_60px_rgba(0,0,0,0.8)] overflow-hidden transition-transform duration-500"
-               style={{ transform: `translateZ(-100px) translate(${(mousePos.x - 0.5) * -50}px, ${(mousePos.y - 0.5) * -50}px)` }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] aspect-video bg-[#111] rounded-2xl border border-white/10 shadow-[-20px_20px_60px_rgba(0,0,0,0.8)] overflow-hidden transition-transform duration-500"
+              style={{ transform: `translateZ(-100px) translate(${(mousePos.x - 0.5) * -50}px, ${(mousePos.y - 0.5) * -50}px)` }}
             >
                <img src={project.images[0]?.url} alt="POS Terminal" className="w-full h-full object-cover opacity-100" />
-               <div className="absolute inset-0 bg-black/10"></div>
             </div>
 
             {/* LAYER 2: The Kitchen Display (Tablet) */}
             <div 
-               className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[400px] aspect-[4/3] bg-[#000] rounded-[2rem] border-[12px] border-[#1a1a1a] shadow-[-30px_30px_80px_rgba(0,0,0,0.9)] overflow-hidden transition-transform duration-500"
-               style={{ transform: `translateZ(100px) translate(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px)` }}
+              className="absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 w-[400px] aspect-[4/3] bg-[#000] rounded-[2rem] border-[12px] border-[#1a1a1a] shadow-[-30px_30px_80px_rgba(0,0,0,0.9)] overflow-hidden transition-transform duration-500"
+              style={{ transform: `translateZ(100px) translate(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px)` }}
             >
                <img src={project.images[1]?.url} alt="Kitchen Display" className="w-full h-full object-cover opacity-100" />
-               <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-2 shadow-lg">
+               <div className="absolute top-4 left-4 bg-red-600 text-white text-xs font-sans font-bold px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-2 shadow-lg">
                  <ChefHat className="w-3 h-3" /> New Order
                </div>
             </div>
 
             {/* LAYER 3: The Customer App (Phone) */}
             <div 
-               className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/4 w-[250px] aspect-[9/19.5] bg-[#0a0a0a] rounded-[3rem] border-[14px] border-[#222] shadow-[-40px_40px_100px_rgba(0,0,0,1)] overflow-hidden transition-transform duration-500 flex flex-col"
-               style={{ transform: `translateZ(300px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
+              className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/4 w-[250px] aspect-[9/19.5] bg-[#0a0a0a] rounded-[3rem] border-[14px] border-[#222] shadow-[-40px_40px_100px_rgba(0,0,0,1)] overflow-hidden transition-transform duration-500 flex flex-col"
+              style={{ transform: `translateZ(300px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
             >
                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-6 bg-[#222] rounded-b-2xl z-40"></div>
                
-               {/* Native Mobile Fake */}
                <div className="flex-1 bg-[#f5f2eb] pt-12 pb-6 px-4 flex flex-col font-sans relative">
                   <div className="flex justify-between items-center mb-6">
                     <div>
                       <h4 className="text-xl font-bold text-black tracking-tight">KURE</h4>
                       <p className="text-xs text-zinc-500 font-medium">Table 12</p>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center">
-                      <Utensils className="w-4 h-4 text-[#c9a96e]" />
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white p-4 rounded-2xl shadow-sm mb-4">
-                    <h5 className="font-bold text-black text-sm mb-2">Tasting Menu</h5>
-                    <div className="flex justify-between text-xs text-zinc-600 mb-1">
-                      <span>Course 1: Amuse-Bouche</span>
-                      <span className="text-green-600 font-bold">Served</span>
-                    </div>
-                    <div className="flex justify-between text-xs text-zinc-600">
-                      <span>Course 2: Foie Gras</span>
-                      <span className="text-amber-500 font-bold">Preparing</span>
+                    <div className="w-8 h-8 rounded-full bg-black text-[#c9a96e] flex items-center justify-center">
+                      <Utensils className="w-4 h-4" />
                     </div>
                   </div>
 
-                  <div className="mt-auto bg-black text-white p-4 rounded-2xl flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <CreditCard className="w-5 h-5 text-[#c9a96e]" />
-                      <span className="font-bold text-sm">Pay Bill</span>
+                  <div className="bg-white rounded-xl p-4 shadow-sm mb-4 border border-zinc-100">
+                    <h5 className="font-bold text-black mb-3">Tasting Menu</h5>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex justify-between items-center border-b border-zinc-50 pb-2">
+                        <span className="text-zinc-600">Course 1: Amuse-Bouche</span>
+                        <span className="text-emerald-600 text-xs font-bold uppercase">Served</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-black font-medium">Course 2: Foie Gras</span>
+                        <span className="text-amber-500 text-xs font-bold uppercase flex items-center gap-1">
+                          <Clock className="w-3 h-3" /> Preparing
+                        </span>
+                      </div>
                     </div>
-                    <span className="font-bold">$450.00</span>
+                  </div>
+
+                  <div className="mt-auto">
+                    <button className="w-full bg-black text-[#c9a96e] font-bold py-3.5 rounded-xl flex justify-between items-center px-4 hover:bg-zinc-900 transition-colors">
+                      <span className="flex items-center gap-2"><CreditCard className="w-4 h-4" /> Pay Bill</span>
+                      <span>$450.00</span>
+                    </button>
                   </div>
                </div>
-               
+
                {/* Glass Reflection */}
                <div 
-                 className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 pointer-events-none transition-transform duration-300"
+                 className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 pointer-events-none transition-transform duration-300 z-50"
                  style={{ transform: `translate(${(mousePos.x - 0.5) * 100}%, ${(mousePos.y - 0.5) * 100}%)` }}
                ></div>
             </div>
@@ -129,61 +126,141 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
          </div>
       </section>
 
+      {/* MOBILE: Unfolded Stack (Hidden on Desktop) */}
+      <section className="flex md:hidden flex-col gap-16 py-12 px-6 w-full max-w-sm mx-auto">
+         
+         <div className="text-center font-sans space-y-2">
+           <h3 className="text-2xl font-serif text-white tracking-tight">Ecosistema Completo</h3>
+           <p className="text-sm text-zinc-400">Una suite de aplicaciones diseñada para sincronizar cocina, servicio y clientes en tiempo real.</p>
+         </div>
+
+         {/* Mobile View: POS */}
+         <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2 text-[#c9a96e] font-sans text-sm tracking-widest uppercase mb-2">
+              <span className="w-8 h-px bg-[#c9a96e]"></span> Sistema Central (POS)
+            </div>
+            <div className="w-full aspect-video bg-[#111] rounded-xl border border-white/10 shadow-2xl overflow-hidden relative">
+               <img src={project.images[0]?.url} alt="POS Terminal" className="w-full h-full object-cover" />
+            </div>
+            <p className="text-sm text-zinc-400 font-sans leading-relaxed">
+              Gestión centralizada de mesas, facturación y comandas con interfaz oscura optimizada para ambientes de baja luminosidad.
+            </p>
+         </div>
+
+         {/* Mobile View: Kitchen Display */}
+         <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-end gap-2 text-white font-sans text-sm tracking-widest uppercase mb-2">
+              Kitchen Display (KDS) <span className="w-8 h-px bg-white"></span>
+            </div>
+            <div className="w-full aspect-[4/3] bg-[#000] rounded-2xl border-[6px] border-[#1a1a1a] shadow-2xl overflow-hidden relative">
+               <img src={project.images[1]?.url} alt="Kitchen Display" className="w-full h-full object-cover" />
+               <div className="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-sans font-bold px-2 py-1 rounded-full uppercase flex items-center gap-1 shadow-lg">
+                 <ChefHat className="w-2.5 h-2.5" /> New
+               </div>
+            </div>
+            <p className="text-sm text-zinc-400 font-sans leading-relaxed text-right">
+              Pantalla para cocineros con sincronización por WebSockets. Elimina las comandas de papel y reduce errores de tiempos.
+            </p>
+         </div>
+
+         {/* Mobile View: Customer App UI Replica */}
+         <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2 text-[#c9a96e] font-sans text-sm tracking-widest uppercase mb-2">
+              <span className="w-8 h-px bg-[#c9a96e]"></span> App Cliente
+            </div>
+            <div className="w-[85%] mx-auto aspect-[9/19.5] bg-[#0a0a0a] rounded-[2.5rem] border-[8px] border-[#222] shadow-2xl overflow-hidden flex flex-col relative">
+               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-4 bg-[#222] rounded-b-xl z-40"></div>
+               
+               <div className="flex-1 bg-[#f5f2eb] pt-10 pb-6 px-4 flex flex-col font-sans">
+                  <div className="flex justify-between items-center mb-6">
+                    <div>
+                      <h4 className="text-lg font-bold text-black tracking-tight">KURE</h4>
+                      <p className="text-[10px] text-zinc-500 font-medium">Table 12</p>
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-black text-[#c9a96e] flex items-center justify-center">
+                      <Utensils className="w-3 h-3" />
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-3 shadow-sm mb-4 border border-zinc-100">
+                    <h5 className="font-bold text-black mb-3 text-sm">Tasting Menu</h5>
+                    <div className="space-y-3 text-xs">
+                      <div className="flex justify-between items-center border-b border-zinc-50 pb-2">
+                        <span className="text-zinc-600">Course 1</span>
+                        <span className="text-emerald-600 font-bold uppercase">Served</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-black font-medium">Course 2</span>
+                        <span className="text-amber-500 font-bold uppercase flex items-center gap-1">
+                          <Clock className="w-3 h-3" /> Prep
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-auto">
+                    <button className="w-full bg-black text-[#c9a96e] font-bold py-3 rounded-xl flex justify-between items-center px-4">
+                      <span className="flex items-center gap-2 text-xs"><CreditCard className="w-3 h-3" /> Pay Bill</span>
+                      <span className="text-sm">$450.00</span>
+                    </button>
+                  </div>
+               </div>
+            </div>
+            <p className="text-sm text-zinc-400 font-sans leading-relaxed text-center mt-2">
+              Interfaz móvil interactiva para los comensales. Ver el estado de sus platos en tiempo real y pago sin fricción.
+            </p>
+         </div>
+
+      </section>
+
       {/* Marketing & Business Value Section (B2B Focus) */}
-      <section className="py-24 max-w-6xl mx-auto px-6 font-sans">
+      <section className="py-24 max-w-6xl mx-auto px-6 font-sans border-t border-white/5">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-[#f5f2eb] mb-6 tracking-tight font-serif">Reimaginando la Operación Gastronómica</h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            La alta cocina requiere precisión absoluta. Kure Gastronomy unifica el punto de venta, la logística de cocina y la experiencia del comensal en un ecosistema sincronizado en tiempo real.
+            Kure no es solo un menú digital. Es un ecosistema completo que sincroniza el salón y la cocina en tiempo real, eliminando cuellos de botella y elevando la experiencia del comensal a estándares Michelin.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <div className="bg-[#111] border border-[#222] p-8 rounded-2xl hover:border-[#c9a96e]/50 transition-colors">
-            <TrendingUp className="w-8 h-8 text-[#c9a96e] mb-6" />
-            <h3 className="text-xl font-bold text-[#f5f2eb] mb-3">Rotación de Mesas Optimizada</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
+            <div className="w-12 h-12 bg-[#c9a96e]/20 rounded-full flex items-center justify-center mb-6">
+              <CheckCircle2 className="w-6 h-6 text-[#c9a96e]" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Reducción de Tiempos</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Al sincronizar el KDS (Kitchen Display System) con el POS, los meseros saben exactamente cundo retirar platos y servir el siguiente tiempo, reduciendo los tiempos muertos en un 15%.
+              Las comandas viajan del POS a la pantalla de cocina (KDS) en milisegundos mediante WebSockets. Sin tickets perdidos ni esperas innecesarias.
             </p>
           </div>
-          <div className="bg-[#111] border border-[#222] p-8 rounded-2xl hover:border-[#c9a96e]/50 transition-colors">
-            <Users className="w-8 h-8 text-[#c9a96e] mb-6" />
-            <h3 className="text-xl font-bold text-[#f5f2eb] mb-3">Experiencia del Cliente</h3>
+
+          <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
+            <div className="w-12 h-12 bg-[#c9a96e]/20 rounded-full flex items-center justify-center mb-6">
+              <Utensils className="w-6 h-6 text-[#c9a96e]" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Control de Stock Dinámico</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Pagos en la mesa con cdigo QR, divisin de cuentas sin friccin y perfiles de alergias conectados directamente al perfil del comensal.
+              El menú se actualiza en tiempo real. Si la cocina marca un ingrediente como agotado, desaparece instantáneamente de la vista de los meseros.
             </p>
           </div>
-          <div className="bg-[#111] border border-[#222] p-8 rounded-2xl hover:border-[#c9a96e]/50 transition-colors">
-            <Clock className="w-8 h-8 text-[#c9a96e] mb-6" />
-            <h3 className="text-xl font-bold text-[#f5f2eb] mb-3">Inventario en Tiempo Real</h3>
+
+          <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
+            <div className="w-12 h-12 bg-[#c9a96e]/20 rounded-full flex items-center justify-center mb-6">
+              <CreditCard className="w-6 h-6 text-[#c9a96e]" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Checkout sin Fricción</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Cada plato marcado en el POS descuenta ingredientes del inventario base al instante, alertando al Chef Ejecutivo y a Compras antes de que haya escasez.
+              Los clientes pueden solicitar la cuenta, dividirla y pagar directamente desde su mesa usando un código QR integrado a pasarelas de pago.
             </p>
           </div>
         </div>
+      </section>
 
-        {/* Technical Specs List */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-[#c9a96e]/20 pt-16 items-center">
-           <div>
-             <h4 className="text-2xl font-serif text-[#f5f2eb] mb-8">Arquitectura del Sistema</h4>
-             <ul className="space-y-4">
-               {project.features.map((feature, i) => (
-                 <li key={i} className="flex items-start gap-4">
-                   <div className="w-2 h-2 rounded-full bg-[#c9a96e] mt-2 shrink-0"></div>
-                   <span className="text-zinc-400 leading-relaxed">{feature}</span>
-                 </li>
-               ))}
-             </ul>
-           </div>
-           
-           <div className="grid grid-cols-2 gap-6">
-             {project.metrics.map((m, i) => (
-               <div key={i} className="bg-[#111] p-6 rounded-2xl border border-[#222] text-center cursor-default hover:bg-[#151515] transition-colors">
-                 <div className="text-4xl font-light text-[#c9a96e] mb-2 font-serif">{m.value}</div>
-                 <div className="text-xs uppercase tracking-widest font-bold text-zinc-500">{m.label}</div>
-               </div>
-             ))}
-           </div>
+      {/* Tech Stack */}
+      <section className="pb-24 max-w-6xl mx-auto px-6 font-sans">
+        <div className="flex flex-wrap items-center justify-center gap-3">
+           {project.stack.map((t, i) => (
+              <span key={i} className="px-4 py-2 bg-[#111] border border-white/10 rounded-full text-zinc-300 text-sm tracking-wider uppercase">{t}</span>
+           ))}
         </div>
       </section>
 
@@ -197,4 +274,3 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
     </article>
   );
 }
-
