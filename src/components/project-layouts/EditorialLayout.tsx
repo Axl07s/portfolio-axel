@@ -91,17 +91,17 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
         
         {/* Massive Opaque Background Typography */}
-        <div className="absolute inset-0 flex flex-col items-center justify-between py-8 md:py-16 pointer-events-none overflow-hidden select-none z-10">
-          <h1 className="text-[14vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10">
+          <h1 className="absolute top-4 md:top-8 left-1/2 -translate-x-1/2 text-[14vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
             OFFLINE
           </h1>
-          <h1 className="text-[14vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
+          <h1 className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 text-[14vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
             CONNECT
           </h1>
         </div>
 
         {/* Central Phone & Floating Cards Container */}
-        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-8 md:mt-16">
+        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-12 md:mt-16">
            
            {/* Center Phone */}
            <div className="absolute inset-0 z-30 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
@@ -111,36 +111,36 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            {/* --- SVG Connecting Lines --- */}
            <svg className="absolute inset-0 w-full h-full overflow-visible z-20 pointer-events-none" style={{ width: '100%', height: '100%' }}>
               {/* Line to Top Left */}
-              <path d="M -50 80 L 100 150" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="-50" cy="80" r="3" fill="#52525b" />
-              <circle cx="100" cy="150" r="3" fill="#52525b" />
+              <path d="M -50 150 L 100 200" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="-50" cy="150" r="3" fill="#52525b" />
+              <circle cx="100" cy="200" r="3" fill="#52525b" />
 
               {/* Line to Top Right */}
-              <path d="M 380 120 L 250 200" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="380" cy="120" r="3" fill="#52525b" />
-              <circle cx="250" cy="200" r="3" fill="#52525b" />
+              <path d="M 380 180 L 250 240" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="380" cy="180" r="3" fill="#52525b" />
+              <circle cx="250" cy="240" r="3" fill="#52525b" />
 
               {/* Line to Bottom Left */}
-              <path d="M -40 450 L 80 400" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="-40" cy="450" r="3" fill="#52525b" />
-              <circle cx="80" cy="400" r="3" fill="#52525b" />
+              <path d="M -40 400 L 80 360" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="-40" cy="400" r="3" fill="#52525b" />
+              <circle cx="80" cy="360" r="3" fill="#52525b" />
 
               {/* Line to Bottom Right */}
-              <path d="M 360 480 L 220 520" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="360" cy="480" r="3" fill="#52525b" />
-              <circle cx="220" cy="520" r="3" fill="#52525b" />
+              <path d="M 360 420 L 220 460" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="360" cy="420" r="3" fill="#52525b" />
+              <circle cx="220" cy="460" r="3" fill="#52525b" />
            </svg>
 
            {/* --- Brutalist Cards --- */}
 
            {/* Card 1: Top Left (Scarcity Tactics style) */}
-           <div className="absolute top-[8%] -left-[60%] md:-left-[85%] w-52 md:w-60 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
+           <div className="absolute top-[20%] -left-[60%] md:-left-[85%] w-52 md:w-60 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
               <h4 className="text-[12px] font-bold tracking-wide text-[#eab308] uppercase mb-1">LOCAL STORAGE ENGINE</h4>
               <p className="text-xs font-medium text-zinc-300">= Acceso a notas sin internet</p>
            </div>
 
            {/* Card 2: Top Right (Sheep style) */}
-           <div className="absolute top-[15%] -right-[50%] md:-right-[75%] w-48 md:w-56 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block flex items-start gap-3">
+           <div className="absolute top-[25%] -right-[50%] md:-right-[75%] w-48 md:w-56 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block flex items-start gap-3">
               <div className="w-8 h-8 rounded bg-[#b490ff]/20 flex-shrink-0 border border-[#b490ff]/30 overflow-hidden flex items-center justify-center">
                  <span className="text-[#b490ff] text-lg">★</span>
               </div>
@@ -151,7 +151,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            </div>
 
            {/* Card 3: Bottom Left (Permissions style) */}
-           <div className="absolute bottom-[25%] -left-[60%] md:-left-[80%] w-56 md:w-64 p-3 rounded-xl bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
+           <div className="absolute bottom-[35%] -left-[60%] md:-left-[80%] w-56 md:w-64 p-3 rounded-xl bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
               <ul className="space-y-2 mb-3">
                 <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
                   <span className="text-[10px] text-zinc-300 font-mono">+ Biometría (FaceID)</span>
@@ -172,7 +172,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            </div>
 
            {/* Card 4: Bottom Right (Timer style) */}
-           <div className="absolute bottom-[10%] -right-[50%] md:-right-[70%] w-48 md:w-56 p-4 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block text-center">
+           <div className="absolute bottom-[20%] -right-[50%] md:-right-[70%] w-48 md:w-56 p-4 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block text-center">
               <div className="mb-2 opacity-80">
                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" strokeWidth="2" className="mx-auto"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
