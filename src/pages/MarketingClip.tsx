@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getPortfolioProjects } from '../data/portfolioData';
+import { personalProjects } from '../data/personalProjectsData';
 import { ScrambleText } from '../components/effects/ScrambleText';
 import { Particles } from '../components/effects/Particles';
 
 export function MarketingClip() {
   const { id } = useParams();
-  const project = getPortfolioProjects('es').find((p) => p.id === id);
+  const project = personalProjects.find((p) => p.id === id);
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    // Cinematic sequence timeline
-    const t1 = setTimeout(() => setPhase(1), 3000); // Intro text finishes
-    const t2 = setTimeout(() => setPhase(2), 6500); // Hero image pan starts
-    const t3 = setTimeout(() => setPhase(3), 11000); // Metrics and Architecture pop in
-    const t4 = setTimeout(() => setPhase(4), 16000); // Outro "Engineered by Axel"
+    const t1 = setTimeout(() => setPhase(1), 3000);
+    const t2 = setTimeout(() => setPhase(2), 6500);
+    const t3 = setTimeout(() => setPhase(3), 11000);
+    const t4 = setTimeout(() => setPhase(4), 16000);
     
-    // Loop the sequence every 22 seconds for easy recording
     const loop = setInterval(() => {
       setPhase(0);
       setTimeout(() => setPhase(1), 3000);
@@ -37,9 +35,15 @@ export function MarketingClip() {
 
   if (!project) return <Navigate to="/" />;
 
-  // Only doing a special layout for 'suiteseguridad' for now, but we can make it generic
   const isCyber = project.id === 'suiteseguridad';
-  const accentColor = isCyber ? '#10b981' : '#6366f1'; // emerald for cyber, indigo otherwise
+  const accentColor = isCyber ? '#10b981' : '#6366f1'; 
+
+  // Hardcode some metrics for the visual clip if they don't exist in PersonalProject
+  const mockMetrics = [
+    { value: '+99%', label: 'DETECCIÓN EDR' },
+    { value: '< 5ms', label: 'LATENCIA KERNEL' },
+    { value: 'ZERO', label: 'FALSOS POSITIVOS' },
+  ];
 
   return (
     <div className="relative w-screen h-screen bg-black overflow-hidden font-mono text-zinc-200">
@@ -94,7 +98,7 @@ export function MarketingClip() {
             <div className="relative w-[80vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
               <motion.img 
-                src={project.images[0]?.url} 
+                src={project.image} 
                 alt={project.title}
                 className="w-full h-full object-cover object-center"
                 initial={{ scale: 1.2 }}
@@ -109,7 +113,7 @@ export function MarketingClip() {
                   className="text-sm font-bold tracking-widest mb-2"
                   style={{ color: accentColor }}
                 >
-                  {project.category.toUpperCase()}
+                  {project.layoutStyle.toUpperCase()} ARCHITECTURE
                 </motion.div>
                 <motion.h1 
                   initial={{ opacity: 0, y: 20 }}
@@ -135,7 +139,7 @@ export function MarketingClip() {
             transition={{ duration: 1 }}
           >
             <div className="grid grid-cols-3 gap-6 w-full max-w-6xl h-[70vh]">
-              {project.metrics?.slice(0,3).map((metric, i) => (
+              {mockMetrics.map((metric, i) => (
                 <motion.div 
                   key={i}
                   initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -166,7 +170,7 @@ export function MarketingClip() {
                 className="col-span-3 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-wrap gap-4 justify-center items-center mt-8"
               >
                 <div className="w-full text-center text-zinc-500 tracking-widest text-xs uppercase mb-2">Tech Stack</div>
-                {project.stack.map((tech, i) => (
+                {project.tech.map((tech, i) => (
                   <motion.span 
                     key={i}
                     initial={{ opacity: 0, y: 10 }}
