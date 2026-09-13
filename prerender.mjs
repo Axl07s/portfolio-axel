@@ -61,8 +61,10 @@ try {
   const templateHtml = fs.readFileSync(templatePath, 'utf-8');
 
   for (const project of projects) {
-    const routeDir = path.join(distPath, 'project', project.id);
-    fs.mkdirSync(routeDir, { recursive: true });
+    const routeDir = path.join(distPath, 'project');
+    if (!fs.existsSync(routeDir)) {
+      fs.mkdirSync(routeDir, { recursive: true });
+    }
 
     // Construct the meta tags
     const metaTags = `
@@ -79,9 +81,9 @@ try {
     // Inject into the <head> just before </head>
     const injectedHtml = templateHtml.replace('</head>', `${metaTags}\n</head>`);
 
-    const outputPath = path.join(routeDir, 'index.html');
+    const outputPath = path.join(routeDir, `${project.id}.html`);
     fs.writeFileSync(outputPath, injectedHtml);
-    console.log(`Generated SEO HTML for /project/${project.id}`);
+    console.log(`Generated SEO HTML for /project/${project.id}.html`);
   }
 
   console.log('Fast SSG complete.');
