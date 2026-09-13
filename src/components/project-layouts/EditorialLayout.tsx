@@ -2,20 +2,13 @@ import type { PersonalProject } from '../../data/personalProjectsData';
 import { ArrowRight, GitBranch, Smartphone, WifiOff } from 'lucide-react';
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
-  // Enhanced Mobile frame with modern punch-hole design
+  // Enhanced Mobile frame with purely minimalist screen (Edge-to-Edge)
   const MobileFrame = ({ title, className = "", imagePath = "" }: { title: string, className?: string, imagePath?: string }) => (
     <div className={`relative flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] h-[550px] md:h-[650px] w-[275px] md:w-[325px] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ring-1 ring-white/10 flex flex-col ${className}`}>
       
       {/* Side Buttons */}
-      <div className="absolute -right-[14px] top-[120px] w-[6px] h-12 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700"></div>
-      <div className="absolute -right-[14px] top-[180px] w-[6px] h-20 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700"></div>
-      
-      {/* Punch-hole Camera */}
-      <div className="absolute top-3 inset-x-0 flex justify-center z-30 pointer-events-none">
-          <div className="w-4 h-4 bg-black rounded-full shadow-[inset_0_-1px_2px_rgba(255,255,255,0.1)] border border-zinc-900 flex items-center justify-center">
-             <div className="w-1.5 h-1.5 bg-indigo-900/40 rounded-full"></div>
-          </div>
-      </div>
+      <div className="absolute -right-[14px] top-[120px] w-[6px] h-12 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700 z-0"></div>
+      <div className="absolute -right-[14px] top-[180px] w-[6px] h-20 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700 z-0"></div>
 
       {/* Screen Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 overflow-hidden z-10 rounded-[2rem] md:rounded-[2.5rem]">
@@ -86,21 +79,21 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            <MobileFrame 
              title="Captura de Calificaciones" 
              imagePath="/projects/puce_grades.png"
-             className="absolute z-10 -rotate-6 -translate-x-[40%] sm:-translate-x-[60%] lg:-translate-x-[90%] translate-y-8 md:translate-y-16 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-40" 
+             className="absolute z-10 -rotate-6 -translate-x-[55%] sm:-translate-x-[80%] lg:-translate-x-[110%] translate-y-8 md:translate-y-16 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-[0.80] md:hover:scale-[0.95] hover:opacity-100" 
            />
            
            {/* Right Phone (Attendance) */}
            <MobileFrame 
              title="Captura de Asistencia" 
              imagePath="/projects/puce_attendance.png"
-             className="absolute z-10 rotate-6 translate-x-[40%] sm:translate-x-[60%] lg:translate-x-[90%] translate-y-12 md:translate-y-24 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-40" 
+             className="absolute z-10 rotate-6 translate-x-[55%] sm:translate-x-[80%] lg:translate-x-[110%] translate-y-12 md:translate-y-24 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-[0.80] md:hover:scale-[0.95] hover:opacity-100" 
            />
 
            {/* Center Phone (Home/Login) */}
            <MobileFrame 
              title="Captura de Inicio / Home" 
              imagePath="/projects/puce_home.png"
-             className="absolute z-30 rotate-0 scale-90 md:scale-100 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
+             className="absolute z-30 rotate-0 scale-90 md:scale-100 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[0.95] md:hover:scale-[1.05]" 
            />
          </div>
       </section>
@@ -150,13 +143,13 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            <MobileFrame 
              title="Estado de Sincronización" 
              imagePath="/projects/puce_login.png"
-             className="absolute z-10 rotate-[12deg] translate-x-20 md:translate-x-40 translate-y-12 md:translate-y-16 scale-75 md:scale-90 opacity-40 md:opacity-60 transition-transform duration-700 hover:scale-100 hover:opacity-100 hover:z-30" 
+             className="absolute z-10 rotate-[12deg] translate-x-28 md:translate-x-56 translate-y-12 md:translate-y-16 scale-75 md:scale-90 opacity-40 md:opacity-60 transition-transform duration-700 hover:scale-[0.80] md:hover:scale-[0.95] hover:opacity-100" 
            />
            {/* Front phone */}
            <MobileFrame 
              title="Perfil Estudiantil" 
              imagePath="/projects/puce_profile.png"
-             className="absolute z-20 -rotate-2 -translate-x-8 md:-translate-x-16 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.05]" 
+             className="absolute z-20 -rotate-2 -translate-x-12 md:-translate-x-24 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[0.95] md:hover:scale-[1.05]" 
            />
          </div>
       </section>
