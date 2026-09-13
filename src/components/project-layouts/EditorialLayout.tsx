@@ -2,7 +2,7 @@ import type { PersonalProject } from '../../data/personalProjectsData';
 import { ArrowRight, GitBranch, Smartphone, WifiOff } from 'lucide-react';
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
-  // Enhanced Mobile frame with minimalist bezel (No Notch)
+  // Enhanced Mobile frame with modern punch-hole design
   const MobileFrame = ({ title, className = "", imagePath = "" }: { title: string, className?: string, imagePath?: string }) => (
     <div className={`relative flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] h-[550px] md:h-[650px] w-[275px] md:w-[325px] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ring-1 ring-white/10 flex flex-col ${className}`}>
       
@@ -10,16 +10,15 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       <div className="absolute -right-[14px] top-[120px] w-[6px] h-12 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700"></div>
       <div className="absolute -right-[14px] top-[180px] w-[6px] h-20 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700"></div>
       
-      {/* Top Bezel (Speaker) */}
-      <div className="absolute top-4 inset-x-0 flex justify-center z-20">
-          <div className="w-16 h-1.5 bg-zinc-900 rounded-full shadow-inner border border-zinc-800"></div>
+      {/* Punch-hole Camera */}
+      <div className="absolute top-3 inset-x-0 flex justify-center z-30 pointer-events-none">
+          <div className="w-4 h-4 bg-black rounded-full shadow-[inset_0_-1px_2px_rgba(255,255,255,0.1)] border border-zinc-900 flex items-center justify-center">
+             <div className="w-1.5 h-1.5 bg-indigo-900/40 rounded-full"></div>
+          </div>
       </div>
 
-      {/* Fake Bezel Margin */}
-      <div className="w-full h-10 bg-black shrink-0 relative z-20"></div>
-
       {/* Screen Content */}
-      <div className="relative w-full h-full flex flex-col items-center justify-center bg-zinc-900 overflow-hidden z-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 overflow-hidden z-10 rounded-[2rem] md:rounded-[2.5rem]">
         {imagePath ? (
           <img src={imagePath} alt={title} className="absolute inset-0 w-full h-full object-cover object-top" />
         ) : (
@@ -33,9 +32,6 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         {/* Screen Glare effect */}
         <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none z-30"></div>
       </div>
-
-      {/* Bottom Bezel Margin */}
-      <div className="w-full h-10 bg-black shrink-0 mt-auto relative z-20"></div>
     </div>
   );
 
