@@ -21,7 +21,7 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'e
               {lang.toLowerCase() === 'es' ? 'Laboratorio & Sistemas Deep Tech' : 'Labs & Deep Tech Systems'}
             </h2>
             <p className="text-zinc-400 max-w-2xl">
-              {lang === 'ES' 
+              {lang.toLowerCase() === 'es' 
                 ? 'Investigación técnica profunda: ingeniería de sistemas a bajo nivel en C/C++ (EDR/ETW) y desarrollo móvil offline-first con sincronización reactiva.'
                 : 'In-depth technical research: low-level systems engineering in C/C++ (EDR/ETW) and offline-first mobile architectures with reactive sync.'}
             </p>
@@ -41,7 +41,7 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'e
                     <img
                       src={project.image}
                       alt={project.title}
-                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover object-top`}
+                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover object-center`}
                       loading="lazy"
                     />
                   </div>
@@ -100,4 +100,6 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'e
     </section>
   );
 }
+
+
 
