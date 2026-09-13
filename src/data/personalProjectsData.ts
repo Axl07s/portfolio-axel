@@ -8,7 +8,7 @@ export interface PersonalProject {
   tech: string[];
   image: string;
   githubUrl?: string;
-  layoutStyle: 'bento' | 'editorial';
+  layoutStyle: 'bento' | 'editorial' | 'enterprise';
   seoDescription: string;
   seoImage: string;
 }
@@ -23,7 +23,7 @@ export const personalProjects: PersonalProject[] = [
     architectureEN: 'C/C++ & Python architecture divided into a low-latency driver for telemetry collection and a user-space engine for heuristic analysis using YARA and Sysmon.',
     tech: ['Python', 'C++', 'YARA', 'Sysmon', 'ETW API'],
     image: '/projects/suitesecurity_01.png',
-    layoutStyle: 'bento',
+    layoutStyle: 'enterprise',
     seoDescription: 'A hybrid EDR system for Windows that blocks ransomware and monitors malicious activity in real time using YARA and ETW.',
     seoImage: '/projects/suitesecurity_01.png'
   },

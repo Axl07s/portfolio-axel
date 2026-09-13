@@ -5,6 +5,7 @@ import { personalProjects } from '../data/personalProjectsData';
 import { NotFound } from './NotFound';
 import { BentoLayout } from '../components/project-layouts/BentoLayout';
 import { EditorialLayout } from '../components/project-layouts/EditorialLayout';
+import { EnterpriseLayout } from '../components/project-layouts/EnterpriseLayout';
 
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
@@ -44,6 +45,8 @@ export function ProjectDetail() {
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <BentoLayout project={project} />
           </div>
+        ) : project.layoutStyle === 'enterprise' ? (
+          <EnterpriseLayout project={project} />
         ) : (
           <EditorialLayout project={project} />
         )}
