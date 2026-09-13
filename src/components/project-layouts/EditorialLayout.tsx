@@ -102,7 +102,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
               return (
                 <div 
                   key={imgSrc}
-                  className={`absolute w-[280px] aspect-[1170/1992] bg-zinc-950 rounded-[2rem] border-[8px] border-zinc-800 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${opacity}`}
+                  className={`absolute w-[260px] h-[520px] bg-zinc-950 rounded-[2.5rem] border-[6px] border-zinc-800 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${opacity}`}
                   style={{ transform, zIndex }}
                 >
                   <img src={imgSrc} alt="App Screen" className="w-full h-full object-cover object-top" />
@@ -148,7 +148,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       <section id="editorial-phones-mobile" className="lg:hidden relative py-16 px-6 z-20">
         {/* Centered phone with crossfade */}
         <div className="flex justify-center mb-8">
-          <div className="w-[220px] aspect-[1170/1992] bg-zinc-950 rounded-3xl border-[8px] border-zinc-800 shadow-2xl overflow-hidden relative">
+          <div className="w-[240px] h-[480px] bg-zinc-950 rounded-[2.5rem] border-[6px] border-zinc-800 shadow-2xl overflow-hidden relative">
             {images.map((imgSrc, index) => (
               <img 
                 key={imgSrc}
