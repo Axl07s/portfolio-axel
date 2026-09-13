@@ -6,9 +6,9 @@ export const translations = {
     'nav.certifications': 'Certifications',
     
     // Hero
-    'hero.status': 'ACCEPTING NEW CLIENTS (FIVERR / DIRECT)',
-    'hero.title': 'Custom SaaS & AI Solutions',
-    'hero.subtitle': 'I help businesses automate workflows and scale operations by building bespoke B2B dashboards, SaaS platforms, and client portals. From concept to production, just like I did for SyntroSaaS and KURE.',
+    'hero.status': 'AVAILABLE FOR B2B CONTRACTS (FIVERR / DIRECT)',
+    'hero.title': 'Production SaaS & AI Systems',
+    'hero.subtitle': '19-year-old SaaS architect and technical consultant based in Ecuador. I design and ship production multi-tenant platforms in Next.js 15 with RLS isolation, RAG engines with pgvector, and AI command centers with production-grade engineering rigor.',
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -18,14 +18,14 @@ export const translations = {
     
     // Projects
     'projects.title': 'Featured Client Work & SaaS',
-    'projects.subtitle': 'Recent architectures deployed to production.',
+    'projects.subtitle': 'Multi-tenant SaaS platforms, AI agent orchestration, and B2B acquisition tools deployed to production.',
     'projects.viewLive': 'Live Deploy',
     'projects.viewGithub': 'Source Code',
     'projects.metrics': 'Business Impact',
     'projects.features': 'Core Architecture',
     
     // Footer
-    'footer.description': 'Full-Stack Engineer specialized in scalable B2B applications and AI integration.',
+    'footer.description': 'SaaS Architect and technical consultant specializing in multi-tenant platforms, applied AI systems, and high-performance architectures.',
     'footer.links': 'Links',
     'footer.legal': 'All rights reserved.',
     
@@ -39,9 +39,9 @@ export const translations = {
     'nav.certifications': 'Certificaciones',
     
     // Hero
-    'hero.status': 'ACEPTANDO NUEVOS CLIENTES (FIVERR / DIRECTO)',
-    'hero.title': 'Desarrollo SaaS & Soluciones de IA',
-    'hero.subtitle': 'Ayudo a empresas a escalar operaciones construyendo cuadros de mando (dashboards) B2B, portales de clientes y plataformas SaaS a medida. Del concepto a producción, tal como lo hice con SyntroSaaS y KURE.',
+    'hero.status': 'DISPONIBLE PARA CONTRATOS B2B (FIVERR / DIRECTO)',
+    'hero.title': 'Arquitectura SaaS & Sistemas de IA',
+    'hero.subtitle': 'Arquitecto de software y consultor SaaS de 19 años en Ecuador. Diseño y despliego plataformas multi-tenant en Next.js 15 con aislamiento RLS, motores RAG con pgvector y centros de comando de IA, llevando arquitecturas de cero a producción con rigor de ingeniería.',
     'hero.cta.primary': 'Cotizar Proyecto',
     'hero.cta.secondary': 'Ver Portafolio',
     
@@ -51,14 +51,14 @@ export const translations = {
     
     // Projects
     'projects.title': 'Proyectos y SaaS Destacados',
-    'projects.subtitle': 'Arquitecturas recientes desplegadas en producción.',
+    'projects.subtitle': 'Plataformas SaaS multi-tenant, orquestación de agentes de IA y herramientas de adquisición B2B desplegadas en producción.',
     'projects.viewLive': 'Ver en vivo',
     'projects.viewGithub': 'Código Fuente',
     'projects.metrics': 'Impacto de Negocio',
     'projects.features': 'Arquitectura Core',
     
     // Footer
-    'footer.description': 'Ingeniero Full-Stack especializado en aplicaciones B2B escalables e integración de IA.',
+    'footer.description': 'Arquitecto SaaS y consultor técnico especializado en plataformas multi-tenant, sistemas de IA y arquitecturas de alto rendimiento.',
     'footer.links': 'Enlaces',
     'footer.legal': 'Todos los derechos reservados.',
     

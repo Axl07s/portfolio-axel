@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const B2B_SECTIONS = [
+  { id: 'b2b-hero', label: 'Intro' },
+  { id: 'b2b-showcase', label: 'Producto' },
+  { id: 'b2b-roi', label: 'ROI' },
+  { id: 'b2b-architecture', label: 'Arquitectura' },
+  { id: 'b2b-stack', label: 'Stack' },
+];
 
 export function B2BFunnelLayout({ project }: { project: Project }) {
   const [scrollY, setScrollY] = useState(0);
@@ -15,9 +24,10 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans selection:bg-[#4f46e5] selection:text-white pb-32">
-      
+      <ScrollAffordance sections={B2B_SECTIONS} accentColor="indigo" />
+
       {/* 1. HERO SECTION - Dark & Technical */}
-      <header className="relative pt-32 pb-24 px-6 md:px-12 max-w-screen-2xl mx-auto flex flex-col items-center text-center">
+      <header id="b2b-hero" className="relative pt-32 pb-24 px-6 md:px-12 max-w-screen-2xl mx-auto flex flex-col items-center text-center">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#4f46e5_0%,transparent_50%)] opacity-10 pointer-events-none"></div>
         
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-mono text-indigo-400 mb-8 uppercase tracking-widest">

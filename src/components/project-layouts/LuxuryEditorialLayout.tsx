@@ -1,6 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { ChefHat, CreditCard, Utensils, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const LUXURY_SECTIONS = [
+  { id: 'luxury-hero', label: 'Intro' },
+  { id: 'luxury-cinematic', label: 'Experiencia' },
+  { id: 'luxury-value', label: 'Arquitectura' },
+  { id: 'luxury-stack', label: 'Stack' },
+];
 
 export function LuxuryEditorialLayout({ project }: { project: Project }) {
   const [scrollY, setScrollY] = useState(0);
@@ -46,9 +54,10 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#050505] text-[#f5f2eb] font-sans selection:bg-[#c9a96e]/30">
-      
+      <ScrollAffordance sections={LUXURY_SECTIONS} accentColor="#c9a96e" />
+
       {/* 1. KINETIC TYPOGRAPHY HERO */}
-      <header className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <header id="luxury-hero" className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         {/* Abstract Background Noise */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
         
@@ -82,7 +91,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
       </header>
 
       {/* 2. THE CINEMATIC STICKY SCROLL (Desktop Only, stacks on mobile) */}
-      <section className="hidden lg:block relative" ref={scrollRef} style={{ height: '300vh' }}>
+      <section id="luxury-cinematic" className="hidden lg:block relative" ref={scrollRef} style={{ height: '300vh' }}>
          <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden bg-[#050505]">
             
             {/* Left Content Column */}
@@ -182,7 +191,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
       </section>
 
       {/* 3. BUSINESS VALUE GRID */}
-      <section className="py-32 max-w-7xl mx-auto px-6 border-t border-white/5 relative">
+      <section id="luxury-value" className="py-32 max-w-7xl mx-auto px-6 border-t border-white/5 relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-32 bg-gradient-to-b from-[#c9a96e]/30 to-transparent"></div>
         
         <div className="text-center mb-24 mt-16">

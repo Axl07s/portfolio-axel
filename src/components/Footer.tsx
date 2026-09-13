@@ -1,6 +1,7 @@
 import React from 'react';
 import { Terminal } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -17,12 +18,12 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <span className="font-extrabold text-sm text-white">AXEL<span className="text-indigo-400">.DEV</span></span>
-              <p className="text-[11px] text-zinc-400">Software Architect & Full-Stack Engineer</p>
+              <p className="text-[11px] text-zinc-400">SaaS Architect & Systems Engineer</p>
             </div>
           </div>
 
           <div className="flex items-center gap-6 text-xs text-zinc-400">
-            <a href="#projects" className="hover:text-indigo-400 transition-colors">{t('nav.projects')}</a>
+            <Link to="/projects" className="hover:text-indigo-400 transition-colors">{t('nav.projects')}</Link>
             <a href="#contact" className="hover:text-indigo-400 transition-colors">{lang === 'es' ? 'Contacto' : 'Contact'}</a>
           </div>
 

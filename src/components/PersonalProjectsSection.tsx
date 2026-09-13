@@ -22,8 +22,8 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
             </h2>
             <p className="text-zinc-400 max-w-2xl">
               {lang === 'ES' 
-                ? 'Proyectos académicos y de investigación personal donde exploro arquitecturas complejas a bajo nivel, seguridad y desarrollo móvil offline-first.'
-                : 'Academic and personal research projects exploring low-level architecture, security, and offline-first mobile development.'}
+                ? 'Investigación técnica profunda: ingeniería de sistemas a bajo nivel en C/C++ (EDR/ETW) y desarrollo móvil offline-first con sincronización reactiva.'
+                : 'In-depth technical research: low-level systems engineering in C/C++ (EDR/ETW) and offline-first mobile architectures with reactive sync.'}
             </p>
           </div>
         )}
@@ -33,31 +33,50 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
             <Link 
               to={`/project/${project.id}`}
               key={project.id}
-              className="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-zinc-800 transition-colors hover:bg-zinc-900/50 relative cursor-pointer"
+              className="group flex flex-col lg:flex-row lg:items-center justify-between py-8 border-b border-zinc-800 transition-colors hover:bg-zinc-900/50 relative cursor-pointer gap-6 px-2 sm:px-4"
             >
-              <div className="md:w-1/3 mb-4 md:mb-0 px-4">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span key={t} className="text-xs font-medium text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800 flex items-center gap-1">
-                      {TECH_ICONS[t] || null}
-                      {t}
-                    </span>
-                  ))}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 lg:w-5/12">
+                {project.image && (
+                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shrink-0 relative group-hover:border-zinc-700 transition-colors">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    {project.githubUrl && (
+                      <a 
+                        href={project.githubUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-zinc-500 hover:text-white transition-colors" 
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`${project.title} GitHub repository`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span key={t} className="text-xs font-medium text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800 flex items-center gap-1">
+                        {TECH_ICONS[t] || null}
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
               
-              <div className="md:w-2/3 px-4 flex flex-col md:flex-row gap-6">
-                <div className="md:w-1/2">
+              <div className="lg:w-7/12 flex flex-col sm:flex-row gap-6">
+                <div className="sm:w-1/2">
                   <h4 className="text-xs text-zinc-500 uppercase tracking-wider mb-2 font-semibold">
                     {lang === 'ES' ? 'El Desafío' : 'The Challenge'}
                   </h4>
@@ -65,7 +84,7 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
                     {lang === 'ES' ? project.descriptionES : project.descriptionEN}
                   </p>
                 </div>
-                <div className="md:w-1/2">
+                <div className="sm:w-1/2">
                   <h4 className="text-xs text-blue-500/80 uppercase tracking-wider mb-2 font-semibold">
                     {lang === 'ES' ? 'Decisión de Arquitectura' : 'Architecture Decision'}
                   </h4>

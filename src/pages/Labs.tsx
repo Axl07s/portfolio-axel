@@ -8,8 +8,8 @@ export function Labs() {
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-h-screen animate-fadeIn">
       <Helmet>
-        <title>Labs & Experiments - Axel Molineros</title>
-        <meta name="description" content="Academic, experimental, and personal deep-dive projects." />
+        <title>{lang === 'es' ? 'Laboratorio & Sistemas de Bajo Nivel - Axel Molineros' : 'Labs & Low-Level Systems - Axel Molineros'}</title>
+        <meta name="description" content={lang === 'es' ? 'Ingeniería de sistemas a bajo nivel en C/C++ (EDR/ETW) y arquitecturas móviles offline-first desarrolladas por Axel Molineros.' : 'Low-level systems engineering in C/C++ (EDR/ETW) and offline-first mobile architectures by Axel Molineros.'} />
       </Helmet>
 
       <div className="max-w-3xl mb-16 space-y-6">
@@ -21,8 +21,8 @@ export function Labs() {
         </h1>
         <p className="text-lg text-zinc-400 max-w-xl">
           {lang === 'es' 
-            ? 'Proyectos de investigación profunda, sistemas a bajo nivel y experimentación tecnológica.' 
-            : 'Deep-dive research projects, low-level systems, and technological experimentation.'}
+            ? 'Ingeniería de sistemas e investigación aplicada: detección de amenazas a nivel de kernel en C/C++ (EDR/ETW) y arquitecturas móviles offline-first.' 
+            : 'Systems engineering and applied research: low-level threat detection in C/C++ (EDR/ETW) and offline-first mobile architectures.'}
         </p>
       </div>
 

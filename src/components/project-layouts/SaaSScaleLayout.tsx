@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Server, Shield, CheckCircle2, ArrowRight, User, Activity, Settings, Database, Cloud } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const SAAS_SECTIONS = [
+  { id: 'saas-hero', label: 'Intro' },
+  { id: 'saas-showcase', label: 'Producto' },
+  { id: 'saas-features', label: 'Arquitectura' },
+];
 
 export function SaaSScaleLayout({ project }: { project: Project }) {
   const [scrollY, setScrollY] = useState(0);
@@ -27,9 +34,10 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#0a0a0a] text-zinc-50 font-sans overflow-hidden">
-      
+      <ScrollAffordance sections={SAAS_SECTIONS} accentColor="indigo" />
+
       {/* Hero Section */}
-      <header className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center">
+      <header id="saas-hero" className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         
         <div 
@@ -46,14 +54,24 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
             {project.title}
           </h1>
-          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-10">
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-8">
             {project.description}
           </p>
+
+          {/* Key Metrics */}
+          <div className="grid grid-cols-3 gap-4 w-full max-w-2xl mx-auto mb-4">
+            {project.metrics.map((m, i) => (
+              <div key={i} className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-3.5 text-center">
+                <div className="text-xl md:text-2xl font-bold text-white tracking-tight">{m.value}</div>
+                <div className="text-[11px] font-mono uppercase tracking-wider text-indigo-400 mt-0.5">{m.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
 
       {/* 3D Interactive Parallax Device Showcase */}
-      <section 
+      <section id="saas-showcase"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -171,9 +189,9 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
       </section>
 
       {/* Features List */}
-      <section className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">
+      <section id="saas-features" className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">
         <div>
-          <h3 className="text-3xl font-semibold mb-8 text-white">Arquitectura Multi-Tenant</h3>
+          <h3 className="text-3xl font-semibold mb-8 text-white">Arquitectura Multi-Tenant & Aislamiento RLS</h3>
           <ul className="space-y-6">
             {project.features.map((feature, i) => (
               <li key={i} className="flex items-start gap-4 text-zinc-300 group">
@@ -195,8 +213,8 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
            </div>
            
            <div className="bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/30 hover:border-indigo-400 rounded-2xl p-8 flex flex-col items-start justify-center transition-colors group">
-             <h4 className="text-xl font-semibold text-white mb-2">Ver Cdigo Fuente</h4>
-             <p className="text-zinc-400 text-sm mb-6">Arquitectura escalable en Next.js lista para despliegue en Vercel.</p>
+             <h4 className="text-xl font-semibold text-white mb-2">Ver Código Fuente</h4>
+             <p className="text-zinc-400 text-sm mb-6">Arquitectura full-stack en Next.js 15 y React 19 con Supabase RLS y Stripe, optimizada para despliegue edge en Vercel.</p>
              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg font-medium transition-all group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]">
                Repositorio GitHub <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
              </a>

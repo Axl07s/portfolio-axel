@@ -1,6 +1,14 @@
 import { useState, useRef } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Shield, Activity, AlertTriangle, Zap, Server } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const ENTERPRISE_SECTIONS = [
+  { id: 'enterprise-hero', label: 'Intro' },
+  { id: 'enterprise-hologram', label: 'Demo 3D' },
+  { id: 'enterprise-dashboard', label: 'Dashboard' },
+  { id: 'enterprise-features', label: 'Características' },
+];
 
 export function EnterpriseLayout({ project }: { project: PersonalProject }) {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
@@ -19,9 +27,10 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
 
   return (
     <article className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-emerald-500/30 overflow-hidden">
-      
+      <ScrollAffordance sections={ENTERPRISE_SECTIONS} accentColor="emerald" />
+
       {/* Hero Section */}
-      <header className="relative pt-32 pb-8 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+      <header id="enterprise-hero" className="relative pt-32 pb-8 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400 mb-8 animate-pulse">
           <Shield className="w-3.5 h-3.5" />
           <span>ZERO-TRUST KERNEL EDR</span>
@@ -35,7 +44,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       </header>
 
       {/* 3D Threat Isolation Hologram */}
-      <section 
+      <section id="enterprise-hologram"
         className="relative py-12 w-full flex items-center justify-center z-20 cursor-crosshair h-[500px] md:h-[700px]"
         ref={containerRef}
         onMouseMove={handleMouseMove}
@@ -131,7 +140,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* The Actual Product / Application UI */}
-      <section className="relative w-full max-w-6xl mx-auto px-6 py-12 z-20">
+      <section id="enterprise-dashboard" className="relative w-full max-w-6xl mx-auto px-6 py-12 z-20">
         <div className="text-center mb-10">
           <h2 className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-2">Centro de Control EDR</h2>
           <p className="text-2xl font-light text-slate-300">Interfaz principal desarrollada para el Centro de Operaciones de Seguridad (SOC).</p>
@@ -163,11 +172,11 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Marketing B2B - Enterprise Security Value */}
-      <section className="max-w-5xl mx-auto px-6 py-24">
+      <section id="enterprise-features" className="max-w-5xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Protección Proactiva a Nivel Kernel</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Los antivirus tradicionales dependen de firmas conocidas. SuiteSeguridad EDR intercepta el comportamiento malicioso directamente en el Kernel de Windows usando ETW (Event Tracing for Windows), bloqueando amenazas zero-day antes de que ejecuten.
+            Los antivirus convencionales dependen de firmas estáticas reactivas. SuiteSeguridad EDR intercepta vectores de ataque en el subsistema del kernel de Windows mediante Event Tracing for Windows (ETW) y hooks de baja latencia, mitigando amenazas zero-day antes de su ejecución.
           </p>
         </div>
 
@@ -178,7 +187,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Mitigación de Ransomware</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Detecta operaciones masivas de cifrado de archivos (alta entropía de disco) y suspende el proceso origen en menos de 12 milisegundos, salvando la información crítica.
+              Detección de patrones de cifrado masivo mediante cálculo de entropía de Shannon en buffers de I/O de disco. Suspende deterministamente el hilo del proceso atacante en menos de 12ms antes de comprometer archivos críticos.
             </p>
           </div>
 
@@ -188,7 +197,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Bajo Impacto Operativo</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Motor C++ hiper-optimizado. Intercepta millones de eventos de sistema por segundo con un overhead de CPU inferior al 1%, invisible para el usuario final.
+              Driver C/C++ en espacio de kernel con buffers circulares de memoria compartida. Procesa eventos de telemetría a escala con un overhead de CPU medido inferior al 0.8%.
             </p>
           </div>
 
@@ -196,9 +205,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Server className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Análisis Python AI</h3>
+            <h3 className="text-xl font-bold text-white mb-3">Motor Heurístico & Reglas YARA</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              La telemetría filtrada se envía a un motor asíncrono en Python que utiliza heurísticas avanzadas y reglas YARA para clasificación profunda de binarios.
+              Canal asíncrono en espacio de usuario (Python) que correlaciona telemetría de Sysmon y evalúa binarios sospechosos contra un compendio de reglas YARA y heurísticas de comportamiento.
             </p>
           </div>
         </div>

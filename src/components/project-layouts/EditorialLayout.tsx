@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Smartphone, WifiOff, RefreshCcw, Cloud } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const EDITORIAL_SECTIONS = [
+  { id: 'editorial-hero', label: 'Intro' },
+  { id: 'editorial-phones', label: 'App Flow' },
+  { id: 'editorial-features', label: 'Arquitectura' },
+];
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
@@ -35,12 +42,13 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
 
   return (
     <article className="min-h-screen bg-[#faf9f6] text-[#1a1a1a] font-sans selection:bg-indigo-500/30 overflow-hidden">
-      
+      <ScrollAffordance sections={EDITORIAL_SECTIONS} accentColor="indigo" />
+
       {/* Hero Section */}
-      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+      <header id="editorial-hero" className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-bold text-indigo-600 mb-8 uppercase tracking-widest">
           <Smartphone className="w-3.5 h-3.5" />
-          <span>React Native Ecosystem</span>
+          <span>Arquitectura Flutter & BLoC</span>
         </div>
         <h1 className="text-5xl md:text-8xl font-black tracking-tight text-[#1a1a1a] mb-6">
           {project.title}
@@ -51,7 +59,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </header>
 
       {/* 3D App Flow Presentation */}
-      <section 
+      <section id="editorial-phones"
         className="relative py-24 w-full flex items-center justify-center z-20 cursor-crosshair h-[600px] md:h-[800px]"
         ref={containerRef}
         onMouseMove={handleMouseMove}
@@ -132,7 +140,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
                  <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
                </div>
                <p className="text-xs text-zinc-500 leading-relaxed">
-                 SQLite Database activa. Sirviendo horarios y notas desde la caché local sin conexión a internet en &lt;50ms.
+                 Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en &lt;50ms.
                </p>
             </div>
 
@@ -149,7 +157,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
                  <Cloud className="w-4 h-4 text-zinc-500" />
                </div>
                <p className="text-xs text-zinc-400 leading-relaxed">
-                 Workers sincronizando mutaciones con Spring Boot en segundo plano al recuperar conexión.
+                 Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.
                </p>
             </div>
 
@@ -157,7 +165,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Marketing B2B - Mobile Value */}
-      <section className="max-w-6xl mx-auto px-6 pb-32">
+      <section id="editorial-features" className="max-w-6xl mx-auto px-6 pb-32">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 tracking-tight">Arquitectura Offline-First Real</h2>
           <p className="text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
@@ -172,7 +180,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-zinc-900 mb-3">Disponibilidad 100%</h3>
             <p className="text-zinc-600 text-sm leading-relaxed">
-              Toda la información crítica (horarios, notas, perfil) se persiste en una base de datos local (SQLite). El usuario nunca ve un estado de "Sin Conexión" bloqueante.
+              Persistencia local íntegra de horarios, calificaciones y asistencia en Isar DB (NoSQL tipada y reactiva). Lecturas directas de almacenamiento sin bloqueos ni spinners ante caídas de red.
             </p>
           </div>
 
@@ -182,7 +190,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-zinc-900 mb-3">Sincronización Silenciosa</h3>
             <p className="text-zinc-600 text-sm leading-relaxed">
-              Las acciones realizadas sin internet se encolan. Background Workers detectan cuando vuelve la señal y sincronizan los cambios bidireccionalmente con el backend Spring Boot.
+              Encolamiento idempotente de mutaciones offline. Los background workers resuelven marcas temporales y despachan deltas al backend Spring Boot sin interferir en la fluidez de la UI.
             </p>
           </div>
 
@@ -190,9 +198,9 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
               <Smartphone className="w-6 h-6 text-indigo-600" />
             </div>
-            <h3 className="text-xl font-bold text-zinc-900 mb-3">React Native Nativo</h3>
+            <h3 className="text-xl font-bold text-zinc-900 mb-3">Rendimiento Nativo Flutter</h3>
             <p className="text-zinc-600 text-sm leading-relaxed">
-              No es una web-view. Interfaz fluida a 60fps con animaciones de transición, navegación nativa y consumo de recursos altamente optimizado para iOS y Android.
+              Compilación AOT directa a código máquina ARM a 60fps constantes. Gestión de estado reactiva y desacoplada mediante BLoC pattern para iOS y Android.
             </p>
           </div>
         </div>

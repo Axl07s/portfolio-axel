@@ -1,6 +1,13 @@
 import { useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart, FileText, CheckCircle2 } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const GRAPH_SECTIONS = [
+  { id: 'graph-hero', label: 'Intro' },
+  { id: 'graph-blueprint', label: 'Arquitectura' },
+  { id: 'graph-value', label: 'Valor B2B' },
+];
 
 export function GraphTerminalLayout({ project }: { project: Project }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -20,8 +27,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#050505] text-zinc-300 font-sans selection:bg-blue-500/30 overflow-hidden">
+      <ScrollAffordance sections={GRAPH_SECTIONS} accentColor="blue" />
       
-      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+      <header id="graph-hero" className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-mono text-blue-400 mb-8">
           <Binary className="w-3.5 h-3.5" />
           <span>Enterprise AI Architecture</span>
@@ -35,7 +43,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       </header>
 
       {/* The Exploding Blueprint */}
-      <section 
+      <section id="graph-blueprint"
         className="relative py-24 w-full flex items-center justify-center z-20 cursor-crosshair"
         ref={containerRef}
         onMouseMove={handleMouseMove}
@@ -164,41 +172,41 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  </div>
                </div>
 
-               {/* Wide Terminal Tile */}
-               <div 
-                 className="col-span-4 md:col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
-                 style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
-               >
-                 <div className="flex-1 font-mono text-sm">
-                   <div className="text-zinc-500 mb-2">// Semantic Search execution against vector database</div>
-                   <div className="text-blue-400">await db.vectors.similaritySearch(query, 5);</div>
-                 </div>
-                 <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
-                   <Search className="w-5 h-5 text-blue-400" />
-                 </div>
-               </div>
+                {/* Wide Terminal Tile */}
+                <div 
+                  className="col-span-4 md:col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
+                  style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
+                >
+                  <div className="flex-1 font-mono text-sm">
+                    <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector cosine similarity + BM25 rerank</div>
+                    <div className="text-blue-400">results = await hybrid_retriever.get_relevant_documents(query, k=5)</div>
+                  </div>
+                  <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
+                    <Search className="w-5 h-5 text-blue-400" />
+                  </div>
+                </div>
 
-               {/* Action Tile */}
-               <div 
-                 className="col-span-4 md:col-span-1 row-span-1 bg-blue-600 rounded-3xl p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
-                 style={{ transform: `translateZ(${isHovered ? '200px' : '0px'})` }}
-               >
-                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group">
-                    <span className="font-bold text-white uppercase tracking-widest">Deploy<br/>System</span>
-                    <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-2 transition-transform" />
-                 </a>
-               </div>
+                {/* Action Tile */}
+                <div 
+                  className="col-span-4 md:col-span-1 row-span-1 bg-blue-600 rounded-3xl p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
+                  style={{ transform: `translateZ(${isHovered ? '200px' : '0px'})` }}
+                >
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group">
+                     <span className="font-bold text-white uppercase tracking-widest">Deploy<br/>System</span>
+                     <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-2 transition-transform" />
+                  </a>
+                </div>
 
-            </div>
-         </div>
-      </section>
+             </div>
+          </div>
+       </section>
 
       {/* Marketing & Business Value Section (No Exaggeration, Pure B2B Value) */}
-      <section className="max-w-5xl mx-auto px-6 pb-32">
+      <section id="graph-value" className="max-w-5xl mx-auto px-6 pb-32">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">El Problema de las Alucinaciones Resuelto</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Arquitectura RAG Determinista y Anti-Alucinación</h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            Los modelos de lenguaje genéricos inventan datos cuando no conocen la respuesta. Este motor RAG (Retrieval-Augmented Generation) inyecta el contexto de tu empresa directamente en el modelo antes de que responda, garantizando un 100% de trazabilidad.
+            Los LLMs generalistas alucinan ante falta de contexto factual. Este motor RAG inyecta la base de conocimiento corporativa directamente en el contexto del modelo con scoring de similitud, garantizando respuestas fundamentadas y trazables.
           </p>
         </div>
 
@@ -207,9 +215,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <ShieldCheck className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Trazabilidad Total</h3>
+            <h3 className="text-xl font-bold text-white mb-3">Trazabilidad a Nivel de Chunk</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Cada respuesta generada por la IA cita explícitamente el documento fuente interno del cual extrajo la informacin. Si no est en tus datos, la IA no responde.
+              Cada respuesta generada cita explícitamente el documento fuente y fragmento vectorial original con score de relevancia. Umbrales de similitud estrictos fuerzan abstención determinista si la evidencia no supera el nivel de confianza.
             </p>
           </div>
 
@@ -217,9 +225,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Indexación en Tiempo Real</h3>
+            <h3 className="text-xl font-bold text-white mb-3">Pipeline de Ingesta Asíncrona</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Los nuevos manuales, PDFs o políticas corporativas se vectorizan en milisegundos mediante la canalización automatizada, estando disponibles para consulta instantáneamente.
+              Extracción asíncrona de texto en FastAPI para PDF, DOCX y Markdown. Los documentos se segmentan en ventanas de chunks contextuales, se vectorizan con embeddings de alta dimensionalidad y se indexan en pgvector.
             </p>
           </div>
 
@@ -227,9 +235,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <LineChart className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Optimización de Recursos</h3>
+            <h3 className="text-xl font-bold text-white mb-3">Búsqueda Híbrida & Reranking</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Reduce drsticamente el tiempo que los empleados invierten buscando informacin dispersa en Google Drive, Confluence o Slack. La IA se convierte en un experto interno 24/7.
+              Combina búsqueda densa por embeddings en pgvector con búsqueda por palabras clave BM25. Un pipeline de reranking contextual reordena los fragmentos más pertinentes en menos de 240ms.
             </p>
           </div>
         </div>

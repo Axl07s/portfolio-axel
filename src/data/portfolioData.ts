@@ -37,7 +37,7 @@ const projectsES: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Plataforma de gestión empresarial escalable con arquitectura multi-tenant.',
+    description: 'Plataforma multi-tenant con aislamiento por workspace (RLS), facturación Stripe automatizada y 99/100 en Lighthouse.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -64,7 +64,7 @@ const projectsES: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Centro de comando inteligente con integración de voz ElevenLabs y automatización de flujos.',
+    description: 'Centro de comando operacional con orquestación de 9 subagentes, streaming de voz neural con ElevenLabs (<180ms) y tracking de costos de tokens.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -91,7 +91,7 @@ const projectsES: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Digitalización de experiencia Fine Dining para optimización de reservas y branding de lujo.',
+    description: 'Plataforma web de alta gama con motor de reservas multi-paso, selección de zonas VIP y experiencia visual inmersiva optimizada para conversión.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -118,7 +118,7 @@ const projectsES: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Infraestructura de captación B2B diseñada para escalar agencias de crecimiento acelerado.',
+    description: 'Infraestructura de captación B2B con calculadora de ROI interactiva en tiempo real y funnel de calificación técnica en 3 etapas.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -145,7 +145,7 @@ const projectsES: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Motor de recuperación de información empresarial basado en vectores para análisis de datos masivos.',
+    description: 'Motor RAG empresarial con búsqueda semántica híbrida (pgvector + BM25), ingesta multi-formato y guardrails estrictos anti-alucinación (<240ms).',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
@@ -175,7 +175,7 @@ const projectsEN: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Scalable enterprise management platform with multi-tenant architecture.',
+    description: 'Multi-tenant platform with workspace isolation via Supabase RLS, automated Stripe billing webhooks, and 99/100 Lighthouse.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -202,7 +202,7 @@ const projectsEN: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Intelligent command center with ElevenLabs voice integration and workflow automation.',
+    description: 'Command center coordinating a 9-subagent mesh, ElevenLabs neural voice streaming (<180ms), and real-time token ledger.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -229,7 +229,7 @@ const projectsEN: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Fine Dining experience digitization for booking optimization and luxury branding.',
+    description: 'High-end hospitality platform with multi-step booking engine, VIP table selection, and an immersive editorial UI.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -256,7 +256,7 @@ const projectsEN: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'B2B acquisition infrastructure designed to scale high-growth agencies.',
+    description: 'B2B client acquisition engine featuring a real-time interactive ROI calculator and a 3-step qualification funnel.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -283,7 +283,7 @@ const projectsEN: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Vector-based enterprise information retrieval engine for massive data analysis.',
+    description: 'Enterprise RAG engine with hybrid semantic search (pgvector + BM25), multi-format ingestion, and anti-hallucination guardrails (<240ms).',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [

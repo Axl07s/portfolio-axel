@@ -20,17 +20,17 @@ export const ContactSection: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            {lang === 'es' ? '¿Tienes un proyecto en mente? ' : 'Have a project in mind? '}
+            {lang === 'es' ? '¿Tienes un sistema por desplegar? ' : 'Have a system to ship? '}
             <br />
             <span className="text-zinc-400">
-              {lang === 'es' ? 'Vamos a construirlo bien.' : "Let's engineer it right."}
+              {lang === 'es' ? 'Vamos a construirlo con rigor de ingeniería.' : "Let's engineer it for production."}
             </span>
           </h2>
 
           <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
             {lang === 'es' 
-              ? 'Ya sea que necesites un SaaS MVP en 2 semanas, un centro de comando de IA, o una aplicación móvil robusta — ofrezco velocidad y fiabilidad de grado de producción.' 
-              : 'Whether you need a full SaaS MVP built in 2 weeks, an AI command center, or a robust mobile companion app — I bring production-grade speed and reliability.'}
+              ? 'Desde MVPs de SaaS multi-tenant desplegados en < 2 semanas hasta centros de comando de IA y aplicaciones móviles offline-first: construidos con arquitecturas limpias y grado de producción.' 
+              : 'From multi-tenant SaaS MVPs shipped in < 2 weeks to AI command centers and offline-first mobile apps: engineered with clean architecture and production-grade reliability.'}
           </p>
         </div>
 

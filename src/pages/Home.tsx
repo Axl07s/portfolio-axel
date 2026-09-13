@@ -28,8 +28,8 @@ export function Home() {
             </h2>
             <p className="text-sm sm:text-base text-zinc-400">
               {lang === 'es' 
-                ? 'Una selección de proyectos recientes enfocados en resolver problemas de negocio.' 
-                : 'A selection of recent projects focused on solving business problems.'}
+                ? 'Sistemas desplegados en producción: plataformas multi-tenant, centros de comando con IA en tiempo real y arquitecturas de alto rendimiento.' 
+                : 'Systems deployed to production: multi-tenant platforms, real-time AI command centers, and high-performance architectures.'}
             </p>
           </div>
           

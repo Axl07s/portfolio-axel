@@ -12,8 +12,8 @@ export function Projects() {
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-h-screen animate-fadeIn">
       <Helmet>
-        <title>Professional Projects - Axel Molineros</title>
-        <meta name="description" content="A curated catalog of B2B applications and professional projects." />
+        <title>{lang === 'es' ? 'Proyectos B2B & Arquitectura SaaS - Axel Molineros' : 'B2B Projects & SaaS Architecture - Axel Molineros'}</title>
+        <meta name="description" content={lang === 'es' ? 'Catálogo de plataformas SaaS multi-tenant, sistemas de IA y aplicaciones B2B en producción por Axel Molineros.' : 'Production B2B applications, multi-tenant SaaS platforms, and applied AI systems engineered by Axel Molineros.'} />
       </Helmet>
 
       <div className="max-w-3xl mb-16 space-y-6">

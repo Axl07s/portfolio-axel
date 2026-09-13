@@ -23,12 +23,12 @@ export const Hero: React.FC = () => {
 
         {/* Primary Authentic Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
-          {lang === 'es' ? 'Soluciones ' : 'Custom '}
+          {lang === 'es' ? 'Arquitectura ' : 'Production '}
           <span className="text-zinc-400">
-            {lang === 'es' ? 'SaaS & IA' : 'SaaS & AI'}
+            {lang === 'es' ? 'SaaS & Sistemas IA' : 'SaaS & AI Systems'}
           </span>
           <br className="hidden sm:inline" />
-          {lang === 'es' ? ' de grado empresarial.' : ' Solutions.'}
+          {lang === 'es' ? ' en producción.' : ' Architecture.'}
         </h1>
 
         {/* Honest, Personal Biography */}
@@ -84,7 +84,7 @@ export const Hero: React.FC = () => {
         </div>
         <div>
           <span className="text-2xl font-bold tracking-tight text-white font-mono block">Zero-Trust</span>
-          <span className="text-xs text-zinc-400 uppercase tracking-wider font-mono">{lang === 'es' ? 'Arquitectura Segura' : 'Secure Architecture'}</span>
+          <span className="text-xs text-zinc-400 uppercase tracking-wider font-mono">{lang === 'es' ? 'Aislamiento RLS / Auth' : 'RLS & Auth Isolation'}</span>
         </div>
         <div>
           <span className="text-2xl font-bold tracking-tight text-white font-mono block">5.0 / 5.0</span>
