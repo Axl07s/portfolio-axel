@@ -37,11 +37,13 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 lg:w-5/12">
                 {project.image && (
-                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shrink-0 relative group-hover:border-zinc-700 transition-colors">
+                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shrink-0 relative group-hover:border-zinc-700 transition-colors flex items-center justify-center">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
+                        project.layoutStyle === 'editorial' ? 'object-contain object-top p-2' : 'object-cover object-top'
+                      }`}
                       loading="lazy"
                     />
                   </div>

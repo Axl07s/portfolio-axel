@@ -47,9 +47,9 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </header>
 
       {/* ============================================================ */}
-      {/* DESKTOP: Flat 3-Phone Showcase (lg+) */}
+      {/* DESKTOP: 3D Phone Carousel (lg+) */}
       {/* ============================================================ */}
-      <section id="editorial-phones" className="hidden lg:flex relative py-32 w-full items-center justify-center z-20 min-h-[850px]">
+      <section id="editorial-phones" className="hidden lg:flex relative py-32 w-full items-center justify-center z-20 min-h-[850px]" style={{ perspective: '2000px' }}>
          {/* Background Grid */}
          <div 
            className="absolute inset-0 opacity-40"
@@ -59,31 +59,50 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            }}
          ></div>
 
-         <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center gap-8">
+         <div className="relative w-full max-w-6xl mx-auto h-[600px] flex items-center justify-center" style={{ transformStyle: 'preserve-3d' }}>
             
-            {/* Phone 1: Left */}
-            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[10px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
-               <img src="/projects/puce_login.png" alt="Login Screen" className="w-full h-full object-cover object-top" />
-            </div>
+            {images.map((imgSrc, index) => {
+              // Calculate relative position: 0 is center, 1 is right, 2 is back (hidden), 3 is left
+              const diff = (index - currentImageIndex + images.length) % images.length;
+              
+              let transform = '';
+              let opacity = '';
+              let zIndex = 0;
 
-            {/* Phone 2: Main Center (Crossfading Images) */}
-            <div className="w-[320px] aspect-[9/19.5] bg-white rounded-[3rem] border-[12px] border-zinc-900 shadow-2xl overflow-hidden relative z-10 scale-110 mx-4">
-               {images.map((imgSrc, index) => (
-                 <img 
-                   key={imgSrc}
-                   src={imgSrc}
-                   alt="App Screen"
-                   className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ease-in-out ${
-                     index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                   }`} 
-                 />
-               ))}
-            </div>
+              if (diff === 0) {
+                // Center / Active
+                transform = 'translateX(0) translateZ(100px) rotateY(0deg) scale(1.1)';
+                opacity = 'opacity-100';
+                zIndex = 40;
+              } else if (diff === 1) {
+                // Right
+                transform = 'translateX(65%) translateZ(-150px) rotateY(-20deg) scale(0.9)';
+                opacity = 'opacity-60';
+                zIndex = 30;
+              } else if (diff === images.length - 1) {
+                // Left
+                transform = 'translateX(-65%) translateZ(-150px) rotateY(20deg) scale(0.9)';
+                opacity = 'opacity-60';
+                zIndex = 30;
+              } else {
+                // Hidden in back
+                transform = 'translateX(0) translateZ(-300px) rotateY(0deg) scale(0.8)';
+                opacity = 'opacity-0';
+                zIndex = 10;
+              }
 
-            {/* Phone 3: Right */}
-            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[10px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
-               <img src="/projects/puce_profile.png" alt="Profile Screen" className="w-full h-full object-cover object-top" />
-            </div>
+              return (
+                <div 
+                  key={imgSrc}
+                  className={`absolute w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-900 shadow-2xl overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${opacity}`}
+                  style={{ transform, zIndex }}
+                >
+                  <img src={imgSrc} alt="App Screen" className="w-full h-full object-cover object-top" />
+                  {/* Subtle glass reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none"></div>
+                </div>
+              );
+            })}
 
          </div>
 
