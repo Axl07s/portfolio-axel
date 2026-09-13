@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
-import { Shield, Activity, AlertTriangle, Zap, Server } from 'lucide-react';
+import { Shield, Activity, AlertTriangle, Zap, Server, Play } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -40,11 +40,23 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 uppercase">
           {project.title}
         </h1>
-        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed">
+        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed mb-6">
           {project.descriptionES}
         </p>
+        
+        <a 
+          href={/marketing/ + project.id}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-500 hover:scale-105 transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)]"
+        >
+          <Play className="w-5 h-5 fill-current" />
+          Ver Clip de Marketing (Fase 3)
+        </a>
       </header>
 
+      {/* ============================================================ */}
+      {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
       {/* ============================================================ */}
       {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
       {/* ============================================================ */}
@@ -297,3 +309,4 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
