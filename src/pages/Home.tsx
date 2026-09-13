@@ -1,14 +1,13 @@
-import { useState } from 'react';
+
 import { Hero } from '../components/Hero';
 import { ProjectCard } from '../components/ProjectCard';
-import { ProjectModal } from '../components/ProjectModal';
-import { getPortfolioProjects, type Project } from '../data/portfolioData';
+
+import { getPortfolioProjects } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 export function Home() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { lang } = useLanguage();
   
   // Only show the first 3 projects on the home page
@@ -48,16 +47,10 @@ export function Home() {
             <ProjectCard
               key={project.id}
               project={project}
-              onSelect={setSelectedProject}
             />
           ))}
         </div>
       </section>
-
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
     </>
   );
 }

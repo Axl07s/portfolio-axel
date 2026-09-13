@@ -1,30 +1,38 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Project } from '../data/portfolioData';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectCardProps {
   project: Project;
-  onSelect: (project: Project) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const { lang, t } = useLanguage();
+  const navigate = useNavigate();
   const mainImage = project.images[0]?.url || '/projects/syntrosaas_01.png';
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Only navigate if the click wasn't on the live link
+    if ((e.target as HTMLElement).closest('a')) {
+      return;
+    }
+    navigate(`/project/${project.id}`);
+  };
 
   return (
     <div
+      onClick={handleCardClick}
       className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 bg-zinc-900 border border-zinc-800 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-      onClick={() => onSelect(project)}
+      aria-label={`${t('projects.viewLive')} ${project.title}`}
+      tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          onSelect(project);
+          navigate(`/project/${project.id}`);
         }
       }}
-      tabIndex={0}
-      role="button"
-      aria-label={`${t('projects.viewLive')} ${project.title}`}
     >
       {/* Studio Browser Window Chrome */}
       <div className="h-9 px-4 bg-zinc-950/90 border-b border-zinc-800/80 flex items-center justify-between select-none shrink-0">
@@ -61,17 +69,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           </p>
 
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onSelect(project);
-              }}
+            <span
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-bold transition-all active:scale-95 shadow-lg focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
               <span>{lang === 'es' ? 'Ver Estudio' : 'View Case Study'}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
+            </span>
 
             {project.liveUrl && project.liveUrl !== '#' && (
               <a
@@ -81,7 +84,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
                 onClick={(e) => e.stopPropagation()}
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-semibold transition-all hover:text-white focus-visible:ring-2 focus-visible:ring-indigo-500"
               >
-                <span>{t('projects.viewLive')}</span>
+                <span>{lang === 'es' ? 'Sitio en Vivo' : 'Live Site'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
@@ -105,4 +108,3 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
     </div>
   );
 };
-

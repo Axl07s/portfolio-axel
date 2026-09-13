@@ -1,0 +1,157 @@
+import { useEffect, useState, useRef } from 'react';
+import type { Project } from '../../data/portfolioData';
+import { Server, Shield, CheckCircle2, ArrowRight } from 'lucide-react';
+
+export function SaaSScaleLayout({ project }: { project: Project }) {
+  const [scrollY, setScrollY] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePos({ x, y });
+  };
+
+  // 3D Tilt calculation (max 10 degrees)
+  const rotateX = (0.5 - mousePos.y) * 10;
+  const rotateY = (mousePos.x - 0.5) * 10;
+  const phoneOffset = Math.max(-100, -scrollY * 0.15);
+
+  return (
+    <article className="min-h-screen bg-[#0a0a0a] text-zinc-50 font-sans overflow-hidden">
+      
+      {/* Hero Section */}
+      <header className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        {/* Dynamic Glow following mouse loosely */}
+        <div 
+          className="absolute left-0 top-0 -z-10 w-[600px] h-[600px] rounded-full bg-indigo-600/20 blur-[120px] transition-transform duration-1000 ease-out pointer-events-none"
+          style={{ transform: `translate(${mousePos.x * 200 - 100}px, ${mousePos.y * 200 - 100}px)` }}
+        ></div>
+
+        <div className="relative z-10 max-w-4xl flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-medium text-indigo-300 mb-8 animate-pulse">
+            <Server className="w-3.5 h-3.5" />
+            <span>{project.category}</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
+            {project.title}
+          </h1>
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-10">
+            {project.description}
+          </p>
+        </div>
+      </header>
+
+      {/* 3D Interactive Parallax Device Showcase */}
+      <section 
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
+        className="relative w-full max-w-7xl mx-auto px-4 py-32 z-20"
+        style={{ perspective: '2000px' }}
+      >
+        <div 
+          className="relative w-full aspect-[16/10] md:aspect-[21/9] flex items-center justify-center transition-transform duration-500 ease-out"
+          style={{ 
+            transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`,
+            transformStyle: 'preserve-3d'
+          }}
+        >
+          
+          {/* Background MacBook-esque Container */}
+          <div 
+            className="absolute top-0 left-0 w-[90%] md:w-[85%] bg-zinc-900 rounded-t-2xl md:rounded-t-3xl border border-zinc-700 border-b-0 overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
+            style={{ transform: 'translateZ(-50px)' }}
+          >
+            <div className="h-10 md:h-12 bg-zinc-950 flex items-center px-4 border-b border-zinc-800">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+              </div>
+              <div className="mx-auto bg-zinc-900 px-4 py-1 rounded-md text-xs text-zinc-500 font-mono flex items-center gap-2">
+                <Shield className="w-3 h-3" />
+                syntrosaas-app.vercel.app
+              </div>
+            </div>
+            <img 
+              src={project.images[0]?.url} 
+              alt="Desktop UI" 
+              className="w-full h-auto object-cover" 
+            />
+          </div>
+
+          {/* Foreground iPhone-esque Container (Parallax + 3D Pop) */}
+          <div 
+            className="absolute bottom-[-20%] right-[0%] md:right-[5%] w-[35%] md:w-[22%] aspect-[9/19.5] bg-black rounded-[2rem] md:rounded-[3rem] border-[6px] md:border-[10px] border-zinc-800 overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.9)] z-30 transition-transform duration-300 ease-out"
+            style={{ 
+              transform: `translateZ(100px) translateY(${phoneOffset}px)`,
+              backfaceVisibility: 'hidden' 
+            }}
+          >
+            <div className="absolute top-2 md:top-3 left-1/2 -translate-x-1/2 w-1/3 h-5 md:h-7 bg-black rounded-full z-40"></div>
+            
+            <img 
+              src={project.images[1]?.url} 
+              alt="Mobile UI" 
+              className="w-full h-full object-cover object-left opacity-95" 
+            />
+            {/* Dynamic Glass Reflection */}
+            <div 
+               className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 pointer-events-none transition-transform duration-500"
+               style={{ transform: `translateX(${(mousePos.x - 0.5) * 100}%) translateY(${(mousePos.y - 0.5) * 100}%)` }}
+            ></div>
+          </div>
+          
+        </div>
+      </section>
+
+      {/* Features List */}
+      <section className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">
+        <div>
+          <h3 className="text-3xl font-semibold mb-8 text-white">Arquitectura Multi-Tenant</h3>
+          <ul className="space-y-6">
+            {project.features.map((feature, i) => (
+              <li key={i} className="flex items-start gap-4 text-zinc-300 group">
+                <CheckCircle2 className="w-6 h-6 text-indigo-400 shrink-0 mt-0.5 group-hover:scale-110 group-hover:text-indigo-300 transition-transform" />
+                <span className="leading-relaxed">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <div className="flex flex-col gap-8">
+           <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 hover:border-indigo-500/50 transition-colors">
+              <h4 className="text-sm uppercase tracking-widest text-zinc-500 mb-6 font-semibold">Tech Stack</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map(s => (
+                  <span key={s} className="px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-md text-sm text-zinc-300 hover:bg-indigo-500/20 hover:text-indigo-300 transition-colors cursor-default">{s}</span>
+                ))}
+              </div>
+           </div>
+           
+           <div className="bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/30 hover:border-indigo-400 rounded-2xl p-8 flex flex-col items-start justify-center transition-colors group">
+             <h4 className="text-xl font-semibold text-white mb-2">Ver Cdigo Fuente</h4>
+             <p className="text-zinc-400 text-sm mb-6">Arquitectura escalable en Next.js lista para despliegue en Vercel.</p>
+             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg font-medium transition-all group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+               Repositorio GitHub <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+             </a>
+           </div>
+        </div>
+      </section>
+
+    </article>
+  );
+}

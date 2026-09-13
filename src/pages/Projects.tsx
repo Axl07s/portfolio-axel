@@ -1,12 +1,11 @@
-import { useState } from 'react';
+
 import { ProjectCard } from '../components/ProjectCard';
-import { ProjectModal } from '../components/ProjectModal';
-import { getPortfolioProjects, type Project } from '../data/portfolioData';
+
+import { getPortfolioProjects } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
 import { Helmet } from 'react-helmet-async';
 
 export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { lang, t } = useLanguage();
   const portfolioProjects = getPortfolioProjects(lang);
 
@@ -34,15 +33,9 @@ export function Projects() {
           <ProjectCard
             key={project.id}
             project={project}
-            onSelect={setSelectedProject}
           />
         ))}
       </div>
-
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
     </div>
   );
 }
