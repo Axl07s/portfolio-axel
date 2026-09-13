@@ -84,30 +84,64 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
          </p>
       </section>
 
-      {/* Collage 1: 3 Phones (Home, Grades, Attendance) */}
-      <section className="relative w-full py-20 md:py-32 bg-zinc-950 flex items-center justify-center min-h-[600px] md:min-h-[850px] overflow-hidden">
-         {/* Ambient Glow */}
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-0"></div>
+      {/* Cinematic Hero: Single Device with Floating Feature Cards */}
+      <section className="relative w-full pb-20 md:pb-40 bg-zinc-950 flex flex-col items-center justify-center min-h-[700px] md:min-h-[900px] border-b border-zinc-800/50 overflow-hidden">
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-0"></div>
+        
+        {/* Massive Background Typography */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none overflow-hidden select-none">
+          <h1 className="text-[18vw] font-black tracking-tighter leading-[0.8] text-white whitespace-nowrap text-center">
+            PUCE<br/>HUB
+          </h1>
+        </div>
 
-         {/* True Absolute Stacking Container */}
-         <div className="relative w-[260px] h-[520px] md:w-[325px] md:h-[650px] z-10">
+        {/* Central Phone & Floating Cards Container */}
+        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-10 mt-12">
            
-           {/* Left Phone (Grades) */}
-           <div className="absolute inset-0 z-10 -rotate-6 -translate-x-[45%] md:-translate-x-[60%] translate-y-12 md:translate-y-16 opacity-70 transition-transform duration-700 hover:-translate-y-8 hover:-translate-x-[75%] hover:rotate-0 hover:scale-105 hover:opacity-100 hover:z-40 origin-bottom">
-             <MobileFrame title="Captura de Calificaciones" imagePath="/projects/puce_grades.png" />
-           </div>
-           
-           {/* Right Phone (Attendance) */}
-           <div className="absolute inset-0 z-10 rotate-6 translate-x-[45%] md:translate-x-[60%] translate-y-20 md:translate-y-24 opacity-70 transition-transform duration-700 hover:-translate-y-8 hover:translate-x-[75%] hover:rotate-0 hover:scale-105 hover:opacity-100 hover:z-40 origin-bottom">
-             <MobileFrame title="Captura de Asistencia" imagePath="/projects/puce_attendance.png" />
-           </div>
-
-           {/* Center Phone (Home/Login) */}
-           <div className="absolute inset-0 z-30 rotate-0 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-105">
+           {/* Center Phone */}
+           <div className="absolute inset-0 z-30 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.02]">
              <MobileFrame title="Captura de Inicio / Home" imagePath="/projects/puce_home.png" />
            </div>
 
-         </div>
+           {/* Floating Cards (Absolute positioned relative to the phone center) */}
+
+           {/* Card 1: Top Left */}
+           <div className="absolute top-[5%] -left-[50%] md:-left-[70%] w-48 md:w-56 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
+              <h4 className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase mb-1">Arquitectura</h4>
+              <p className="text-sm font-medium text-white">Offline-First Engine</p>
+              <p className="text-xs text-zinc-400 mt-1">Sincronización silenciosa con workers en background.</p>
+           </div>
+
+           {/* Card 2: Top Right */}
+           <div className="absolute top-[25%] -right-[45%] md:-right-[65%] w-40 md:w-48 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
+              <div className="flex items-center gap-2 mb-2">
+                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                 <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase">Live Status</span>
+              </div>
+              <p className="text-sm font-medium text-white">Zero Latency UI</p>
+           </div>
+
+           {/* Card 3: Bottom Left */}
+           <div className="absolute bottom-[20%] -left-[55%] md:-left-[75%] w-44 md:w-52 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
+              <h4 className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase mb-1">Storage Local</h4>
+              <p className="text-sm font-medium text-white">SQLite Encryption</p>
+              <p className="text-xs text-zinc-400 mt-1">Datos académicos guardados localmente.</p>
+           </div>
+
+           {/* Card 4: Bottom Right */}
+           <div className="absolute bottom-[5%] -right-[50%] md:-right-[70%] w-44 md:w-48 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
+              <h4 className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase mb-2">Features</h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-xs text-zinc-300"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Asistencia Live</li>
+                <li className="flex items-center gap-2 text-xs text-zinc-300"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Biometría</li>
+                <li className="flex items-center gap-2 text-xs text-zinc-300"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Notas Offline</li>
+              </ul>
+           </div>
+
+           {/* Decorative Lines connecting cards (Optional, can be added if needed, but floating looks cleaner) */}
+
+        </div>
       </section>
 
       {/* Key Metrics Section */}
