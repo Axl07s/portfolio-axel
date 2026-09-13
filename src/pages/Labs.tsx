@@ -26,7 +26,8 @@ export function Labs() {
         </p>
       </div>
 
-      <PersonalProjectsSection lang={lang.toUpperCase() as 'ES' | 'EN'} hideHeader={true} />
+      <PersonalProjectsSection lang={lang} hideHeader={true} />
     </div>
   );
 }
+

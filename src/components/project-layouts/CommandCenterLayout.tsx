@@ -19,12 +19,12 @@ export function CommandCenterLayout({ project }: { project: Project }) {
   // Boot sequence logic
   useEffect(() => {
     const lines = lang === 'es' ? [
-      '[SYS] Inicializando Núcleo Neural...',
+      lang === 'es' ? '[SYS] Inicializando Núcleo Neural...' : '[SYS] Initializing Neural Core...',
       '[NET] Estableciendo WebSocket seguro a la API de OpenAI...',
       '[AUTH] Protocolo zero-trust confirmado.',
       '[MEM] Cargando Base de Datos Vectorial RAG (Pinecone).',
       '[UI] Compilando Interfaz Espacial...',
-      'SISTEMA EN LÍNEA.'
+      lang === 'es' ? 'SISTEMA EN LÍNEA.' : 'SYSTEM ONLINE.'
     ] : [
       '[SYS] Initializing Neural Kernel...',
       '[NET] Establishing secure WebSocket to OpenAI API...',
@@ -220,7 +220,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
           </div>
           <h2 className="text-3xl font-bold text-white tracking-tight">Interfaz de Comando IA</h2>
           <p className="text-slate-400 text-sm mt-3 max-w-xs leading-relaxed">
-            Dashboard holográfico con procesamiento de voz en tiempo real y latencia de inferencia &lt;42ms.
+            {lang === 'es' ? 'Dashboard holográfico con procesamiento de voz en tiempo real y latencia de inferencia <42ms.' : 'Holographic dashboard with real-time voice processing and <42ms inference latency.'}
           </p>
         </div>
 
@@ -290,5 +290,6 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 
 

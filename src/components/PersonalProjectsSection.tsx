@@ -10,7 +10,7 @@ const TECH_ICONS: Record<string, React.ReactNode> = {
   'SQLite': <Database className="w-4 h-4" />,
 };
 
-export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'ES' | 'EN', hideHeader?: boolean }) {
+export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'es' | 'en' | 'ES' | 'EN', hideHeader?: boolean }) {
   return (
     <section className="py-24 bg-zinc-950 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 relative z-10">
@@ -18,7 +18,7 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
         {!hideHeader && (
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
-              {lang === 'ES' ? 'Laboratorio & Experimentos' : 'Labs & Experiments'}
+              {lang.toLowerCase() === 'es' ? 'Laboratorio & Sistemas Deep Tech' : 'Labs & Deep Tech Systems'}
             </h2>
             <p className="text-zinc-400 max-w-2xl">
               {lang === 'ES' 
@@ -41,9 +41,7 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
                     <img
                       src={project.image}
                       alt={project.title}
-                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
-                        project.layoutStyle === 'editorial' ? 'object-contain object-top p-2' : 'object-cover object-top'
-                      }`}
+                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover object-top`}
                       loading="lazy"
                     />
                   </div>
@@ -80,18 +78,18 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
               <div className="lg:w-7/12 flex flex-col sm:flex-row gap-6">
                 <div className="sm:w-1/2">
                   <h4 className="text-xs text-zinc-500 uppercase tracking-wider mb-2 font-semibold">
-                    {lang === 'ES' ? 'El Desafío' : 'The Challenge'}
+                    {lang.toLowerCase() === 'es' ? 'El Desafío' : 'The Challenge'}
                   </h4>
                   <p className="text-sm text-zinc-400 leading-relaxed">
-                    {lang === 'ES' ? project.descriptionES : project.descriptionEN}
+                    {lang.toLowerCase() === 'es' ? project.descriptionES : project.descriptionEN}
                   </p>
                 </div>
                 <div className="sm:w-1/2">
                   <h4 className="text-xs text-blue-500/80 uppercase tracking-wider mb-2 font-semibold">
-                    {lang === 'ES' ? 'Decisión de Arquitectura' : 'Architecture Decision'}
+                    {lang.toLowerCase() === 'es' ? 'Decisión de Arquitectura' : 'Architecture Decision'}
                   </h4>
                   <p className="text-sm text-zinc-400 leading-relaxed border-l-2 border-blue-500/20 pl-3">
-                    {lang === 'ES' ? project.architectureES : project.architectureEN}
+                    {lang.toLowerCase() === 'es' ? project.architectureES : project.architectureEN}
                   </p>
                 </div>
               </div>
@@ -102,3 +100,4 @@ export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'E
     </section>
   );
 }
+

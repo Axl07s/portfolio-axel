@@ -145,8 +145,8 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
             transition={{ duration: 1 }}
           >
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-light text-zinc-900 dark:text-white mb-4 tracking-tight">Offline-First Architecture</h2>
-              <p className="text-zinc-500 max-w-xl mx-auto">Sincronización transparente en segundo plano cuando la conectividad es restaurada.</p>
+              <h2 className="text-4xl font-light text-zinc-900 dark:text-white mb-4 tracking-tight">{lang === 'es' ? 'Arquitectura Offline-First' : 'Offline-First Architecture'}</h2>
+              <p className="text-zinc-500 max-w-xl mx-auto">{lang === 'es' ? 'Sincronización transparente en segundo plano cuando la conectividad es restaurada.' : 'Seamless background synchronization when connectivity is restored.'}</p>
             </div>
             
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl">
@@ -209,3 +209,5 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
     </div>
   );
 }
+
+

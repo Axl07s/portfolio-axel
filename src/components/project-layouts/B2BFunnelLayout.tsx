@@ -122,7 +122,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                  {lang === 'es' ? 'Simulador de ROI Dinámico' : 'Dynamic ROI Simulator'}
                </h2>
                <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                 En servicios B2B de alto valor, la certidumbre cuantitativa acelera el ciclo de cierre. Desarrollé un simulador reactivo en TypeScript que calcula en tiempo real proyecciones de pipeline y retorno neto con base en las métricas comerciales del prospecto.
+                 {lang === 'es' ? 'En servicios B2B de alto valor, la certidumbre cuantitativa acelera el ciclo de cierre. Desarrollé un simulador reactivo en TypeScript que calcula en tiempo real proyecciones de pipeline y retorno neto con base en las métricas comerciales del prospecto.' : 'In high-ticket B2B services, quantitative certainty accelerates the closing cycle. I developed a reactive TypeScript simulator that calculates real-time pipeline projections and net return based on the prospect commercial metrics.'}
                </p>
                
                <ul className="space-y-4 pt-4">
@@ -130,14 +130,14 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                    <div className="mt-1 bg-zinc-900 p-1 rounded"><TrendingUp className="w-4 h-4 text-indigo-400" /></div>
                    <div>
                      <h4 className="font-bold text-white">Modelado Financiero Reactivo</h4>
-                     <p className="text-zinc-500 text-sm">Cálculo de retorno proyectado, volumen de leads y valor anual de pipeline a 60fps con sliders interactivos.</p>
+                     <p className="text-zinc-500 text-sm">{lang === 'es' ? 'Cálculo de retorno proyectado, volumen de leads y valor anual de pipeline a 60fps con sliders interactivos.' : 'Projected return calculation, lead volume, and annual pipeline value at 60fps with interactive sliders.'}</p>
                    </div>
                  </li>
                  <li className="flex items-start gap-4">
                    <div className="mt-1 bg-zinc-900 p-1 rounded"><Filter className="w-4 h-4 text-indigo-400" /></div>
                    <div>
-                     <h4 className="font-bold text-white">Cualificación Algorítmica en 3 Pasos</h4>
-                     <p className="text-zinc-500 text-sm">Filtra prospectos por umbrales presupuestarios mínimos y enruta leads calificados a booking de diagnóstico estratégico.</p>
+                     <h4 className="font-bold text-white">{lang === 'es' ? 'Cualificación Algorítmica en 3 Pasos' : '3-Step Algorithmic Qualification'}</h4>
+                     <p className="text-zinc-500 text-sm">{lang === 'es' ? 'Filtra prospectos por umbrales presupuestarios mínimos y enruta leads calificados a booking de diagnóstico estratégico.' : 'Filters prospects by minimum budget thresholds and routes qualified leads to strategic diagnostic booking.'}</p>
                    </div>
                  </li>
                </ul>
@@ -168,19 +168,19 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                  {lang === 'es' ? 'Arquitectura y Casos de Estudio' : 'Architecture & Case Studies'}
                </h2>
                <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                 Demostración de capacidades respaldada por casos de estudio estructurados: problema operativo del cliente, stack tecnológico implementado y resultados cuantitativos verificados.
+                 {lang === 'es' ? 'Demostración de capacidades respaldada por casos de estudio estructurados: problema operativo del cliente, stack tecnológico implementado y resultados cuantitativos verificados.' : 'Capability demonstration backed by structured case studies: client operational problem, implemented tech stack, and verified quantitative results.'}
                </p>
                
                <div className="grid grid-cols-2 gap-6 pt-4">
                   <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
                     <Zap className="w-6 h-6 text-indigo-400 mb-4" />
-                    <h4 className="font-bold text-white mb-2">Modales de Inspección Profunda</h4>
-                    <p className="text-xs text-zinc-500">Visualización asíncrona de arquitectura y métricas por cliente sin recarga de página ni pérdida de estado de navegación.</p>
+                    <h4 className="font-bold text-white mb-2">{lang === 'es' ? 'Modales de Inspección Profunda' : 'Deep Inspection Modals'}</h4>
+                    <p className="text-xs text-zinc-500">{lang === 'es' ? 'Visualización asíncrona de arquitectura y métricas por cliente sin recarga de página ni pérdida de estado de navegación.' : 'Asynchronous visualization of architecture and client metrics without page reloads or loss of navigation state.'}</p>
                   </div>
                   <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
                     <Target className="w-6 h-6 text-indigo-400 mb-4" />
-                    <h4 className="font-bold text-white mb-2">Puntos de Fricción Mínima</h4>
-                    <p className="text-xs text-zinc-500">Llamados a la acción contextuales integrados tras cada prueba cuantitativa de valor, maximizando la conversión a llamadas estratégicas.</p>
+                    <h4 className="font-bold text-white mb-2">{lang === 'es' ? 'Puntos de Fricción Mínima' : 'Minimal Friction Points'}</h4>
+                    <p className="text-xs text-zinc-500">{lang === 'es' ? 'Llamados a la acción contextuales integrados tras cada prueba cuantitativa de valor, maximizando la conversión a llamadas estratégicas.' : 'Contextual CTAs integrated after every quantitative proof of value, maximizing conversion to strategic calls.'}</p>
                   </div>
                </div>
             </div>
@@ -221,4 +221,5 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 

@@ -101,10 +101,10 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
                
                {/* SLIDE 0: POS */}
                <div className={`absolute transition-all duration-700 w-full max-w-md ${activeSlide === 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12 pointer-events-none'}`}>
-                 <div className="text-[#c9a96e] text-sm tracking-[0.3em] uppercase mb-4 font-bold border-b border-[#c9a96e]/20 pb-4 inline-block">01 / El Salón</div>
+                 <div className="text-[#c9a96e] text-sm tracking-[0.3em] uppercase mb-4 font-bold border-b border-[#c9a96e]/20 pb-4 inline-block">{lang === 'es' ? '01 / El Salón' : '01 / The Lounge'}</div>
                  <h2 className="text-5xl font-serif text-white mb-6">Control Central.</h2>
                  <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                   Un punto de venta (POS) en modo oscuro diseñado para no interrumpir la atmósfera tenue del salón. Gestión de reservas, facturación dividida y mapas dinámicos de mesas.
+                   {lang === 'es' ? 'Un punto de venta (POS) en modo oscuro diseñado para no interrumpir la atmósfera tenue del salón. Gestión de reservas, facturación dividida y mapas dinámicos de mesas.' : 'A dark-mode Point of Sale (POS) designed not to interrupt the lounge dim atmosphere. Reservation management, split billing, and dynamic table maps.'}
                  </p>
                </div>
 
@@ -113,7 +113,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
                  <div className="text-[#c9a96e] text-sm tracking-[0.3em] uppercase mb-4 font-bold border-b border-[#c9a96e]/20 pb-4 inline-block">02 / La Cocina</div>
                  <h2 className="text-5xl font-serif text-white mb-6">Kitchen Display.</h2>
                  <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                   Cero tickets de papel. Sincronización vía WebSockets en tiempo real. Los chefs ven los tiempos (courses) codificados por colores para sincronizar el servicio perfecto.
+                   {lang === 'es' ? 'Cero tickets de papel. Sincronización vía WebSockets en tiempo real. Los chefs ven los tiempos (courses) codificados por colores para sincronizar el servicio perfecto.' : 'Zero paper tickets. Real-time WebSockets synchronization. Chefs see color-coded courses to synchronize perfect service.'}
                  </p>
                </div>
 
@@ -122,7 +122,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
                  <div className="text-[#c9a96e] text-sm tracking-[0.3em] uppercase mb-4 font-bold border-b border-[#c9a96e]/20 pb-4 inline-block">03 / El Comensal</div>
                  <h2 className="text-5xl font-serif text-white mb-6">Checkout Invisible.</h2>
                  <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                   Una web-app escaneable por QR. El comensal ve el menú degustación, el estado de sus platos, y puede pagar la cuenta en 1-click con Apple Pay. Fricción cero.
+                   {lang === 'es' ? 'Una web-app escaneable por QR. El comensal ve el menú degustación, el estado de sus platos, y puede pagar la cuenta en 1-click con Apple Pay. Fricción cero.' : 'A QR-scannable web-app. The diner sees the tasting menu, their dish status, and can pay the bill in 1-click with Apple Pay. Zero friction.'}
                  </p>
                </div>
 
@@ -158,7 +158,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
       <section className="lg:hidden flex flex-col gap-24 py-24 px-6">
         
         <div className="space-y-6">
-          <div className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-bold">01 / El Salón</div>
+          <div className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-bold">{lang === 'es' ? '01 / El Salón' : '01 / The Lounge'}</div>
           <h2 className="text-4xl font-serif text-white">Control Central.</h2>
           <div className="rounded-2xl overflow-hidden border border-white/10">
             <img src={project.images[0]?.url} alt="POS" className="w-full h-auto" />
@@ -199,30 +199,30 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
         <div className="text-center mb-24 mt-16">
           <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">Arquitectura de Servicio</h2>
           <p className="text-xl text-zinc-400 font-light max-w-2xl mx-auto">
-            Resolviendo los cuellos de botella clásicos de la hostelería con ingeniería de software.
+            {lang === 'es' ? 'Resolviendo los cuellos de botella clásicos de la hostelería con ingeniería de software.' : 'Solving classic hospitality bottlenecks with software engineering.'}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-[#0a0a0a] border border-white/5 p-10 hover:border-[#c9a96e]/30 transition-colors group">
             <CheckCircle2 className="w-8 h-8 text-[#c9a96e] mb-6 opacity-50 group-hover:opacity-100 transition-opacity" />
-            <h3 className="text-2xl font-serif text-white mb-4">Sincronización Instantánea</h3>
+            <h3 className="text-2xl font-serif text-white mb-4">{lang === 'es' ? 'Sincronización Instantánea' : 'Instant Synchronization'}</h3>
             <p className="text-zinc-400 leading-relaxed font-light">
               Despliegue de WebSockets y suscripciones GraphQL para garantizar que un pedido ingresado en el POS aparezca en cocina en milisegundos.
             </p>
           </div>
           <div className="bg-[#0a0a0a] border border-white/5 p-10 hover:border-[#c9a96e]/30 transition-colors group">
             <ChefHat className="w-8 h-8 text-[#c9a96e] mb-6 opacity-50 group-hover:opacity-100 transition-opacity" />
-            <h3 className="text-2xl font-serif text-white mb-4">Gestión de Tiempos (Courses)</h3>
+            <h3 className="text-2xl font-serif text-white mb-4">{lang === 'es' ? 'Gestión de Tiempos (Courses)' : 'Course Management'}</h3>
             <p className="text-zinc-400 leading-relaxed font-light">
-              Algoritmo de encolamiento que alerta a la cocina cuándo empezar el plato fuerte basado en el tiempo promedio de consumo de las entradas.
+              {lang === 'es' ? 'Algoritmo de encolamiento que alerta a la cocina cuándo empezar el plato fuerte basado en el tiempo promedio de consumo de las entradas.' : 'Queuing algorithm that alerts the kitchen when to start the main course based on average appetizer consumption time.'}
             </p>
           </div>
           <div className="bg-[#0a0a0a] border border-white/5 p-10 hover:border-[#c9a96e]/30 transition-colors group">
             <CreditCard className="w-8 h-8 text-[#c9a96e] mb-6 opacity-50 group-hover:opacity-100 transition-opacity" />
-            <h3 className="text-2xl font-serif text-white mb-4">Pagos Desacoplados</h3>
+            <h3 className="text-2xl font-serif text-white mb-4">{lang === 'es' ? 'Pagos Desacoplados' : 'Decoupled Payments'}</h3>
             <p className="text-zinc-400 leading-relaxed font-light">
-              Microservicio de pagos que permite dividir cuentas por plato, por asiento o porcentajes de forma completamente asíncrona y segura.
+              {lang === 'es' ? 'Microservicio de pagos que permite dividir cuentas por plato, por asiento o porcentajes de forma completamente asíncrona y segura.' : 'Payments microservice allowing bill splitting by dish, by seat, or percentages in a completely asynchronous and secure manner.'}
             </p>
           </div>
         </div>
@@ -247,3 +247,4 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
     </article>
   );
 }
+

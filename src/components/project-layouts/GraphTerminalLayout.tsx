@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart, FileText, CheckCircle2 } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { useLanguage } from '../../context/LanguageContext';
 
 const GRAPH_SECTIONS = [
   { id: 'graph-hero', label: 'Intro' },
@@ -10,6 +11,7 @@ const GRAPH_SECTIONS = [
 ];
 
 export function GraphTerminalLayout({ project }: { project: Project }) {
+  const { lang } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -278,7 +280,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       {/* Marketing & Business Value Section */}
       <section id="graph-value" className="max-w-5xl mx-auto px-6 pb-32">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Arquitectura RAG Determinista y Anti-Alucinación</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">{lang === 'es' ? 'Arquitectura RAG Determinista y Anti-Alucinación' : 'Deterministic Anti-Hallucination RAG Architecture'}</h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
             Los LLMs generalistas alucinan ante falta de contexto factual. Este motor RAG inyecta la base de conocimiento corporativa directamente en el contexto del modelo con scoring de similitud, garantizando respuestas fundamentadas y trazables.
           </p>
@@ -291,7 +293,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Trazabilidad a Nivel de Chunk</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Cada respuesta generada cita explícitamente el documento fuente y fragmento vectorial original con score de relevancia. Umbrales de similitud estrictos fuerzan abstención determinista si la evidencia no supera el nivel de confianza.
+              {lang === 'es' ? 'Cada respuesta generada cita explícitamente el documento fuente y fragmento vectorial original con score de relevancia. Umbrales de similitud estrictos fuerzan abstención determinista si la evidencia no supera el nivel de confianza.' : 'Each generated response explicitly cites the source document and original vector chunk with relevance score. Strict similarity thresholds force deterministic abstention if evidence does not meet confidence levels.'}
             </p>
           </div>
 
@@ -299,9 +301,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Pipeline de Ingesta Asíncrona</h3>
+            <h3 className="text-xl font-bold text-white mb-3">{lang === 'es' ? 'Pipeline de Ingesta Asíncrona' : 'Asynchronous Ingestion Pipeline'}</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Extracción asíncrona de texto en FastAPI para PDF, DOCX y Markdown. Los documentos se segmentan en ventanas de chunks contextuales, se vectorizan con embeddings de alta dimensionalidad y se indexan en pgvector.
+              {lang === 'es' ? 'Extracción asíncrona de texto en FastAPI para PDF, DOCX y Markdown. Los documentos se segmentan en ventanas de chunks contextuales, se vectorizan con embeddings de alta dimensionalidad y se indexan en pgvector.' : 'Asynchronous text extraction in FastAPI for PDF, DOCX, and Markdown. Documents are segmented into contextual chunk windows, vectorized with high-dimensional embeddings, and indexed in pgvector.'}
             </p>
           </div>
 
@@ -309,15 +311,15 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <LineChart className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Búsqueda Híbrida &amp; Reranking</h3>
+            <h3 className="text-xl font-bold text-white mb-3">{lang === 'es' ? 'Búsqueda Híbrida & Reranking' : 'Hybrid Search & Reranking'}</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Combina búsqueda densa por embeddings en pgvector con búsqueda por palabras clave BM25. Un pipeline de reranking contextual reordena los fragmentos más pertinentes en menos de 240ms.
+              {lang === 'es' ? 'Combina búsqueda densa por embeddings en pgvector con búsqueda por palabras clave BM25. Un pipeline de reranking contextual reordena los fragmentos más pertinentes en menos de 240ms.' : 'Combines dense embedding search in pgvector with BM25 keyword search. A contextual reranking pipeline reorders the most pertinent fragments in less than 240ms.'}
             </p>
           </div>
         </div>
 
         <div className="mt-16 pt-12 border-t border-zinc-800/50">
-          <h4 className="text-lg font-semibold text-white mb-6">Capacidades Técnicas Implementadas:</h4>
+          <h4 className="text-lg font-semibold text-white mb-6">{lang === 'es' ? 'Capacidades Técnicas Implementadas:' : 'Implemented Technical Capabilities:'}</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {project.features.map((f, i) => (
               <div key={i} className="flex items-center gap-3">
@@ -332,3 +334,5 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
+

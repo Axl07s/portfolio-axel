@@ -316,7 +316,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Mitigación de Ransomware</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Detección de patrones de cifrado masivo mediante cálculo de entropía de Shannon en buffers de I/O de disco. Suspende deterministamente el hilo del proceso atacante en menos de 12ms antes de comprometer archivos críticos.
+              {lang === 'es' ? 'Detección de patrones de cifrado masivo mediante cálculo de entropía de Shannon en buffers de I/O de disco. Suspende deterministamente el hilo del proceso atacante en menos de 12ms antes de comprometer archivos críticos.' : 'Detection of massive encryption patterns via Shannon entropy calculation on disk I/O buffers. Deterministically suspends the attacking process thread in under 12ms before critical files are compromised.'}
             </p>
           </div>
 
@@ -326,7 +326,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Bajo Impacto Operativo</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Driver C/C++ en espacio de kernel con buffers circulares de memoria compartida. Procesa eventos de telemetría a escala con un overhead de CPU medido inferior al 0.8%.
+              {lang === 'es' ? 'Driver C/C++ en espacio de kernel con buffers circulares de memoria compartida. Procesa eventos de telemetría a escala con un overhead de CPU medido inferior al 0.8%.' : 'C/C++ driver in kernel space with shared memory ring buffers. Processes telemetry events at scale with a measured CPU overhead of less than 0.8%.'}
             </p>
           </div>
 
@@ -336,7 +336,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             </div>
             <h3 className="text-xl font-bold text-white mb-3">Motor Heurístico &amp; Reglas YARA</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Canal asíncrono en espacio de usuario (Python) que correlaciona telemetría de Sysmon y evalúa binarios sospechosos contra un compendio de reglas YARA y heurísticas de comportamiento.
+              {lang === 'es' ? 'Canal asíncrono en espacio de usuario (Python) que correlaciona telemetría de Sysmon y evalúa binarios sospechosos contra un compendio de reglas YARA y heurísticas de comportamiento.' : 'Asynchronous user-space channel (Python) that correlates Sysmon telemetry and evaluates suspicious binaries against a compendium of YARA rules and behavioral heuristics.'}
             </p>
           </div>
         </div>
@@ -356,6 +356,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
 
 
 
