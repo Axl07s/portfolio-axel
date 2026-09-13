@@ -1,6 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Mic, Activity, Network } from 'lucide-react';
+import { ScrollAffordance } from '../ScrollAffordance';
+
+const COMMAND_SECTIONS = [
+  { id: 'command-interactive', label: 'Interfaz' },
+  { id: 'command-features', label: 'Funciones' },
+];
 
 export function CommandCenterLayout({ project }: { project: Project }) {
   const [bootSequence, setBootSequence] = useState(true);

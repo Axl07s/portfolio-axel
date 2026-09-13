@@ -46,10 +46,10 @@ const projectsES: Project[] = [
       { label: 'Auth', value: 'Zero-Trust RLS' },
     ],
     features: [
-      'Organización de multi-tenant con invitaciones de equipo y RBAC',
-      'Webhooks automatizados de Stripe con facturación mensual/anual por niveles',
-      'Supabase Auth con Google OAuth, Magic Links y persistencia de sesión',
-      'Rotación de API keys con tracking de telemetría',
+      'Organización multi-tenant con aislamiento de datos por workspace, invitaciones de equipo y roles RBAC',
+      'Facturación por niveles con Stripe Checkout y reconciliación asíncrona mediante webhooks',
+      'Autenticación con Supabase (Google OAuth y Magic Links) protegida con Row-Level Security (RLS)',
+      'Rotación criptográfica de API keys con tracking y cuotas de consumo de telemetría',
     ],
     images: [
       { url: '/projects/syntrosaas_01.png', caption: 'Landing Page & Arquitectura' },
@@ -73,10 +73,10 @@ const projectsES: Project[] = [
       { label: 'Voice Latency', value: '< 180ms' },
     ],
     features: [
-      'Malla neuronal coordinando subagentes de investigación, código y finanzas en paralelo',
-      'Voz neuronal ElevenLabs con visualización animada de forma de onda de audio',
-      'Libro mayor de tokens en tiempo real rastreando costos de OpenAI y Anthropic',
-      'Entregado en Fiverr con calificación verificada de 5 estrellas del cliente',
+      'Malla neuronal para coordinar 9 subagentes de investigación, código y finanzas en paralelo',
+      'Streaming de voz neuronal ElevenLabs a <180ms con visualizador reactivo de forma de onda',
+      'Libro mayor de tokens en tiempo real rastreando consumo y costes por llamada a OpenAI y Anthropic',
+      'Entregado en Fiverr con calificación verificada de 5.0 estrellas del cliente',
     ],
     images: [
       { url: '/projects/jarvis_01.png', caption: 'Chief Brain HUD con Forma de Onda' },
@@ -127,10 +127,10 @@ const projectsES: Project[] = [
       { label: 'Target', value: 'Enterprise B2B' },
     ],
     features: [
-      'Calculadora de ROI interactiva proyectando crecimiento de pipeline anual',
-      'Modales de casos de estudio con desglose de problemas y métricas verificadas',
-      'Wizard de calificación de 3 pasos evaluando madurez digital',
-      'Diagrama de arquitectura del sistema visual para el flujo de lead a cierre',
+      'Simulador de ROI reactivo que modela pipeline comercial y retornos con sliders interactivos',
+      'Modales dinámicos de casos de estudio con diagnóstico de retos técnicos y métricas verificadas',
+      'Wizard de cualificación técnica en 3 etapas para auditoría de madurez digital',
+      'Diagrama visual de la arquitectura del embudo de captación implementado en Vite y Tailwind',
     ],
     images: [
       { url: '/projects/nexus_01.png', caption: 'Hero & Funnel de Diagnóstico' },
@@ -154,10 +154,10 @@ const projectsES: Project[] = [
       { label: 'Guardrails', value: 'Anti-Alucinación' },
     ],
     features: [
-      'Pipeline de ingesta multi-formato para PDF, DOCX, Notion y Markdown',
-      'Búsqueda vectorial semántica híbrida con PGVector y reranking BM25',
-      'Guardrails estrictos de citación de fuentes que evitan alucinaciones',
-      'Panel de admin con editor de fragmentos de documentos y analítica de costos',
+      'Pipeline de ingesta asíncrona para PDF, DOCX, Notion y Markdown con segmentación contextual',
+      'Búsqueda semántica híbrida combinando similitud coseno en pgvector y reranking léxico BM25',
+      'Guardrails estrictos de citación a nivel de fragmento que mitigan alucinaciones en respuestas críticas',
+      'Panel administrativo con explorador de vectores, editor de fragmentos y métricas de latencia de consulta',
     ],
     images: [
       { url: '/projects/rag_01.png', caption: 'Interfaz de Chat con Citas' },
@@ -184,10 +184,10 @@ const projectsEN: Project[] = [
       { label: 'Auth', value: 'Zero-Trust RLS' },
     ],
     features: [
-      'Multi-tenant workspace organization with team invites and RBAC',
-      'Automated Stripe Webhooks with tiered monthly/annual billing',
-      'Supabase Auth with Google OAuth, Magic Links, and session persistence',
-      'Scoped API key rotation and telemetry quota tracking',
+      'Multi-tenant workspace organization with data isolation, team invites, and RBAC roles',
+      'Tiered subscription billing with Stripe Checkout and asynchronous webhook reconciliation',
+      'Supabase Auth (Google OAuth & Magic Links) enforced with strict Row-Level Security (RLS)',
+      'Cryptographic API key rotation with telemetry quota enforcement and usage tracking',
     ],
     images: [
       { url: '/projects/syntrosaas_01.png', caption: 'Landing Page & Architecture' },
@@ -211,10 +211,10 @@ const projectsEN: Project[] = [
       { label: 'Voice Latency', value: '< 180ms' },
     ],
     features: [
-      'Neural Mesh coordinating research, coding, and finance subagents in parallel',
-      'ElevenLabs neural voice with animated audio waveform visualization',
-      'Real-time token ledger tracking OpenAI and Anthropic costs per task',
-      'Delivered on Fiverr with verified 5-star client rating',
+      'Neural mesh coordinating 9 parallel subagents across research, coding, and finance',
+      'ElevenLabs neural streaming voice at <180ms with reactive audio waveform rendering',
+      'Real-time token ledger auditing API usage and costs per model invocation',
+      'Delivered on Fiverr with a verified 5.0-star client review',
     ],
     images: [
       { url: '/projects/jarvis_01.png', caption: 'Chief Brain HUD with Voice Waveform' },
@@ -265,10 +265,10 @@ const projectsEN: Project[] = [
       { label: 'Target', value: 'Enterprise B2B' },
     ],
     features: [
-      'Interactive ROI calculator projecting annual revenue pipeline growth',
-      'Case study modals with problem breakdowns and verified metric gains',
-      '3-step qualification wizard assessing digital maturity',
-      'Visual system architecture diagram of the lead-to-close flow',
+      'Reactive ROI simulator modeling revenue pipeline and return on ad spend at 60fps',
+      'Dynamic case study modals with structured technical challenges and verified metrics',
+      '3-step qualification wizard assessing digital maturity and enterprise budget tiers',
+      'System architecture diagram detailing the conversion funnel implemented in Vite & Tailwind',
     ],
     images: [
       { url: '/projects/nexus_01.png', caption: 'Hero & Diagnostic Funnel' },
@@ -292,10 +292,10 @@ const projectsEN: Project[] = [
       { label: 'Guardrails', value: 'Anti-Hallucination' },
     ],
     features: [
-      'Multi-format ingestion pipeline for PDF, DOCX, Notion, and Markdown',
-      'Hybrid semantic vector search with PGVector and BM25 reranking',
-      'Strict source-citation guardrails preventing hallucinations',
-      'Admin panel with document chunk editor and query cost analytics',
+      'Async multi-format ingestion pipeline for PDF, DOCX, Notion, and Markdown with semantic chunking',
+      'Hybrid semantic search combining pgvector cosine similarity with BM25 lexical reranking',
+      'Strict chunk-level citation guardrails mitigating hallucinations across critical queries',
+      'Admin dashboard featuring vector chunk browser, snippet editor, and query latency telemetry',
     ],
     images: [
       { url: '/projects/rag_01.png', caption: 'Chat Interface with Citations' },
