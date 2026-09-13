@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Search, ArrowRight, Binary, Cpu } from 'lucide-react';
+import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart } from 'lucide-react';
 
 export function GraphTerminalLayout({ project }: { project: Project }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -15,7 +15,6 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     setMousePos({ x, y });
   };
 
-  // Base rotation
   const rotateX = (0.5 - mousePos.y) * 15;
   const rotateY = (mousePos.x - 0.5) * 15;
 
@@ -25,13 +24,13 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-mono text-blue-400 mb-8">
           <Binary className="w-3.5 h-3.5" />
-          <span>Vercel Architecture Blueprint</span>
+          <span>Enterprise AI Architecture</span>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
           {project.title}
         </h1>
         <p className="text-xl text-zinc-400 max-w-2xl leading-relaxed">
-          Pasa el ratn sobre la cuadrcula para revelar la arquitectura subyacente.
+          {project.description}
         </p>
       </header>
 
@@ -74,8 +73,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  className="col-span-4 md:col-span-2 row-span-2 bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 relative group"
                  style={{ transform: `translateZ(${isHovered ? '80px' : '0px'})` }}
                >
-                 <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                 <img src={project.images[0]?.url} alt="Main UI" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                 {/* Removed opacity restrictions for maximum sharpness */}
+                 <img src={project.images[0]?.url} alt="Main UI" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                </div>
 
                {/* Metrics Tile 1 */}
@@ -85,8 +85,8 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                >
                  <Cpu className="w-6 h-6 text-blue-400" />
                  <div>
-                   <div className="text-3xl font-black text-white">142ms</div>
-                   <div className="text-xs text-blue-400 uppercase tracking-widest mt-1">Avg Query</div>
+                   <div className="text-3xl font-black text-white">{project.metrics[1]?.value || '142ms'}</div>
+                   <div className="text-xs text-blue-400 uppercase tracking-widest mt-1">Avg Latency</div>
                  </div>
                </div>
 
@@ -95,7 +95,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  className="col-span-2 md:col-span-1 row-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden transition-transform duration-700"
                  style={{ transform: `translateZ(${isHovered ? '40px' : '0px'})` }}
                >
-                 <img src={project.images[1]?.url} alt="Data" className="w-full h-full object-cover opacity-60" />
+                 <img src={project.images[1]?.url} alt="Data Architecture" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
                </div>
 
                {/* Tech Stack Tile */}
@@ -117,7 +117,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
                >
                  <div className="flex-1 font-mono text-sm">
-                   <div className="text-zinc-500 mb-2">// Semantic Search execution</div>
+                   <div className="text-zinc-500 mb-2">// Semantic Search execution against vector database</div>
                    <div className="text-blue-400">await db.vectors.similaritySearch(query, 5);</div>
                  </div>
                  <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
@@ -140,15 +140,57 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
          </div>
       </section>
 
-      {/* Details Section */}
-      <section className="max-w-4xl mx-auto px-6 pb-32 text-center">
-        <h3 className="text-2xl font-bold text-white mb-8">Arquitectura del Conocimiento</h3>
-        <div className="flex flex-wrap justify-center gap-4">
-          {project.features.map((f, i) => (
-            <div key={i} className="px-6 py-3 bg-zinc-900 border border-zinc-800 rounded-full text-sm text-zinc-300">
-              {f}
+      {/* Marketing & Business Value Section (No Exaggeration, Pure B2B Value) */}
+      <section className="max-w-5xl mx-auto px-6 pb-32">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">El Problema de las Alucinaciones Resuelto</h2>
+          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+            Los modelos de lenguaje genéricos inventan datos cuando no conocen la respuesta. Este motor RAG (Retrieval-Augmented Generation) inyecta el contexto de tu empresa directamente en el modelo antes de que responda, garantizando un 100% de trazabilidad.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+            <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+              <ShieldCheck className="w-6 h-6 text-blue-400" />
             </div>
-          ))}
+            <h3 className="text-xl font-bold text-white mb-3">Trazabilidad Total</h3>
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              Cada respuesta generada por la IA cita explícitamente el documento fuente interno del cual extrajo la informacin. Si no est en tus datos, la IA no responde.
+            </p>
+          </div>
+
+          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+            <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+              <Zap className="w-6 h-6 text-blue-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Indexación en Tiempo Real</h3>
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              Los nuevos manuales, PDFs o políticas corporativas se vectorizan en milisegundos mediante la canalización automatizada, estando disponibles para consulta instantáneamente.
+            </p>
+          </div>
+
+          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+            <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
+              <LineChart className="w-6 h-6 text-blue-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Optimización de Recursos</h3>
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              Reduce drsticamente el tiempo que los empleados invierten buscando informacin dispersa en Google Drive, Confluence o Slack. La IA se convierte en un experto interno 24/7.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-12 border-t border-zinc-800/50">
+          <h4 className="text-lg font-semibold text-white mb-6">Capacidades Técnicas Implementadas:</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {project.features.map((f, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                <span className="text-zinc-300 text-sm">{f}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
