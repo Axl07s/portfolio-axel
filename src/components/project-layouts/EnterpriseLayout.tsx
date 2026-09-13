@@ -1,228 +1,187 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
-import { Shield, GitBranch, ArrowRight, Cpu, Activity, Zap } from 'lucide-react';
+import { Shield, Activity, AlertTriangle, Zap, Server } from 'lucide-react';
 
 export function EnterpriseLayout({ project }: { project: PersonalProject }) {
-  const [activeView, setActiveView] = useState<'edr' | 'monitor'>('edr');
-  const isEdr = activeView === 'edr';
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const frontWindowClasses = "absolute z-30 w-[95%] md:w-[90%] left-[2.5%] md:left-[5%] top-[10%] md:top-[15%] transform rotate-y-[5deg] rotate-x-[2deg] translate-z-[0px] shadow-[0_0_100px_rgba(16,185,129,0.15)] opacity-100 transition-all duration-1000 ease-out";
-  const backWindowClasses = "absolute z-10 w-[85%] md:w-[65%] left-[10%] md:left-[30%] top-[0%] md:top-[5%] transform rotate-y-[-15deg] rotate-x-[5deg] translate-z-[-200px] hover:translate-z-[-100px] hover:rotate-y-[-5deg] opacity-40 hover:opacity-80 shadow-2xl transition-all duration-1000 ease-out cursor-pointer";
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePos({ x, y });
+  };
 
-  const edrClasses = isEdr ? frontWindowClasses : backWindowClasses;
-  const monitorClasses = isEdr ? backWindowClasses : frontWindowClasses;
-
-  // Animatable widget positions using top/left exclusively
-  const trustPos = isEdr 
-    ? "top-[95%] left-[0%] md:-left-[2%] translate-z-[100px]" 
-    : "top-[0%] left-[70%] md:left-[85%] translate-z-[50px] scale-75";
-    
-  const etwPos = isEdr
-    ? "top-[0%] md:-top-[2%] left-[80%] md:left-[92%] translate-z-[80px]"
-    : "top-[90%] left-[5%] md:left-[2%] translate-z-[40px] scale-75";
+  const rotateX = (0.5 - mousePos.y) * 20;
+  const rotateY = (mousePos.x - 0.5) * 20;
 
   return (
-    <article className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-red-500/30">
+    <article className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-emerald-500/30 overflow-hidden">
       
-      {/* Hero Header */}
-      <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center overflow-hidden">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-3xl h-64 bg-red-600/10 blur-[120px] pointer-events-none rounded-full"></div>
-
-        {/* Small badge */}
-        <div className="flex items-center gap-2 px-3 py-1 mb-8 rounded-full border border-red-500/20 bg-red-500/5 z-10">
-          <Shield className="w-3.5 h-3.5 text-red-400" />
-          <span className="text-xs font-medium tracking-wide text-red-400 uppercase">Enterprise Security</span>
+      {/* Hero Section */}
+      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400 mb-8 animate-pulse">
+          <Shield className="w-3.5 h-3.5" />
+          <span>ZERO-TRUST KERNEL EDR</span>
         </div>
-
-        <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter uppercase break-words text-white z-10 max-w-4xl">
+        <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 uppercase">
           {project.title}
         </h1>
-        <p className="mt-6 md:mt-8 text-lg md:text-xl text-zinc-400 font-light max-w-2xl mx-auto z-10 leading-relaxed">
+        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed">
           {project.descriptionES}
         </p>
-
-        {project.githubUrl && (
-          <div className="mt-12 flex items-center z-10">
-            <a 
-              href={project.githubUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-6 py-3 bg-white text-zinc-950 rounded-full text-sm font-bold tracking-widest uppercase hover:bg-zinc-200 transition-colors"
-            >
-              <GitBranch className="w-4 h-4" />
-              <span>Ver Código Fuente</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        )}
-
-        {/* Tech Stack Minimal Tags */}
-        <div className="mt-12 flex flex-wrap justify-center gap-3 z-10 max-w-2xl">
-          {project.tech.map((tech: string) => (
-            <span key={tech} className="px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-xs font-mono tracking-widest uppercase backdrop-blur-sm">
-              {tech}
-            </span>
-          ))}
-        </div>
       </header>
 
-      {/* Cinematic 3D Device Showcase */}
-      <section className="relative w-full max-w-6xl mx-auto px-4 py-12 md:py-32 z-20 perspective-[2000px] flex items-center justify-center h-[500px] md:h-[900px]">
-        
-        {/* Vercel-style Radial Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
-        
-        {/* Floating External Monitor (Can be Foreground or Background) */}
-        <div className={`${monitorClasses} rounded-xl border border-zinc-800 overflow-hidden bg-zinc-950/80 backdrop-blur-xl group`}
-             onClick={() => setActiveView('monitor')}
-             style={{ transformStyle: 'preserve-3d' }}>
-            {/* Window Top Bar */}
-            <div className="h-8 bg-zinc-900/50 border-b border-zinc-800/50 flex items-center px-4 gap-2">
-               <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-               <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-               <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-               <div className="ml-2 text-xs text-zinc-500 font-mono">system_monitor.exe</div>
+      {/* 3D Threat Isolation Hologram */}
+      <section 
+        className="relative py-24 w-full flex items-center justify-center z-20 cursor-crosshair h-[600px] md:h-[800px]"
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
+        style={{ perspective: '2000px' }}
+      >
+         {/* Background Grid */}
+         <div 
+           className="absolute inset-0 opacity-20"
+           style={{ 
+             backgroundImage: 'linear-gradient(rgba(16, 185, 129, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 185, 129, 0.2) 1px, transparent 1px)',
+             backgroundSize: '50px 50px',
+             transform: `translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px)`
+           }}
+         ></div>
+
+         <div 
+           className="relative w-full max-w-5xl h-full transition-transform duration-300 ease-out flex items-center justify-center"
+           style={{ 
+             transform: `rotateX(${50 + rotateX}deg) rotateZ(${-30 + rotateY}deg)`,
+             transformStyle: 'preserve-3d' 
+           }}
+         >
+            {/* The Base Plate (OS Kernel) */}
+            <div 
+              className="absolute w-[800px] h-[800px] bg-slate-900/50 border-4 border-emerald-500/20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] flex items-center justify-center"
+              style={{ transform: `translateZ(-150px)` }}
+            >
+               <div className="w-[600px] h-[600px] border-2 border-emerald-500/10 rounded-full animate-spin-slow flex items-center justify-center">
+                 <div className="w-[400px] h-[400px] border border-emerald-500/20 rounded-full flex items-center justify-center">
+                   <div className="w-[200px] h-[200px] border border-emerald-500/30 rounded-full"></div>
+                 </div>
+               </div>
+               
+               <div className="absolute bottom-10 left-10 text-emerald-500/30 font-mono text-xl font-bold tracking-widest uppercase">
+                 Ring 0 / Kernel Space
+               </div>
             </div>
-            <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className={`w-full h-auto object-cover object-left-top transition-opacity duration-700 ${!isEdr ? 'opacity-90' : 'opacity-40 mix-blend-screen'}`} />
-        </div>
 
-        {/* Main Glass Window (Can be Foreground or Background) */}
-        <div className={`${edrClasses} rounded-2xl md:rounded-[2rem] border border-white/10 bg-zinc-950 backdrop-blur-3xl overflow-hidden flex flex-col group`} 
-             onClick={() => setActiveView('edr')}
-             style={{ transformStyle: 'preserve-3d' }}>
-          
-          {/* macOS Window Header */}
-          <div className="h-10 md:h-12 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 md:px-6 gap-2 z-30 shrink-0">
-             <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-             <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-             <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-             <div className="mx-auto flex items-center gap-2 px-3 py-1 bg-black/40 rounded-md border border-white/5">
-               <Shield className="w-3.5 h-3.5 text-emerald-400" />
-               <span className="text-[10px] md:text-xs text-zinc-400 font-mono">SuiteSeguridad.exe</span>
-             </div>
-          </div>
-          
-          {/* Window Content */}
-          <div className="relative w-full bg-black">
-            <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad UI" className={`w-full h-auto transition-opacity duration-700 block ${isEdr ? 'opacity-100' : 'opacity-70'}`} style={{ backfaceVisibility: 'hidden' }} />
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 via-transparent to-cyan-500/5 pointer-events-none"></div>
-          </div>
+            {/* The Isolated Threat (Ransomware) */}
+            <div 
+              className="absolute w-32 h-32 bg-red-950/80 border-2 border-red-500 rounded-2xl flex flex-col items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.5)] transition-transform duration-700"
+              style={{ transform: `translateZ(50px) translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px)` }}
+            >
+               <AlertTriangle className="w-12 h-12 text-red-500 mb-2 animate-pulse" />
+               <span className="text-red-500 font-mono text-xs font-bold">RANSOM.EXE</span>
+            </div>
 
-          {/* Floating Bento Widgets (Breaking out of the screen, animated positions) */}
-          <div className={`absolute p-4 md:p-6 bg-zinc-950/90 backdrop-blur-3xl border border-zinc-800 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 transition-all duration-1000 ease-in-out ${trustPos}`}>
-             <div className="flex items-center gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                   <Shield className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                </div>
-                <div>
-                  <h4 className="text-zinc-400 text-[10px] md:text-xs font-mono uppercase tracking-wider mb-1">Status</h4>
-                  <p className="text-white text-lg md:text-2xl font-light whitespace-nowrap">Zero-Trust Activo</p>
-                </div>
-             </div>
-          </div>
+            {/* Force Field Cylinder */}
+            <div 
+              className="absolute w-64 h-64 border-4 border-dashed border-emerald-500 rounded-full animate-spin-slow opacity-80 transition-transform duration-700"
+              style={{ transform: `translateZ(50px)` }}
+            ></div>
 
-          <div className={`absolute p-3 md:p-4 bg-zinc-950/90 backdrop-blur-3xl border border-zinc-800 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-30 transition-all duration-1000 ease-in-out ${etwPos}`}>
-             <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                <h4 className="text-white text-xs md:text-sm font-mono tracking-widest whitespace-nowrap">ETW KERNEL</h4>
-             </div>
-          </div>
-        </div>
+            {/* Security Analyst Dashboard (Floating UI) */}
+            <div 
+               className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-80 bg-slate-950 border-2 border-emerald-500/30 rounded-2xl p-6 shadow-2xl transition-transform duration-500"
+               style={{ transform: `translateZ(250px) translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px)` }}
+            >
+               <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
+                 <div className="flex items-center gap-2">
+                   <Activity className="w-5 h-5 text-emerald-400" />
+                   <span className="text-emerald-400 font-mono text-sm font-bold">ETW INGESTION</span>
+                 </div>
+                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+               </div>
+               
+               <div className="space-y-3 font-mono text-xs text-slate-400">
+                 <div className="flex justify-between"><span className="text-slate-500">Event ID:</span> <span className="text-white">4688</span></div>
+                 <div className="flex justify-between"><span className="text-slate-500">Process:</span> <span className="text-red-400">C:\Temp\malware.exe</span></div>
+                 <div className="flex justify-between"><span className="text-slate-500">Entropy:</span> <span className="text-red-400">7.99 (High)</span></div>
+                 <div className="flex justify-between"><span className="text-slate-500">Action:</span> <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">BLOCKED</span></div>
+               </div>
+            </div>
+
+            {/* Metrics Widget */}
+            <div 
+               className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-64 bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-2xl transition-transform duration-500"
+               style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
+            >
+               <div className="flex flex-col gap-1">
+                 <span className="text-slate-500 font-mono text-xs uppercase tracking-widest">Kernel Latency</span>
+                 <span className="text-4xl font-light text-white">{"< 12ms"}</span>
+               </div>
+               <div className="h-px w-full bg-slate-800 my-4"></div>
+               <div className="flex flex-col gap-1">
+                 <span className="text-slate-500 font-mono text-xs uppercase tracking-widest">CPU Overhead</span>
+                 <span className="text-2xl font-light text-white">0.8%</span>
+               </div>
+            </div>
+
+         </div>
       </section>
 
-      {/* Hardcore Metrics */}
-      <section className="py-24 border-y border-zinc-900 bg-zinc-950/50 relative z-20">
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-zinc-800 text-center">
-          <div className="flex flex-col items-center pt-8 md:pt-0">
-            <Zap className="w-6 h-6 text-red-500 mb-4 opacity-80" />
-            <div className="text-5xl font-light text-white mb-2 tracking-tighter">{"< 12ms"}</div>
-            <div className="text-xs font-bold tracking-widest text-zinc-500 uppercase">Latencia Kernel</div>
+      {/* Marketing B2B - Enterprise Security Value */}
+      <section className="max-w-5xl mx-auto px-6 pb-32">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Protección Proactiva a Nivel Kernel</h2>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Los antivirus tradicionales dependen de firmas conocidas. SuiteSeguridad EDR intercepta el comportamiento malicioso directamente en el Kernel de Windows usando ETW (Event Tracing for Windows), bloqueando amenazas zero-day antes de que ejecuten.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl hover:border-emerald-500/30 transition-colors">
+            <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
+              <Shield className="w-6 h-6 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Mitigación de Ransomware</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Detecta operaciones masivas de cifrado de archivos (alta entropía de disco) y suspende el proceso origen en menos de 12 milisegundos, salvando la información crítica.
+            </p>
           </div>
-          <div className="flex flex-col items-center pt-8 md:pt-0">
-            <Cpu className="w-6 h-6 text-red-500 mb-4 opacity-80" />
-            <div className="text-5xl font-light text-white mb-2 tracking-tighter">0.8%</div>
-            <div className="text-xs font-bold tracking-widest text-zinc-500 uppercase">Overhead CPU</div>
+
+          <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl hover:border-emerald-500/30 transition-colors">
+            <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
+              <Zap className="w-6 h-6 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Bajo Impacto Operativo</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Motor C++ hiper-optimizado. Intercepta millones de eventos de sistema por segundo con un overhead de CPU inferior al 1%, invisible para el usuario final.
+            </p>
           </div>
-          <div className="flex flex-col items-center pt-8 md:pt-0">
-            <Activity className="w-6 h-6 text-red-500 mb-4 opacity-80" />
-            <div className="text-5xl font-light text-white mb-2 tracking-tighter">100%</div>
-            <div className="text-xs font-bold tracking-widest text-zinc-500 uppercase">Mitigación Ransomware</div>
+
+          <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl hover:border-emerald-500/30 transition-colors">
+            <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
+              <Server className="w-6 h-6 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Análisis Python AI</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              La telemetría filtrada se envía a un motor asíncrono en Python que utiliza heurísticas avanzadas y reglas YARA para clasificación profunda de binarios.
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* Storytelling Block */}
-      <section className="px-4 py-24 max-w-3xl mx-auto text-center space-y-8 relative z-20">
-         <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
-           Protección proactiva,<br className="hidden md:block"/>
-           <span className="text-zinc-500">sin comprometer el rendimiento.</span>
-         </h2>
-         <p className="text-base md:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
-           {project.architectureES}
-         </p>
-      </section>
-
-      {/* Architecture Diagram */}
-      <section className="py-12 md:py-24 px-4 max-w-5xl mx-auto relative z-20">
-        <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-3xl p-8 md:p-12 overflow-hidden relative">
-          <h3 className="text-xl md:text-2xl font-light text-white mb-12 text-center">Arquitectura de Detección</h3>
-          
-          <div className="w-full max-w-3xl mx-auto">
-            <svg viewBox="0 0 800 400" className="w-full h-auto font-sans">
-              <defs>
-                <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#ef4444" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="#ef4444" stopOpacity="0.05" />
-                </linearGradient>
-                <linearGradient id="gradDark" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#18181b" />
-                  <stop offset="100%" stopColor="#09090b" />
-                </linearGradient>
-              </defs>
-
-              {/* ETW Provider */}
-              <rect x="50" y="50" width="180" height="90" rx="12" fill="url(#gradDark)" stroke="#27272a" strokeWidth="2" />
-              <text x="140" y="95" textAnchor="middle" fill="#f4f4f5" className="text-lg font-medium">Windows ETW</text>
-              <text x="140" y="115" textAnchor="middle" fill="#71717a" className="text-sm">Kernel Telemetry</text>
-              
-              {/* Sysmon */}
-              <rect x="50" y="250" width="180" height="90" rx="12" fill="url(#gradDark)" stroke="#27272a" strokeWidth="2" />
-              <text x="140" y="295" textAnchor="middle" fill="#f4f4f5" className="text-lg font-medium">Sysmon</text>
-              <text x="140" y="315" textAnchor="middle" fill="#71717a" className="text-sm">Process Monitor</text>
-
-              {/* Arrows to Data Ingestion */}
-              <path d="M 230 95 L 340 180" stroke="#52525b" strokeWidth="2" fill="none" strokeDasharray="6,6" />
-              <path d="M 230 295 L 340 215" stroke="#52525b" strokeWidth="2" fill="none" strokeDasharray="6,6" />
-
-              {/* Data Ingestion (C++) */}
-              <rect x="340" y="150" width="180" height="110" rx="12" fill="url(#gradDark)" stroke="#3f3f46" strokeWidth="2" />
-              <text x="430" y="195" textAnchor="middle" fill="#f4f4f5" className="text-lg font-medium">C++ Event Parser</text>
-              <text x="430" y="220" textAnchor="middle" fill="#71717a" className="text-sm">Low Latency Ingestion</text>
-
-              {/* Arrow to Python Engine */}
-              <path d="M 520 205 L 610 205" stroke="#ef4444" strokeWidth="3" fill="none" />
-              <polygon points="615,205 605,198 605,212" fill="#ef4444" />
-
-              {/* Python Detection Engine */}
-              <rect x="620" y="150" width="180" height="110" rx="12" fill="url(#gradRed)" stroke="#ef4444" strokeWidth="2" />
-              <text x="710" y="195" textAnchor="middle" fill="#f4f4f5" className="text-lg font-medium">Python Engine</text>
-              <text x="710" y="220" textAnchor="middle" fill="#f87171" className="text-sm">YARA + Heuristics</text>
-
-              {/* Mitigation Action */}
-              <path d="M 710 150 L 710 70 L 230 70" stroke="#ef4444" strokeWidth="2" fill="none" strokeDasharray="8,4" />
-              <polygon points="230,70 240,64 240,76" fill="#ef4444" />
-              <text x="470" y="60" textAnchor="middle" fill="#f87171" className="text-sm font-medium">Mitigación Inmediata (Kill Process)</text>
-            </svg>
+        <div className="mt-16 pt-12 border-t border-slate-800/50">
+          <h4 className="text-lg font-semibold text-white mb-6">Stack Tecnológico y Arquitectura:</h4>
+          <div className="flex flex-wrap gap-3">
+             {project.tech.map((t, i) => (
+                <span key={i} className="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-300 text-sm font-mono uppercase tracking-wider">{t}</span>
+             ))}
           </div>
         </div>
       </section>
 
-      {/* Spacing at bottom */}
-      <div className="h-24"></div>
     </article>
   );
 }
+

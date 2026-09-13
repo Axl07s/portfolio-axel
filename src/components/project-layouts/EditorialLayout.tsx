@@ -1,319 +1,185 @@
+import { useState, useRef } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
-import { ArrowRight, GitBranch, Smartphone, WifiOff } from 'lucide-react';
+import { Smartphone, WifiOff, RefreshCcw, Cloud } from 'lucide-react';
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
-  // Enhanced Mobile frame with purely minimalist screen (Edge-to-Edge)
-  const MobileFrame = ({ title, className = "", imagePath = "" }: { title: string, className?: string, imagePath?: string }) => (
-    <div className={`relative w-full h-full flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ring-1 ring-white/10 flex flex-col ${className}`}>
-      
-      {/* Side Buttons */}
-      <div className="absolute -right-[14px] top-[120px] w-[6px] h-12 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700 z-0"></div>
-      <div className="absolute -right-[14px] top-[180px] w-[6px] h-20 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700 z-0"></div>
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
-      {/* Screen Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 overflow-hidden z-10 rounded-[2rem] md:rounded-[2.5rem]">
-        {imagePath ? (
-          <img src={imagePath} alt={title} className="absolute inset-0 w-full h-full object-cover object-top" />
-        ) : (
-          <div className="p-6 text-center z-10">
-            <Smartphone className="w-10 h-10 md:w-12 md:h-12 text-zinc-700 mb-4 mx-auto" />
-            <p className="text-zinc-500 font-mono text-[9px] md:text-[10px] uppercase tracking-widest border border-dashed border-zinc-700 p-2 md:p-3 rounded w-full">
-              PLACEHOLDER:<br/><span className="text-zinc-400 font-bold">{title}</span>
-            </p>
-          </div>
-        )}
-        {/* Screen Glare effect */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none z-30"></div>
-      </div>
-    </div>
-  );
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePos({ x, y });
+  };
+
+  const rotateX = (0.5 - mousePos.y) * 15;
+  const rotateY = (mousePos.x - 0.5) * 15;
 
   return (
-    <article className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-indigo-500/30">
+    <article className="min-h-screen bg-[#faf9f6] text-[#1a1a1a] font-sans selection:bg-indigo-500/30 overflow-hidden">
       
-      {/* Hero Header */}
-      <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center overflow-hidden">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-3xl h-64 bg-indigo-500/10 blur-[100px] pointer-events-none"></div>
-
-        <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-bold leading-[0.9] tracking-tighter uppercase break-words text-white z-10 max-w-4xl">
+      {/* Hero Section */}
+      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-bold text-indigo-600 mb-8 uppercase tracking-widest">
+          <Smartphone className="w-3.5 h-3.5" />
+          <span>React Native Ecosystem</span>
+        </div>
+        <h1 className="text-5xl md:text-8xl font-black tracking-tight text-[#1a1a1a] mb-6">
           {project.title}
         </h1>
-        <p className="mt-6 md:mt-8 text-lg md:text-xl text-zinc-400 font-light max-w-2xl mx-auto z-10 leading-relaxed">
+        <p className="text-xl text-zinc-600 max-w-2xl leading-relaxed">
           {project.descriptionES}
         </p>
-
-        {project.githubUrl && (
-          <div className="mt-12 flex items-center z-10">
-            <a 
-              href={project.githubUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 text-sm font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors"
-            >
-              <GitBranch className="w-5 h-5" />
-              <span>View Source</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        )}
-
-        {/* Tech Stack Minimal Tags */}
-        <div className="mt-12 flex flex-wrap justify-center gap-3 z-10 max-w-2xl">
-          {project.tech.map((tech: string) => (
-            <span key={tech} className="px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-xs font-mono tracking-widest uppercase backdrop-blur-sm">
-              {tech}
-            </span>
-          ))}
-        </div>
       </header>
 
-      {/* Storytelling Block 1 */}
-      <section className="px-4 py-16 md:py-24 max-w-3xl mx-auto text-center space-y-8 relative z-20">
-         <div className="flex justify-center mb-6">
-           <WifiOff className="w-8 h-8 text-zinc-700" />
-         </div>
-         <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
-           La conectividad es un privilegio,<br className="hidden md:block"/>
-           <span className="text-zinc-500">no una garantía.</span>
-         </h2>
-         <p className="text-base md:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
-           Los estudiantes que transitan entre bloques de concreto grueso o viajan desde zonas rurales suelen enfrentar desconexiones severas. 
-           Este proyecto nació de una premisa innegociable: el acceso a la vida académica no debería pausarse cuando se cae el Wi-Fi.
-         </p>
-      </section>
+      {/* 3D App Flow Presentation */}
+      <section 
+        className="relative py-24 w-full flex items-center justify-center z-20 cursor-crosshair h-[600px] md:h-[800px]"
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
+        style={{ perspective: '2000px' }}
+      >
+         {/* Background Grid */}
+         <div 
+           className="absolute inset-0 opacity-40"
+           style={{ 
+             backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)',
+             backgroundSize: '40px 40px',
+             transform: `translate(${(mousePos.x - 0.5) * -50}px, ${(mousePos.y - 0.5) * -50}px)`
+           }}
+         ></div>
 
-      {/* Cinematic Hero: Brutalist Editorial Style */}
-      <section className="relative w-full py-12 md:py-20 bg-[#09090b] flex flex-col items-center justify-center border-b border-zinc-800/50 overflow-hidden font-sans">
-        
-        {/* Subtle Vertical Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
-        
-        {/* TOP TYPOGRAPHY */}
-        <h1 className="text-[10vw] font-black tracking-[0.15em] md:tracking-[0.2em] leading-none text-[#b490ff] whitespace-nowrap text-center z-10 select-none mb-4 md:mb-8 ml-[0.15em]">
-          OFFLINE
-        </h1>
+         <div 
+           className="relative w-full max-w-6xl h-full transition-transform duration-300 ease-out flex items-center justify-center"
+           style={{ 
+             transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+             transformStyle: 'preserve-3d' 
+           }}
+         >
+            {/* Phone 1: Login (Background Left) */}
+            <div 
+               className="absolute w-[240px] md:w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-2xl overflow-hidden transition-transform duration-500"
+               style={{ transform: `translateZ(-150px) translateX(-50%) translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px) rotateY(15deg)` }}
+            >
+               <img src="/projects/puce_login.png" alt="Login Screen" className="w-full h-full object-cover" />
+               <div className="absolute inset-0 bg-white/20"></div>
+            </div>
 
-        {/* Central Phone & Floating Cards Container */}
-        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20">
-           
-           {/* Center Phone */}
-           <div className="absolute inset-0 z-30 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
-             <MobileFrame title="Captura de Inicio / Home" imagePath="/projects/puce_home.png" />
-           </div>
+            {/* Phone 2: Main Dashboard (Center Front) */}
+            <div 
+               className="absolute w-[260px] md:w-[320px] aspect-[9/19.5] bg-white rounded-[3rem] border-[14px] border-zinc-900 shadow-[0_50px_100px_rgba(0,0,0,0.15)] overflow-hidden transition-transform duration-500"
+               style={{ transform: `translateZ(100px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
+            >
+               <img src="/projects/puce_dashboard.png" alt="Main Dashboard" className="w-full h-full object-cover" />
+               
+               {/* Glass Reflection */}
+               <div 
+                 className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 pointer-events-none transition-transform duration-300"
+                 style={{ transform: `translate(${(mousePos.x - 0.5) * 100}%, ${(mousePos.y - 0.5) * 100}%)` }}
+               ></div>
+            </div>
 
-           {/* --- SVG Connecting Lines (Desktop Only) --- */}
-           <svg className="absolute inset-0 w-full h-full overflow-visible z-20 pointer-events-none hidden sm:block" style={{ width: '100%', height: '100%' }}>
-              {/* Line to Top Left */}
-              <path d="M -50 150 L 100 200" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="-50" cy="150" r="3" fill="#52525b" />
-              <circle cx="100" cy="200" r="3" fill="#52525b" />
+            {/* Phone 3: Profile/Settings (Background Right) */}
+            <div 
+               className="absolute w-[240px] md:w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-2xl overflow-hidden transition-transform duration-500"
+               style={{ transform: `translateZ(-100px) translateX(50%) translate(${(mousePos.x - 0.5) * -40}px, ${(mousePos.y - 0.5) * -40}px) rotateY(-15deg)` }}
+            >
+               <img src="/projects/puce_profile.png" alt="Profile Screen" className="w-full h-full object-cover" />
+               <div className="absolute inset-0 bg-white/20"></div>
+            </div>
 
-              {/* Line to Top Right */}
-              <path d="M 380 180 L 250 240" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="380" cy="180" r="3" fill="#52525b" />
-              <circle cx="250" cy="240" r="3" fill="#52525b" />
+            {/* Offline First Callout (Floating UI) */}
+            <div 
+               className="absolute bottom-1/4 left-1/4 -translate-x-1/2 w-64 bg-white border border-zinc-200 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
+               style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 40}px, ${(mousePos.y - 0.5) * 40}px)` }}
+            >
+               <div className="flex justify-between items-center mb-3">
+                 <div className="flex items-center gap-2">
+                   <WifiOff className="w-5 h-5 text-indigo-500" />
+                   <span className="text-zinc-900 font-bold text-sm">Modo Offline</span>
+                 </div>
+                 <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
+               </div>
+               <p className="text-xs text-zinc-500 leading-relaxed">
+                 SQLite Database activa. Sirviendo horarios y notas desde la caché local sin conexión a internet en &lt;50ms.
+               </p>
+            </div>
 
-              {/* Line to Bottom Left */}
-              <path d="M -40 400 L 80 360" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="-40" cy="400" r="3" fill="#52525b" />
-              <circle cx="80" cy="360" r="3" fill="#52525b" />
-
-              {/* Line to Bottom Right */}
-              <path d="M 360 420 L 220 460" stroke="#52525b" strokeWidth="1" fill="none" />
-              <circle cx="360" cy="420" r="3" fill="#52525b" />
-              <circle cx="220" cy="460" r="3" fill="#52525b" />
-           </svg>
-
-           {/* --- Brutalist Cards --- */}
-
-           {/* Card 1: Top Left (Scarcity Tactics style) */}
-           <div className="absolute top-[5%] sm:top-[20%] -left-4 sm:-left-[60%] md:-left-[85%] w-44 sm:w-52 md:w-60 p-3 rounded-lg bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 transition-transform hover:scale-105">
-              <h4 className="text-[10px] sm:text-[12px] font-bold tracking-wide text-[#eab308] uppercase mb-1">LOCAL STORAGE ENGINE</h4>
-              <p className="text-[10px] sm:text-xs font-medium text-zinc-300">= Acceso a notas sin internet</p>
-           </div>
-
-           {/* Card 2: Top Right (Sheep style) */}
-           <div className="absolute top-[22%] sm:top-[25%] -right-4 sm:-right-[50%] md:-right-[75%] w-44 sm:w-48 md:w-56 p-2 sm:p-3 rounded-lg bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 flex items-start gap-2 sm:gap-3 transition-transform hover:scale-105">
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded bg-[#b490ff]/20 flex-shrink-0 border border-[#b490ff]/30 overflow-hidden flex items-center justify-center">
-                 <span className="text-[#b490ff] text-sm sm:text-lg">★</span>
-              </div>
-              <div className="flex-1">
-                <h4 className="text-[9px] sm:text-[11px] font-bold tracking-widest text-zinc-100 uppercase mb-0.5">BACKGROUND SYNC</h4>
-                <p className="text-[9px] sm:text-[10px] leading-tight text-zinc-400">Workers sincronizan en segundo plano.</p>
-              </div>
-           </div>
-
-           {/* Card 3: Bottom Left (Permissions style) */}
-           <div className="absolute bottom-[28%] sm:bottom-[35%] -left-4 sm:-left-[60%] md:-left-[80%] w-48 sm:w-56 md:w-64 p-3 rounded-xl bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 transition-transform hover:scale-105">
-              <ul className="space-y-1.5 sm:space-y-2 mb-2 sm:mb-3">
-                <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
-                  <span className="text-[9px] sm:text-[10px] text-zinc-300 font-mono">+ Biometría (FaceID)</span>
-                  <div className="w-5 h-2.5 sm:w-6 sm:h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div></div>
-                </li>
-                <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
-                  <span className="text-[9px] sm:text-[10px] text-zinc-300 font-mono">+ Push Notifications</span>
-                  <div className="w-5 h-2.5 sm:w-6 sm:h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div></div>
-                </li>
-                <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
-                  <span className="text-[9px] sm:text-[10px] text-zinc-300 font-mono">+ JWT Encryption</span>
-                  <div className="w-5 h-2.5 sm:w-6 sm:h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div></div>
-                </li>
-              </ul>
-              <div className="w-full py-1 sm:py-1.5 bg-[#b490ff] text-black text-[9px] sm:text-[10px] font-bold text-center rounded uppercase tracking-wider">
-                 Security Hub
-              </div>
-           </div>
-
-           {/* Card 4: Bottom Right (Timer style) */}
-           <div className="absolute bottom-[8%] sm:bottom-[20%] -right-4 sm:-right-[50%] md:-right-[70%] w-36 sm:w-48 md:w-56 p-3 sm:p-4 rounded-lg bg-[#0f0f11]/95 backdrop-blur sm:bg-[#0f0f11] border border-zinc-700 sm:border-zinc-800 shadow-2xl z-40 text-center transition-transform hover:scale-105">
-              <div className="mb-1 sm:mb-2 opacity-80">
-                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" strokeWidth="2" className="mx-auto sm:w-6 sm:h-6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              </div>
-              <p className="text-[9px] sm:text-[10px] text-zinc-400 mb-0.5 sm:mb-1">Optimizada para...</p>
-              <h4 className="text-[12px] sm:text-[16px] font-black tracking-wide text-[#eab308] uppercase">CERO DATOS</h4>
-           </div>
-
-        </div>
-        
-        {/* BOTTOM TYPOGRAPHY */}
-        <h1 className="text-[10vw] font-black tracking-[0.15em] md:tracking-[0.2em] leading-none text-[#b490ff] whitespace-nowrap text-center z-10 select-none mt-4 md:mt-8 ml-[0.15em]">
-          CONNECT
-        </h1>
-
-      </section>
-
-      {/* Key Metrics Section */}
-      <section className="px-4 py-16 md:py-24 max-w-5xl mx-auto relative z-20 border-t border-zinc-800/50 mt-12 md:mt-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          
-          {/* Metric 1 */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Latencia Local</h3>
-            <p className="text-5xl md:text-6xl font-light text-white tracking-tighter">&lt; 50<span className="text-3xl text-indigo-400 font-normal">ms</span></p>
-            <p className="text-sm text-zinc-400 mt-2 max-w-xs">Tiempo de respuesta al consultar la base SQLite en modo offline.</p>
-          </div>
-
-          {/* Metric 2 */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Disponibilidad</h3>
-            <p className="text-5xl md:text-6xl font-light text-white tracking-tighter">100<span className="text-3xl text-indigo-400 font-normal">%</span></p>
-            <p className="text-sm text-zinc-400 mt-2 max-w-xs">Acceso ininterrumpido a datos cacheados sin conexión a internet.</p>
-          </div>
-
-          {/* Metric 3 */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Workers</h3>
-            <p className="text-5xl md:text-6xl font-light text-white tracking-tighter">3</p>
-            <p className="text-sm text-zinc-400 mt-2 max-w-xs">Hilos en segundo plano para sincronización silenciosa bidireccional.</p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Storytelling Block 2 */}
-      <section className="px-4 py-16 md:py-24 max-w-3xl mx-auto text-center space-y-8 relative z-20">
-         <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
-           Arquitectura <span className="text-indigo-400 font-normal italic">Offline-First.</span>
-         </h2>
-         <p className="text-base md:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
-           Mediante el uso de una caché local en SQLite y colas de procesos en segundo plano, la app permite consultar horarios, notas y faltas incluso en modo avión. En el instante en que se recupera la señal, workers silenciosos sincronizan las mutaciones con el backend en Spring Boot sin interrumpir al usuario.
-         </p>
-      </section>
-
-      {/* Collage 2: Sync State */}
-      <section className="relative w-full pb-20 md:pb-40 bg-zinc-950 flex items-center justify-center min-h-[500px] md:min-h-[800px] border-b border-zinc-800/50 overflow-hidden">
-         {/* True Absolute Stacking Container */}
-         <div className="relative w-[260px] h-[520px] md:w-[325px] md:h-[650px] z-10">
-           
-           {/* Back phone */}
-           <div className="absolute inset-0 z-10 rotate-[10deg] translate-x-[30%] md:translate-x-[40%] translate-y-16 md:translate-y-24 opacity-40 transition-transform duration-700 hover:-translate-y-4 hover:translate-x-[60%] hover:rotate-0 hover:scale-105 hover:opacity-100 hover:z-30 origin-bottom">
-             <MobileFrame title="Estado de Sincronización" imagePath="/projects/puce_login.png" />
-           </div>
-
-           {/* Front phone */}
-           <div className="absolute inset-0 z-20 -rotate-2 -translate-x-[15%] md:-translate-x-[20%] shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-105">
-             <MobileFrame title="Perfil Estudiantil" imagePath="/projects/puce_profile.png" />
-           </div>
+            {/* Background Sync Callout (Floating UI) */}
+            <div 
+               className="absolute top-1/4 right-1/4 translate-x-1/2 w-64 bg-zinc-900 text-white rounded-2xl p-5 shadow-2xl transition-transform duration-500"
+               style={{ transform: `translateZ(150px) translate(${(mousePos.x - 0.5) * -10}px, ${(mousePos.y - 0.5) * -10}px)` }}
+            >
+               <div className="flex justify-between items-center mb-3">
+                 <div className="flex items-center gap-2">
+                   <RefreshCcw className="w-5 h-5 text-indigo-400" />
+                   <span className="font-bold text-sm">Background Sync</span>
+                 </div>
+                 <Cloud className="w-4 h-4 text-zinc-500" />
+               </div>
+               <p className="text-xs text-zinc-400 leading-relaxed">
+                 Workers sincronizando mutaciones con Spring Boot en segundo plano al recuperar conexión.
+               </p>
+            </div>
 
          </div>
       </section>
 
-      {/* Specs Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-24 md:py-32 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
-          
-          {/* Tech Stack - Left column on large screens */}
-          <div className="lg:col-span-3">
-            <div className="sticky top-32">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 border-b border-zinc-800 pb-4">
-                Technology Stack
-              </h2>
-              <ul className="space-y-4">
-                {project.tech.map((techItem, index) => (
-                  <li key={index} className="text-lg md:text-xl font-light text-zinc-300 tracking-wide">
-                    {techItem}
-                  </li>
-                ))}
-              </ul>
+      {/* Marketing B2B - Mobile Value */}
+      <section className="max-w-6xl mx-auto px-6 pb-32">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 tracking-tight">Arquitectura Offline-First Real</h2>
+          <p className="text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+            Una app universitaria no puede depender de la calidad del WiFi en el campus. Este proyecto fue diseñado con una arquitectura tolerante a desconexiones, garantizando acceso a la información 24/7.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white border border-zinc-200 p-8 rounded-2xl hover:border-indigo-500/30 transition-colors shadow-sm hover:shadow-xl">
+            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
+              <WifiOff className="w-6 h-6 text-indigo-600" />
             </div>
+            <h3 className="text-xl font-bold text-zinc-900 mb-3">Disponibilidad 100%</h3>
+            <p className="text-zinc-600 text-sm leading-relaxed">
+              Toda la información crítica (horarios, notas, perfil) se persiste en una base de datos local (SQLite). El usuario nunca ve un estado de "Sin Conexión" bloqueante.
+            </p>
           </div>
 
-          {/* Text Content - Right side */}
-          <div className="lg:col-span-9 space-y-24 md:space-y-32">
-            
-            {/* Overview */}
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-8 md:mb-12 border-b border-zinc-800 pb-4">
-                The Project
-              </h2>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
-                    Español
-                  </p>
-                  <p className="text-lg md:text-2xl font-light leading-relaxed text-zinc-300">
-                    {project.descriptionES}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-zinc-600"></span>
-                    English
-                  </p>
-                  <p className="text-lg md:text-2xl font-light leading-relaxed text-zinc-500">
-                    {project.descriptionEN}
-                  </p>
-                </div>
-              </div>
+          <div className="bg-white border border-zinc-200 p-8 rounded-2xl hover:border-indigo-500/30 transition-colors shadow-sm hover:shadow-xl">
+            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
+              <RefreshCcw className="w-6 h-6 text-indigo-600" />
             </div>
+            <h3 className="text-xl font-bold text-zinc-900 mb-3">Sincronización Silenciosa</h3>
+            <p className="text-zinc-600 text-sm leading-relaxed">
+              Las acciones realizadas sin internet se encolan. Background Workers detectan cuando vuelve la señal y sincronizan los cambios bidireccionalmente con el backend Spring Boot.
+            </p>
+          </div>
 
-            {/* Architecture */}
-            <div>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-8 md:mb-12 border-b border-zinc-800 pb-4">
-                Architecture & Design
-              </h2>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">ESP</p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-zinc-400">
-                    {project.architectureES}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">ENG</p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-zinc-500">
-                    {project.architectureEN}
-                  </p>
-                </div>
-              </div>
+          <div className="bg-white border border-zinc-200 p-8 rounded-2xl hover:border-indigo-500/30 transition-colors shadow-sm hover:shadow-xl">
+            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
+              <Smartphone className="w-6 h-6 text-indigo-600" />
             </div>
+            <h3 className="text-xl font-bold text-zinc-900 mb-3">React Native Nativo</h3>
+            <p className="text-zinc-600 text-sm leading-relaxed">
+              No es una web-view. Interfaz fluida a 60fps con animaciones de transicin, navegacin nativa y consumo de recursos altamente optimizado para iOS y Android.
+            </p>
+          </div>
+        </div>
 
+        <div className="mt-16 pt-12 border-t border-zinc-200">
+          <h4 className="text-lg font-bold text-zinc-900 mb-6">Tecnologías Base:</h4>
+          <div className="flex flex-wrap gap-3">
+             {project.tech.map((t, i) => (
+                <span key={i} className="px-4 py-2 bg-zinc-100 text-zinc-700 rounded-lg text-sm font-bold uppercase tracking-wider">{t}</span>
+             ))}
           </div>
         </div>
       </section>
+
     </article>
   );
 }
+
