@@ -91,13 +91,13 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
         
         {/* Massive Opaque Background Typography (Absolute Wallpaper) */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10">
-          {/* OFFLINE: Pushed to the absolute top edge, slightly bleeding off screen */}
-          <h1 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[15%] text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10 flex flex-col justify-between py-10 md:py-12">
+          {/* OFFLINE: Wide letter spacing, not cut off */}
+          <h1 className="text-[15vw] md:text-[18vw] font-black tracking-[0.1em] md:tracking-[0.15em] leading-none text-[#b490ff] whitespace-nowrap text-center ml-[0.15em]">
             OFFLINE
           </h1>
-          {/* CONNECT: Pushed to the absolute bottom edge, slightly bleeding off screen */}
-          <h1 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[15%] text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
+          {/* CONNECT: Wide letter spacing, not cut off */}
+          <h1 className="text-[15vw] md:text-[18vw] font-black tracking-[0.1em] md:tracking-[0.15em] leading-none text-[#b490ff] whitespace-nowrap text-center ml-[0.15em]">
             CONNECT
           </h1>
         </div>
