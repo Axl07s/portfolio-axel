@@ -47,17 +47,6 @@ try {
     fs.writeFileSync(path.join(oldRouteDir, `${project.id}.html`), injectedHtml);
   }
 
-  // PRERENDER MARKETING CLIPS
-  for (const project of projects) {
-    const marketingDir = path.join(distPath, 'marketing', project.id);
-    if (!fs.existsSync(marketingDir)) fs.mkdirSync(marketingDir, { recursive: true });
-    fs.writeFileSync(path.join(marketingDir, 'index.html'), templateHtml);
-    
-    // Also keep the old .html just in case
-    const oldMarketingDir = path.join(distPath, 'marketing');
-    fs.writeFileSync(path.join(oldMarketingDir, `${project.id}.html`), templateHtml);
-  }
-
   // PRERENDER BASE ROUTES TO PREVENT 404s ON VERCEL
   const projectsDir = path.join(distPath, 'projects');
   if (!fs.existsSync(projectsDir)) fs.mkdirSync(projectsDir, { recursive: true });
@@ -74,3 +63,4 @@ try {
   console.error('SSG Failed:', error);
   process.exit(1);
 }
+

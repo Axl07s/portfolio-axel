@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { personalProjects } from '../data/personalProjectsData';
-import { ScrambleText } from '../components/effects/ScrambleText';
-import { Particles } from '../components/effects/Particles';
+import type { PersonalProject } from '../../data/personalProjectsData';
+import { ScrambleText } from '../effects/ScrambleText';
+import { Particles } from '../effects/Particles';
 
-export function MarketingClip() {
-  const { id } = useParams();
-  const project = personalProjects.find((p) => p.id === id);
+interface CinematicHeroProps {
+  project: PersonalProject;
+}
+
+export function CinematicHero({ project }: CinematicHeroProps) {
   const [phase, setPhase] = useState(0);
+
+  const isCyber = project.id === 'suiteseguridad';
+  const accentColor = isCyber ? '#10b981' : '#6366f1'; 
+
+  const mockMetrics = [
+    { value: '+99%', label: 'DETECCIÓN EDR' },
+    { value: '< 5ms', label: 'LATENCIA KERNEL' },
+    { value: 'ZERO', label: 'FALSOS POSITIVOS' },
+  ];
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 3000);
@@ -33,20 +43,8 @@ export function MarketingClip() {
     };
   }, []);
 
-  if (!project) return <Navigate to="/" />;
-
-  const isCyber = project.id === 'suiteseguridad';
-  const accentColor = isCyber ? '#10b981' : '#6366f1'; 
-
-  // Hardcode some metrics for the visual clip if they don't exist in PersonalProject
-  const mockMetrics = [
-    { value: '+99%', label: 'DETECCIÓN EDR' },
-    { value: '< 5ms', label: 'LATENCIA KERNEL' },
-    { value: 'ZERO', label: 'FALSOS POSITIVOS' },
-  ];
-
   return (
-    <div className="relative w-screen h-screen bg-black overflow-hidden font-mono text-zinc-200">
+    <div className="relative w-full h-[100vh] bg-black overflow-hidden font-mono text-zinc-200">
       <Particles density={isCyber ? 100 : 50} color={accentColor} maxOpacity={0.3} />
       
       <AnimatePresence mode="wait">
@@ -66,7 +64,7 @@ export function MarketingClip() {
               >
                 [ SYSTEM INITIALIZATION ]
               </motion.div>
-              <div className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase drop-shadow-2xl">
+              <div className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase drop-shadow-2xl px-4 text-center">
                 <ScrambleText text={project.title} />
               </div>
               <motion.div 
@@ -84,7 +82,7 @@ export function MarketingClip() {
         {(phase === 1 || phase === 2) && (
           <motion.div 
             key="phase1"
-            className="absolute inset-0 flex items-center justify-center"
+            className="absolute inset-0 flex items-center justify-center pt-16"
             initial={{ opacity: 0, scale: 0.8, rotateX: 10 }}
             animate={{ 
               opacity: 1, 
@@ -95,22 +93,22 @@ export function MarketingClip() {
             transition={{ duration: phase === 2 ? 5 : 1.5, ease: 'easeOut' }}
             style={{ perspective: 1000 }}
           >
-            <div className="relative w-[80vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+            <div className="relative w-[90vw] md:w-[80vw] h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
               <motion.img 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-top md:object-center"
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 10, ease: 'linear' }}
               />
-              <div className="absolute bottom-10 left-10 z-20">
+              <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1 }}
-                  className="text-sm font-bold tracking-widest mb-2"
+                  className="text-xs md:text-sm font-bold tracking-widest mb-2"
                   style={{ color: accentColor }}
                 >
                   {project.layoutStyle.toUpperCase()} ARCHITECTURE
@@ -119,7 +117,7 @@ export function MarketingClip() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2 }}
-                  className="text-5xl md:text-7xl font-black text-white"
+                  className="text-4xl md:text-7xl font-black text-white"
                 >
                   {project.title}
                 </motion.h1>
@@ -132,32 +130,32 @@ export function MarketingClip() {
         {phase === 3 && (
           <motion.div 
             key="phase3"
-            className="absolute inset-0 flex items-center justify-center p-10"
+            className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, filter: 'blur(10px)' }}
             transition={{ duration: 1 }}
           >
-            <div className="grid grid-cols-3 gap-6 w-full max-w-6xl h-[70vh]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full max-w-6xl mt-16 md:mt-0">
               {mockMetrics.map((metric, i) => (
                 <motion.div 
                   key={i}
                   initial={{ opacity: 0, y: 50, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ delay: i * 0.2, type: 'spring' }}
-                  className="bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden"
+                  className="bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
                   <motion.div 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: (i * 0.2) + 0.5, type: 'spring' }}
-                    className="text-6xl font-black mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                    className="text-4xl md:text-6xl font-black mb-2 md:mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     style={{ color: accentColor }}
                   >
                     {metric.value}
                   </motion.div>
-                  <div className="text-zinc-400 font-medium tracking-wide uppercase text-sm">
+                  <div className="text-zinc-400 font-medium tracking-wide uppercase text-xs md:text-sm">
                     {metric.label}
                   </div>
                 </motion.div>
@@ -167,16 +165,16 @@ export function MarketingClip() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8 }}
-                className="col-span-3 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-wrap gap-4 justify-center items-center mt-8"
+                className="col-span-1 md:col-span-3 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 flex flex-wrap gap-2 md:gap-4 justify-center items-center mt-2 md:mt-8"
               >
-                <div className="w-full text-center text-zinc-500 tracking-widest text-xs uppercase mb-2">Tech Stack</div>
-                {project.tech.map((tech, i) => (
+                <div className="w-full text-center text-zinc-500 tracking-widest text-[10px] md:text-xs uppercase mb-2">Tech Stack</div>
+                {project.tech.map((tech: string, i: number) => (
                   <motion.span 
                     key={i}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1 + (i * 0.1) }}
-                    className="px-4 py-2 bg-black/50 border border-white/5 rounded-lg text-white font-medium text-sm"
+                    className="px-3 py-1.5 md:px-4 md:py-2 bg-black/50 border border-white/5 rounded-lg text-white font-medium text-xs md:text-sm"
                   >
                     {tech}
                   </motion.span>
@@ -200,11 +198,11 @@ export function MarketingClip() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5, duration: 1.5, ease: 'easeOut' }}
-              className="relative"
+              className="relative text-center"
             >
               <div className="absolute inset-0 blur-3xl opacity-30" style={{ backgroundColor: accentColor }} />
-              <div className="text-2xl font-light text-zinc-400 mb-2 text-center">Engineered & Designed by</div>
-              <div className="text-5xl md:text-8xl font-black text-white tracking-tighter">
+              <div className="text-xl md:text-2xl font-light text-zinc-400 mb-2">Engineered & Designed by</div>
+              <div className="text-6xl md:text-8xl font-black text-white tracking-tighter">
                 AXEL
               </div>
             </motion.div>
@@ -212,13 +210,31 @@ export function MarketingClip() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2 }}
-              className="mt-12 text-zinc-500 uppercase tracking-[0.4em] text-xs"
+              className="mt-12 text-zinc-500 uppercase tracking-[0.4em] text-[10px] md:text-xs"
             >
-              Disponible para nuevos desafíos
+              Scroll down for details
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Scroll indicator hinting there is content below */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
+      >
+        <span className="text-[10px] text-zinc-500 tracking-widest uppercase mb-2">Scroll</span>
+        <motion.div 
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-4 h-6 border-2 border-zinc-600 rounded-full flex justify-center p-1"
+        >
+          <div className="w-1 h-1 bg-zinc-400 rounded-full" />
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
+

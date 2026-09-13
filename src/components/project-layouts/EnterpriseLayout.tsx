@@ -1,6 +1,7 @@
+import { CinematicHero } from './CinematicHero';
 import { useState, useRef } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
-import { Shield, Activity, AlertTriangle, Zap, Server, Play } from 'lucide-react';
+import { Shield, Activity, AlertTriangle, Zap, Server, } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -32,28 +33,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       <ScrollAffordance sections={ENTERPRISE_SECTIONS} accentColor="emerald" />
 
       {/* Hero Section */}
-      <header id="enterprise-hero" className="relative pt-32 pb-8 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400 mb-8 animate-pulse">
-          <Shield className="w-3.5 h-3.5" />
-          <span>ZERO-TRUST KERNEL EDR</span>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 uppercase">
-          {project.title}
-        </h1>
-        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed mb-6">
-          {project.descriptionES}
-        </p>
-        
-        <a 
-          href={/marketing/ + project.id}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-500 hover:scale-105 transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)]"
-        >
-          <Play className="w-5 h-5 fill-current" />
-          Ver Clip de Marketing (Fase 3)
-        </a>
-      </header>
+      <div id="enterprise-hero"><CinematicHero project={project} /></div>
 
       {/* ============================================================ */}
       {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
@@ -309,4 +289,8 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
+
+
+
 
