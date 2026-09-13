@@ -42,9 +42,11 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         </p>
       </header>
 
-      {/* The Exploding Blueprint */}
+      {/* ============================================================ */}
+      {/* DESKTOP: Exploding 3D Blueprint Bento (lg+) */}
+      {/* ============================================================ */}
       <section id="graph-blueprint"
-        className="relative py-24 w-full flex items-center justify-center z-20 cursor-crosshair"
+        className="hidden lg:flex relative py-24 w-full items-center justify-center z-20 cursor-crosshair"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
@@ -71,14 +73,14 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                </div>
             </div>
 
-            {/* The Bento Grid (Front Layer) */}
+            {/* The Bento Grid (Front Layer) — 4-col only on desktop */}
             <div 
-              className="absolute inset-0 grid grid-cols-4 grid-rows-3 gap-4 md:gap-6 transition-all duration-700 ease-out"
+              className="absolute inset-0 grid grid-cols-4 grid-rows-3 gap-6 transition-all duration-700 ease-out"
               style={{ transform: `translateZ(${isHovered ? '150px' : '0px'})`, transformStyle: 'preserve-3d' }}
             >
                {/* Main UI Tile */}
                <div 
-                 className="col-span-4 md:col-span-2 row-span-2 bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 relative group"
+                 className="col-span-2 row-span-2 bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 relative group"
                  style={{ transform: `translateZ(${isHovered ? '80px' : '0px'})` }}
                >
                  <img src={project.images[0]?.url} alt="Main UI" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -87,7 +89,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
 
                {/* Metrics Tile 1 */}
                <div 
-                 className="col-span-2 md:col-span-1 row-span-1 bg-black border border-blue-900/50 rounded-3xl p-6 flex flex-col justify-between shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-transform duration-700"
+                 className="col-span-1 row-span-1 bg-black border border-blue-900/50 rounded-3xl p-6 flex flex-col justify-between shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-transform duration-700"
                  style={{ transform: `translateZ(${isHovered ? '140px' : '0px'})` }}
                >
                  <Cpu className="w-6 h-6 text-blue-400" />
@@ -97,9 +99,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  </div>
                </div>
 
-               {/* Native UI Tile (Replaces badly cropped image) */}
+               {/* Native UI Tile (Vector Index) */}
                <div 
-                 className="col-span-2 md:col-span-1 row-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl p-5 flex flex-col transition-transform duration-700"
+                 className="col-span-1 row-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl p-5 flex flex-col transition-transform duration-700"
                  style={{ transform: `translateZ(${isHovered ? '40px' : '0px'})` }}
                >
                  <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
@@ -108,7 +110,6 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  </div>
                  
                  <div className="flex-1 space-y-4">
-                   {/* Item 1 */}
                    <div className="flex items-start gap-3">
                      <div className="p-2 bg-blue-500/10 rounded-lg shrink-0 mt-0.5">
                        <FileText className="w-3 h-3 text-blue-400" />
@@ -122,7 +123,6 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                      </div>
                    </div>
                    
-                   {/* Item 2 */}
                    <div className="flex items-start gap-3">
                      <div className="p-2 bg-amber-500/10 rounded-lg shrink-0 mt-0.5">
                        <FileText className="w-3 h-3 text-amber-400" />
@@ -136,7 +136,6 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                      </div>
                    </div>
 
-                   {/* Item 3 */}
                    <div className="flex items-start gap-3">
                      <div className="p-2 bg-blue-500/10 rounded-lg shrink-0 mt-0.5">
                        <FileText className="w-3 h-3 text-blue-400" />
@@ -161,7 +160,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
 
                {/* Tech Stack Tile */}
                <div 
-                 className="col-span-2 md:col-span-1 row-span-1 bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/30 rounded-3xl p-6 transition-transform duration-700"
+                 className="col-span-1 row-span-1 bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/30 rounded-3xl p-6 transition-transform duration-700"
                  style={{ transform: `translateZ(${isHovered ? '110px' : '0px'})` }}
                >
                  <h3 className="text-sm font-mono text-blue-300 mb-3">Stack</h3>
@@ -172,36 +171,111 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  </div>
                </div>
 
-                {/* Wide Terminal Tile */}
-                <div 
-                  className="col-span-4 md:col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
-                  style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
-                >
-                  <div className="flex-1 font-mono text-sm">
-                    <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector cosine similarity + BM25 rerank</div>
-                    <div className="text-blue-400">results = await hybrid_retriever.get_relevant_documents(query, k=5)</div>
-                  </div>
-                  <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
-                    <Search className="w-5 h-5 text-blue-400" />
-                  </div>
-                </div>
+               {/* Wide Terminal Tile */}
+               <div 
+                 className="col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
+                 style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
+               >
+                 <div className="flex-1 font-mono text-sm">
+                   <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector cosine similarity + BM25 rerank</div>
+                   <div className="text-blue-400">results = await hybrid_retriever.get_relevant_documents(query, k=5)</div>
+                 </div>
+                 <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
+                   <Search className="w-5 h-5 text-blue-400" />
+                 </div>
+               </div>
 
-                {/* Action Tile */}
-                <div 
-                  className="col-span-4 md:col-span-1 row-span-1 bg-blue-600 rounded-3xl p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
-                  style={{ transform: `translateZ(${isHovered ? '200px' : '0px'})` }}
-                >
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group">
-                     <span className="font-bold text-white uppercase tracking-widest">Deploy<br/>System</span>
-                     <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-2 transition-transform" />
-                  </a>
-                </div>
+               {/* Action Tile */}
+               <div 
+                 className="col-span-1 row-span-1 bg-blue-600 rounded-3xl p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
+                 style={{ transform: `translateZ(${isHovered ? '200px' : '0px'})` }}
+               >
+                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group">
+                    <span className="font-bold text-white uppercase tracking-widest">Deploy<br/>System</span>
+                    <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-2 transition-transform" />
+                 </a>
+               </div>
 
-             </div>
+            </div>
+         </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* MOBILE: Flat bento cards stacked (< lg) */}
+      {/* ============================================================ */}
+      <section id="graph-blueprint" className="lg:hidden relative z-20 py-12 px-6">
+        <div className="space-y-4 max-w-sm mx-auto">
+          {/* Screenshot card */}
+          <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+            <img src={project.images[0]?.url} alt="RAG Engine UI" className="w-full h-auto object-cover" />
           </div>
-       </section>
 
-      {/* Marketing & Business Value Section (No Exaggeration, Pure B2B Value) */}
+          {/* Latency metric */}
+          <div className="bg-black border border-blue-900/50 rounded-2xl p-5 flex items-center justify-between shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+            <div>
+              <div className="text-3xl font-black text-white">{project.metrics[1]?.value || '< 240ms'}</div>
+              <div className="text-xs text-blue-400 uppercase tracking-widest mt-1">Avg Latency</div>
+            </div>
+            <Cpu className="w-8 h-8 text-blue-400 opacity-60" />
+          </div>
+
+          {/* Vector index card */}
+          <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-zinc-800">
+              <h3 className="text-xs font-mono text-zinc-400 uppercase">Vector Index</h3>
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            </div>
+            <div className="space-y-3">
+              {[
+                { name: 'q3_financials.pdf', status: 'done', info: '1,024 chunks' },
+                { name: 'security_policy.md', status: 'processing', info: 'Processing...' },
+                { name: 'api_v2_docs.json', status: 'done', info: '4,520 chunks' },
+              ].map((item) => (
+                <div key={item.name} className="flex items-center gap-3">
+                  <div className={`p-2 rounded-lg ${item.status === 'processing' ? 'bg-amber-500/10' : 'bg-blue-500/10'}`}>
+                    <FileText className={`w-3 h-3 ${item.status === 'processing' ? 'text-amber-400' : 'text-blue-400'}`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-zinc-300 font-medium truncate">{item.name}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      {item.status === 'done'
+                        ? <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                        : <div className="w-3 h-3 rounded-full border-2 border-amber-500 border-t-transparent animate-spin"></div>
+                      }
+                      <span className="text-[9px] text-zinc-500 font-mono">{item.info}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 pt-3 border-t border-zinc-800 flex justify-between">
+              <span className="text-[9px] text-zinc-500 uppercase tracking-widest">Total Vectors</span>
+              <span className="text-sm text-blue-400 font-mono">2.4M</span>
+            </div>
+          </div>
+
+          {/* Terminal snippet */}
+          <div className="bg-[#0a0a0a] border border-zinc-800 rounded-2xl p-5">
+            <div className="font-mono text-xs">
+              <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector + BM25 rerank</div>
+              <div className="text-blue-400 break-all">results = await hybrid_retriever.get_relevant_documents(query, k=5)</div>
+            </div>
+          </div>
+
+          {/* Deploy button */}
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between w-full bg-blue-600 hover:bg-blue-500 rounded-2xl p-5 transition-colors group"
+          >
+            <span className="font-bold text-white uppercase tracking-widest">Deploy System</span>
+            <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      </section>
+
+      {/* Marketing & Business Value Section */}
       <section id="graph-value" className="max-w-5xl mx-auto px-6 pb-32">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Arquitectura RAG Determinista y Anti-Alucinación</h2>
@@ -235,7 +309,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <LineChart className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Búsqueda Híbrida & Reranking</h3>
+            <h3 className="text-xl font-bold text-white mb-3">Búsqueda Híbrida &amp; Reranking</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
               Combina búsqueda densa por embeddings en pgvector con búsqueda por palabras clave BM25. Un pipeline de reranking contextual reordena los fragmentos más pertinentes en menos de 240ms.
             </p>

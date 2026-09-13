@@ -31,6 +31,19 @@ export const translations = {
     
     // Misc
     'common.close': 'Close',
+
+    // Project Detail Pages
+    'detail.viewLive': 'View Live Deploy',
+    'detail.viewGithub': 'View on GitHub',
+    'detail.techStack': 'Tech Stack',
+    'detail.architecture': 'Architecture',
+    'detail.features': 'Core Features',
+    'detail.businessValue': 'Business Value',
+    'detail.enterSystem': 'Enter System',
+    'detail.sourceCode': 'Source Code',
+    'detail.openDemo': 'Open Demo',
+    'detail.deploySystem': 'Deploy System',
+    'detail.githubRepo': 'GitHub Repository',
   },
   es: {
     // Navbar
@@ -64,6 +77,19 @@ export const translations = {
     
     // Misc
     'common.close': 'Cerrar',
+
+    // Project Detail Pages
+    'detail.viewLive': 'Ver Deploy en Vivo',
+    'detail.viewGithub': 'Ver en GitHub',
+    'detail.techStack': 'Tecnologías Utilizadas',
+    'detail.architecture': 'Arquitectura',
+    'detail.features': 'Funcionalidades Core',
+    'detail.businessValue': 'Valor de Negocio',
+    'detail.enterSystem': 'Ingresar al Sistema',
+    'detail.sourceCode': 'Código Fuente',
+    'detail.openDemo': 'Abrir Demo',
+    'detail.deploySystem': 'Desplegar Sistema',
+    'detail.githubRepo': 'Repositorio GitHub',
   }
 };
 

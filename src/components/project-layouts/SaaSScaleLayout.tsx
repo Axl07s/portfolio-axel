@@ -70,16 +70,18 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
         </div>
       </header>
 
-      {/* 3D Interactive Parallax Device Showcase */}
+      {/* ============================================================ */}
+      {/* DESKTOP: 3D Parallax Device Showcase (lg+) */}
+      {/* ============================================================ */}
       <section id="saas-showcase"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
-        className="relative w-full max-w-7xl mx-auto px-4 py-32 z-20"
+        className="hidden lg:flex relative w-full max-w-7xl mx-auto px-4 py-32 z-20 items-center justify-center"
         style={{ perspective: '2000px' }}
       >
         <div 
-          className="relative w-full aspect-[16/10] md:aspect-[21/9] flex items-center justify-center transition-transform duration-500 ease-out"
+          className="relative w-full aspect-[21/9] flex items-center justify-center transition-transform duration-500 ease-out"
           style={{ 
             transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`,
             transformStyle: 'preserve-3d'
@@ -88,10 +90,10 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
           
           {/* Background MacBook-esque Container */}
           <div 
-            className="absolute top-0 left-0 w-[90%] md:w-[85%] bg-zinc-900 rounded-t-2xl md:rounded-t-3xl border border-zinc-700 border-b-0 overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
+            className="absolute top-0 left-0 w-[85%] bg-zinc-900 rounded-t-3xl border border-zinc-700 border-b-0 overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)]"
             style={{ transform: 'translateZ(-50px)' }}
           >
-            <div className="h-10 md:h-12 bg-zinc-950 flex items-center px-4 border-b border-zinc-800">
+            <div className="h-12 bg-zinc-950 flex items-center px-4 border-b border-zinc-800">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
@@ -111,61 +113,61 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
 
           {/* Foreground iPhone-esque Container (Parallax + 3D Pop) */}
           <div 
-            className="absolute bottom-[-20%] right-[0%] md:right-[5%] w-[35%] md:w-[22%] aspect-[9/19.5] bg-[#0c0c0e] rounded-[2rem] md:rounded-[3rem] border-[6px] md:border-[10px] border-zinc-800 overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.9)] z-30 transition-transform duration-300 ease-out flex flex-col"
+            className="absolute bottom-[-20%] right-[5%] w-[22%] aspect-[9/19.5] bg-[#0c0c0e] rounded-[3rem] border-[10px] border-zinc-800 overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.9)] z-30 transition-transform duration-300 ease-out flex flex-col"
             style={{ 
               transform: `translateZ(100px) translateY(${phoneOffset}px)`,
               backfaceVisibility: 'hidden' 
             }}
           >
-            <div className="absolute top-2 md:top-3 left-1/2 -translate-x-1/2 w-1/3 h-5 md:h-7 bg-black rounded-full z-40"></div>
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-7 bg-black rounded-full z-40"></div>
             
             {/* Native Mobile UI Mockup */}
-            <div className="flex-1 overflow-hidden pt-12 md:pt-16 pb-6 px-4 flex flex-col gap-4 relative">
+            <div className="flex-1 overflow-hidden pt-16 pb-6 px-4 flex flex-col gap-4 relative">
               {/* Header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
-                    <span className="text-white font-bold text-[10px] md:text-sm">S</span>
+                  <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">S</span>
                   </div>
                   <div>
-                    <h5 className="text-[10px] md:text-xs font-bold text-white">SyntroSaaS</h5>
-                    <p className="text-[8px] md:text-[10px] text-zinc-500">Workspace</p>
+                    <h5 className="text-xs font-bold text-white">SyntroSaaS</h5>
+                    <p className="text-[10px] text-zinc-500">Workspace</p>
                   </div>
                 </div>
-                <User className="w-4 h-4 md:w-5 md:h-5 text-zinc-400" />
+                <User className="w-5 h-5 text-zinc-400" />
               </div>
 
               {/* Mobile Stats Card */}
               <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-2 mt-2">
                  <div className="flex justify-between items-center">
-                   <span className="text-[9px] md:text-[11px] text-zinc-400 font-medium">Monthly API Ingest</span>
+                   <span className="text-[11px] text-zinc-400 font-medium">Monthly API Ingest</span>
                    <Activity className="w-3 h-3 text-indigo-400" />
                  </div>
-                 <h4 className="text-lg md:text-2xl font-bold text-white tracking-tight">1.42M</h4>
+                 <h4 className="text-2xl font-bold text-white tracking-tight">1.42M</h4>
                  <div className="w-full bg-zinc-800 rounded-full h-1 mt-1">
                    <div className="bg-indigo-500 h-1 rounded-full w-[71%]"></div>
                  </div>
-                 <span className="text-[8px] md:text-[9px] text-zinc-500 mt-0.5">71% of 2M Quota</span>
+                 <span className="text-[9px] text-zinc-500 mt-0.5">71% of 2M Quota</span>
               </div>
 
               {/* List Items */}
               <div className="flex flex-col gap-2 mt-2">
                 <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
                   <div className="p-2 bg-rose-500/10 rounded-lg">
-                    <Database className="w-3 h-3 md:w-4 md:h-4 text-rose-500" />
+                    <Database className="w-4 h-4 text-rose-500" />
                   </div>
                   <div className="flex-1">
-                    <h6 className="text-[9px] md:text-xs font-semibold text-white">Database Storage</h6>
-                    <p className="text-[8px] md:text-[10px] text-zinc-500">4.8 GB used</p>
+                    <h6 className="text-xs font-semibold text-white">Database Storage</h6>
+                    <p className="text-[10px] text-zinc-500">4.8 GB used</p>
                   </div>
                 </div>
                 <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
                   <div className="p-2 bg-emerald-500/10 rounded-lg">
-                    <Cloud className="w-3 h-3 md:w-4 md:h-4 text-emerald-500" />
+                    <Cloud className="w-4 h-4 text-emerald-500" />
                   </div>
                   <div className="flex-1">
-                    <h6 className="text-[9px] md:text-xs font-semibold text-white">Edge Gateway</h6>
-                    <p className="text-[8px] md:text-[10px] text-zinc-500">42ms latency (P99)</p>
+                    <h6 className="text-xs font-semibold text-white">Edge Gateway</h6>
+                    <p className="text-[10px] text-zinc-500">42ms latency (P99)</p>
                   </div>
                 </div>
               </div>
@@ -188,10 +190,64 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
         </div>
       </section>
 
+      {/* ============================================================ */}
+      {/* MOBILE: Desktop screenshot + phone mockup stacked (< lg) */}
+      {/* ============================================================ */}
+      <section id="saas-showcase" className="lg:hidden relative z-20 py-12 px-4">
+        {/* Desktop screenshot */}
+        <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl mb-6">
+          <div className="h-10 bg-zinc-950 flex items-center px-4 border-b border-zinc-800">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+            </div>
+            <div className="mx-auto flex items-center gap-1 text-[11px] text-zinc-500 font-mono">
+              <Shield className="w-3 h-3" />
+              syntrosaas-app.vercel.app
+            </div>
+          </div>
+          <img src={project.images[0]?.url} alt="Desktop UI" className="w-full h-auto object-cover" />
+        </div>
+
+        {/* Mobile dashboard metrics */}
+        <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 mb-4">
+          <div className="text-xs font-mono text-indigo-400 uppercase tracking-widest mb-4">Mobile Dashboard</div>
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm text-zinc-300 font-medium">Monthly API Ingest</span>
+                <span className="text-sm font-bold text-white">1.42M</span>
+              </div>
+              <div className="w-full bg-zinc-800 rounded-full h-1.5">
+                <div className="bg-indigo-500 h-1.5 rounded-full w-[71%]"></div>
+              </div>
+              <div className="text-[11px] text-zinc-500 mt-1">71% of 2M Quota</div>
+            </div>
+            <div className="flex gap-3 pt-2">
+              <div className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-3 flex items-center gap-2">
+                <Database className="w-4 h-4 text-rose-500 shrink-0" />
+                <div>
+                  <div className="text-xs font-semibold text-white">4.8 GB</div>
+                  <div className="text-[10px] text-zinc-500">DB Storage</div>
+                </div>
+              </div>
+              <div className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-3 flex items-center gap-2">
+                <Cloud className="w-4 h-4 text-emerald-500 shrink-0" />
+                <div>
+                  <div className="text-xs font-semibold text-white">42ms</div>
+                  <div className="text-[10px] text-zinc-500">Edge P99</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features List */}
       <section id="saas-features" className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">
         <div>
-          <h3 className="text-3xl font-semibold mb-8 text-white">Arquitectura Multi-Tenant & Aislamiento RLS</h3>
+          <h3 className="text-3xl font-semibold mb-8 text-white">Arquitectura Multi-Tenant &amp; Aislamiento RLS</h3>
           <ul className="space-y-6">
             {project.features.map((feature, i) => (
               <li key={i} className="flex items-start gap-4 text-zinc-300 group">

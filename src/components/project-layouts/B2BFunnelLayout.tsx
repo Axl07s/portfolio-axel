@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { useLanguage } from '../../context/LanguageContext';
 
 const B2B_SECTIONS = [
   { id: 'b2b-hero', label: 'Intro' },
@@ -12,6 +13,7 @@ const B2B_SECTIONS = [
 ];
 
 export function B2BFunnelLayout({ project }: { project: Project }) {
+  const { lang } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -56,9 +58,13 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       {/* 2. MAIN BROWSER SHOWCASE - Hero & Diagnostic Funnel */}
       <section id="b2b-showcase" className="px-6 md:px-12 max-w-[90rem] mx-auto mb-32 relative">
         <div className="text-center mb-12">
-           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Ingeniería de Adquisición</h2>
+           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+             {lang === 'es' ? 'Ingeniería de Adquisición' : 'Acquisition Engineering'}
+           </h2>
            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-             Arquitectura de captación orientada a conversión. Un embudo interactivo con diagnóstico en 3 pasos diseñado para cualificar prospectos B2B de alto valor.
+             {lang === 'es'
+               ? 'Arquitectura de captación orientada a conversión. Un embudo interactivo con diagnóstico en 3 pasos diseñado para cualificar prospectos B2B de alto valor.'
+               : 'Conversion-driven acquisition architecture. An interactive 3-step diagnostic funnel designed to qualify high-value B2B prospects.'}
            </p>
         </div>
         
@@ -95,7 +101,9 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-2">
                  <BarChart className="w-6 h-6" />
                </div>
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight">Simulador de ROI Dinámico</h2>
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+                 {lang === 'es' ? 'Simulador de ROI Dinámico' : 'Dynamic ROI Simulator'}
+               </h2>
                <p className="text-xl text-zinc-400 font-light leading-relaxed">
                  En servicios B2B de alto valor, la certidumbre cuantitativa acelera el ciclo de cierre. Desarrollé un simulador reactivo en TypeScript que calcula en tiempo real proyecciones de pipeline y retorno neto con base en las métricas comerciales del prospecto.
                </p>
@@ -139,7 +147,9 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-2">
                  <Briefcase className="w-6 h-6" />
                </div>
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight">Arquitectura y Casos de Estudio</h2>
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+                 {lang === 'es' ? 'Arquitectura y Casos de Estudio' : 'Architecture & Case Studies'}
+               </h2>
                <p className="text-xl text-zinc-400 font-light leading-relaxed">
                  Demostración de capacidades respaldada por casos de estudio estructurados: problema operativo del cliente, stack tecnológico implementado y resultados cuantitativos verificados.
                </p>
@@ -171,10 +181,16 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       {/* 5. TECH STACK BENTO */}
       <section id="b2b-stack" className="px-6 md:px-12 max-w-screen-xl mx-auto">
          <div className="bg-[#121214] border border-zinc-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-2">Stack Tecnológico Central</h3>
-              <p className="text-zinc-500 max-w-md">Arquitectura frontend con Vite, React, TypeScript y Tailwind CSS, garantizando tiempos de carga inferiores a 800ms.</p>
-            </div>
+             <div>
+               <h3 className="text-2xl font-bold mb-2">
+                 {lang === 'es' ? 'Stack Tecnológico Central' : 'Core Tech Stack'}
+               </h3>
+               <p className="text-zinc-500 max-w-md">
+                 {lang === 'es'
+                   ? 'Arquitectura frontend con Vite, React, TypeScript y Tailwind CSS, garantizando tiempos de carga inferiores a 800ms.'
+                   : 'Frontend architecture with Vite, React, TypeScript, and Tailwind CSS, guaranteeing load times under 800ms.'}
+               </p>
+             </div>
             <div className="flex flex-wrap justify-end gap-3">
                {project.stack.map((tech, i) => (
                   <span key={i} className="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-300 font-mono text-sm">

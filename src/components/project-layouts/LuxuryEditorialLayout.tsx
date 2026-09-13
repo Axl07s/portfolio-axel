@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { ChefHat, CreditCard, Utensils, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { useLanguage } from '../../context/LanguageContext';
 
 const LUXURY_SECTIONS = [
   { id: 'luxury-hero', label: 'Intro' },
@@ -11,6 +12,7 @@ const LUXURY_SECTIONS = [
 ];
 
 export function LuxuryEditorialLayout({ project }: { project: Project }) {
+  const { lang } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -237,7 +239,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#c9a96e] px-12 py-5 text-black font-bold uppercase tracking-[0.2em] text-sm">
           <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
           <span className="relative flex items-center gap-4">
-             Entrar al Sistema <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+             {lang === 'es' ? 'Ingresar al Sistema' : 'Enter System'} <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
           </span>
         </a>
       </section>

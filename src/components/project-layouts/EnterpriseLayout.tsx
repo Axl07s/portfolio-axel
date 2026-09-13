@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Shield, Activity, AlertTriangle, Zap, Server } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { useLanguage } from '../../context/LanguageContext';
 
 const ENTERPRISE_SECTIONS = [
   { id: 'enterprise-hero', label: 'Intro' },
@@ -11,6 +12,7 @@ const ENTERPRISE_SECTIONS = [
 ];
 
 export function EnterpriseLayout({ project }: { project: PersonalProject }) {
+  const { lang } = useLanguage();
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -43,9 +45,11 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </p>
       </header>
 
-      {/* 3D Threat Isolation Hologram */}
+      {/* ============================================================ */}
+      {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
+      {/* ============================================================ */}
       <section id="enterprise-hologram"
-        className="relative py-12 w-full flex items-center justify-center z-20 cursor-crosshair h-[500px] md:h-[700px]"
+        className="hidden lg:flex relative py-12 w-full items-center justify-center z-20 cursor-crosshair h-[700px]"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -139,11 +143,73 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
          </div>
       </section>
 
+      {/* ============================================================ */}
+      {/* MOBILE: Threat detection visual fallback (< lg) */}
+      {/* ============================================================ */}
+      <section id="enterprise-hologram" className="lg:hidden relative z-20 py-12 px-6">
+        <div className="max-w-sm mx-auto space-y-4">
+          {/* Title */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-3">
+              <Activity className="w-3.5 h-3.5" />
+              Threat Isolation Demo
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              El motor EDR intercepta amenazas en el subsistema kernel antes de su ejecución.
+            </p>
+          </div>
+
+          {/* Threat card */}
+          <div className="bg-red-950/50 border-2 border-red-500/60 rounded-2xl p-5 flex items-center gap-4">
+            <AlertTriangle className="w-10 h-10 text-red-500 shrink-0 animate-pulse" />
+            <div>
+              <div className="font-mono text-sm text-red-400 font-bold">RANSOM.EXE detectado</div>
+              <div className="text-xs text-slate-400 mt-1">Entropía Shannon: 7.99 (cifrado masivo)</div>
+            </div>
+          </div>
+
+          {/* ETW log card */}
+          <div className="bg-slate-950 border-2 border-emerald-500/30 rounded-2xl p-5">
+            <div className="flex items-center justify-between mb-3 pb-3 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <Activity className="w-4 h-4 text-emerald-400" />
+                <span className="font-mono text-xs text-emerald-400 font-bold">ETW INGESTION</span>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            </div>
+            <div className="space-y-2 font-mono text-[11px] text-slate-400">
+              <div className="flex justify-between"><span className="text-slate-500">Event ID:</span> <span className="text-white">4688</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Entropy:</span> <span className="text-red-400">7.99 (High)</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Latency:</span> <span className="text-emerald-400">&lt; 12ms</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Action:</span> <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">BLOCKED</span></div>
+            </div>
+          </div>
+
+          {/* Performance metrics */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
+              <div className="text-2xl font-light text-white mb-1">&lt; 12ms</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-widest">Kernel Latency</div>
+            </div>
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
+              <div className="text-2xl font-light text-white mb-1">0.8%</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-widest">CPU Overhead</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* The Actual Product / Application UI */}
       <section id="enterprise-dashboard" className="relative w-full max-w-6xl mx-auto px-6 py-12 z-20">
         <div className="text-center mb-10">
-          <h2 className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-2">Centro de Control EDR</h2>
-          <p className="text-2xl font-light text-slate-300">Interfaz principal desarrollada para el Centro de Operaciones de Seguridad (SOC).</p>
+          <h2 className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-2">
+            {lang === 'es' ? 'Centro de Control EDR' : 'EDR Control Center'}
+          </h2>
+          <p className="text-2xl font-light text-slate-300">
+            {lang === 'es'
+              ? 'Interfaz principal desarrollada para el Centro de Operaciones de Seguridad (SOC).'
+              : 'Main interface developed for the Security Operations Center (SOC).'}
+          </p>
         </div>
         
         <div className="bg-[#0f111a] border border-slate-800 rounded-2xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] relative group">
@@ -174,9 +240,13 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {/* Marketing B2B - Enterprise Security Value */}
       <section id="enterprise-features" className="max-w-5xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Protección Proactiva a Nivel Kernel</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            {lang === 'es' ? 'Protección Proactiva a Nivel Kernel' : 'Proactive Kernel-Level Protection'}
+          </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Los antivirus convencionales dependen de firmas estáticas reactivas. SuiteSeguridad EDR intercepta vectores de ataque en el subsistema del kernel de Windows mediante Event Tracing for Windows (ETW) y hooks de baja latencia, mitigando amenazas zero-day antes de su ejecución.
+            {lang === 'es'
+              ? 'Los antivirus convencionales dependen de firmas estáticas reactivas. SuiteSeguridad EDR intercepta vectores de ataque en el subsistema del kernel de Windows mediante Event Tracing for Windows (ETW) y hooks de baja latencia, mitigando amenazas zero-day antes de su ejecución.'
+              : 'Conventional antivirus relies on reactive static signatures. SuiteSeguridad EDR intercepts attack vectors in the Windows kernel subsystem via Event Tracing for Windows (ETW) and low-latency hooks, mitigating zero-day threats before execution.'}
           </p>
         </div>
 
@@ -205,7 +275,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Server className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Motor Heurístico & Reglas YARA</h3>
+            <h3 className="text-xl font-bold text-white mb-3">Motor Heurístico &amp; Reglas YARA</h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               Canal asíncrono en espacio de usuario (Python) que correlaciona telemetría de Sysmon y evalúa binarios sospechosos contra un compendio de reglas YARA y heurísticas de comportamiento.
             </p>
@@ -213,7 +283,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
 
         <div className="mt-16 pt-12 border-t border-slate-800/50">
-          <h4 className="text-lg font-semibold text-white mb-6">Stack Tecnológico y Arquitectura:</h4>
+          <h4 className="text-lg font-semibold text-white mb-6">
+            {lang === 'es' ? 'Stack Tecnológico y Arquitectura:' : 'Tech Stack & Architecture:'}
+          </h4>
           <div className="flex flex-wrap gap-3">
              {project.tech.map((t, i) => (
                 <span key={i} className="px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-300 text-sm font-mono uppercase tracking-wider">{t}</span>

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Mic, Activity, Network } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { useLanguage } from '../../context/LanguageContext';
 
 const COMMAND_SECTIONS = [
   { id: 'command-interactive', label: 'Interfaz' },
@@ -9,6 +10,7 @@ const COMMAND_SECTIONS = [
 ];
 
 export function CommandCenterLayout({ project }: { project: Project }) {
+  const { lang } = useLanguage();
   const [bootSequence, setBootSequence] = useState(true);
   const [bootText, setBootText] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
@@ -16,10 +18,17 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
   // Boot sequence logic
   useEffect(() => {
-    const lines = [
+    const lines = lang === 'es' ? [
+      '[SYS] Inicializando Núcleo Neural...',
+      '[NET] Estableciendo WebSocket seguro a la API de OpenAI...',
+      '[AUTH] Protocolo zero-trust confirmado.',
+      '[MEM] Cargando Base de Datos Vectorial RAG (Pinecone).',
+      '[UI] Compilando Interfaz Espacial...',
+      'SISTEMA EN LÍNEA.'
+    ] : [
       '[SYS] Initializing Neural Kernel...',
       '[NET] Establishing secure WebSocket to OpenAI API...',
-      '[AUTH] Bypassing standard protocols. Zero-trust confirmed.',
+      '[AUTH] Zero-trust protocol confirmed.',
       '[MEM] Loading RAG Vector Database (Pinecone).',
       '[UI] Compiling Spatial Interface...',
       'SYSTEM ONLINE.'
@@ -48,7 +57,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     }, 20); // very fast typing
 
     return () => clearInterval(typeWriter);
-  }, []);
+  }, [lang]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current || bootSequence) return;
@@ -67,7 +76,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
       {/* BOOT SEQUENCE OVERLAY */}
       <div 
-        className={`fixed inset-0 z-50 bg-black flex flex-col p-12 transition-all duration-1000 ease-in-out ${
+        className={`fixed inset-0 z-50 bg-black flex flex-col p-6 md:p-12 transition-all duration-1000 ease-in-out ${
           bootSequence ? 'opacity-100 pointer-events-auto' : 'opacity-0 scale-110 pointer-events-none'
         }`}
       >
@@ -88,9 +97,11 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         }}
       ></div>
 
-      {/* Interactive Space */}
+      {/* ============================================================ */}
+      {/* DESKTOP: Interactive 3D Space (lg+) */}
+      {/* ============================================================ */}
       <section id="command-interactive"
-        className="relative z-10 min-h-screen w-full flex items-center justify-center pt-20 pb-20 px-4"
+        className="hidden lg:flex relative z-10 min-h-screen w-full items-center justify-center pt-20 pb-20 px-4"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -114,7 +125,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
           {/* LAYER 2: The Core UI (Main Dashboard Image) */}
           <div 
-            className="absolute w-[70%] md:w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
+            className="absolute w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
             style={{ transform: 'translateZ(0px)' }}
           >
              <div className="absolute top-0 left-0 w-full h-8 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
@@ -129,7 +140,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
           </div>
 
-          {/* LAYER 3: Left Floating Widget (Telemetry) */}
+          {/* LAYER 3: Left Floating Widget (Telemetry) — desktop only */}
           <div 
             className="absolute left-[5%] top-[20%] w-[250px] bg-slate-900/60 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
             style={{ transform: 'translateZ(80px) rotateY(15deg)' }}
@@ -155,7 +166,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
              </div>
           </div>
 
-          {/* LAYER 4: Right Floating Widget (Voice / Audio) */}
+          {/* LAYER 4: Right Floating Widget (Voice / Audio) — desktop only */}
           <div 
             className="absolute right-[5%] bottom-[15%] w-[220px] bg-slate-900/60 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
             style={{ transform: 'translateZ(120px) rotateY(-15deg)' }}
@@ -165,7 +176,6 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">Voice Synth</span>
              </div>
              <div className="h-16 flex items-center justify-center gap-1 opacity-80">
-               {/* CSS Audio Visualizer Fake */}
                {[...Array(12)].map((_, i) => (
                  <div 
                    key={i} 
@@ -199,7 +209,56 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         </div>
       </section>
 
-      {/* Project Meta Information (Scroll down to see) */}
+      {/* ============================================================ */}
+      {/* MOBILE: Stacked fallback (< lg) */}
+      {/* ============================================================ */}
+      <section id="command-interactive" className="lg:hidden relative z-10 pt-32 pb-12 px-4">
+        {/* Title badge */}
+        <div className="flex flex-col items-center text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-mono text-sky-400 mb-4 uppercase tracking-widest">
+            Jarvis AI — Command Interface
+          </div>
+          <h2 className="text-3xl font-bold text-white tracking-tight">Interfaz de Comando IA</h2>
+          <p className="text-slate-400 text-sm mt-3 max-w-xs leading-relaxed">
+            Dashboard holográfico con procesamiento de voz en tiempo real y latencia de inferencia &lt;42ms.
+          </p>
+        </div>
+
+        {/* Main screenshot */}
+        <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl mb-6">
+          <div className="h-8 bg-slate-900 border-b border-white/10 flex items-center px-3 gap-2">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+            </div>
+            <span className="text-[10px] font-mono text-blue-400 ml-2">Jarvis Kernel v2.4</span>
+          </div>
+          <img src={project.images[0]?.url} alt="Main Interface" className="w-full h-auto object-cover" />
+        </div>
+
+        {/* Metric cards stacked */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-slate-900/60 border border-blue-500/20 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Activity className="w-4 h-4 text-blue-400" />
+              <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">Latency</span>
+            </div>
+            <div className="text-2xl font-bold text-white">42ms</div>
+            <div className="text-[10px] text-slate-500 mt-1">LLM inference P99</div>
+          </div>
+          <div className="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Mic className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">Voice</span>
+            </div>
+            <div className="text-2xl font-bold text-white">Live</div>
+            <div className="text-[10px] text-slate-500 mt-1">ElevenLabs Neural</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Meta Information */}
       <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">
@@ -231,4 +290,3 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     </article>
   );
 }
-
