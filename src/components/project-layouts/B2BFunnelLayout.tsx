@@ -54,11 +54,11 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       </header>
 
       {/* 2. MAIN BROWSER SHOWCASE - Hero & Diagnostic Funnel */}
-      <section className="px-6 md:px-12 max-w-[90rem] mx-auto mb-32 relative">
+      <section id="b2b-showcase" className="px-6 md:px-12 max-w-[90rem] mx-auto mb-32 relative">
         <div className="text-center mb-12">
            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Ingeniería de Adquisición</h2>
            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-             No es una página de aterrizaje estática. Es un embudo dinámico de cualificación.
+             Arquitectura de captación orientada a conversión. Un embudo interactivo con diagnóstico en 3 pasos diseñado para cualificar prospectos B2B de alto valor.
            </p>
         </div>
         
@@ -83,7 +83,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       </section>
 
       {/* 3. DEEP DIVE: ROI CALCULATOR & QUALIFICATION */}
-      <section className="py-24 bg-[#050505] border-y border-zinc-900 relative overflow-hidden">
+      <section id="b2b-roi" className="py-24 bg-[#050505] border-y border-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
         
         <div className="max-w-[90rem] mx-auto px-6 md:px-12 relative z-10">
@@ -97,22 +97,22 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                </div>
                <h2 className="text-4xl md:text-5xl font-black tracking-tight">Simulador de ROI Dinámico</h2>
                <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                 Para convencer a clientes B2B de alto ticket, los discursos no bastan. Implementé una calculadora de Pipeline en tiempo real que proyecta el retorno de inversión exacto basado en el presupuesto y métricas de cierre del prospecto.
+                 En servicios B2B de alto valor, la certidumbre cuantitativa acelera el ciclo de cierre. Desarrollé un simulador reactivo en TypeScript que calcula en tiempo real proyecciones de pipeline y retorno neto con base en las métricas comerciales del prospecto.
                </p>
                
                <ul className="space-y-4 pt-4">
                  <li className="flex items-start gap-4">
                    <div className="mt-1 bg-zinc-900 p-1 rounded"><TrendingUp className="w-4 h-4 text-indigo-400" /></div>
                    <div>
-                     <h4 className="font-bold text-white">Proyección de Crecimiento</h4>
-                     <p className="text-zinc-500 text-sm">Cálculo matemático instantáneo al mover los sliders.</p>
+                     <h4 className="font-bold text-white">Modelado Financiero Reactivo</h4>
+                     <p className="text-zinc-500 text-sm">Cálculo de retorno proyectado, volumen de leads y valor anual de pipeline a 60fps con sliders interactivos.</p>
                    </div>
                  </li>
                  <li className="flex items-start gap-4">
                    <div className="mt-1 bg-zinc-900 p-1 rounded"><Filter className="w-4 h-4 text-indigo-400" /></div>
                    <div>
-                     <h4 className="font-bold text-white">Cualificación Algorítmica</h4>
-                     <p className="text-zinc-500 text-sm">Filtra automáticamente leads que no cumplen con el presupuesto mínimo.</p>
+                     <h4 className="font-bold text-white">Cualificación Algorítmica en 3 Pasos</h4>
+                     <p className="text-zinc-500 text-sm">Filtra prospectos por umbrales presupuestarios mínimos y enruta leads calificados a booking de diagnóstico estratégico.</p>
                    </div>
                  </li>
                </ul>
@@ -131,7 +131,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       </section>
 
       {/* 4. ARCHITECTURE & CASE STUDIES */}
-      <section className="py-32 px-6 md:px-12 max-w-[90rem] mx-auto">
+      <section id="b2b-architecture" className="py-32 px-6 md:px-12 max-w-[90rem] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row-reverse">
             
             {/* Right Side (Text) */}
@@ -141,19 +141,19 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                </div>
                <h2 className="text-4xl md:text-5xl font-black tracking-tight">Arquitectura y Casos de Estudio</h2>
                <p className="text-xl text-zinc-400 font-light leading-relaxed">
-                 La transparencia genera confianza. El sistema incluye una sección dedicada a desglosar los modelos de impacto y arquitecturas de referencia utilizadas con clientes anteriores.
+                 Demostración de capacidades respaldada por casos de estudio estructurados: problema operativo del cliente, stack tecnológico implementado y resultados cuantitativos verificados.
                </p>
                
                <div className="grid grid-cols-2 gap-6 pt-4">
                   <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
                     <Zap className="w-6 h-6 text-indigo-400 mb-4" />
-                    <h4 className="font-bold text-white mb-2">Modales Dinámicos</h4>
-                    <p className="text-xs text-zinc-500">Carga de casos de estudio sin refrescar la página, manteniendo la fricción al mínimo.</p>
+                    <h4 className="font-bold text-white mb-2">Modales de Inspección Profunda</h4>
+                    <p className="text-xs text-zinc-500">Visualización asíncrona de arquitectura y métricas por cliente sin recarga de página ni pérdida de estado de navegación.</p>
                   </div>
                   <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
                     <Target className="w-6 h-6 text-indigo-400 mb-4" />
-                    <h4 className="font-bold text-white mb-2">Flujo de Conversión</h4>
-                    <p className="text-xs text-zinc-500">CTAs estratégicamente ubicados tras demostrar valor y métricas reales.</p>
+                    <h4 className="font-bold text-white mb-2">Puntos de Fricción Mínima</h4>
+                    <p className="text-xs text-zinc-500">Llamados a la acción contextuales integrados tras cada prueba cuantitativa de valor, maximizando la conversión a llamadas estratégicas.</p>
                   </div>
                </div>
             </div>
@@ -169,11 +169,11 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       </section>
 
       {/* 5. TECH STACK BENTO */}
-      <section className="px-6 md:px-12 max-w-screen-xl mx-auto">
+      <section id="b2b-stack" className="px-6 md:px-12 max-w-screen-xl mx-auto">
          <div className="bg-[#121214] border border-zinc-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-2">Stack Tecnológico Central</h3>
-              <p className="text-zinc-500 max-w-md">Herramientas utilizadas para construir esta infraestructura B2B de alto rendimiento.</p>
+              <p className="text-zinc-500 max-w-md">Arquitectura frontend con Vite, React, TypeScript y Tailwind CSS, garantizando tiempos de carga inferiores a 800ms.</p>
             </div>
             <div className="flex flex-wrap justify-end gap-3">
                {project.stack.map((tech, i) => (

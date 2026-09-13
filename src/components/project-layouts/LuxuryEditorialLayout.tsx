@@ -227,7 +227,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
       </section>
 
       {/* 4. TECH STACK & FOOTER */}
-      <section className="pb-32 text-center">
+      <section id="luxury-stack" className="pb-32 text-center">
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16 max-w-4xl mx-auto px-6">
            {project.stack.map((t, i) => (
               <span key={i} className="px-5 py-2.5 bg-white/5 border border-white/10 text-zinc-300 text-xs tracking-[0.2em] uppercase font-bold">{t}</span>
