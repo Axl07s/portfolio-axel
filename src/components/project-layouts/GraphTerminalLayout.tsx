@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart } from 'lucide-react';
+import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart, FileText, CheckCircle2 } from 'lucide-react';
 
 export function GraphTerminalLayout({ project }: { project: Project }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -73,7 +73,6 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                  className="col-span-4 md:col-span-2 row-span-2 bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 relative group"
                  style={{ transform: `translateZ(${isHovered ? '80px' : '0px'})` }}
                >
-                 {/* Removed opacity restrictions for maximum sharpness */}
                  <img src={project.images[0]?.url} alt="Main UI" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                </div>
@@ -85,17 +84,71 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                >
                  <Cpu className="w-6 h-6 text-blue-400" />
                  <div>
-                   <div className="text-3xl font-black text-white">{project.metrics[1]?.value || '142ms'}</div>
+                   <div className="text-3xl font-black text-white">{project.metrics[1]?.value || '< 240ms'}</div>
                    <div className="text-xs text-blue-400 uppercase tracking-widest mt-1">Avg Latency</div>
                  </div>
                </div>
 
-               {/* Image Tile */}
+               {/* Native UI Tile (Replaces badly cropped image) */}
                <div 
-                 className="col-span-2 md:col-span-1 row-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden transition-transform duration-700"
+                 className="col-span-2 md:col-span-1 row-span-2 bg-zinc-950 border border-zinc-800 rounded-3xl p-5 flex flex-col transition-transform duration-700"
                  style={{ transform: `translateZ(${isHovered ? '40px' : '0px'})` }}
                >
-                 <img src={project.images[1]?.url} alt="Data Architecture" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                 <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
+                   <h3 className="text-xs font-mono text-zinc-400 uppercase">Vector Index</h3>
+                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                 </div>
+                 
+                 <div className="flex-1 space-y-4">
+                   {/* Item 1 */}
+                   <div className="flex items-start gap-3">
+                     <div className="p-2 bg-blue-500/10 rounded-lg shrink-0 mt-0.5">
+                       <FileText className="w-3 h-3 text-blue-400" />
+                     </div>
+                     <div className="min-w-0 flex-1">
+                       <p className="text-xs text-zinc-300 font-medium truncate">q3_financials.pdf</p>
+                       <div className="flex items-center gap-2 mt-1">
+                         <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                         <span className="text-[9px] text-zinc-500 font-mono">1,024 chunks</span>
+                       </div>
+                     </div>
+                   </div>
+                   
+                   {/* Item 2 */}
+                   <div className="flex items-start gap-3">
+                     <div className="p-2 bg-amber-500/10 rounded-lg shrink-0 mt-0.5">
+                       <FileText className="w-3 h-3 text-amber-400" />
+                     </div>
+                     <div className="min-w-0 flex-1">
+                       <p className="text-xs text-zinc-300 font-medium truncate">security_policy.md</p>
+                       <div className="flex items-center gap-2 mt-1">
+                         <div className="w-3 h-3 rounded-full border-2 border-amber-500 border-t-transparent animate-spin"></div>
+                         <span className="text-[9px] text-zinc-500 font-mono">Processing...</span>
+                       </div>
+                     </div>
+                   </div>
+
+                   {/* Item 3 */}
+                   <div className="flex items-start gap-3">
+                     <div className="p-2 bg-blue-500/10 rounded-lg shrink-0 mt-0.5">
+                       <FileText className="w-3 h-3 text-blue-400" />
+                     </div>
+                     <div className="min-w-0 flex-1">
+                       <p className="text-xs text-zinc-300 font-medium truncate">api_v2_docs.json</p>
+                       <div className="flex items-center gap-2 mt-1">
+                         <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                         <span className="text-[9px] text-zinc-500 font-mono">4,520 chunks</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 
+                 <div className="mt-auto pt-4 border-t border-zinc-800">
+                   <div className="flex justify-between items-end">
+                     <div className="text-[9px] text-zinc-500 uppercase tracking-widest">Total Vectors</div>
+                     <div className="text-sm text-blue-400 font-mono">2.4M</div>
+                   </div>
+                 </div>
                </div>
 
                {/* Tech Stack Tile */}
@@ -197,4 +250,3 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     </article>
   );
 }
-
