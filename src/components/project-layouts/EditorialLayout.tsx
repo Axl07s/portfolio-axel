@@ -49,7 +49,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       {/* ============================================================ */}
       {/* DESKTOP: Flat 3-Phone Showcase (lg+) */}
       {/* ============================================================ */}
-      <section id="editorial-phones" className="hidden lg:flex relative py-24 w-full items-center justify-center z-20 h-[700px]">
+      <section id="editorial-phones" className="hidden lg:flex relative py-32 w-full items-center justify-center z-20 min-h-[850px]">
          {/* Background Grid */}
          <div 
            className="absolute inset-0 opacity-40"
@@ -59,21 +59,21 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            }}
          ></div>
 
-         <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center gap-12">
+         <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center gap-8">
             
             {/* Phone 1: Left */}
-            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
-               <img src="/projects/puce_login.png" alt="Login Screen" className="w-full h-full object-cover" />
+            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[10px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
+               <img src="/projects/puce_login.png" alt="Login Screen" className="w-full h-full object-cover object-top" />
             </div>
 
             {/* Phone 2: Main Center (Crossfading Images) */}
-            <div className="w-[320px] aspect-[9/19.5] bg-white rounded-[3rem] border-[14px] border-zinc-900 shadow-2xl overflow-hidden relative z-10 scale-110">
+            <div className="w-[320px] aspect-[9/19.5] bg-white rounded-[3rem] border-[12px] border-zinc-900 shadow-2xl overflow-hidden relative z-10 scale-110 mx-4">
                {images.map((imgSrc, index) => (
                  <img 
                    key={imgSrc}
                    src={imgSrc}
                    alt="App Screen"
-                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                   className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ease-in-out ${
                      index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
                    }`} 
                  />
@@ -81,14 +81,14 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
             </div>
 
             {/* Phone 3: Right */}
-            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
-               <img src="/projects/puce_profile.png" alt="Profile Screen" className="w-full h-full object-cover" />
+            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[10px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
+               <img src="/projects/puce_profile.png" alt="Profile Screen" className="w-full h-full object-cover object-top" />
             </div>
 
          </div>
 
-         {/* Callout Cards (Fixed to the sides) */}
-         <div className="absolute top-1/4 left-10 w-64 bg-white border border-zinc-200 rounded-2xl p-5 shadow-xl">
+         {/* Callout Cards (Fixed to the sides, floating above) */}
+         <div className="absolute top-1/4 left-4 xl:left-12 w-72 bg-white/95 backdrop-blur-md border border-zinc-200 rounded-2xl p-6 shadow-2xl z-30 hidden md:block">
            <div className="flex justify-between items-center mb-3">
              <div className="flex items-center gap-2">
                <WifiOff className="w-5 h-5 text-indigo-500" />
@@ -96,12 +96,12 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
              </div>
              <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
            </div>
-           <p className="text-xs text-zinc-500 leading-relaxed">
+           <p className="text-sm text-zinc-600 leading-relaxed">
              Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en &lt;50ms.
            </p>
          </div>
 
-         <div className="absolute bottom-1/4 right-10 w-64 bg-zinc-900 text-white rounded-2xl p-5 shadow-xl">
+         <div className="absolute bottom-1/4 right-4 xl:right-12 w-72 bg-zinc-900/95 backdrop-blur-md border border-zinc-800 text-white rounded-2xl p-6 shadow-2xl z-30 hidden md:block">
            <div className="flex justify-between items-center mb-3">
              <div className="flex items-center gap-2">
                <RefreshCcw className="w-5 h-5 text-indigo-400" />
@@ -109,7 +109,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
              </div>
              <Cloud className="w-4 h-4 text-zinc-500" />
            </div>
-           <p className="text-xs text-zinc-400 leading-relaxed">
+           <p className="text-sm text-zinc-400 leading-relaxed">
              Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.
            </p>
          </div>
@@ -171,7 +171,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Marketing B2B - Mobile Value */}
-      <section id="editorial-features" className="max-w-6xl mx-auto px-6 pb-32">
+      <section id="editorial-features" className="max-w-6xl mx-auto px-6 pt-24 pb-32">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 tracking-tight">
             {lang === 'es' ? 'Arquitectura Offline-First Real' : 'True Offline-First Architecture'}

@@ -35,7 +35,7 @@ export const personalProjects: PersonalProject[] = [
     architectureES: 'Arquitectura móvil con Inyección de Dependencias, BLoC pattern y base de datos embebida Isar con un worker de sincronización en background.',
     architectureEN: 'Mobile architecture using Dependency Injection, BLoC pattern, and an embedded Isar database with a background synchronization worker.',
     tech: ['Flutter', 'Dart', 'Spring Boot', 'Isar DB', 'BLoC'],
-    image: '/projects/puce_mockup.png',
+    image: '/projects/puce_login.png',
     layoutStyle: 'editorial',
     seoDescription: 'Offline-first mobile portal built with Flutter and Spring Boot, featuring background synchronization and secure local caching.',
     seoImage: '/projects/puce_mockup.png'
