@@ -4,7 +4,7 @@ import { ArrowRight, GitBranch, Smartphone, WifiOff } from 'lucide-react';
 export function EditorialLayout({ project }: { project: PersonalProject }) {
   // Enhanced Mobile frame with purely minimalist screen (Edge-to-Edge)
   const MobileFrame = ({ title, className = "", imagePath = "" }: { title: string, className?: string, imagePath?: string }) => (
-    <div className={`relative flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] h-[550px] md:h-[650px] w-[275px] md:w-[325px] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ring-1 ring-white/10 flex flex-col ${className}`}>
+    <div className={`relative w-full h-full flex-shrink-0 border-zinc-800 border-[8px] bg-zinc-950 rounded-[2.5rem] md:rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,1)] overflow-hidden ring-1 ring-white/10 flex flex-col ${className}`}>
       
       {/* Side Buttons */}
       <div className="absolute -right-[14px] top-[120px] w-[6px] h-12 bg-zinc-800 rounded-r-md border-y border-r border-zinc-700 z-0"></div>
@@ -29,28 +29,43 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
   );
 
   return (
-    <article className="w-full bg-zinc-950 text-zinc-100 min-h-screen font-sans selection:bg-indigo-500/30 selection:text-white overflow-hidden">
+    <article className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-indigo-500/30">
       
       {/* Hero Header */}
-      <header className="px-4 sm:px-6 lg:px-8 pt-32 pb-16 max-w-7xl mx-auto">
-        <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-bold leading-[0.9] tracking-tighter uppercase break-words text-white">
-            {project.title}
-          </h1>
-          {project.githubUrl && (
-            <div className="mt-12 flex items-center">
-              <a 
-                href={project.githubUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 text-sm font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors"
-              >
-                <GitBranch className="w-5 h-5" />
-                <span>View Source</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          )}
+      <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center overflow-hidden">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-3xl h-64 bg-indigo-500/10 blur-[100px] pointer-events-none"></div>
+
+        <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-bold leading-[0.9] tracking-tighter uppercase break-words text-white z-10 max-w-4xl">
+          {project.title}
+        </h1>
+        <p className="mt-6 md:mt-8 text-lg md:text-xl text-zinc-400 font-light max-w-2xl mx-auto z-10 leading-relaxed">
+          {project.descriptionES}
+        </p>
+
+        {project.githubUrl && (
+          <div className="mt-12 flex items-center z-10">
+            <a 
+              href={project.githubUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 text-sm font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors"
+            >
+              <GitBranch className="w-5 h-5" />
+              <span>View Source</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        )}
+
+        {/* Tech Stack Minimal Tags */}
+        <div className="mt-12 flex flex-wrap justify-center gap-3 z-10 max-w-2xl">
+          {project.tech.map((tech: string) => (
+            <span key={tech} className="px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-xs font-mono tracking-widest uppercase backdrop-blur-sm">
+              {tech}
+            </span>
+          ))}
         </div>
       </header>
 
@@ -70,31 +85,28 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Collage 1: 3 Phones (Home, Grades, Attendance) */}
-      <section className="relative w-full py-20 md:py-32 bg-zinc-950 flex items-center justify-center min-h-[600px] md:min-h-[900px]">
+      <section className="relative w-full py-20 md:py-32 bg-zinc-950 flex items-center justify-center min-h-[600px] md:min-h-[850px] overflow-hidden">
          {/* Ambient Glow */}
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-0"></div>
 
-         <div className="relative w-full max-w-5xl h-[500px] md:h-[700px] flex justify-center items-center">
+         {/* True Absolute Stacking Container */}
+         <div className="relative w-[260px] h-[520px] md:w-[325px] md:h-[650px] z-10">
+           
            {/* Left Phone (Grades) */}
-           <MobileFrame 
-             title="Captura de Calificaciones" 
-             imagePath="/projects/puce_grades.png"
-             className="absolute z-10 -rotate-6 -translate-x-[55%] sm:-translate-x-[80%] lg:-translate-x-[110%] translate-y-8 md:translate-y-16 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-[0.80] md:hover:scale-[0.95] hover:opacity-100" 
-           />
+           <div className="absolute inset-0 z-10 -rotate-6 -translate-x-[45%] md:-translate-x-[60%] translate-y-12 md:translate-y-16 opacity-70 transition-transform duration-700 hover:-translate-y-8 hover:-translate-x-[75%] hover:rotate-0 hover:scale-105 hover:opacity-100 hover:z-40 origin-bottom">
+             <MobileFrame title="Captura de Calificaciones" imagePath="/projects/puce_grades.png" />
+           </div>
            
            {/* Right Phone (Attendance) */}
-           <MobileFrame 
-             title="Captura de Asistencia" 
-             imagePath="/projects/puce_attendance.png"
-             className="absolute z-10 rotate-6 translate-x-[55%] sm:translate-x-[80%] lg:translate-x-[110%] translate-y-12 md:translate-y-24 scale-75 md:scale-90 opacity-70 transition-transform duration-700 hover:scale-[0.80] md:hover:scale-[0.95] hover:opacity-100" 
-           />
+           <div className="absolute inset-0 z-10 rotate-6 translate-x-[45%] md:translate-x-[60%] translate-y-20 md:translate-y-24 opacity-70 transition-transform duration-700 hover:-translate-y-8 hover:translate-x-[75%] hover:rotate-0 hover:scale-105 hover:opacity-100 hover:z-40 origin-bottom">
+             <MobileFrame title="Captura de Asistencia" imagePath="/projects/puce_attendance.png" />
+           </div>
 
            {/* Center Phone (Home/Login) */}
-           <MobileFrame 
-             title="Captura de Inicio / Home" 
-             imagePath="/projects/puce_home.png"
-             className="absolute z-30 rotate-0 scale-90 md:scale-100 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[0.95] md:hover:scale-[1.05]" 
-           />
+           <div className="absolute inset-0 z-30 rotate-0 -translate-y-4 md:-translate-y-8 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-105">
+             <MobileFrame title="Captura de Inicio / Home" imagePath="/projects/puce_home.png" />
+           </div>
+
          </div>
       </section>
 
@@ -137,20 +149,20 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Collage 2: Sync State */}
-      <section className="relative w-full pb-20 md:pb-40 bg-zinc-950 flex items-center justify-center min-h-[500px] md:min-h-[800px] border-b border-zinc-800/50">
-         <div className="relative w-full max-w-4xl h-[500px] md:h-[600px] flex justify-center items-center">
+      <section className="relative w-full pb-20 md:pb-40 bg-zinc-950 flex items-center justify-center min-h-[500px] md:min-h-[800px] border-b border-zinc-800/50 overflow-hidden">
+         {/* True Absolute Stacking Container */}
+         <div className="relative w-[260px] h-[520px] md:w-[325px] md:h-[650px] z-10">
+           
            {/* Back phone */}
-           <MobileFrame 
-             title="Estado de Sincronización" 
-             imagePath="/projects/puce_login.png"
-             className="absolute z-10 rotate-[12deg] translate-x-28 md:translate-x-56 translate-y-12 md:translate-y-16 scale-75 md:scale-90 opacity-40 md:opacity-60 transition-transform duration-700 hover:scale-[0.80] md:hover:scale-[0.95] hover:opacity-100" 
-           />
+           <div className="absolute inset-0 z-10 rotate-[10deg] translate-x-[30%] md:translate-x-[40%] translate-y-16 md:translate-y-24 opacity-40 transition-transform duration-700 hover:-translate-y-4 hover:translate-x-[60%] hover:rotate-0 hover:scale-105 hover:opacity-100 hover:z-30 origin-bottom">
+             <MobileFrame title="Estado de Sincronización" imagePath="/projects/puce_login.png" />
+           </div>
+
            {/* Front phone */}
-           <MobileFrame 
-             title="Perfil Estudiantil" 
-             imagePath="/projects/puce_profile.png"
-             className="absolute z-20 -rotate-2 -translate-x-12 md:-translate-x-24 shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[0.95] md:hover:scale-[1.05]" 
-           />
+           <div className="absolute inset-0 z-20 -rotate-2 -translate-x-[15%] md:-translate-x-[20%] shadow-[0_30px_80px_-15px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-105">
+             <MobileFrame title="Perfil Estudiantil" imagePath="/projects/puce_profile.png" />
+           </div>
+
          </div>
       </section>
 
