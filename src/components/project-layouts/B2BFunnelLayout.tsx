@@ -1,113 +1,178 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Target } from 'lucide-react';
+import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase } from 'lucide-react';
 
 export function B2BFunnelLayout({ project }: { project: Project }) {
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    setMousePos({ x, y });
-  };
-
-  const rotateX = (0.5 - mousePos.y) * 15;
-  const rotateY = (mousePos.x - 0.5) * 15;
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <article className="min-h-screen bg-[#f4f4f5] text-zinc-950 font-sans selection:bg-[#ff4400] selection:text-white">
+    <article className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans selection:bg-[#4f46e5] selection:text-white pb-32">
       
-      {/* Brutalist Header */}
-      <header className="pt-32 pb-16 px-6 md:px-12 max-w-screen-2xl mx-auto border-b-8 border-zinc-950">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
-           <div className="lg:col-span-8">
-             <div className="inline-block bg-zinc-950 text-white font-mono text-sm font-bold uppercase tracking-widest px-4 py-2 mb-8">
-               {project.category}
-             </div>
-             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
-               {project.title}
-             </h1>
-             <p className="text-xl md:text-2xl font-bold text-zinc-600 max-w-3xl leading-snug">
-               {project.description}
-             </p>
-           </div>
-           
-           <div className="lg:col-span-4 flex flex-col justify-end space-y-8">
-             {project.metrics.map((m, i) => (
-                <div key={i} className="border-l-4 border-[#ff4400] pl-4 group hover:border-black transition-colors cursor-default">
-                  <div className="text-4xl font-black transition-transform group-hover:translate-x-2">{m.value}</div>
-                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-500">{m.label}</div>
-                </div>
-             ))}
-           </div>
+      {/* 1. HERO SECTION - Dark & Technical */}
+      <header className="relative pt-32 pb-24 px-6 md:px-12 max-w-screen-2xl mx-auto flex flex-col items-center text-center">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#4f46e5_0%,transparent_50%)] opacity-10 pointer-events-none"></div>
+        
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-mono text-indigo-400 mb-8 uppercase tracking-widest">
+          <Target className="w-4 h-4" />
+          <span>{project.category}</span>
+        </div>
+        
+        <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-tight mb-8 max-w-5xl">
+          {project.title}
+        </h1>
+        
+        <p className="text-xl md:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed mb-16">
+          {project.description}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+          {project.metrics.map((m, i) => (
+            <div key={i} className="bg-[#121214] border border-zinc-800 p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-indigo-500/50 transition-colors">
+              <div className="text-3xl font-black text-white mb-2">{m.value}</div>
+              <div className="text-xs font-mono uppercase tracking-widest text-zinc-500 group-hover:text-indigo-400 transition-colors">{m.label}</div>
+            </div>
+          ))}
         </div>
       </header>
 
-      {/* The Matrix Cascade Mockup (3D Interactive) */}
-      <section 
-        className="py-24 bg-zinc-950 overflow-hidden relative cursor-crosshair"
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
-        style={{ perspective: '2000px' }}
-      >
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-         <div 
-           className="max-w-screen-2xl mx-auto px-4 relative h-[700px] md:h-[900px] transition-transform duration-300 ease-out flex items-center justify-center"
-           style={{ 
-             transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-             transformStyle: 'preserve-3d' 
-           }}
-         >
-            
-            {/* Desktop - Background layer */}
-            <div 
-              className="absolute top-[5%] right-[5%] w-[80%] md:w-[60%] aspect-video bg-zinc-900 border border-zinc-800 rounded-lg shadow-2xl overflow-hidden z-10 transition-transform duration-500"
-              style={{ transform: 'translateZ(-100px) rotate(-2deg)' }}
-            >
-               <img src={project.images[0]?.url} alt="Desktop Layout" className="w-full h-full object-cover object-top opacity-70 hover:opacity-100 transition-opacity" />
-            </div>
-
-            {/* Tablet - Middle layer */}
-            <div 
-              className="absolute top-[35%] left-[5%] w-[50%] md:w-[40%] aspect-[4/3] bg-zinc-900 border-[8px] border-zinc-800 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden z-20 transition-transform duration-500 flex flex-col"
-              style={{ transform: 'translateZ(50px) rotate(3deg)' }}
-            >
-               <img src={project.images[1]?.url} alt="Tablet Layout" className="w-full h-full object-cover object-top" />
-            </div>
-
-            {/* Phone - Foreground layer */}
-            <div 
-              className="absolute bottom-[5%] left-[55%] md:left-[40%] w-[30%] md:w-[20%] aspect-[9/19.5] bg-zinc-900 border-[10px] border-zinc-800 rounded-[2.5rem] shadow-[0_30px_60px_rgba(0,0,0,0.9)] overflow-hidden z-30 transition-transform duration-500 flex flex-col"
-              style={{ transform: 'translateZ(200px) rotate(-6deg)' }}
-            >
-               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-6 bg-zinc-800 rounded-b-xl z-40"></div>
-               
-               <img src={project.images[2]?.url} alt="Mobile Layout" className="w-full h-full object-cover object-top" />
-
-               {/* Glass Reflection overlay */}
-               <div 
-                 className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 pointer-events-none transition-transform duration-300 z-50"
-                 style={{ transform: `translate(${(mousePos.x - 0.5) * 150}%, ${(mousePos.y - 0.5) * 150}%)` }}
-               ></div>
-            </div>
-
-         </div>
+      {/* 2. MAIN BROWSER SHOWCASE - Hero & Diagnostic Funnel */}
+      <section className="px-6 md:px-12 max-w-[90rem] mx-auto mb-32 relative">
+        <div className="text-center mb-12">
+           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Ingeniería de Adquisición</h2>
+           <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+             No es una página de aterrizaje estática. Es un embudo dinámico de cualificación.
+           </p>
+        </div>
+        
+        <div 
+          className="relative rounded-3xl overflow-hidden border border-zinc-800 shadow-[0_0_100px_rgba(79,70,229,0.15)] bg-zinc-950 transition-transform duration-1000 ease-out"
+          style={{ transform: `translateY(${Math.max(0, 50 - scrollY * 0.05)}px)` }}
+        >
+           {/* macOS Browser Header */}
+           <div className="h-12 bg-[#18181b] border-b border-zinc-800 flex items-center px-4 gap-4">
+              <div className="flex gap-2">
+                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+              </div>
+              <div className="flex-1 max-w-md mx-auto bg-zinc-900 rounded-md h-7 flex items-center justify-center border border-zinc-800">
+                <span className="text-xs font-mono text-zinc-500">nexuscorp.agency</span>
+              </div>
+           </div>
+           {/* Main Image */}
+           <img src={project.images[0]?.url} alt="NexusCorp Hero" className="w-full h-auto object-cover" />
+        </div>
       </section>
 
-      {/* Grid Features */}
-      <section className="py-24 max-w-screen-2xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-         <div className="absolute top-0 left-12 right-12 h-1 bg-zinc-950"></div>
-         {project.features.map((f, i) => (
-            <div key={i} className="p-8 border-2 border-zinc-950 bg-white shadow-[8px_8px_0_0_#ff4400] hover:shadow-[12px_12px_0_0_#000] hover:-translate-y-1 transition-all duration-300 group">
-               <Target className="w-8 h-8 text-[#ff4400] mb-6 group-hover:scale-125 transition-transform" />
-               <p className="font-bold text-lg leading-snug">{f}</p>
+      {/* 3. DEEP DIVE: ROI CALCULATOR & QUALIFICATION */}
+      <section className="py-24 bg-[#050505] border-y border-zinc-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+        
+        <div className="max-w-[90rem] mx-auto px-6 md:px-12 relative z-10">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Left: Interactive/Mockup Text */}
+            <div className="space-y-8">
+               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-2">
+                 <BarChart className="w-6 h-6" />
+               </div>
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight">Simulador de ROI Dinámico</h2>
+               <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                 Para convencer a clientes B2B de alto ticket, los discursos no bastan. Implementé una calculadora de Pipeline en tiempo real que proyecta el retorno de inversión exacto basado en el presupuesto y métricas de cierre del prospecto.
+               </p>
+               
+               <ul className="space-y-4 pt-4">
+                 <li className="flex items-start gap-4">
+                   <div className="mt-1 bg-zinc-900 p-1 rounded"><TrendingUp className="w-4 h-4 text-indigo-400" /></div>
+                   <div>
+                     <h4 className="font-bold text-white">Proyección de Crecimiento</h4>
+                     <p className="text-zinc-500 text-sm">Cálculo matemático instantáneo al mover los sliders.</p>
+                   </div>
+                 </li>
+                 <li className="flex items-start gap-4">
+                   <div className="mt-1 bg-zinc-900 p-1 rounded"><Filter className="w-4 h-4 text-indigo-400" /></div>
+                   <div>
+                     <h4 className="font-bold text-white">Cualificación Algorítmica</h4>
+                     <p className="text-zinc-500 text-sm">Filtra automáticamente leads que no cumplen con el presupuesto mínimo.</p>
+                   </div>
+                 </li>
+               </ul>
             </div>
-         ))}
+
+            {/* Right: Actual Image */}
+            <div className="relative group">
+               <div className="absolute -inset-4 bg-indigo-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+               <div className="relative rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+                 <img src={project.images[1]?.url} alt="ROI Calculator" className="w-full h-auto object-cover" />
+               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 4. ARCHITECTURE & CASE STUDIES */}
+      <section className="py-32 px-6 md:px-12 max-w-[90rem] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-col-reverse lg:flex-row-reverse">
+            
+            {/* Right Side (Text) */}
+            <div className="space-y-8">
+               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-2">
+                 <Briefcase className="w-6 h-6" />
+               </div>
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight">Arquitectura y Casos de Estudio</h2>
+               <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                 La transparencia genera confianza. El sistema incluye una sección dedicada a desglosar los modelos de impacto y arquitecturas de referencia utilizadas con clientes anteriores.
+               </p>
+               
+               <div className="grid grid-cols-2 gap-6 pt-4">
+                  <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
+                    <Zap className="w-6 h-6 text-indigo-400 mb-4" />
+                    <h4 className="font-bold text-white mb-2">Modales Dinámicos</h4>
+                    <p className="text-xs text-zinc-500">Carga de casos de estudio sin refrescar la página, manteniendo la fricción al mínimo.</p>
+                  </div>
+                  <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
+                    <Target className="w-6 h-6 text-indigo-400 mb-4" />
+                    <h4 className="font-bold text-white mb-2">Flujo de Conversión</h4>
+                    <p className="text-xs text-zinc-500">CTAs estratégicamente ubicados tras demostrar valor y métricas reales.</p>
+                  </div>
+               </div>
+            </div>
+
+            {/* Left Side (Image) */}
+            <div className="relative">
+               <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+                 <img src={project.images[2]?.url} alt="Architecture & Case Studies" className="w-full h-auto object-cover" />
+               </div>
+            </div>
+
+        </div>
+      </section>
+
+      {/* 5. TECH STACK BENTO */}
+      <section className="px-6 md:px-12 max-w-screen-xl mx-auto">
+         <div className="bg-[#121214] border border-zinc-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Stack Tecnológico Central</h3>
+              <p className="text-zinc-500 max-w-md">Herramientas utilizadas para construir esta infraestructura B2B de alto rendimiento.</p>
+            </div>
+            <div className="flex flex-wrap justify-end gap-3">
+               {project.stack.map((tech, i) => (
+                  <span key={i} className="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-300 font-mono text-sm">
+                    {tech}
+                  </span>
+               ))}
+            </div>
+         </div>
       </section>
 
     </article>
