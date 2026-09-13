@@ -68,8 +68,9 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
            </p>
         </div>
         
+        {/* DESKTOP BROWSER MOCKUP */}
         <div 
-          className="relative rounded-3xl overflow-hidden border border-zinc-800 shadow-[0_0_100px_rgba(79,70,229,0.15)] bg-zinc-950 transition-transform duration-1000 ease-out"
+          className="hidden md:block relative rounded-3xl overflow-hidden border border-zinc-800 shadow-[0_0_100px_rgba(79,70,229,0.15)] bg-zinc-950 transition-transform duration-1000 ease-out"
           style={{ transform: `translateY(${Math.max(0, 50 - scrollY * 0.05)}px)` }}
         >
            {/* macOS Browser Header */}
@@ -85,6 +86,22 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
            </div>
            {/* Main Image */}
            <img src={project.images[0]?.url} alt="NexusCorp Hero" className="w-full h-auto object-cover" />
+        </div>
+
+        {/* MOBILE PHONE MOCKUP FALLBACK */}
+        <div className="md:hidden flex flex-col items-center gap-8">
+           <div className="w-full max-w-[280px] aspect-[9/19.5] bg-zinc-900 rounded-[2.5rem] border-[10px] border-zinc-900 shadow-[0_0_50px_rgba(79,70,229,0.2)] overflow-hidden relative">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-900 rounded-b-xl z-10"></div>
+              <img src={project.images[0]?.url} alt="NexusCorp Mobile View" className="w-full h-full object-cover object-left-top" />
+           </div>
+           <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 text-center w-full max-w-[280px]">
+              <span className="text-indigo-400 font-mono text-xs uppercase tracking-widest block mb-2">B2B Mobile Funnel</span>
+              <p className="text-zinc-400 text-xs leading-relaxed">
+                {lang === 'es' 
+                  ? 'Flujo de captación optimizado para pantallas táctiles con calificación en tiempo real.'
+                  : 'Touch-optimized acquisition flow with real-time prospect qualification.'}
+              </p>
+           </div>
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Smartphone, WifiOff, RefreshCcw, Cloud } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
@@ -12,35 +12,21 @@ const EDITORIAL_SECTIONS = [
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
   const { lang } = useLanguage();
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const images = [
+    '/projects/puce_login.png',
     '/projects/puce_home.png',
-    '/projects/puce_profile.png',
     '/projects/puce_grades.png',
-    '/projects/puce_attendance.png',
-    '/projects/puce_login.png'
+    '/projects/puce_attendance.png'
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-    return () => clearInterval(interval);
+    }, 3000);
+    return () => clearInterval(timer);
   }, [images.length]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    setMousePos({ x, y });
-  };
-
-  const rotateX = (0.5 - mousePos.y) * 15;
-  const rotateY = (mousePos.x - 0.5) * 15;
 
   return (
     <article className="min-h-screen bg-[#faf9f6] text-[#1a1a1a] font-sans selection:bg-indigo-500/30 overflow-hidden">
@@ -61,110 +47,71 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </header>
 
       {/* ============================================================ */}
-      {/* DESKTOP: 3D App Flow Presentation (lg+) */}
+      {/* DESKTOP: Flat 3-Phone Showcase (lg+) */}
       {/* ============================================================ */}
-      <section id="editorial-phones"
-        className="hidden lg:flex relative py-24 w-full items-center justify-center z-20 cursor-crosshair h-[800px]"
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
-        style={{ perspective: '2000px' }}
-      >
+      <section id="editorial-phones" className="hidden lg:flex relative py-24 w-full items-center justify-center z-20 h-[700px]">
          {/* Background Grid */}
          <div 
-           className="absolute inset-0 opacity-40 transition-transform duration-700 ease-out"
+           className="absolute inset-0 opacity-40"
            style={{ 
              backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)',
              backgroundSize: '40px 40px',
-             transform: `translate(${(mousePos.x - 0.5) * -50}px, ${(mousePos.y - 0.5) * -50}px)`
            }}
          ></div>
 
-         <div 
-           className="relative w-full max-w-6xl h-full transition-transform duration-700 ease-out flex items-center justify-center"
-           style={{ 
-             transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-             transformStyle: 'preserve-3d' 
-           }}
-         >
-            {/* Phone 1: Login (Background Left) */}
-            <div 
-               className="absolute w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-2xl overflow-hidden transition-transform duration-700 ease-out"
-               style={{ transform: `translateZ(-150px) translateX(-55%) translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px) rotateY(15deg)` }}
-            >
+         <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center gap-12">
+            
+            {/* Phone 1: Left */}
+            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
                <img src="/projects/puce_login.png" alt="Login Screen" className="w-full h-full object-cover" />
-               <div className="absolute inset-0 bg-white/20"></div>
             </div>
 
-            {/* Phone 3: Profile/Settings (Background Right) */}
-            <div 
-               className="absolute w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-2xl overflow-hidden transition-transform duration-700 ease-out"
-               style={{ transform: `translateZ(-100px) translateX(55%) translate(${(mousePos.x - 0.5) * -40}px, ${(mousePos.y - 0.5) * -40}px) rotateY(-15deg)` }}
-            >
+            {/* Phone 2: Main Center (Crossfading Images) */}
+            <div className="w-[320px] aspect-[9/19.5] bg-white rounded-[3rem] border-[14px] border-zinc-900 shadow-2xl overflow-hidden relative z-10 scale-110">
+               {images.map((imgSrc, index) => (
+                 <img 
+                   key={imgSrc}
+                   src={imgSrc}
+                   alt="App Screen"
+                   className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                     index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                   }`} 
+                 />
+               ))}
+            </div>
+
+            {/* Phone 3: Right */}
+            <div className="w-[280px] aspect-[9/19.5] bg-white rounded-[2.5rem] border-[12px] border-zinc-200 shadow-xl overflow-hidden relative opacity-70 hover:opacity-100 transition-opacity duration-500">
                <img src="/projects/puce_profile.png" alt="Profile Screen" className="w-full h-full object-cover" />
-               <div className="absolute inset-0 bg-white/20"></div>
             </div>
 
-            {/* Phone 2: Main Dashboard (Center Front with Auto-Changing Images) */}
-            <div 
-               className="absolute w-[320px] aspect-[9/19.5] bg-white rounded-[3rem] border-[14px] border-zinc-900 shadow-[0_50px_100px_rgba(0,0,0,0.15)] overflow-hidden transition-transform duration-700 ease-out"
-               style={{ transform: `translateZ(100px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
-            >
-               {/* Crossfading Images Container */}
-               <div className="relative w-full h-full">
-                 {images.map((imgSrc, index) => (
-                   <img 
-                     key={imgSrc}
-                     src={imgSrc} 
-                     alt={`App Screen ${index}`} 
-                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                       index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                     }`} 
-                   />
-                 ))}
-               </div>
-               
-               {/* Glass Reflection overlaying the images */}
-               <div 
-                 className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 pointer-events-none transition-transform duration-300 z-20"
-                 style={{ transform: `translate(${(mousePos.x - 0.5) * 100}%, ${(mousePos.y - 0.5) * 100}%)` }}
-               ></div>
-            </div>
+         </div>
 
-            {/* Offline First Callout (Floating UI) */}
-            <div 
-               className="absolute bottom-1/4 left-1/4 -translate-x-1/2 w-64 bg-white border border-zinc-200 rounded-2xl p-5 shadow-2xl transition-transform duration-700 ease-out"
-               style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 40}px, ${(mousePos.y - 0.5) * 40}px)` }}
-            >
-               <div className="flex justify-between items-center mb-3">
-                 <div className="flex items-center gap-2">
-                   <WifiOff className="w-5 h-5 text-indigo-500" />
-                   <span className="text-zinc-900 font-bold text-sm">Modo Offline</span>
-                 </div>
-                 <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
-               </div>
-               <p className="text-xs text-zinc-500 leading-relaxed">
-                 Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en &lt;50ms.
-               </p>
-            </div>
+         {/* Callout Cards (Fixed to the sides) */}
+         <div className="absolute top-1/4 left-10 w-64 bg-white border border-zinc-200 rounded-2xl p-5 shadow-xl">
+           <div className="flex justify-between items-center mb-3">
+             <div className="flex items-center gap-2">
+               <WifiOff className="w-5 h-5 text-indigo-500" />
+               <span className="text-zinc-900 font-bold text-sm">Modo Offline</span>
+             </div>
+             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
+           </div>
+           <p className="text-xs text-zinc-500 leading-relaxed">
+             Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en &lt;50ms.
+           </p>
+         </div>
 
-            {/* Background Sync Callout (Floating UI) */}
-            <div 
-               className="absolute top-1/4 right-1/4 translate-x-1/2 w-64 bg-zinc-900 text-white rounded-2xl p-5 shadow-2xl transition-transform duration-700 ease-out"
-               style={{ transform: `translateZ(150px) translate(${(mousePos.x - 0.5) * -10}px, ${(mousePos.y - 0.5) * -10}px)` }}
-            >
-               <div className="flex justify-between items-center mb-3">
-                 <div className="flex items-center gap-2">
-                   <RefreshCcw className="w-5 h-5 text-indigo-400" />
-                   <span className="font-bold text-sm">Background Sync</span>
-                 </div>
-                 <Cloud className="w-4 h-4 text-zinc-500" />
-               </div>
-               <p className="text-xs text-zinc-400 leading-relaxed">
-                 Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.
-               </p>
-            </div>
-
+         <div className="absolute bottom-1/4 right-10 w-64 bg-zinc-900 text-white rounded-2xl p-5 shadow-xl">
+           <div className="flex justify-between items-center mb-3">
+             <div className="flex items-center gap-2">
+               <RefreshCcw className="w-5 h-5 text-indigo-400" />
+               <span className="font-bold text-sm">Background Sync</span>
+             </div>
+             <Cloud className="w-4 h-4 text-zinc-500" />
+           </div>
+           <p className="text-xs text-zinc-400 leading-relaxed">
+             Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.
+           </p>
          </div>
       </section>
 
