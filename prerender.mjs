@@ -25,33 +25,48 @@ try {
 
   // PRERENDER PROJECT DETAILS
   for (const project of projects) {
-    const routeDir = path.join(distPath, 'project');
+    const routeDir = path.join(distPath, 'project', project.id);
     if (!fs.existsSync(routeDir)) fs.mkdirSync(routeDir, { recursive: true });
 
-    const metaTags = \
-      <title>\ - Axel Molineros</title>
-      <meta name="description" content="\" />
-      <meta property="og:title" content="\ - Axel Molineros" />
-      <meta property="og:description" content="\" />
-      <meta property="og:image" content="\\" />
-      <meta property="og:url" content="\/project/\" />
+    const metaTags = `
+      <title>${project.title} - Axel Molineros</title>
+      <meta name="description" content="${project.seoDescription}" />
+      <meta property="og:title" content="${project.title} - Axel Molineros" />
+      <meta property="og:description" content="${project.seoDescription}" />
+      <meta property="og:image" content="${DOMAIN}${project.seoImage}" />
+      <meta property="og:url" content="${DOMAIN}/project/${project.id}" />
       <meta name="twitter:card" content="summary_large_image" />
-      <link rel="canonical" href="\/project/\" />
-    \;
+      <link rel="canonical" href="${DOMAIN}/project/${project.id}" />
+    `;
 
-    const injectedHtml = templateHtml.replace('</head>', \\\n</head>\);
-    fs.writeFileSync(path.join(routeDir, \\.html\), injectedHtml);
+    const injectedHtml = templateHtml.replace('</head>', `${metaTags}\n</head>`);
+    fs.writeFileSync(path.join(routeDir, 'index.html'), injectedHtml);
+    
+    // Also keep the old .html just in case
+    const oldRouteDir = path.join(distPath, 'project');
+    fs.writeFileSync(path.join(oldRouteDir, `${project.id}.html`), injectedHtml);
   }
 
   // PRERENDER MARKETING CLIPS
-  const marketingDir = path.join(distPath, 'marketing');
-  if (!fs.existsSync(marketingDir)) fs.mkdirSync(marketingDir, { recursive: true });
   for (const project of projects) {
-    fs.writeFileSync(path.join(marketingDir, \\.html\), templateHtml);
+    const marketingDir = path.join(distPath, 'marketing', project.id);
+    if (!fs.existsSync(marketingDir)) fs.mkdirSync(marketingDir, { recursive: true });
+    fs.writeFileSync(path.join(marketingDir, 'index.html'), templateHtml);
+    
+    // Also keep the old .html just in case
+    const oldMarketingDir = path.join(distPath, 'marketing');
+    fs.writeFileSync(path.join(oldMarketingDir, `${project.id}.html`), templateHtml);
   }
 
   // PRERENDER BASE ROUTES TO PREVENT 404s ON VERCEL
+  const projectsDir = path.join(distPath, 'projects');
+  if (!fs.existsSync(projectsDir)) fs.mkdirSync(projectsDir, { recursive: true });
+  fs.writeFileSync(path.join(projectsDir, 'index.html'), templateHtml);
   fs.writeFileSync(path.join(distPath, 'projects.html'), templateHtml);
+  
+  const labsDir = path.join(distPath, 'labs');
+  if (!fs.existsSync(labsDir)) fs.mkdirSync(labsDir, { recursive: true });
+  fs.writeFileSync(path.join(labsDir, 'index.html'), templateHtml);
   fs.writeFileSync(path.join(distPath, 'labs.html'), templateHtml);
 
   console.log('Fast SSG complete.');
