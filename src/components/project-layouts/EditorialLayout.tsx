@@ -91,11 +91,11 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
         
         {/* Massive Opaque Background Typography */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10 flex flex-col justify-between">
-          <h1 className="text-[12rem] sm:text-[15rem] md:text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center -mt-[6%] md:-mt-[4%]">
+        <div className="absolute inset-0 flex flex-col items-center justify-between py-8 md:py-16 pointer-events-none overflow-hidden select-none z-10">
+          <h1 className="text-[14vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
             OFFLINE
           </h1>
-          <h1 className="text-[12rem] sm:text-[15rem] md:text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center -mb-[6%] md:-mb-[4%]">
+          <h1 className="text-[14vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center">
             CONNECT
           </h1>
         </div>
