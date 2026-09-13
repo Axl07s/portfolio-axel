@@ -29,6 +29,15 @@ export const Hero: React.FC = () => {
     <section className="relative pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center overflow-hidden">
       
       <Particles />
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none -z-20"
+        style={{
+          backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+          maskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)'
+        }}
+      />
 
       {/* Subtle Indigo Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-indigo-500/15 blur-[120px] rounded-full pointer-events-none -z-10" />
@@ -130,3 +139,4 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
+

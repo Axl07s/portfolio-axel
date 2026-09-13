@@ -33,7 +33,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       <ScrollAffordance sections={ENTERPRISE_SECTIONS} accentColor="emerald" />
 
       {/* Hero Section */}
-      <div id="enterprise-hero"><CinematicHero project={project} /></div>
+      <div id="enterprise-hero"><CinematicHero project={project} lang={lang} /></div>
 
       {/* ============================================================ */}
       {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
@@ -191,6 +191,73 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
       </section>
 
+            {/* Deep Technical Dive - YARA & Sysmon */}
+      <section id="enterprise-yara" className="relative w-full max-w-6xl mx-auto px-6 py-24 z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-6">
+              {lang === 'es' ? 'Motor Heurístico de Comportamiento' : 'Behavioral Heuristic Engine'}
+            </h2>
+            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+              {lang === 'es'
+                ? 'El sistema no se basa únicamente en firmas. Analiza árboles de ejecución de procesos mediante Sysmon y realiza escaneo en memoria con YARA. Si detecta inyección de shellcode (API unhooking, Process Hollowing), aísla el proceso inmediatamente.'
+                : 'The system does not rely solely on signatures. It analyzes process execution trees via Sysmon and performs in-memory scanning with YARA. If it detects shellcode injection (API unhooking, Process Hollowing), it isolates the process immediately.'}
+            </p>
+            
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded bg-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-1">
+                  <Activity className="w-4 h-4 text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">{lang === 'es' ? 'Análisis de Memoria Dinámica' : 'Dynamic Memory Analysis'}</h4>
+                  <p className="text-sm text-slate-500">Escaneo de regiones de memoria PAGE_EXECUTE_READWRITE en busca de payloads cifrados o ofuscados.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-1">
+                  <AlertTriangle className="w-4 h-4 text-red-400" />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">{lang === 'es' ? 'Aislamiento de Red Automático' : 'Automatic Network Isolation'}</h4>
+                  <p className="text-sm text-slate-500">Bloqueo de comunicación C2 (Command & Control) manipulando la tabla de ruteo local del host comprometido.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#0a0a0f] border border-slate-800 rounded-xl overflow-hidden shadow-2xl font-mono text-[11px] md:text-xs">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800 bg-[#0f111a]">
+              <div className="w-3 h-3 rounded-full bg-red-500/50" />
+              <div className="w-3 h-3 rounded-full bg-amber-500/50" />
+              <div className="w-3 h-3 rounded-full bg-emerald-500/50" />
+              <span className="ml-2 text-slate-500">yara_engine_core.py</span>
+            </div>
+            <div className="p-4 md:p-6 text-slate-300 overflow-x-auto">
+              <pre>
+                <code className="language-python">
+<span className="text-purple-400">import</span> yara{'\n'}
+<span className="text-purple-400">import</span> win32api, win32process{'\n\n'}
+
+<span className="text-emerald-400">def</span> <span className="text-blue-400">scan_process_memory</span>(pid):{'\n'}
+{'    '}rules = yara.compile(filepath=<span className="text-amber-300">'/rules/ransomware.yar'</span>){'\n'}
+{'    '}<span className="text-purple-400">try</span>:{'\n'}
+{'        '}process_handle = win32api.OpenProcess({'\n'}
+{'            '}win32con.PROCESS_VM_READ | win32con.PROCESS_QUERY_INFORMATION, False, pid){'\n'}
+{'        '}matches = rules.match(pid=pid){'\n'}
+{'        '}<span className="text-purple-400">if</span> matches:{'\n'}
+{'            '}<span className="text-blue-400">trigger_mitigation</span>(pid, matches){'\n'}
+{'            '}<span className="text-emerald-400">return</span> <span className="text-amber-500">True</span>{'\n'}
+{'    '}<span className="text-purple-400">except</span> <span className="text-blue-200">Exception</span> <span className="text-purple-400">as</span> e:{'\n'}
+{'        '}logger.error(<span className="text-amber-300">f"Failed to scan PID {"{"}pid{"}"}: {"{"}e{"}"}"</span>){'\n'}
+{'    '}<span className="text-emerald-400">return</span> <span className="text-amber-500">False</span>
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* The Actual Product / Application UI */}
       <section id="enterprise-dashboard" className="relative w-full max-w-6xl mx-auto px-6 py-12 z-20">
         <div className="text-center mb-10">
@@ -289,6 +356,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
+
+
 
 
 

@@ -6,18 +6,19 @@ import { Particles } from '../effects/Particles';
 
 interface CinematicHeroProps {
   project: PersonalProject;
+  lang: 'es' | 'en';
 }
 
-export function CinematicHero({ project }: CinematicHeroProps) {
+export function CinematicHero({ project, lang }: CinematicHeroProps) {
   const [phase, setPhase] = useState(0);
 
   const isCyber = project.id === 'suiteseguridad';
   const accentColor = isCyber ? '#10b981' : '#6366f1'; 
 
   const mockMetrics = [
-    { value: '+99%', label: 'DETECCIÓN EDR' },
-    { value: '< 5ms', label: 'LATENCIA KERNEL' },
-    { value: 'ZERO', label: 'FALSOS POSITIVOS' },
+    { value: '+99%', label: lang === 'es' ? 'DETECCIÓN EDR' : 'EDR DETECTION' },
+    { value: '< 5ms', label: lang === 'es' ? 'LATENCIA KERNEL' : 'KERNEL LATENCY' },
+    { value: 'ZERO', label: lang === 'es' ? 'FALSOS POSITIVOS' : 'FALSE POSITIVES' },
   ];
 
   useEffect(() => {
@@ -62,7 +63,7 @@ export function CinematicHero({ project }: CinematicHeroProps) {
                 animate={{ opacity: 1 }} 
                 className="text-xs text-zinc-500 mb-4 tracking-[0.3em]"
               >
-                [ SYSTEM INITIALIZATION ]
+                {lang === 'es' ? '[ INICIALIZANDO SISTEMA ]' : '[ SYSTEM INITIALIZATION ]'}
               </motion.div>
               <div className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase drop-shadow-2xl px-4 text-center">
                 <ScrambleText text={project.title} />
@@ -201,7 +202,7 @@ export function CinematicHero({ project }: CinematicHeroProps) {
               className="relative text-center"
             >
               <div className="absolute inset-0 blur-3xl opacity-30" style={{ backgroundColor: accentColor }} />
-              <div className="text-xl md:text-2xl font-light text-zinc-400 mb-2">Engineered & Designed by</div>
+              <div className="text-xl md:text-2xl font-light text-zinc-400 mb-2">{lang === 'es' ? 'Diseñado & Desarrollado por' : 'Engineered & Designed by'}</div>
               <div className="text-6xl md:text-8xl font-black text-white tracking-tighter">
                 AXEL
               </div>
@@ -212,7 +213,7 @@ export function CinematicHero({ project }: CinematicHeroProps) {
               transition={{ delay: 2 }}
               className="mt-12 text-zinc-500 uppercase tracking-[0.4em] text-[10px] md:text-xs"
             >
-              Scroll down for details
+              {lang === 'es' ? 'Haz scroll para detalles' : 'Scroll down for details'}
             </motion.div>
           </motion.div>
         )}
@@ -225,7 +226,7 @@ export function CinematicHero({ project }: CinematicHeroProps) {
         transition={{ delay: 2, duration: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
       >
-        <span className="text-[10px] text-zinc-500 tracking-widest uppercase mb-2">Scroll</span>
+        <span className="text-[10px] text-zinc-500 tracking-widest uppercase mb-2">{lang === 'es' ? 'Scroll' : 'Scroll'}</span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
@@ -237,4 +238,5 @@ export function CinematicHero({ project }: CinematicHeroProps) {
     </div>
   );
 }
+
 

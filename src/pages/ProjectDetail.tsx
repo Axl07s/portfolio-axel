@@ -2,7 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
 import { personalProjects } from '../data/personalProjectsData';
-import { PORTFOLIO_PROJECTS } from '../data/portfolioData';
+import { getPortfolioProjects } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 import { NotFound } from './NotFound';
 
 import { BentoLayout } from '../components/project-layouts/BentoLayout';
@@ -16,9 +17,10 @@ import { GraphTerminalLayout } from '../components/project-layouts/GraphTerminal
 
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
+  const { lang } = useLanguage();
   
   const personalProject = personalProjects.find((p) => p.id === id);
-  const freelanceProject = PORTFOLIO_PROJECTS.find((p) => p.id === id);
+  const freelanceProject = getPortfolioProjects(lang).find((p) => p.id === id);
 
   if (!personalProject && !freelanceProject) {
     return <NotFound />;
@@ -78,3 +80,4 @@ export function ProjectDetail() {
     </>
   );
 }
+

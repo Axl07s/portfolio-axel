@@ -8,7 +8,7 @@ export const translations = {
     // Hero
     'hero.status': 'AVAILABLE FOR B2B CONTRACTS (FIVERR / DIRECT)',
     'hero.title': 'Production SaaS & AI Systems',
-    'hero.subtitle': '19-year-old SaaS architect and technical consultant based in Ecuador. I design and ship production multi-tenant platforms in Next.js 15 with RLS isolation, RAG engines with pgvector, and AI command centers with production-grade engineering rigor.',
+    'hero.subtitle': 'SaaS Architect and Technical Consultant building robust, high-performance systems. I design and ship production multi-tenant platforms in Next.js 15, low-latency C++ EDRs, and AI-driven command centers with rigorous engineering standards.',
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -54,7 +54,7 @@ export const translations = {
     // Hero
     'hero.status': 'DISPONIBLE PARA CONTRATOS B2B (FIVERR / DIRECTO)',
     'hero.title': 'Arquitectura SaaS & Sistemas de IA',
-    'hero.subtitle': 'Arquitecto de software y consultor SaaS de 19 años en Ecuador. Diseño y despliego plataformas multi-tenant en Next.js 15 con aislamiento RLS, motores RAG con pgvector y centros de comando de IA, llevando arquitecturas de cero a producción con rigor de ingeniería.',
+    'hero.subtitle': 'SaaS Architect & Consultor Técnico especializado en sistemas robustos de alto rendimiento. Diseño y despliego plataformas multi-tenant en Next.js 15, EDRs de baja latencia en C/C++, y centros de comando de IA con estándares rigurosos de ingeniería.',
     'hero.cta.primary': 'Cotizar Proyecto',
     'hero.cta.secondary': 'Ver Portafolio',
     
@@ -94,3 +94,5 @@ export const translations = {
 };
 
 export type TranslationKey = keyof typeof translations.en;
+
+

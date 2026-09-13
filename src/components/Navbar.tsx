@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   ];
 
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 inset-x-0 z-[100] transition-all duration-300 ${
       scrolled 
         ? 'glass-obsidian border-b border-indigo-500/20 py-3 shadow-2xl bg-zinc-950/80 backdrop-blur-md' 
         : 'bg-transparent py-5'
@@ -117,16 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               </Link>
             );
           })}
-          <button
-            onClick={() => {
-              toggleLanguage();
-              setMobileMenuOpen(false);
-            }}
-            className="w-full text-left text-sm text-zinc-200 hover:text-indigo-400 py-1 flex items-center gap-2"
-          >
-            <Globe className="w-4 h-4" />
-            {lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-          </button>
+          <button onClick={() => { toggleLanguage(); setMobileMenuOpen(false); }} className="w-full mt-4 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-lg px-4 py-3 flex items-center justify-center gap-2 font-bold uppercase text-xs tracking-widest active:scale-95 transition-transform"><Globe className="w-4 h-4" />{lang === "es" ? "Switch to English" : "Cambiar a Español"}</button>
           <div className="pt-2 border-t border-zinc-800">
             <button
               onClick={() => {
@@ -144,5 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
     </nav>
   );
 };
+
+
 
 
