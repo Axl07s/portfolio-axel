@@ -84,62 +84,101 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
          </p>
       </section>
 
-      {/* Cinematic Hero: Single Device with Floating Feature Cards */}
-      <section className="relative w-full pb-20 md:pb-40 bg-zinc-950 flex flex-col items-center justify-center min-h-[700px] md:min-h-[900px] border-b border-zinc-800/50 overflow-hidden">
-        {/* Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-0"></div>
+      {/* Cinematic Hero: Brutalist Editorial Style */}
+      <section className="relative w-full pb-20 md:pb-40 bg-[#09090b] flex flex-col items-center justify-center min-h-[800px] md:min-h-[1000px] border-b border-zinc-800/50 overflow-hidden font-sans">
         
-        {/* Massive Background Typography */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none overflow-hidden select-none">
-          <h1 className="text-[18vw] font-black tracking-tighter leading-[0.8] text-white whitespace-nowrap text-center">
-            PUCE<br/>HUB
+        {/* Subtle Vertical Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
+        
+        {/* Massive Opaque Background Typography */}
+        <div className="absolute inset-0 flex flex-col items-center justify-between py-12 md:py-24 pointer-events-none overflow-hidden select-none z-10">
+          <h1 className="text-[20vw] font-black tracking-tighter leading-[0.75] text-[#b490ff] whitespace-nowrap text-center">
+            OFFLINE
+          </h1>
+          <h1 className="text-[20vw] font-black tracking-tighter leading-[0.75] text-[#b490ff] whitespace-nowrap text-center">
+            CONNECT
           </h1>
         </div>
 
         {/* Central Phone & Floating Cards Container */}
-        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-10 mt-12">
+        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-12 md:mt-24">
            
            {/* Center Phone */}
-           <div className="absolute inset-0 z-30 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.9)] transition-transform duration-700 hover:scale-[1.02]">
+           <div className="absolute inset-0 z-30 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
              <MobileFrame title="Captura de Inicio / Home" imagePath="/projects/puce_home.png" />
            </div>
 
-           {/* Floating Cards (Absolute positioned relative to the phone center) */}
+           {/* --- SVG Connecting Lines --- */}
+           <svg className="absolute inset-0 w-full h-full overflow-visible z-20 pointer-events-none" style={{ width: '100%', height: '100%' }}>
+              {/* Line to Top Left */}
+              <path d="M -50 80 L 100 150" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="-50" cy="80" r="3" fill="#52525b" />
+              <circle cx="100" cy="150" r="3" fill="#52525b" />
 
-           {/* Card 1: Top Left */}
-           <div className="absolute top-[5%] -left-[50%] md:-left-[70%] w-48 md:w-56 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
-              <h4 className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase mb-1">Arquitectura</h4>
-              <p className="text-sm font-medium text-white">Offline-First Engine</p>
-              <p className="text-xs text-zinc-400 mt-1">Sincronización silenciosa con workers en background.</p>
+              {/* Line to Top Right */}
+              <path d="M 380 120 L 250 200" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="380" cy="120" r="3" fill="#52525b" />
+              <circle cx="250" cy="200" r="3" fill="#52525b" />
+
+              {/* Line to Bottom Left */}
+              <path d="M -40 450 L 80 400" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="-40" cy="450" r="3" fill="#52525b" />
+              <circle cx="80" cy="400" r="3" fill="#52525b" />
+
+              {/* Line to Bottom Right */}
+              <path d="M 360 480 L 220 520" stroke="#52525b" strokeWidth="1" fill="none" />
+              <circle cx="360" cy="480" r="3" fill="#52525b" />
+              <circle cx="220" cy="520" r="3" fill="#52525b" />
+           </svg>
+
+           {/* --- Brutalist Cards --- */}
+
+           {/* Card 1: Top Left (Scarcity Tactics style) */}
+           <div className="absolute top-[8%] -left-[60%] md:-left-[85%] w-52 md:w-60 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
+              <h4 className="text-[12px] font-bold tracking-wide text-[#eab308] uppercase mb-1">LOCAL STORAGE ENGINE</h4>
+              <p className="text-xs font-medium text-zinc-300">= Acceso a notas sin internet</p>
            </div>
 
-           {/* Card 2: Top Right */}
-           <div className="absolute top-[25%] -right-[45%] md:-right-[65%] w-40 md:w-48 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
-              <div className="flex items-center gap-2 mb-2">
-                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                 <span className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase">Live Status</span>
+           {/* Card 2: Top Right (Sheep style) */}
+           <div className="absolute top-[15%] -right-[50%] md:-right-[75%] w-48 md:w-56 p-3 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block flex items-start gap-3">
+              <div className="w-8 h-8 rounded bg-[#b490ff]/20 flex-shrink-0 border border-[#b490ff]/30 overflow-hidden flex items-center justify-center">
+                 <span className="text-[#b490ff] text-lg">★</span>
               </div>
-              <p className="text-sm font-medium text-white">Zero Latency UI</p>
+              <div className="flex-1">
+                <h4 className="text-[11px] font-bold tracking-widest text-zinc-100 uppercase mb-0.5">BACKGROUND SYNC</h4>
+                <p className="text-[10px] leading-tight text-zinc-400">Workers en segundo plano sincronizan tus datos silenciosamente.</p>
+              </div>
            </div>
 
-           {/* Card 3: Bottom Left */}
-           <div className="absolute bottom-[20%] -left-[55%] md:-left-[75%] w-44 md:w-52 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
-              <h4 className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase mb-1">Storage Local</h4>
-              <p className="text-sm font-medium text-white">SQLite Encryption</p>
-              <p className="text-xs text-zinc-400 mt-1">Datos académicos guardados localmente.</p>
-           </div>
-
-           {/* Card 4: Bottom Right */}
-           <div className="absolute bottom-[5%] -right-[50%] md:-right-[70%] w-44 md:w-48 p-4 rounded-xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 shadow-2xl z-40 transition-all duration-700 hover:scale-105 hover:bg-zinc-800/90 hidden sm:block">
-              <h4 className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase mb-2">Features</h4>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-xs text-zinc-300"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Asistencia Live</li>
-                <li className="flex items-center gap-2 text-xs text-zinc-300"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Biometría</li>
-                <li className="flex items-center gap-2 text-xs text-zinc-300"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Notas Offline</li>
+           {/* Card 3: Bottom Left (Permissions style) */}
+           <div className="absolute bottom-[25%] -left-[60%] md:-left-[80%] w-56 md:w-64 p-3 rounded-xl bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block">
+              <ul className="space-y-2 mb-3">
+                <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
+                  <span className="text-[10px] text-zinc-300 font-mono">+ Biometría (FaceID)</span>
+                  <div className="w-6 h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full"></div></div>
+                </li>
+                <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
+                  <span className="text-[10px] text-zinc-300 font-mono">+ Push Notifications</span>
+                  <div className="w-6 h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full"></div></div>
+                </li>
+                <li className="flex justify-between items-center border-b border-zinc-800 pb-1">
+                  <span className="text-[10px] text-zinc-300 font-mono">+ JWT Encryption</span>
+                  <div className="w-6 h-3 bg-[#b490ff] rounded-full relative"><div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full"></div></div>
+                </li>
               </ul>
+              <div className="w-full py-1.5 bg-[#b490ff] text-black text-[10px] font-bold text-center rounded uppercase tracking-wider">
+                 Security Hub
+              </div>
            </div>
 
-           {/* Decorative Lines connecting cards (Optional, can be added if needed, but floating looks cleaner) */}
+           {/* Card 4: Bottom Right (Timer style) */}
+           <div className="absolute bottom-[10%] -right-[50%] md:-right-[70%] w-48 md:w-56 p-4 rounded-lg bg-[#0f0f11] border border-zinc-800 shadow-2xl z-40 hidden sm:block text-center">
+              <div className="mb-2 opacity-80">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" strokeWidth="2" className="mx-auto"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <p className="text-[10px] text-zinc-400 mb-1">Optimizada para consumir...</p>
+              <h4 className="text-[16px] font-black tracking-wide text-[#eab308] uppercase">CERO DATOS</h4>
+           </div>
 
         </div>
       </section>
