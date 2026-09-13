@@ -85,25 +85,18 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Cinematic Hero: Brutalist Editorial Style */}
-      <section className="relative w-full pb-20 md:pb-40 bg-[#09090b] flex flex-col items-center justify-center min-h-[800px] md:min-h-[1000px] border-b border-zinc-800/50 overflow-hidden font-sans">
+      <section className="relative w-full py-12 md:py-20 bg-[#09090b] flex flex-col items-center justify-center border-b border-zinc-800/50 overflow-hidden font-sans">
         
         {/* Subtle Vertical Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
         
-        {/* Massive Opaque Background Typography (Absolute Wallpaper) */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10 flex flex-col justify-between py-10 md:py-12">
-          {/* OFFLINE: Wide letter spacing, not cut off */}
-          <h1 className="text-[15vw] md:text-[18vw] font-black tracking-[0.1em] md:tracking-[0.15em] leading-none text-[#b490ff] whitespace-nowrap text-center ml-[0.15em]">
-            OFFLINE
-          </h1>
-          {/* CONNECT: Wide letter spacing, not cut off */}
-          <h1 className="text-[15vw] md:text-[18vw] font-black tracking-[0.1em] md:tracking-[0.15em] leading-none text-[#b490ff] whitespace-nowrap text-center ml-[0.15em]">
-            CONNECT
-          </h1>
-        </div>
+        {/* TOP TYPOGRAPHY */}
+        <h1 className="text-[10vw] font-black tracking-[0.15em] md:tracking-[0.2em] leading-none text-[#b490ff] whitespace-nowrap text-center z-10 select-none mb-4 md:mb-8 ml-[0.15em]">
+          OFFLINE
+        </h1>
 
         {/* Central Phone & Floating Cards Container */}
-        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-12 mb-12">
+        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20">
            
            {/* Center Phone */}
            <div className="absolute inset-0 z-30 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
@@ -183,6 +176,11 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            </div>
 
         </div>
+        
+        {/* BOTTOM TYPOGRAPHY */}
+        <h1 className="text-[10vw] font-black tracking-[0.15em] md:tracking-[0.2em] leading-none text-[#b490ff] whitespace-nowrap text-center z-10 select-none mt-4 md:mt-8 ml-[0.15em]">
+          CONNECT
+        </h1>
 
       </section>
 
