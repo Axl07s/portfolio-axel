@@ -21,7 +21,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     <article className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-emerald-500/30 overflow-hidden">
       
       {/* Hero Section */}
-      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+      <header className="relative pt-32 pb-8 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400 mb-8 animate-pulse">
           <Shield className="w-3.5 h-3.5" />
           <span>ZERO-TRUST KERNEL EDR</span>
@@ -36,7 +36,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
 
       {/* 3D Threat Isolation Hologram */}
       <section 
-        className="relative py-24 w-full flex items-center justify-center z-20 cursor-crosshair h-[600px] md:h-[800px]"
+        className="relative py-12 w-full flex items-center justify-center z-20 cursor-crosshair h-[500px] md:h-[700px]"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -61,12 +61,12 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
          >
             {/* The Base Plate (OS Kernel) */}
             <div 
-              className="absolute w-[800px] h-[800px] bg-slate-900/50 border-4 border-emerald-500/20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] flex items-center justify-center"
+              className="absolute w-[600px] h-[600px] bg-slate-900/50 border-4 border-emerald-500/20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] flex items-center justify-center"
               style={{ transform: `translateZ(-150px)` }}
             >
-               <div className="w-[600px] h-[600px] border-2 border-emerald-500/10 rounded-full animate-spin-slow flex items-center justify-center">
-                 <div className="w-[400px] h-[400px] border border-emerald-500/20 rounded-full flex items-center justify-center">
-                   <div className="w-[200px] h-[200px] border border-emerald-500/30 rounded-full"></div>
+               <div className="w-[450px] h-[450px] border-2 border-emerald-500/10 rounded-full animate-spin-slow flex items-center justify-center">
+                 <div className="w-[300px] h-[300px] border border-emerald-500/20 rounded-full flex items-center justify-center">
+                   <div className="w-[150px] h-[150px] border border-emerald-500/30 rounded-full"></div>
                  </div>
                </div>
                
@@ -77,33 +77,33 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
 
             {/* The Isolated Threat (Ransomware) */}
             <div 
-              className="absolute w-32 h-32 bg-red-950/80 border-2 border-red-500 rounded-2xl flex flex-col items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.5)] transition-transform duration-700"
+              className="absolute w-28 h-28 bg-red-950/80 border-2 border-red-500 rounded-2xl flex flex-col items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.5)] transition-transform duration-700"
               style={{ transform: `translateZ(50px) translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px)` }}
             >
-               <AlertTriangle className="w-12 h-12 text-red-500 mb-2 animate-pulse" />
-               <span className="text-red-500 font-mono text-xs font-bold">RANSOM.EXE</span>
+               <AlertTriangle className="w-10 h-10 text-red-500 mb-2 animate-pulse" />
+               <span className="text-red-500 font-mono text-[10px] font-bold">RANSOM.EXE</span>
             </div>
 
             {/* Force Field Cylinder */}
             <div 
-              className="absolute w-64 h-64 border-4 border-dashed border-emerald-500 rounded-full animate-spin-slow opacity-80 transition-transform duration-700"
+              className="absolute w-52 h-52 border-4 border-dashed border-emerald-500 rounded-full animate-spin-slow opacity-80 transition-transform duration-700"
               style={{ transform: `translateZ(50px)` }}
             ></div>
 
             {/* Security Analyst Dashboard (Floating UI) */}
             <div 
-               className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-80 bg-slate-950 border-2 border-emerald-500/30 rounded-2xl p-6 shadow-2xl transition-transform duration-500"
+               className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 bg-slate-950 border-2 border-emerald-500/30 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
                style={{ transform: `translateZ(250px) translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px)` }}
             >
-               <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-800">
+               <div className="flex justify-between items-center mb-3 pb-3 border-b border-slate-800">
                  <div className="flex items-center gap-2">
-                   <Activity className="w-5 h-5 text-emerald-400" />
-                   <span className="text-emerald-400 font-mono text-sm font-bold">ETW INGESTION</span>
+                   <Activity className="w-4 h-4 text-emerald-400" />
+                   <span className="text-emerald-400 font-mono text-xs font-bold">ETW INGESTION</span>
                  </div>
                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                </div>
                
-               <div className="space-y-3 font-mono text-xs text-slate-400">
+               <div className="space-y-2 font-mono text-[10px] text-slate-400">
                  <div className="flex justify-between"><span className="text-slate-500">Event ID:</span> <span className="text-white">4688</span></div>
                  <div className="flex justify-between"><span className="text-slate-500">Process:</span> <span className="text-red-400">C:\Temp\malware.exe</span></div>
                  <div className="flex justify-between"><span className="text-slate-500">Entropy:</span> <span className="text-red-400">7.99 (High)</span></div>
@@ -113,25 +113,57 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
 
             {/* Metrics Widget */}
             <div 
-               className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-64 bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-2xl transition-transform duration-500"
+               className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-56 bg-slate-950 border border-slate-800 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
                style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px)` }}
             >
                <div className="flex flex-col gap-1">
-                 <span className="text-slate-500 font-mono text-xs uppercase tracking-widest">Kernel Latency</span>
-                 <span className="text-4xl font-light text-white">{"< 12ms"}</span>
+                 <span className="text-slate-500 font-mono text-[10px] uppercase tracking-widest">Kernel Latency</span>
+                 <span className="text-3xl font-light text-white">{"< 12ms"}</span>
                </div>
-               <div className="h-px w-full bg-slate-800 my-4"></div>
+               <div className="h-px w-full bg-slate-800 my-3"></div>
                <div className="flex flex-col gap-1">
-                 <span className="text-slate-500 font-mono text-xs uppercase tracking-widest">CPU Overhead</span>
-                 <span className="text-2xl font-light text-white">0.8%</span>
+                 <span className="text-slate-500 font-mono text-[10px] uppercase tracking-widest">CPU Overhead</span>
+                 <span className="text-xl font-light text-white">0.8%</span>
                </div>
             </div>
 
          </div>
       </section>
 
+      {/* The Actual Product / Application UI */}
+      <section className="relative w-full max-w-6xl mx-auto px-6 py-12 z-20">
+        <div className="text-center mb-10">
+          <h2 className="text-sm font-mono text-emerald-500 uppercase tracking-widest mb-2">Centro de Control EDR</h2>
+          <p className="text-2xl font-light text-slate-300">Interfaz principal desarrollada para el Centro de Operaciones de Seguridad (SOC).</p>
+        </div>
+        
+        <div className="bg-[#0f111a] border border-slate-800 rounded-2xl overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.8)] relative group">
+          {/* Windows 11 Header */}
+          <div className="h-10 bg-[#090a0f] flex items-center px-4 border-b border-slate-800">
+             <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+             </div>
+             <div className="flex-1 text-center font-mono text-xs text-slate-600 flex items-center justify-center gap-2">
+                <Shield className="w-3 h-3" />
+                SuiteSeguridad.exe
+             </div>
+          </div>
+          
+          <img 
+            src={project.image} 
+            alt="SuiteSeguridad Interface" 
+            className="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity duration-500" 
+          />
+          
+          {/* Subtle reflection overlay */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none"></div>
+        </div>
+      </section>
+
       {/* Marketing B2B - Enterprise Security Value */}
-      <section className="max-w-5xl mx-auto px-6 pb-32">
+      <section className="max-w-5xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Protección Proactiva a Nivel Kernel</h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -184,4 +216,3 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
-
