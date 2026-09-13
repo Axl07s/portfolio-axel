@@ -1,148 +1,227 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Cpu, Terminal, Mic, ShieldAlert, ArrowRight } from 'lucide-react';
+import { Mic, Activity, Network } from 'lucide-react';
 
 export function CommandCenterLayout({ project }: { project: Project }) {
-  const [pulse, setPulse] = useState(false);
+  const [bootSequence, setBootSequence] = useState(true);
+  const [bootText, setBootText] = useState('');
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Boot sequence logic
   useEffect(() => {
-    const interval = setInterval(() => setPulse(p => !p), 1000);
-    return () => clearInterval(interval);
+    const lines = [
+      '[SYS] Initializing Neural Kernel...',
+      '[NET] Establishing secure WebSocket to OpenAI API...',
+      '[AUTH] Bypassing standard protocols. Zero-trust confirmed.',
+      '[MEM] Loading RAG Vector Database (Pinecone).',
+      '[UI] Compiling Spatial Interface...',
+      'SYSTEM ONLINE.'
+    ];
+    
+    let currentLine = 0;
+    let currentChar = 0;
+    let text = '';
+
+    const typeWriter = setInterval(() => {
+      if (currentLine >= lines.length) {
+        clearInterval(typeWriter);
+        setTimeout(() => setBootSequence(false), 800);
+        return;
+      }
+      
+      if (currentChar < lines[currentLine].length) {
+        text += lines[currentLine][currentChar];
+        setBootText(text);
+        currentChar++;
+      } else {
+        text += '\n';
+        currentLine++;
+        currentChar = 0;
+      }
+    }, 20); // very fast typing
+
+    return () => clearInterval(typeWriter);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || bootSequence) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
     setMousePos({ x, y });
   };
 
-  const rotateX = (0.5 - mousePos.y) * 12;
-  const rotateY = (mousePos.x - 0.5) * 12;
+  const rotateX = (0.5 - mousePos.y) * 20;
+  const rotateY = (mousePos.x - 0.5) * 20;
 
   return (
-    <article className="min-h-screen bg-black text-green-500 font-mono selection:bg-green-500/30 overflow-hidden">
+    <article className="min-h-screen bg-[#020617] text-slate-300 font-sans overflow-hidden relative">
       
-      {/* Sci-Fi Grid Background tracking mouse slightly */}
+      {/* BOOT SEQUENCE OVERLAY */}
       <div 
-        className="fixed inset-0 pointer-events-none opacity-20 transition-transform duration-300 ease-out" 
-        style={{ 
-          backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', 
-          backgroundSize: '40px 40px',
-          transform: `translate(${mousePos.x * 30 - 15}px, ${mousePos.y * 30 - 15}px)`
+        className={`fixed inset-0 z-50 bg-black flex flex-col p-12 transition-all duration-1000 ease-in-out ${
+          bootSequence ? 'opacity-100 pointer-events-auto' : 'opacity-0 scale-110 pointer-events-none'
+        }`}
+      >
+        <div className="font-mono text-green-500 text-sm md:text-lg whitespace-pre-wrap">
+          {bootText}
+          <span className="animate-pulse">_</span>
+        </div>
+      </div>
+
+      {/* BACKGROUND NODE GRAPH (CSS Fake) */}
+      <div 
+        className="fixed inset-0 z-0 pointer-events-none opacity-30"
+        style={{
+          background: `
+            radial-gradient(circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
+            linear-gradient(rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 1))
+          `
         }}
       ></div>
-      
-      <header className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto z-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 border-b border-green-500/30">
-        <div>
-          <div className="flex items-center gap-3 mb-4">
-            <Cpu className="w-5 h-5 text-green-400" />
-            <span className="text-sm tracking-widest text-green-400 uppercase">System Initialized</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter text-white mb-4">
-            {project.title}
-          </h1>
-          <p className="text-green-400/70 max-w-2xl text-lg">
-            {project.description}
-          </p>
-        </div>
-        
-        <div className="flex flex-col items-end gap-2 text-right">
-          {project.metrics.map((m, i) => (
-             <div key={i} className="flex items-center gap-3 bg-green-950/30 px-4 py-2 border border-green-500/20 rounded hover:bg-green-900/50 transition-colors">
-                <span className="text-xs text-green-600 uppercase">{m.label}</span>
-                <span className="text-white font-bold">{m.value}</span>
-             </div>
-          ))}
-        </div>
-      </header>
 
-      {/* 3D HUD Layout */}
+      {/* Interactive Space */}
       <section 
-        className="relative z-10 max-w-7xl mx-auto px-6 py-12"
+        className="relative z-10 min-h-screen w-full flex items-center justify-center pt-20 pb-20 px-4"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
         style={{ perspective: '2000px' }}
       >
+        
+        {/* Holographic 3D Container */}
         <div 
-           className="grid grid-cols-1 lg:grid-cols-12 gap-8 transition-transform duration-300 ease-out"
-           style={{ 
-             transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-             transformStyle: 'preserve-3d' 
-           }}
+          className="relative w-full max-w-6xl aspect-[16/10] md:aspect-[21/9] flex items-center justify-center transition-transform duration-300 ease-out"
+          style={{ 
+            transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+            transformStyle: 'preserve-3d'
+          }}
         >
-          {/* Left Column: Diagnostics */}
-          <div className="lg:col-span-3 space-y-8 transition-transform duration-300" style={{ transform: 'translateZ(20px)' }}>
-             <div className="border border-green-500/30 bg-black/50 backdrop-blur-sm p-6 rounded-lg relative overflow-hidden group hover:border-green-400 transition-colors">
-                <div className="absolute top-0 left-0 w-full h-1 bg-green-500/50 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                <h3 className="text-green-500 uppercase tracking-widest text-xs mb-6 flex items-center gap-2"><Terminal className="w-4 h-4" /> Tech Stack</h3>
-                <ul className="space-y-4">
-                   {project.stack.map(s => (
-                     <li key={s} className="flex justify-between items-center text-sm border-b border-green-900 pb-2 hover:pl-2 transition-all">
-                       <span className="text-zinc-300">{s}</span>
-                       <span className="text-green-500 text-xs">OK</span>
-                     </li>
-                   ))}
-                </ul>
-             </div>
 
-             <div className="border border-green-500/30 bg-black/50 backdrop-blur-sm p-6 rounded-lg hover:border-green-500/60 transition-colors">
-                <h3 className="text-green-500 uppercase tracking-widest text-xs mb-6 flex items-center gap-2"><ShieldAlert className="w-4 h-4" /> Core Modules</h3>
-                <ul className="space-y-3">
-                  {project.features.map((f, i) => (
-                    <li key={i} className="text-xs text-zinc-400 leading-relaxed pl-3 border-l border-green-500/50">
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+          {/* LAYER 1: Background Blur / Glow */}
+          <div 
+            className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"
+            style={{ transform: 'translateZ(-200px) scale(0.8)' }}
+          ></div>
+
+          {/* LAYER 2: The Core UI (Main Dashboard Image) */}
+          <div 
+            className="absolute w-[70%] md:w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
+            style={{ transform: 'translateZ(0px)' }}
+          >
+             <div className="absolute top-0 left-0 w-full h-8 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
+               <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Jarvis Kernel v2.4</div>
+               <div className="flex gap-2">
+                 <div className="w-2 h-2 rounded-full bg-red-500/80"></div>
+                 <div className="w-2 h-2 rounded-full bg-amber-500/80"></div>
+                 <div className="w-2 h-2 rounded-full bg-green-500/80"></div>
+               </div>
+             </div>
+             <img src={project.images[0]?.url} alt="Main Interface" className="w-full h-full object-cover opacity-90 mix-blend-screen pt-8" />
+             <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
+          </div>
+
+          {/* LAYER 3: Left Floating Widget (Telemetry) */}
+          <div 
+            className="absolute left-[5%] top-[20%] w-[250px] bg-slate-900/60 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
+            style={{ transform: 'translateZ(80px) rotateY(15deg)' }}
+          >
+             <div className="flex items-center gap-2 mb-4">
+               <Activity className="w-4 h-4 text-blue-400" />
+               <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">Live Telemetry</span>
+             </div>
+             <div className="space-y-3">
+               <div>
+                 <div className="flex justify-between text-[10px] text-slate-400 mb-1"><span>LLM Latency</span><span>42ms</span></div>
+                 <div className="w-full h-1 bg-slate-800 rounded-full"><div className="w-1/3 h-full bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></div></div>
+               </div>
+               <div>
+                 <div className="flex justify-between text-[10px] text-slate-400 mb-1"><span>Context Window</span><span>14k / 128k</span></div>
+                 <div className="w-full h-1 bg-slate-800 rounded-full"><div className="w-[12%] h-full bg-emerald-500 rounded-full"></div></div>
+               </div>
+             </div>
+             <div className="mt-4 pt-3 border-t border-white/5">
+                <span className="text-[10px] text-slate-500 leading-tight block">
+                  Connected to OpenAI gpt-4-turbo endpoint via secure tunnel.
+                </span>
              </div>
           </div>
 
-          {/* Center Column: The Main UI & Voice Waveform */}
-          <div className="lg:col-span-6 flex flex-col gap-8 transition-transform duration-300" style={{ transform: 'translateZ(60px)' }}>
-             <div className="border border-green-500/50 bg-green-950/10 p-2 rounded-xl relative shadow-[0_0_50px_rgba(16,185,129,0.1)] group">
-                <div className="absolute top-4 right-4 flex gap-1 z-20">
-                   <div className={`w-2 h-2 rounded-full ${pulse ? 'bg-red-500 shadow-[0_0_10px_red]' : 'bg-red-900'}`}></div>
-                   <span className="text-[10px] uppercase text-red-500">Live</span>
-                </div>
-                <img src={project.images[0]?.url} alt="Main HUD" className="w-full h-auto rounded-lg border border-green-900/50 mix-blend-screen opacity-90 group-hover:opacity-100 transition-opacity" />
+          {/* LAYER 4: Right Floating Widget (Voice / Audio) */}
+          <div 
+            className="absolute right-[5%] bottom-[15%] w-[220px] bg-slate-900/60 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
+            style={{ transform: 'translateZ(120px) rotateY(-15deg)' }}
+          >
+             <div className="flex items-center gap-2 mb-3">
+               <Mic className="w-4 h-4 text-emerald-400" />
+               <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">Voice Synth</span>
              </div>
-
-             <div className="border border-green-500/30 bg-black p-4 rounded-xl flex items-center justify-between hover:border-green-500/60 transition-colors">
-                <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 rounded-full border border-green-500 flex items-center justify-center bg-green-950/50 relative">
-                      <Mic className="w-5 h-5 text-green-400" />
-                      {pulse && <div className="absolute inset-0 rounded-full border border-green-400 animate-ping"></div>}
-                   </div>
-                   <div>
-                     <div className="text-xs text-green-500 uppercase tracking-widest">ElevenLabs Neural Link</div>
-                     <div className="text-white text-sm">Awaiting Voice Input...</div>
-                   </div>
-                </div>
-                <img src={project.images[1]?.url} alt="Waveform" className="h-16 w-32 object-cover opacity-70 sepia hue-rotate-[70deg] saturate-200" />
+             <div className="h-16 flex items-center justify-center gap-1 opacity-80">
+               {/* CSS Audio Visualizer Fake */}
+               {[...Array(12)].map((_, i) => (
+                 <div 
+                   key={i} 
+                   className="w-2 bg-emerald-400 rounded-full"
+                   style={{ 
+                     height: `${Math.max(10, Math.random() * 100)}%`,
+                     transition: 'height 0.2s ease'
+                   }}
+                 ></div>
+               ))}
              </div>
+             <div className="text-center mt-2 text-[9px] text-emerald-500/70 uppercase">ElevenLabs Neural Voice</div>
           </div>
 
-          {/* Right Column: Ledger & Terminal */}
-          <div className="lg:col-span-3 space-y-8 transition-transform duration-300" style={{ transform: 'translateZ(30px)' }}>
-             <div className="border border-green-500/30 bg-black/50 backdrop-blur-sm p-2 rounded-lg hover:scale-105 transition-transform">
-                <img src={project.images[2]?.url} alt="Ledger" className="w-full h-auto rounded border border-green-900/30 mix-blend-screen" />
-             </div>
-
-             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full border border-green-400 bg-green-500/10 hover:bg-green-500/20 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] text-green-400 text-center py-4 rounded-lg uppercase tracking-widest text-sm transition-all group">
-                <div className="flex justify-center items-center gap-2">
-                   Launch Command Center
-                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-             </a>
+          {/* LAYER 5: Foreground Holographic Grid */}
+          <div 
+            className="absolute inset-[-20%] border border-white/5 rounded-[40px] pointer-events-none"
+            style={{ 
+              transform: 'translateZ(180px)',
+              background: 'linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px)',
+              backgroundSize: '100px 100px'
+            }}
+          >
+            {/* Corner Markers */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-blue-500/50"></div>
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blue-500/50"></div>
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-blue-500/50"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-blue-500/50"></div>
           </div>
+
         </div>
+      </section>
+
+      {/* Project Meta Information (Scroll down to see) */}
+      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">
+              <h2 className="text-3xl font-bold text-white mb-4">{project.title}</h2>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">{project.description}</p>
+              
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map(s => (
+                  <span key={s} className="px-3 py-1 bg-slate-800/50 border border-slate-700 rounded-md text-xs text-blue-300 font-mono">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+               {project.features.map((feature, i) => (
+                 <div key={i} className="bg-slate-900/40 border border-slate-800/50 p-5 rounded-xl flex items-start gap-4 hover:border-blue-500/30 transition-colors">
+                   <div className="p-2 bg-blue-500/10 rounded-lg shrink-0">
+                     <Network className="w-4 h-4 text-blue-400" />
+                   </div>
+                   <p className="text-sm text-slate-300 leading-relaxed">{feature}</p>
+                 </div>
+               ))}
+            </div>
+         </div>
       </section>
 
     </article>
   );
 }
+
