@@ -91,17 +91,17 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px)] bg-[size:10vw_100%] pointer-events-none z-0"></div>
         
         {/* Massive Opaque Background Typography */}
-        <div className="absolute inset-0 flex flex-col items-center justify-between py-12 md:py-24 pointer-events-none overflow-hidden select-none z-10">
-          <h1 className="text-[20vw] font-black tracking-tighter leading-[0.75] text-[#b490ff] whitespace-nowrap text-center">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10 flex flex-col justify-between">
+          <h1 className="text-[12rem] sm:text-[15rem] md:text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center -mt-[6%] md:-mt-[4%]">
             OFFLINE
           </h1>
-          <h1 className="text-[20vw] font-black tracking-tighter leading-[0.75] text-[#b490ff] whitespace-nowrap text-center">
+          <h1 className="text-[12rem] sm:text-[15rem] md:text-[18vw] font-black tracking-tighter leading-none text-[#b490ff] whitespace-nowrap text-center -mb-[6%] md:-mb-[4%]">
             CONNECT
           </h1>
         </div>
 
         {/* Central Phone & Floating Cards Container */}
-        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-12 md:mt-24">
+        <div className="relative w-[280px] h-[560px] md:w-[325px] md:h-[650px] z-20 mt-8 md:mt-16">
            
            {/* Center Phone */}
            <div className="absolute inset-0 z-30 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
