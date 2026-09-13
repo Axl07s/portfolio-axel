@@ -290,3 +290,5 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
+

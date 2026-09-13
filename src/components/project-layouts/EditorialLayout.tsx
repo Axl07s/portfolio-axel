@@ -1,3 +1,4 @@
+import { CinematicEditorialHero } from './CinematicEditorialHero';
 import { useState, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Smartphone, WifiOff, RefreshCcw, Cloud } from 'lucide-react';
@@ -33,26 +34,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       <ScrollAffordance sections={EDITORIAL_SECTIONS} accentColor="indigo" />
 
       {/* Hero Section */}
-      <header id="editorial-hero" className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-bold text-indigo-400 mb-8 uppercase tracking-widest">
-          <Smartphone className="w-3.5 h-3.5" />
-          <span>Arquitectura Flutter &amp; BLoC</span>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight mb-8 max-w-4xl text-white">
-          {project.title}
-        </h1>
-        <p className="text-xl md:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed mb-12">
-          {lang === 'es' ? project.descriptionES : project.descriptionEN}
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-3">
-          {project.tech.map((tech) => (
-            <span key={tech} className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm font-medium text-zinc-300">
-              {tech}
-            </span>
-          ))}
-        </div>
-      </header>
+      <div id="editorial-hero"><CinematicEditorialHero project={project} lang={lang} /></div>
 
       {/* ============================================================ */}
       {/* DESKTOP: 3D Phone Carousel (lg+) */}
@@ -257,3 +239,4 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
