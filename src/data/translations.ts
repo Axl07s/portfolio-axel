@@ -6,9 +6,9 @@ export const translations = {
     'nav.certifications': 'Certifications',
     
     // Hero
-    'hero.status': 'AVAILABLE FOR B2B CONTRACTS (FIVERR / DIRECT)',
+    'hero.status': 'AVAILABLE FOR FREELANCE PROJECTS',
     'hero.title': 'Production SaaS & AI Systems',
-    'hero.subtitle': 'SaaS Architect and Technical Consultant building robust, high-performance systems. I design and ship production multi-tenant platforms in Next.js 15, low-latency C++ EDRs, and AI-driven command centers with rigorous engineering standards.',
+    'hero.subtitle': 'Freelance engineer for the whole stack. I help businesses launch faster, untangle what''s fragile, and build systems that don''t fall over at 3am.',
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -52,9 +52,9 @@ export const translations = {
     'nav.certifications': 'Certificaciones',
     
     // Hero
-    'hero.status': 'DISPONIBLE PARA CONTRATOS B2B (FIVERR / DIRECTO)',
+    'hero.status': 'DISPONIBLE PARA PROYECTOS FREELANCE',
     'hero.title': 'Arquitectura SaaS & Sistemas de IA',
-    'hero.subtitle': 'SaaS Architect & Consultor Técnico especializado en sistemas robustos de alto rendimiento. Diseño y despliego plataformas multi-tenant en Next.js 15, EDRs de baja latencia en C/C++, y centros de comando de IA con estándares rigurosos de ingeniería.',
+    'hero.subtitle': 'Ingeniero freelance para todo el stack. Ayudo a negocios a lanzar más rápido, desenredar código frágil y construir sistemas que no se caen a las 3 de la mañana.',
     'hero.cta.primary': 'Cotizar Proyecto',
     'hero.cta.secondary': 'Ver Portafolio',
     
@@ -94,5 +94,7 @@ export const translations = {
 };
 
 export type TranslationKey = keyof typeof translations.en;
+
+
 
 

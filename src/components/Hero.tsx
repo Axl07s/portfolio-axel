@@ -59,12 +59,11 @@ export const Hero: React.FC = () => {
         {/* Primary Authentic Headline */}
         <motion.div variants={item}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
-            {lang === 'es' ? 'Arquitectura ' : 'Production '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-500">
-              {lang === 'es' ? 'SaaS & Sistemas IA' : 'SaaS & AI Systems'}
-            </span>
+            {lang === 'es' ? 'Hola, soy Axel. Construyo software en el que ' : "Hey, I'm Axel. I ship software "} 
             <br className="hidden sm:inline" />
-            {lang === 'es' ? ' en producción.' : ' Architecture.'}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-indigo-600">
+              {lang === 'es' ? 'tu negocio puede confiar.' : 'your business can rely on.'}
+            </span>
           </h1>
         </motion.div>
 
@@ -143,5 +142,6 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
+
 
 
