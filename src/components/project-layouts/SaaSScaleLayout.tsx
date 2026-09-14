@@ -212,39 +212,62 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
           <img src={project.images[0]?.url} alt="Desktop UI" className="w-full h-auto object-cover" />
         </div>
 
-        {/* Mobile dashboard metrics */}
-        <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 mb-4">
-          <div className="text-xs font-mono text-indigo-400 uppercase tracking-widest mb-4">Mobile Dashboard</div>
-          <div className="space-y-3">
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-sm text-zinc-300 font-medium">Monthly API Ingest</span>
-                <span className="text-sm font-bold text-white">1.42M</span>
-              </div>
-              <div className="w-full bg-zinc-800 rounded-full h-1.5">
-                <div className="bg-indigo-500 h-1.5 rounded-full w-[71%]"></div>
-              </div>
-              <div className="text-[11px] text-zinc-500 mt-1">71% of 2M Quota</div>
-            </div>
-            <div className="flex gap-3 pt-2">
-              <div className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-3 flex items-center gap-2">
-                <Database className="w-4 h-4 text-rose-500 shrink-0" />
+        
+        {/* Mobile Phone Mockup */}
+        <div className="w-full max-w-[280px] mx-auto aspect-[9/19.5] bg-[#0c0c0e] rounded-[3rem] border-[10px] border-zinc-900 overflow-hidden shadow-[0_30px_80px_rgba(79,70,229,0.15)] relative flex flex-col mb-8">
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-7 bg-black rounded-full z-40"></div>
+          <div className="flex-1 overflow-hidden pt-16 pb-6 px-4 flex flex-col gap-4 relative">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">S</span>
+                </div>
                 <div>
-                  <div className="text-xs font-semibold text-white">4.8 GB</div>
-                  <div className="text-[10px] text-zinc-500">DB Storage</div>
+                  <h5 className="text-xs font-bold text-white">SyntroSaaS</h5>
+                  <p className="text-[10px] text-zinc-500">Workspace</p>
                 </div>
               </div>
-              <div className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-3 flex items-center gap-2">
-                <Cloud className="w-4 h-4 text-emerald-500 shrink-0" />
-                <div>
-                  <div className="text-xs font-semibold text-white">42ms</div>
-                  <div className="text-[10px] text-zinc-500">Edge P99</div>
+              <User className="w-5 h-5 text-zinc-400" />
+            </div>
+
+            {/* Mobile Stats Card */}
+            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-2 mt-2">
+               <div className="flex justify-between items-center">
+                 <span className="text-[11px] text-zinc-400 font-medium">Monthly API Ingest</span>
+                 <Activity className="w-3 h-3 text-indigo-400" />
+               </div>
+               <h4 className="text-2xl font-bold text-white tracking-tight">1.42M</h4>
+               <div className="w-full bg-zinc-800 rounded-full h-1 mt-1">
+                 <div className="bg-indigo-500 h-1 rounded-full w-[71%]"></div>
+               </div>
+               <span className="text-[9px] text-zinc-500 mt-0.5">71% of 2M Quota</span>
+            </div>
+
+            {/* List Items */}
+            <div className="flex flex-col gap-2 mt-2">
+              <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
+                <div className="p-2 bg-rose-500/10 rounded-lg">
+                  <Database className="w-4 h-4 text-rose-500" />
+                </div>
+                <div className="flex-1">
+                  <h6 className="text-xs font-semibold text-white">Database Storage</h6>
+                  <p className="text-[10px] text-zinc-500">4.8 GB used</p>
+                </div>
+              </div>
+              <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
+                <div className="p-2 bg-emerald-500/10 rounded-lg">
+                  <Cloud className="w-4 h-4 text-emerald-500" />
+                </div>
+                <div className="flex-1">
+                  <h6 className="text-xs font-semibold text-white">Edge Gateway</h6>
+                  <p className="text-[10px] text-zinc-500">42ms latency (P99)</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+        </section>
 
       {/* Features List */}
       <section id="saas-features" className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">

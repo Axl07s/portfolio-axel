@@ -13,8 +13,30 @@ export function CommandCenterLayout({ project }: { project: Project }) {
   const { lang } = useLanguage();
   const [bootSequence, setBootSequence] = useState(true);
   const [bootText, setBootText] = useState('');
+  
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let startTime = Date.now();
+    
+    const animate = () => {
+      if (window.innerWidth < 1024) {
+        const elapsed = Date.now() - startTime;
+        const speed = 0.0008;
+        setMousePos({
+          x: 0.5 + Math.sin(elapsed * speed) * 0.2,
+          y: 0.5 + Math.cos(elapsed * speed * 1.2) * 0.2
+        });
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animate();
+    
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
 
   // Boot sequence logic
   useEffect(() => {
@@ -101,7 +123,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
       {/* DESKTOP: Interactive 3D Space (lg+) */}
       {/* ============================================================ */}
       <section id="command-interactive"
-        className="hidden lg:flex relative z-10 min-h-screen w-full items-center justify-center pt-20 pb-20 px-4"
+        className="flex relative z-10 min-h-[60vh] lg:min-h-screen w-full items-center justify-center pt-32 pb-20 px-4 overflow-hidden"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -209,56 +231,6 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* MOBILE: Stacked fallback (< lg) */}
-      {/* ============================================================ */}
-      <section id="command-interactive" className="lg:hidden relative z-10 pt-32 pb-12 px-4">
-        {/* Title badge */}
-        <div className="flex flex-col items-center text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-mono text-sky-400 mb-4 uppercase tracking-widest">
-            Jarvis AI — Command Interface
-          </div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">Interfaz de Comando IA</h2>
-          <p className="text-slate-400 text-sm mt-3 max-w-xs leading-relaxed">
-            {lang === 'es' ? 'Dashboard holográfico con procesamiento de voz en tiempo real y latencia de inferencia <42ms.' : 'Holographic dashboard with real-time voice processing and <42ms inference latency.'}
-          </p>
-        </div>
-
-        {/* Main screenshot */}
-        <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl mb-6">
-          <div className="h-8 bg-slate-900 border-b border-white/10 flex items-center px-3 gap-2">
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-            </div>
-            <span className="text-[10px] font-mono text-blue-400 ml-2">Jarvis Kernel v2.4</span>
-          </div>
-          <img src={project.images[0]?.url} alt="Main Interface" className="w-full h-auto object-cover" />
-        </div>
-
-        {/* Metric cards stacked */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-slate-900/60 border border-blue-500/20 rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Activity className="w-4 h-4 text-blue-400" />
-              <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">Latency</span>
-            </div>
-            <div className="text-2xl font-bold text-white">42ms</div>
-            <div className="text-[10px] text-slate-500 mt-1">LLM inference P99</div>
-          </div>
-          <div className="bg-slate-900/60 border border-emerald-500/20 rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Mic className="w-4 h-4 text-emerald-400" />
-              <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">Voice</span>
-            </div>
-            <div className="text-2xl font-bold text-white">Live</div>
-            <div className="text-[10px] text-slate-500 mt-1">ElevenLabs Neural</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Project Meta Information */}
       <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">

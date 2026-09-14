@@ -1,5 +1,5 @@
 import { CinematicHero } from './CinematicHero';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Shield, Activity, AlertTriangle, Zap, Server, } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
@@ -15,8 +15,30 @@ const ENTERPRISE_SECTIONS = [
 
 export function EnterpriseLayout({ project }: { project: PersonalProject }) {
   const { lang } = useLanguage();
+  
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    let animationFrameId: number;
+    let startTime = Date.now();
+    
+    const animate = () => {
+      if (window.innerWidth < 1024) {
+        const elapsed = Date.now() - startTime;
+        const speed = 0.001;
+        setMousePos({
+          x: 0.5 + Math.sin(elapsed * speed) * 0.3,
+          y: 0.5 + Math.cos(elapsed * speed * 0.8) * 0.3
+        });
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animate();
+    
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -42,7 +64,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
       {/* ============================================================ */}
       <section id="enterprise-hologram"
-        className="hidden lg:flex relative py-12 w-full items-center justify-center z-20 cursor-crosshair h-[700px]"
+        className="flex relative py-12 w-full items-center justify-center z-20 cursor-crosshair h-[500px] lg:h-[700px] overflow-hidden"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -136,63 +158,6 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
          </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* MOBILE: Threat detection visual fallback (< lg) */}
-      {/* ============================================================ */}
-      <section id="enterprise-hologram" className="lg:hidden relative z-20 py-12 px-6">
-        <div className="max-w-sm mx-auto space-y-4">
-          {/* Title */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-3">
-              <Activity className="w-3.5 h-3.5" />
-              Threat Isolation Demo
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              El motor EDR intercepta amenazas en el subsistema kernel antes de su ejecución.
-            </p>
-          </div>
-
-          {/* Threat card */}
-          <div className="bg-red-950/50 border-2 border-red-500/60 rounded-2xl p-5 flex items-center gap-4">
-            <AlertTriangle className="w-10 h-10 text-red-500 shrink-0 animate-pulse" />
-            <div>
-              <div className="font-mono text-sm text-red-400 font-bold">RANSOM.EXE detectado</div>
-              <div className="text-xs text-slate-400 mt-1">Entropía Shannon: 7.99 (cifrado masivo)</div>
-            </div>
-          </div>
-
-          {/* ETW log card */}
-          <div className="bg-slate-950 border-2 border-emerald-500/30 rounded-2xl p-5">
-            <div className="flex items-center justify-between mb-3 pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <Activity className="w-4 h-4 text-emerald-400" />
-                <span className="font-mono text-xs text-emerald-400 font-bold">ETW INGESTION</span>
-              </div>
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-            </div>
-            <div className="space-y-2 font-mono text-[11px] text-slate-400">
-              <div className="flex justify-between"><span className="text-slate-500">Event ID:</span> <span className="text-white">4688</span></div>
-              <div className="flex justify-between"><span className="text-slate-500">Entropy:</span> <span className="text-red-400">7.99 (High)</span></div>
-              <div className="flex justify-between"><span className="text-slate-500">Latency:</span> <span className="text-emerald-400">&lt; 12ms</span></div>
-              <div className="flex justify-between"><span className="text-slate-500">Action:</span> <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">BLOCKED</span></div>
-            </div>
-          </div>
-
-          {/* Performance metrics */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
-              <div className="text-2xl font-light text-white mb-1">&lt; 12ms</div>
-              <div className="text-[10px] text-slate-500 uppercase tracking-widest">Kernel Latency</div>
-            </div>
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-center">
-              <div className="text-2xl font-light text-white mb-1">0.8%</div>
-              <div className="text-[10px] text-slate-500 uppercase tracking-widest">CPU Overhead</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-            {/* Deep Technical Dive - YARA & Sysmon */}
       <section id="enterprise-yara" className="relative w-full max-w-6xl mx-auto px-6 py-24 z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>

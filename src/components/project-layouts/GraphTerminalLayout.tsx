@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart, FileText, CheckCircle2 } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
@@ -12,9 +12,38 @@ const GRAPH_SECTIONS = [
 
 export function GraphTerminalLayout({ project }: { project: Project }) {
   const { lang } = useLanguage();
+  
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let startTime = Date.now();
+    let cycleCounter = 0;
+    
+    const animate = () => {
+      if (window.innerWidth < 1024) {
+        const elapsed = Date.now() - startTime;
+        const speed = 0.001;
+        setMousePos({
+          x: 0.5 + Math.sin(elapsed * speed) * 0.25,
+          y: 0.5 + Math.cos(elapsed * speed * 0.7) * 0.25
+        });
+        
+        // Auto cycle the "exploded" hover state on mobile every 4 seconds
+        cycleCounter++;
+        if (cycleCounter % 400 === 0) {
+            setIsHovered(prev => !prev);
+        }
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animate();
+    
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -48,7 +77,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       {/* DESKTOP: Exploding 3D Blueprint Bento (lg+) */}
       {/* ============================================================ */}
       <section id="graph-blueprint"
-        className="hidden lg:flex relative py-24 w-full items-center justify-center z-20 cursor-crosshair"
+        className="flex relative py-12 lg:py-24 w-full items-center justify-center z-20 cursor-crosshair overflow-hidden"
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
@@ -59,7 +88,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         style={{ perspective: '2000px' }}
       >
          <div 
-           className="relative w-full max-w-5xl aspect-video transition-transform duration-700 ease-out"
+           className="relative w-[800px] lg:w-full lg:max-w-5xl aspect-video transition-transform duration-700 ease-out scale-[0.45] sm:scale-[0.6] lg:scale-100"
            style={{ 
              transform: `rotateX(${rotateX + (isHovered ? 25 : 0)}deg) rotateY(${rotateY + (isHovered ? -15 : 0)}deg) rotateZ(${isHovered ? 5 : 0}deg)`,
              transformStyle: 'preserve-3d' 
@@ -202,82 +231,6 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
          </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* MOBILE: Flat bento cards stacked (< lg) */}
-      {/* ============================================================ */}
-      <section id="graph-blueprint" className="lg:hidden relative z-20 py-12 px-6">
-        <div className="space-y-4 max-w-sm mx-auto">
-          {/* Screenshot card */}
-          <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
-            <img src={project.images[0]?.url} alt="RAG Engine UI" className="w-full h-auto object-cover" />
-          </div>
-
-          {/* Latency metric */}
-          <div className="bg-black border border-blue-900/50 rounded-2xl p-5 flex items-center justify-between shadow-[0_0_30px_rgba(59,130,246,0.1)]">
-            <div>
-              <div className="text-3xl font-black text-white">{project.metrics[1]?.value || '< 240ms'}</div>
-              <div className="text-xs text-blue-400 uppercase tracking-widest mt-1">Avg Latency</div>
-            </div>
-            <Cpu className="w-8 h-8 text-blue-400 opacity-60" />
-          </div>
-
-          {/* Vector index card */}
-          <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-5">
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-zinc-800">
-              <h3 className="text-xs font-mono text-zinc-400 uppercase">Vector Index</h3>
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-            </div>
-            <div className="space-y-3">
-              {[
-                { name: 'q3_financials.pdf', status: 'done', info: '1,024 chunks' },
-                { name: 'security_policy.md', status: 'processing', info: 'Processing...' },
-                { name: 'api_v2_docs.json', status: 'done', info: '4,520 chunks' },
-              ].map((item) => (
-                <div key={item.name} className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${item.status === 'processing' ? 'bg-amber-500/10' : 'bg-blue-500/10'}`}>
-                    <FileText className={`w-3 h-3 ${item.status === 'processing' ? 'text-amber-400' : 'text-blue-400'}`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-zinc-300 font-medium truncate">{item.name}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      {item.status === 'done'
-                        ? <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                        : <div className="w-3 h-3 rounded-full border-2 border-amber-500 border-t-transparent animate-spin"></div>
-                      }
-                      <span className="text-[9px] text-zinc-500 font-mono">{item.info}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 pt-3 border-t border-zinc-800 flex justify-between">
-              <span className="text-[9px] text-zinc-500 uppercase tracking-widest">Total Vectors</span>
-              <span className="text-sm text-blue-400 font-mono">2.4M</span>
-            </div>
-          </div>
-
-          {/* Terminal snippet */}
-          <div className="bg-[#0a0a0a] border border-zinc-800 rounded-2xl p-5">
-            <div className="font-mono text-xs">
-              <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector + BM25 rerank</div>
-              <div className="text-blue-400 break-all">results = await hybrid_retriever.get_relevant_documents(query, k=5)</div>
-            </div>
-          </div>
-
-          {/* Deploy button */}
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between w-full bg-blue-600 hover:bg-blue-500 rounded-2xl p-5 transition-colors group"
-          >
-            <span className="font-bold text-white uppercase tracking-widest">Deploy System</span>
-            <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
-          </a>
-        </div>
-      </section>
-
-      {/* Marketing & Business Value Section */}
       <section id="graph-value" className="max-w-5xl mx-auto px-6 pb-32">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">{lang === 'es' ? 'Arquitectura RAG Determinista y Anti-Alucinación' : 'Deterministic Anti-Hallucination RAG Architecture'}</h2>
