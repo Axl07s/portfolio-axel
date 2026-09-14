@@ -30,7 +30,7 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
   }, []);
 
   return (
-    <div className="relative w-full h-[100vh] bg-black overflow-hidden font-mono text-zinc-200">
+    <div className="relative w-full min-h-[60vh] md:min-h-screen h-[100vh] bg-black overflow-hidden font-mono text-zinc-200">
       <Particles density={isCyber ? 100 : 50} color={accentColor} maxOpacity={0.3} />
       
       <AnimatePresence mode="wait">
@@ -50,7 +50,7 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
               >
                 {lang === 'es' ? '[ INICIALIZANDO SISTEMA ]' : '[ SYSTEM INITIALIZATION ]'}
               </motion.div>
-              <div className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase drop-shadow-2xl px-4 text-center">
+              <div className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase drop-shadow-2xl px-4 text-center">
                 <ScrambleText text={project.title} />
               </div>
               <motion.div 
@@ -79,10 +79,8 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
             transition={{ duration: phase === 2 ? 5 : 1.5, ease: 'easeOut' }}
             style={{ perspective: 1000 }}
           >
-            <div className="relative w-[90vw] md:w-[80vw] h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <div className="relative w-[92vw] md:w-[80vw] h-[55vh] md:h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
-              
-              
               
               <motion.div 
                 className="w-full h-full absolute inset-0"
@@ -97,23 +95,21 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
                 )}
               </motion.div>
 
-
-
               <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1 }}
-                  className="text-xs md:text-sm font-bold tracking-widest mb-2"
+                  className="text-xs sm:text-sm md:text-base font-bold tracking-widest mb-2"
                   style={{ color: accentColor }}
                 >
-                  {project.layoutStyle.toUpperCase()} ARCHITECTURE
+                  {project.layoutStyle.toUpperCase()} {lang === 'es' ? 'ARQUITECTURA' : 'ARCHITECTURE'}
                 </motion.div>
                 <motion.h1 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2 }}
-                  className="text-4xl md:text-7xl font-black text-white"
+                  className="text-4xl md:text-7xl lg:text-8xl font-black text-white"
                 >
                   {project.title}
                 </motion.h1>
@@ -131,7 +127,9 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
         transition={{ delay: 2, duration: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
       >
-        <span className="text-[10px] text-zinc-500 tracking-widest uppercase mb-2">{lang === 'es' ? 'Scroll' : 'Scroll'}</span>
+        <span className="text-[10px] text-zinc-500 tracking-widest uppercase mb-2">
+          {lang === 'es' ? 'Deslizar' : 'Scroll'}
+        </span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
