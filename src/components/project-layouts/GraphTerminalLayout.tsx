@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart, Database } from 'lucide-react';
 import { VirtualCanvas } from '../VirtualCanvas';
-import { DeviceMockup } from '../DeviceMockup';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -78,24 +77,12 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       {/* ============================================================ */}
       {/* DESKTOP: Exploding 3D Blueprint Bento (lg+) */}
       {/* ============================================================ */}
-      
-        {/* ========================================================== */}
-        {/* MOBILE SHOWCASE: Native Desktop Mockup instead of 3D Canvas */}
-        {/* ========================================================== */}
-        <section className="lg:hidden relative z-20 py-12 px-4 w-full">
-           <div className="mb-8 border-l-2 border-blue-500/30 pl-4">
-             <h3 className="text-xl font-bold text-white mb-2 tracking-tight">RAG Vector Engine</h3>
-             <p className="text-zinc-400 text-sm">Pipeline de ingesta de documentos e interfaz de terminal de consultas.</p>
-           </div>
-           <DeviceMockup type="terminal" imgSrc={project.images[0]?.url} className="mb-8 shadow-[0_0_50px_rgba(59,130,246,0.15)]" />
-           <DeviceMockup type="mac" imgSrc={project.images[1]?.url} url="rag-engine.local/pipeline" className="mb-8 opacity-80" />
-        </section>
 
         {/* ========================================================== */}
         {/* DESKTOP 3D HOLOGRAM */}
         {/* ========================================================== */}
         <section id="graph-blueprint"
-          className="hidden lg:flex relative z-20 cursor-crosshair overflow-hidden w-full"
+          className="relative flex z-20 cursor-crosshair overflow-hidden w-full"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovered(true)}

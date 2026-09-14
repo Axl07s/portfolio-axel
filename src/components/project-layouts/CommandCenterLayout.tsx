@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
 import { Mic, Activity, Network } from 'lucide-react';
 import { VirtualCanvas } from '../VirtualCanvas';
-import { DeviceMockup } from '../DeviceMockup';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -124,23 +123,12 @@ export function CommandCenterLayout({ project }: { project: Project }) {
       {/* ============================================================ */}
       {/* DESKTOP: Interactive 3D Space (lg+) */}
       {/* ============================================================ */}
-      
-        {/* ========================================================== */}
-        {/* MOBILE SHOWCASE: Native Desktop Mockup instead of 3D Canvas */}
-        {/* ========================================================== */}
-        <section className="lg:hidden relative z-20 py-12 px-4 w-full">
-           <div className="mb-8 border-l-2 border-blue-500/30 pl-4">
-             <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Chief Brain HUD</h3>
-             <p className="text-zinc-400 text-sm">Dashboard de comando central con topología de agentes e interfaz de voz.</p>
-           </div>
-           <DeviceMockup type="mac" imgSrc={project.images[0]?.url} url="jarvis.local/dashboard" className="mb-8" />
-        </section>
 
         {/* ========================================================== */}
         {/* DESKTOP 3D HOLOGRAM */}
         {/* ========================================================== */}
         <section id="command-interactive"
-          className="hidden lg:flex relative z-10 w-full overflow-hidden"
+          className="relative flex z-10 w-full overflow-hidden"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}

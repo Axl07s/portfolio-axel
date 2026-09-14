@@ -1,7 +1,7 @@
 import { CinematicEditorialHero } from './CinematicEditorialHero';
 import { useState, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
-import { Smartphone, WifiOff, RefreshCcw, Cloud } from 'lucide-react';
+import { WifiOff, RefreshCcw, Cloud } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -180,51 +180,8 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       </section>
 
       {/* Marketing B2B - Mobile Value */}
-      <section id="editorial-features" className="max-w-6xl mx-auto px-6 pt-24 pb-32">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            {lang === 'es' ? 'Arquitectura Offline-First Real' : 'True Offline-First Architecture'}
-          </h2>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            {lang === 'es'
-              ? 'Una app universitaria no puede depender de la calidad del WiFi en el campus. Este proyecto fue diseñado con una arquitectura tolerante a desconexiones, garantizando acceso a la información 24/7.'
-              : 'A university app cannot depend on campus WiFi quality. This project was designed with a disconnect-tolerant architecture, guaranteeing 24/7 access to information.'}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-colors shadow-sm hover:shadow-xl">
-            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-              <WifiOff className="w-6 h-6 text-indigo-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-3">Disponibilidad 100%</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Persistencia local íntegra de horarios, calificaciones y asistencia en Isar DB (NoSQL tipada y reactiva). Lecturas directas de almacenamiento sin bloqueos ni spinners ante caídas de red.
-            </p>
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-colors shadow-sm hover:shadow-xl">
-            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-              <RefreshCcw className="w-6 h-6 text-indigo-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-3">Sincronización Silenciosa</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Encolamiento idempotente de mutaciones offline. Los background workers resuelven marcas temporales y despachan deltas al backend Spring Boot sin interferir en la fluidez de la UI.
-            </p>
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-colors shadow-sm hover:shadow-xl">
-            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-              <Smartphone className="w-6 h-6 text-indigo-400" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-3">Rendimiento Nativo Flutter</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Compilación AOT directa a código máquina ARM a 60fps constantes. Gestión de estado reactiva y desacoplada mediante BLoC pattern para iOS y Android.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-16 pt-12 border-t border-zinc-800">
+      <section id="editorial-features" className="max-w-6xl mx-auto px-6 pt-12 pb-32">
+        <div className="pt-12 border-t border-zinc-800">
           <h4 className="text-lg font-bold text-white mb-6">
             {lang === 'es' ? 'Tecnologías Base:' : 'Tech Stack:'}
           </h4>

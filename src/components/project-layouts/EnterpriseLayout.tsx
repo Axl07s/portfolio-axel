@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Shield, Activity, AlertTriangle, Zap, Server, } from 'lucide-react';
 import { VirtualCanvas } from '../VirtualCanvas';
-import { DeviceMockup } from '../DeviceMockup';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -65,23 +64,12 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {/* ============================================================ */}
       {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
       {/* ============================================================ */}
-      
-        {/* ========================================================== */}
-        {/* MOBILE SHOWCASE: Native Desktop Mockup instead of 3D Canvas */}
-        {/* ========================================================== */}
-        <section className="lg:hidden relative z-20 py-12 px-4 w-full">
-           <div className="mb-8">
-             <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Security Dashboard</h3>
-             <p className="text-zinc-400 text-sm">Monitoreo en tiempo real de amenazas, ingestión ETW y reglas YARA activas.</p>
-           </div>
-           <DeviceMockup type="mac" imgSrc={project.image || (project.images && project.images[0]?.url)} url="suitesecurity.local/admin" className="mb-8" />
-        </section>
 
         {/* ========================================================== */}
         {/* DESKTOP 3D HOLOGRAM */}
         {/* ========================================================== */}
         <section id="enterprise-hologram"
-          className="hidden lg:flex relative z-20 cursor-crosshair overflow-hidden w-full"
+          className="relative flex z-20 cursor-crosshair overflow-hidden w-full"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -273,11 +261,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
              </div>
           </div>
           
-          <img 
-            src={project.image} 
-            alt="SuiteSeguridad Interface" 
-            className="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity duration-500" 
-          />
+          
           
           {/* Subtle reflection overlay */}
           <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 pointer-events-none"></div>
