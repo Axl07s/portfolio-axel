@@ -2,7 +2,8 @@ import React from 'react';
 
 interface VirtualCanvasProps {
   children: React.ReactNode;
-  canvasWidth?: string; // e.g., '1200px'
+  canvasWidth?: string;
+  mobileCanvasWidth?: string; // e.g., '1200px'
   mobileHeight?: string; // e.g., '400px'
   desktopHeight?: string; // e.g., '100vh', 'auto', '800px'
   mobileScale?: string; // e.g., 'scale-[0.32]'
@@ -22,6 +23,7 @@ interface VirtualCanvasProps {
 export function VirtualCanvas({
   children,
   canvasWidth = '1200px',
+  mobileCanvasWidth,
   mobileHeight = '400px',
   desktopHeight = '100vh',
   mobileScale = 'scale-[0.32]',
@@ -47,7 +49,7 @@ export function VirtualCanvas({
         }
         @media (max-width: 1023px) {
           .virtual-inner-${id} {
-            width: ${canvasWidth} !important;
+            width: ${mobileCanvasWidth || canvasWidth} !important;
             max-width: none !important;
           }
         }

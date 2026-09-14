@@ -131,13 +131,14 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         >
           <VirtualCanvas
              canvasWidth="1200px"
-             mobileHeight="400px"
+             mobileCanvasWidth="450px"
+             mobileHeight="750px"
              desktopHeight="100vh"
-             mobileScale="scale-[0.32]"
-             smScale="sm:scale-[0.45]"
+             mobileScale="scale-[0.75]"
+             smScale="sm:scale-[0.85]"
           >
             {/* Holographic 3D Container */}
-            <div className="relative w-full aspect-[16/10] md:aspect-[21/9] flex items-center justify-center transition-transform duration-300 ease-out"
+            <div className="relative w-full h-[800px] lg:h-auto lg:aspect-[21/9] flex items-center justify-center transition-transform duration-300 ease-out"
               style={{ 
                 transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
                 transformStyle: 'preserve-3d'
@@ -151,7 +152,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     
               {/* LAYER 2: The Core UI (Main Dashboard Image) */}
               <div 
-                className="absolute w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
+                className="absolute w-[95%] lg:w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
                 style={{ transform: 'translateZ(0px)' }}
               >
                  <div className="absolute top-0 left-0 w-full h-8 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
@@ -168,7 +169,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     
               {/* LAYER 3: Left Floating Widget (Telemetry) */}
               <div 
-                className="absolute left-[5%] top-[20%] w-[250px] bg-slate-900/60 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
+                className="absolute left-1/2 lg:left-[5%] top-[5%] lg:top-[20%] ml-[-140px] lg:ml-0 w-[280px] lg:w-[250px] bg-slate-900/80 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
                 style={{ transform: 'translateZ(80px) rotateY(15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-4">
@@ -194,7 +195,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     
               {/* LAYER 4: Right Floating Widget (Voice / Audio) */}
               <div 
-                className="absolute right-[5%] bottom-[15%] w-[220px] bg-slate-900/60 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
+                className="absolute left-1/2 lg:left-auto lg:right-[5%] bottom-[5%] lg:bottom-[15%] ml-[-125px] lg:ml-0 w-[250px] lg:w-[220px] bg-slate-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
                 style={{ transform: 'translateZ(120px) rotateY(-15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-3">

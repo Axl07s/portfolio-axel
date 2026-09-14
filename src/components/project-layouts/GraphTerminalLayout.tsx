@@ -89,14 +89,15 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         >
            <VirtualCanvas
              canvasWidth="1000px"
-             mobileHeight="400px"
+             mobileCanvasWidth="400px"
+             mobileHeight="800px"
              desktopHeight="auto"
-             mobileScale="scale-[0.35]"
-             smScale="sm:scale-[0.5]"
+             mobileScale="scale-[0.85]"
+             smScale="sm:scale-[0.95]"
              className="py-0 lg:py-24"
            >
              <div 
-               className="relative w-full aspect-video transition-transform duration-700 ease-out flex items-center justify-center"
+               className="relative w-full h-[900px] lg:h-auto lg:aspect-video transition-transform duration-700 ease-out flex items-center justify-center"
                style={{ 
                  transform: `rotateX(${rotateX + (isHovered ? 25 : 0)}deg) rotateY(${rotateY + (isHovered ? -15 : 0)}deg) rotateZ(${isHovered ? 5 : 0}deg)`,
                  transformStyle: 'preserve-3d' 
@@ -107,19 +108,19 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                   className={`absolute inset-[-10%] border-2 border-blue-500/20 bg-[linear-gradient(to_right,#1e3a8a22_1px,transparent_1px),linear-gradient(to_bottom,#1e3a8a22_1px,transparent_1px)] bg-[size:40px_40px] rounded-[40px] flex items-center justify-center transition-all duration-700 ease-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
                   style={{ transform: `translateZ(${isHovered ? '-250px' : '0px'})` }}
                 >
-                   <div className="font-mono text-6xl font-black text-blue-500/10 tracking-tighter uppercase border-8 border-blue-500/10 p-12 rounded-[3rem]">
+                   <div className="font-mono text-4xl text-center lg:text-left lg:text-6xl font-black text-blue-500/10 tracking-tighter uppercase border-4 lg:border-8 border-blue-500/10 p-4 lg:p-12 rounded-3xl lg:rounded-[3rem]">
                      RAG VECTOR ENGINE
                    </div>
                 </div>
     
                 {/* The Bento Grid (Front Layer) */}
                 <div 
-                  className="w-full h-full grid grid-cols-4 grid-rows-3 gap-6 relative z-10 transition-transform duration-700"
+                  className="w-[90%] lg:w-full h-[90%] lg:h-full grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-3 gap-4 lg:gap-6 relative z-10 transition-transform duration-700"
                   style={{ transform: `translateZ(${isHovered ? '100px' : '0px'})` }}
                 >
                    {/* Main Stat Tile */}
                    <div 
-                     className="col-span-2 row-span-2 bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/30 rounded-3xl p-8 flex flex-col justify-between shadow-[0_0_50px_rgba(59,130,246,0.15)] transition-transform duration-700"
+                     className="col-span-1 lg:col-span-2 row-span-1 lg:row-span-2 bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/30 rounded-3xl p-6 lg:p-8 flex flex-col justify-between shadow-[0_0_50px_rgba(59,130,246,0.15)] transition-transform duration-700"
                      style={{ transform: `translateZ(${isHovered ? '50px' : '0px'})` }}
                    >
                      <div className="flex items-center gap-3 mb-6">
@@ -134,7 +135,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     
                    {/* Secondary Tile */}
                    <div 
-                     className="col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-6 flex items-center justify-between transition-transform duration-700"
+                     className="col-span-1 lg:col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-5 lg:p-6 flex items-center justify-between transition-transform duration-700"
                      style={{ transform: `translateZ(${isHovered ? '120px' : '0px'})` }}
                    >
                      <div>
@@ -146,7 +147,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     
                    {/* Pipeline Tile */}
                    <div 
-                     className="col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-6 relative overflow-hidden transition-transform duration-700"
+                     className="col-span-1 lg:col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-5 lg:p-6 relative overflow-hidden transition-transform duration-700"
                      style={{ transform: `translateZ(${isHovered ? '80px' : '0px'})` }}
                    >
                      <div className="absolute right-0 top-0 w-32 h-32 bg-blue-500/5 blur-3xl"></div>
@@ -154,7 +155,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                        <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
                        <span className="text-xs font-mono text-zinc-400 uppercase">Ingestion Pipeline</span>
                      </div>
-                     <div className="flex gap-2">
+                     <div className="flex flex-wrap gap-2">
                        <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">PDFs</span>
                        <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Notion</span>
                        <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Confluence</span>
@@ -163,7 +164,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     
                    {/* Wide Terminal Tile */}
                    <div 
-                     className="col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
+                     className="hidden lg:flex col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 items-center transition-transform duration-700"
                      style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
                    >
                      <div className="flex-1 font-mono text-sm">
@@ -177,7 +178,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     
                    {/* Action Tile */}
                    <div 
-                     className="col-span-1 row-span-1 bg-blue-600 rounded-3xl p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
+                     className="col-span-1 lg:col-span-1 row-span-1 bg-blue-600 rounded-3xl p-5 lg:p-6 flex flex-col justify-center lg:justify-between hover:bg-blue-500 transition-colors cursor-pointer"
                      style={{ transform: `translateZ(${isHovered ? '200px' : '0px'})` }}
                    >
                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group">
