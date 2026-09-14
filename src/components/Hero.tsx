@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ScrambleText } from './effects/ScrambleText';
 import { Particles } from './effects/Particles';
+import { TechCarousel } from './TechCarousel';
 
 export const Hero: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -135,8 +136,12 @@ export const Hero: React.FC = () => {
           <span className="text-xs text-zinc-400 uppercase tracking-wider font-mono">{lang === 'es' ? 'Fiverr Rating' : 'Fiverr Rating'}</span>
         </div>
       </motion.div>
+      <motion.div variants={item} className="w-full">
+        <TechCarousel />
+      </motion.div>
 
     </section>
   );
 };
+
 
