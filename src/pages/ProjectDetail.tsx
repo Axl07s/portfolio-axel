@@ -88,7 +88,7 @@ export function ProjectDetail() {
               className="flex items-center gap-2 bg-zinc-900/90 hover:bg-zinc-800 text-white px-5 py-3 rounded-full font-medium transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-zinc-700 backdrop-blur-md hover:scale-105"
             >
               <Code2 className="w-5 h-5" />
-              <span className="hidden sm:inline">{lang === 'es' ? 'Ver Código' : 'View Code'}</span>
+              <span className="hidden sm:inline">GitHub</span>
             </a>
           )}
           
