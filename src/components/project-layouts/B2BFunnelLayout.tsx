@@ -92,7 +92,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
         <div className="md:hidden flex flex-col items-center gap-8">
            <div className="w-full max-w-[280px] aspect-[9/19.5] bg-zinc-900 rounded-[2.5rem] border-[10px] border-zinc-900 shadow-[0_0_50px_rgba(79,70,229,0.2)] overflow-hidden relative">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-900 rounded-b-xl z-10"></div>
-              <img src={project.images[0]?.url} alt="NexusCorp Mobile View" className="w-full h-full object-cover object-left-top" />
+              <img src="/projects/nexus_mobile_01.png" alt="NexusCorp Mobile View" className="w-full h-full object-cover object-left-top" />
            </div>
            <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 text-center w-full max-w-[280px]">
               <span className="text-indigo-400 font-mono text-xs uppercase tracking-widest block mb-2">B2B Mobile Funnel</span>
@@ -221,5 +221,6 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 
 
