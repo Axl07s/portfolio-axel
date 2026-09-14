@@ -26,7 +26,7 @@ export const personalProjects: PersonalProject[] = [
     architectureES: 'Arquitectura híbrida C/C++ y Python. Utiliza un recolector de telemetría de baja latencia en el núcleo de Windows (ETW/Sysmon) alimentando un motor de análisis heurístico en espacio de usuario. Detección de patrones con reglas YARA dinámicas y análisis de entropía para detectar payloads cifrados.',
     architectureEN: 'Hybrid C/C++ & Python architecture. Uses a low-latency telemetry collector in the Windows core (ETW/Sysmon) feeding a user-space heuristic analysis engine. Pattern detection with dynamic YARA rules and entropy analysis to detect encrypted payloads.',
     tech: ['Python', 'C++', 'YARA', 'Sysmon', 'ETW API', 'Win32 API'],
-    image: '/projects/suitesecurity_01.png',
+    image: '/projects/suitesecurity_hero.png',
     images: [
       { url: '/projects/suitesecurity_01.png', captionES: 'Dashboard de Análisis y Telemetría en Tiempo Real', captionEN: 'Real-time Telemetry & Analysis Dashboard' },
       { url: '/projects/suitesecurity_02.png', captionES: 'Detección Heurística e Interceptación de Amenazas', captionEN: 'Heuristic Detection & Threat Interception' },
