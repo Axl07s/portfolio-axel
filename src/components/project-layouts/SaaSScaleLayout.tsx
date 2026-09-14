@@ -193,81 +193,82 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
       </section>
 
       {/* ============================================================ */}
-      {/* MOBILE: Desktop screenshot + phone mockup stacked (< lg) */}
+      {/* MOBILE: Clean Native SaaS Card (< lg) */}
       {/* ============================================================ */}
-      <section id="saas-showcase-mobile" className="lg:hidden relative z-20 py-12 px-4">
-        {/* Desktop screenshot */}
-        <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl mb-6">
-          <div className="h-10 bg-zinc-950 flex items-center px-4 border-b border-zinc-800">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-              <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+      <section id="saas-showcase-mobile" className="lg:hidden relative z-20 py-10 px-4">
+        <div className="bg-gradient-to-b from-zinc-950 to-black border border-zinc-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(79,70,229,0.15)]">
+          {/* Window Header */}
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#111118] border-b border-zinc-800">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+            <div className="flex-1 flex items-center justify-center">
+              <span className="text-[11px] font-mono text-zinc-500 flex items-center gap-1">
+                <Shield className="w-3 h-3 text-indigo-400" />
+                syntrosaas-app.vercel.app
+              </span>
             </div>
-            <div className="mx-auto flex items-center gap-1 text-[11px] text-zinc-500 font-mono">
-              <Shield className="w-3 h-3" />
-              syntrosaas-app.vercel.app
-            </div>
-          </div>
-          <img src={project.images[0]?.url} alt="Desktop UI" className="w-full h-auto object-cover" />
-        </div>
-
-        
-        {/* Mobile Phone Mockup */}
-        <div className="w-full max-w-[280px] mx-auto aspect-[9/19.5] bg-[#0c0c0e] rounded-[3rem] border-[10px] border-zinc-900 overflow-hidden shadow-[0_30px_80px_rgba(79,70,229,0.15)] relative flex flex-col mb-8">
-          <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-7 bg-black rounded-full z-40"></div>
-          <div className="flex-1 overflow-hidden pt-16 pb-6 px-4 flex flex-col gap-4 relative">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">S</span>
-                </div>
-                <div>
-                  <h5 className="text-xs font-bold text-white">SyntroSaaS</h5>
-                  <p className="text-[10px] text-zinc-500">Workspace</p>
-                </div>
-              </div>
-              <User className="w-5 h-5 text-zinc-400" />
-            </div>
-
-            {/* Mobile Stats Card */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-2 mt-2">
-               <div className="flex justify-between items-center">
-                 <span className="text-[11px] text-zinc-400 font-medium">Monthly API Ingest</span>
-                 <Activity className="w-3 h-3 text-indigo-400" />
-               </div>
-               <h4 className="text-2xl font-bold text-white tracking-tight">1.42M</h4>
-               <div className="w-full bg-zinc-800 rounded-full h-1 mt-1">
-                 <div className="bg-indigo-500 h-1 rounded-full w-[71%]"></div>
-               </div>
-               <span className="text-[9px] text-zinc-500 mt-0.5">71% of 2M Quota</span>
-            </div>
-
-            {/* List Items */}
-            <div className="flex flex-col gap-2 mt-2">
-              <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
-                <div className="p-2 bg-rose-500/10 rounded-lg">
-                  <Database className="w-4 h-4 text-rose-500" />
-                </div>
-                <div className="flex-1">
-                  <h6 className="text-xs font-semibold text-white">Database Storage</h6>
-                  <p className="text-[10px] text-zinc-500">4.8 GB used</p>
-                </div>
-              </div>
-              <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
-                <div className="p-2 bg-emerald-500/10 rounded-lg">
-                  <Cloud className="w-4 h-4 text-emerald-500" />
-                </div>
-                <div className="flex-1">
-                  <h6 className="text-xs font-semibold text-white">Edge Gateway</h6>
-                  <p className="text-[10px] text-zinc-500">42ms latency (P99)</p>
-                </div>
-              </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] font-mono text-emerald-400 uppercase">Production</span>
             </div>
           </div>
+
+          {/* Main Desktop Screenshot in aspect-video with lightbox tap */}
+          <div 
+            className="relative aspect-video w-full cursor-pointer bg-zinc-950"
+            onClick={() => project.images?.[0]?.url && window.open(project.liveUrl || '#', '_blank')}
+          >
+            <img 
+              src={project.images[0]?.url} 
+              alt="SyntroSaaS Desktop UI" 
+              className="w-full h-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/80 border border-zinc-700 rounded-lg text-[10px] font-mono text-zinc-300">
+              {lang === 'es' ? 'Next.js 15 + Supabase RLS' : 'Next.js 15 + Supabase RLS'}
+            </div>
+          </div>
+
+          {/* Metric Tiles (Native, Crisp) */}
+          <div className="grid grid-cols-2 gap-px bg-zinc-800">
+            <div className="bg-[#0c0c12] p-4 flex flex-col justify-between">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Monthly Ingest</span>
+                <Activity className="w-3.5 h-3.5 text-indigo-400" />
+              </div>
+              <div className="text-3xl font-black text-white tracking-tight">1.42M</div>
+              <div className="w-full bg-zinc-800 rounded-full h-1 mt-2">
+                <div className="bg-indigo-500 h-1 rounded-full w-[71%]"></div>
+              </div>
+              <span className="text-[9px] font-mono text-zinc-500 mt-1">71% of 2M Quota</span>
+            </div>
+
+            <div className="bg-[#0c0c12] p-4 flex flex-col justify-between">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Edge Gateway</span>
+                <Cloud className="w-3.5 h-3.5 text-emerald-400" />
+              </div>
+              <div className="text-3xl font-black text-white tracking-tight"><span className="text-emerald-400 font-normal text-xl">&lt;</span>42ms</div>
+              <div className="flex items-center gap-1.5 mt-2">
+                <span className="text-[10px] font-mono text-emerald-400/90 font-semibold">P99 Global Latency</span>
+              </div>
+              <span className="text-[9px] font-mono text-zinc-500 mt-1">Vercel Edge Functions</span>
+            </div>
+          </div>
+
+          {/* Telemetry Footer */}
+          <div className="px-4 py-3 bg-[#08080c] border-t border-zinc-800 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Database className="w-3.5 h-3.5 text-rose-400" />
+              <span className="text-[11px] font-mono text-zinc-400">PostgreSQL Multi-Tenant RLS</span>
+            </div>
+            <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span>
+          </div>
         </div>
-        </section>
+      </section>
 
       {/* Features List */}
       <section id="saas-features" className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">

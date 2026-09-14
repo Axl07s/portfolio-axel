@@ -62,16 +62,73 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       <div id="enterprise-hero"><CinematicHero project={project} lang={lang} /></div>
 
       {/* ============================================================ */}
-      {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
+      {/* MOBILE: Native Security Telemetry Card (< lg) */}
       {/* ============================================================ */}
-      {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
-      {/* ============================================================ */}
+      <section className="lg:hidden px-4 py-8 relative z-20">
+        <div className="bg-slate-950 border border-emerald-500/30 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.12)]">
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 bg-[#0a0f1d] border-b border-slate-800">
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-emerald-400" />
+              <span className="font-mono text-xs font-bold text-emerald-400">EDR KERNEL TELEMETRY</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono text-[10px] text-emerald-400 uppercase">RING 0 ACTIVE</span>
+            </div>
+          </div>
 
-        {/* ========================================================== */}
-        {/* DESKTOP 3D HOLOGRAM */}
-        {/* ========================================================== */}
-        <section id="enterprise-hologram"
-          className="relative flex z-20 cursor-crosshair overflow-hidden w-full"
+          {/* Screenshot in aspect-video with tap to expand */}
+          <div 
+            className="relative aspect-video w-full cursor-pointer bg-slate-900"
+            onClick={() => setLightboxImg(project.image || project.images?.[0]?.url || '/projects/suitesecurity_01.png')}
+          >
+            <img 
+              src={project.image || project.images?.[0]?.url || '/projects/suitesecurity_01.png'} 
+              alt="SuiteSeguridad EDR" 
+              className="w-full h-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/80 border border-slate-700 rounded-lg text-[10px] font-mono text-slate-300">
+              {lang === 'es' ? 'Toca para ampliar' : 'Tap to expand'}
+            </div>
+          </div>
+
+          {/* Key Metrics */}
+          <div className="grid grid-cols-2 gap-px bg-slate-800 font-mono text-xs">
+            <div className="bg-[#060b17] p-4 flex flex-col justify-between">
+              <div className="flex items-center gap-1.5 text-slate-400 mb-1">
+                <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-[10px] uppercase">Telemetry</span>
+              </div>
+              <div className="text-xl font-bold text-white">ETW & Sysmon</div>
+              <span className="text-[9px] text-emerald-400/80 mt-1">&lt;2ms Latency Hooks</span>
+            </div>
+            <div className="bg-[#060b17] p-4 flex flex-col justify-between">
+              <div className="flex items-center gap-1.5 text-slate-400 mb-1">
+                <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                <span className="text-[10px] uppercase">Interception</span>
+              </div>
+              <div className="text-xl font-bold text-white">YARA + Shannon</div>
+              <span className="text-[9px] text-red-400/80 mt-1">Process Hollowing Block</span>
+            </div>
+          </div>
+
+          {/* Security Log Feed Preview */}
+          <div className="p-3 bg-[#030712] border-t border-slate-800/80 font-mono text-[10px] text-slate-400 flex items-center justify-between">
+            <span className="text-emerald-400">EVENT_ID 4688: Process creation inspected</span>
+            <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/20 font-bold">PASSED</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* DESKTOP: 3D Threat Isolation Hologram (lg+) */}
+      {/* ============================================================ */}
+      <section id="enterprise-hologram"
+        className="relative hidden lg:flex z-20 cursor-crosshair overflow-hidden w-full"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
