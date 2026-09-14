@@ -57,20 +57,20 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         />
 
         {/* Hover Overlay */}
-        <div className="hidden sm:flex absolute inset-0 flex-col items-center justify-center text-center p-5 sm:p-6 pb-6 bg-zinc-950/95 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-indigo-400 font-semibold mb-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20">
+        <div className="hidden sm:flex absolute inset-0 flex-col items-center justify-center text-center p-6 bg-zinc-950/95 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-indigo-400 font-semibold px-2.5 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20">
             {project.category}
           </span>
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight">
+          <h3 className="text-xl sm:text-2xl font-bold text-white mt-2.5 mb-2 tracking-tight">
             {project.title}
           </h3>
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-sm mb-4 line-clamp-2 font-normal">
+          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-sm line-clamp-2 font-normal">
             {project.description}
           </p>
 
-          <div className="flex items-center justify-center gap-2.5">
+          <div className="flex items-center justify-center gap-3 mt-6 sm:mt-7">
             <span
-              className="inline-flex items-center justify-center gap-1.5 px-4.5 py-2 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-semibold transition-all active:scale-95 shadow-md shadow-white/10"
+              className="inline-flex items-center justify-center gap-1.5 px-4.5 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-semibold transition-all active:scale-95 shadow-lg shadow-white/10"
             >
               <span>{lang === 'es' ? 'Ver Estudio' : 'View Case Study'}</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-zinc-950 shrink-0" />
@@ -82,7 +82,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="group/link inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium transition-all hover:text-white active:scale-95 backdrop-blur-sm"
+                className="group/link inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium transition-all hover:text-white active:scale-95 backdrop-blur-sm"
               >
                 <span>{lang === 'es' ? 'Sitio en Vivo' : 'Live Site'}</span>
                 <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover/link:text-white shrink-0 transition-colors" />
