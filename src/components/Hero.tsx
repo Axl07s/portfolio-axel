@@ -76,7 +76,7 @@ export const Hero: React.FC = () => {
         <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-4 pt-4">
           {/* Primary CTA: Quote / Contact */}
           <a
-            href="https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto"
+            href={lang === 'es' ? "https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto" : "https://wa.me/593995267503?text=Hi%20Axel,%20I%20would%20like%20to%20quote%20a%20project"}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold bg-white text-black hover:bg-zinc-100 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 active:scale-95 overflow-hidden"

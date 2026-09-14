@@ -1,7 +1,10 @@
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Terminal, Code2, Cpu, FileJson, GitBranch, Shield } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export function BentoLayout({ project }: { project: PersonalProject }) {
+  const { lang } = useLanguage();
+
   return (
     <div className="w-full font-sans selection:bg-emerald-500/30">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto">
@@ -97,30 +100,11 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 <span className="text-[#7ee787]">desc</span>
                 <span className="text-[#79c0ff]"> lang</span>
                 <span className="text-[#c9d1d9]">=</span>
-                <span className="text-[#a5d6ff]">"en"</span>
+                <span className="text-[#a5d6ff]">"{lang}"</span>
                 <span className="text-[#ff7b72]">&gt;</span>
               </div>
               <p className="text-xs md:text-sm text-[#c9d1d9] leading-relaxed group-hover/desc:text-white transition-colors">
-                {project.descriptionEN}
-              </p>
-              <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mt-1.5">
-                <span className="text-[#ff7b72]">&lt;/</span>
-                <span className="text-[#7ee787]">desc</span>
-                <span className="text-[#ff7b72]">&gt;</span>
-              </div>
-            </div>
-
-            <div className="group/desc">
-              <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mb-1.5 flex items-center gap-2">
-                <span className="text-[#ff7b72]">&lt;</span>
-                <span className="text-[#7ee787]">desc</span>
-                <span className="text-[#79c0ff]"> lang</span>
-                <span className="text-[#c9d1d9]">=</span>
-                <span className="text-[#a5d6ff]">"es"</span>
-                <span className="text-[#ff7b72]">&gt;</span>
-              </div>
-              <p className="text-xs md:text-sm text-[#8b949e] leading-relaxed group-hover/desc:text-[#c9d1d9] transition-colors">
-                {project.descriptionES}
+                {lang === 'es' ? project.descriptionES : project.descriptionEN}
               </p>
               <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mt-1.5">
                 <span className="text-[#ff7b72]">&lt;/</span>
@@ -141,19 +125,10 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
           <div className="flex flex-col gap-5 mt-auto">
             <div className="group/arch">
               <div className="text-[9px] md:text-[10px] font-mono text-[#79c0ff] mb-1.5">
-                architecture_en: <span className="text-[#d2a8ff]">|</span>
+                architecture_{lang}: <span className="text-[#d2a8ff]">|</span>
               </div>
               <p className="text-xs md:text-sm text-[#c9d1d9] leading-relaxed border-l-2 border-[#30363d] pl-3 py-1 group-hover/arch:border-[#d2a8ff] transition-colors">
-                {project.architectureEN}
-              </p>
-            </div>
-
-            <div className="group/arch">
-              <div className="text-[9px] md:text-[10px] font-mono text-[#79c0ff] mb-1.5">
-                architecture_es: <span className="text-[#d2a8ff]">|</span>
-              </div>
-              <p className="text-xs md:text-sm text-[#8b949e] leading-relaxed border-l-2 border-[#30363d] pl-3 py-1 group-hover/arch:border-[#d2a8ff] transition-colors">
-                {project.architectureES}
+                {lang === 'es' ? project.architectureES : project.architectureEN}
               </p>
             </div>
           </div>
@@ -162,10 +137,14 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
         {/* Architecture Diagram Card (Row 4, Span 3) */}
         <div className="md:col-span-3 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center min-h-[300px]">
           <div className="w-full flex flex-col md:flex-row md:items-center justify-between mb-8 gap-2">
-            <h3 className="text-lg md:text-xl font-bold text-white tracking-tight">Flujo de Detección y Mitigación</h3>
+            <h3 className="text-lg md:text-xl font-bold text-white tracking-tight">
+              {lang === 'es' ? 'Flujo de Detección y Mitigación' : 'Detection & Mitigation Flow'}
+            </h3>
             <div className="flex items-center gap-2 text-[#8b949e]">
               <Cpu size={16} />
-              <span className="text-[10px] md:text-xs font-mono uppercase tracking-wider">Architecture Diagram</span>
+              <span className="text-[10px] md:text-xs font-mono uppercase tracking-wider">
+                {lang === 'es' ? 'Diagrama de Arquitectura' : 'Architecture Diagram'}
+              </span>
             </div>
           </div>
           <div className="w-full max-w-4xl flex items-center justify-center p-4 md:p-8 bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-inner">
@@ -201,7 +180,9 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 {/* Mitigation Action */}
                 <path d="M 670 150 L 670 90 L 210 90" stroke="#ff7b72" strokeWidth="2" fill="none" strokeDasharray="6,4" />
                 <polygon points="210,90 220,85 220,95" fill="#ff7b72" />
-                <text x="440" y="80" textAnchor="middle" fill="#ff7b72" className="text-[8px] md:text-[10px]">Kill Process (Mitigation)</text>
+                <text x="440" y="80" textAnchor="middle" fill="#ff7b72" className="text-[8px] md:text-[10px]">
+                  {lang === 'es' ? 'Terminar Proceso (Mitigación)' : 'Kill Process (Mitigation)'}
+                </text>
              </svg>
           </div>
         </div>

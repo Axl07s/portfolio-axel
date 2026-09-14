@@ -1,8 +1,18 @@
 import React from 'react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 import { Layout, Server, Smartphone, Shield, Check, Cpu } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const TechStackSection: React.FC = () => {
+  const { lang } = useLanguage();
+
+  const categoryTitles: Record<string, { es: string; en: string }> = {
+    'Frontend Architecture': { es: 'Arquitectura Frontend', en: 'Frontend Architecture' },
+    'Backend & APIs': { es: 'Backend & APIs', en: 'Backend & APIs' },
+    'Mobile & Desktop': { es: 'Mobile & Desktop', en: 'Mobile & Desktop' },
+    'AI & DevOps': { es: 'IA & DevOps', en: 'AI & DevOps' },
+  };
+
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Layout': return <Layout className="w-5 h-5 text-red-400" />;
@@ -20,13 +30,19 @@ export const TechStackSection: React.FC = () => {
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950 border border-red-500/30 text-red-400 text-xs font-mono font-medium shadow-glow-red">
           <Cpu className="w-3.5 h-3.5" />
-          <span>ENGINEERING MATRIX</span>
+          <span>{lang === 'es' ? 'MATRIZ DE INGENIERÍA' : 'ENGINEERING MATRIX'}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Battle-Tested <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Tech Stack</span>.
+          {lang === 'es' ? (
+            <>Stack Tecnológico <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Probado en Batalla</span>.</>
+          ) : (
+            <>Battle-Tested <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Tech Stack</span>.</>
+          )}
         </h2>
         <p className="text-xs sm:text-sm text-zinc-400">
-          I build with high-throughput modern frameworks designed for rapid scale, enterprise security, and clean maintainability.
+          {lang === 'es'
+            ? 'Desarrollo con frameworks modernos de alto rendimiento diseñados para escalabilidad rápida, seguridad empresarial y mantenibilidad limpia.'
+            : 'I build with high-throughput modern frameworks designed for rapid scale, enterprise security, and clean maintainability.'}
         </p>
       </div>
 
@@ -42,8 +58,10 @@ export const TechStackSection: React.FC = () => {
                   {getIcon(cat.icon)}
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-white">{cat.title}</h3>
-                  <span className="text-[10px] font-mono text-zinc-400">{cat.skills.length} Core Technologies</span>
+                  <h3 className="font-bold text-sm text-white">{categoryTitles[cat.title]?.[lang] || cat.title}</h3>
+                  <span className="text-[10px] font-mono text-zinc-400">
+                    {cat.skills.length} {lang === 'es' ? 'Tecnologías Clave' : 'Core Technologies'}
+                  </span>
                 </div>
               </div>
 
@@ -57,7 +75,7 @@ export const TechStackSection: React.FC = () => {
                         ? 'bg-red-500/10 text-red-400 border-red-500/30'
                         : 'bg-zinc-900 text-zinc-400 border-zinc-800'
                     }`}>
-                      {skill.level}
+                      {skill.level === 'Expert' ? (lang === 'es' ? 'Experto' : 'Expert') : (lang === 'es' ? 'Avanzado' : 'Advanced')}
                     </span>
                   </li>
                 ))}
@@ -67,7 +85,7 @@ export const TechStackSection: React.FC = () => {
             {/* Bottom Status */}
             <div className="pt-3 border-t border-zinc-800/60 flex items-center gap-1.5 text-[11px] font-mono text-zinc-400">
               <Check className="w-3.5 h-3.5 text-red-500" />
-              <span>Production Tested</span>
+              <span>{lang === 'es' ? 'Probado en Producción' : 'Production Tested'}</span>
             </div>
 
           </div>

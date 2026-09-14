@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Sparkles, Play, ExternalLink, Bot, Zap, Key } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const TwitchScannerDemo: React.FC = () => {
+  const { lang } = useLanguage();
   const [channel, setChannel] = useState('indie_dev_mike');
   const [scanning, setScanning] = useState(false);
   const [logs, setLogs] = useState<string[]>([]);
@@ -58,10 +60,10 @@ export const TwitchScannerDemo: React.FC = () => {
           className="px-4 py-2 rounded-xl font-bold bg-cyan-500 hover:bg-cyan-400 text-black flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50"
         >
           <Play className="w-3.5 h-3.5 fill-black" />
-          <span>{scanning ? 'Scanning Stream...' : 'Run Live Scan'}</span>
+          <span>{scanning ? (lang === 'es' ? 'Escaneando Stream...' : 'Scanning Stream...') : (lang === 'es' ? 'Ejecutar Escaneo' : 'Run Live Scan')}</span>
         </button>
       </div>
-      <p className="text-[10px] text-zinc-500 italic px-1">Interactive demo — sample data</p>
+      <p className="text-[10px] text-zinc-500 italic px-1">{lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}</p>
 
       {/* Terminal Output */}
       <div className="p-4 rounded-2xl bg-[#090d16] border border-cyan-500/30 text-zinc-300 min-h-[160px] space-y-1 overflow-x-auto shadow-inner">
@@ -69,11 +71,11 @@ export const TwitchScannerDemo: React.FC = () => {
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-          <span className="ml-2">gearstack-cli — automated audit session</span>
+          <span className="ml-2">gearstack-cli — {lang === 'es' ? 'sesión de auditoría automatizada' : 'automated audit session'}</span>
         </div>
 
         {logs.length === 0 && !scanning && (
-          <p className="text-zinc-500 italic">Click "Run Live Scan" to audit this stream setup...</p>
+          <p className="text-zinc-500 italic">{lang === 'es' ? 'Haz clic en "Ejecutar Escaneo" para auditar esta configuración...' : 'Click "Run Live Scan" to audit this stream setup...'}</p>
         )}
 
         {logs.map((log, idx) => (
@@ -95,7 +97,7 @@ export const TwitchScannerDemo: React.FC = () => {
           <div className="flex items-center justify-between text-xs">
             <span className="font-bold text-white flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span>Recommended Affiliate Bundle</span>
+              <span>{lang === 'es' ? 'Bundle de Afiliados Recomendado' : 'Recommended Affiliate Bundle'}</span>
             </span>
             <span className="text-zinc-400 text-[10px]">Tag: <strong className="text-cyan-400">axeltech0b-20</strong></span>
           </div>
@@ -138,15 +140,21 @@ export const TwitchScannerDemo: React.FC = () => {
 };
 
 export const JarvisVoiceDemo: React.FC = () => {
+  const { lang } = useLanguage();
   const [state, setState] = useState<'idle' | 'listening' | 'speaking'>('idle');
-  const [message, setMessage] = useState('Jarvis Chief Brain ready. Select a voice trigger to simulate neural dispatch.');
+  const defaultMessage = lang === 'es'
+    ? 'Cerebro central de Jarvis listo. Selecciona una orden de voz para simular el despacho neural.'
+    : 'Jarvis Chief Brain ready. Select a voice trigger to simulate neural dispatch.';
+  const [message, setMessage] = useState<string | null>(null);
 
-  const triggerVoice = (text: string) => {
+  const triggerVoice = (promptText: string, taskDesc: string) => {
     setState('listening');
-    setMessage(`Analyzing input: "${text}"...`);
+    setMessage(lang === 'es' ? `Analizando orden: "${promptText}"...` : `Analyzing input: "${promptText}"...`);
     setTimeout(() => {
       setState('speaking');
-      setMessage(`ElevenLabs Voice Synthesis active. Dispatched subagent mesh. Task latency: 142ms.`);
+      setMessage(lang === 'es'
+        ? `Síntesis de voz ElevenLabs activa. Malla de subagentes despachada para ${taskDesc}. Latencia: 142ms.`
+        : `ElevenLabs Voice Synthesis active. Dispatched subagent mesh for ${taskDesc}. Task latency: 142ms.`);
     }, 800);
   };
 
@@ -155,7 +163,9 @@ export const JarvisVoiceDemo: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Bot className="w-5 h-5 text-cyan-400" />
-          <span className="font-bold text-white uppercase tracking-wider">Jarvis Neural HUD Simulation</span>
+          <span className="font-bold text-white uppercase tracking-wider">
+            {lang === 'es' ? 'Simulación HUD Neural Jarvis' : 'Jarvis Neural HUD Simulation'}
+          </span>
         </div>
         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
           state === 'speaking' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500 animate-pulse' :
@@ -181,29 +191,38 @@ export const JarvisVoiceDemo: React.FC = () => {
       </div>
 
       <p className="text-zinc-300 leading-relaxed bg-black/40 p-3 rounded-xl border border-white/5">
-        {message}
+        {message || defaultMessage}
       </p>
 
       <div className="flex flex-wrap gap-2 pt-1">
         <button
-          onClick={() => triggerVoice('Audit current token spend across OpenAI and Anthropic models')}
+          onClick={() => triggerVoice(
+            lang === 'es' ? 'Auditar gasto actual de tokens' : 'Audit current token spend across OpenAI and Anthropic models',
+            lang === 'es' ? 'auditoría de costos de tokens' : 'token spend audit'
+          )}
           className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-cyan-950 text-zinc-200 border border-zinc-800 hover:border-cyan-500 text-[11px] transition-all"
         >
-          Audit Token Spend
+          {lang === 'es' ? 'Auditar Gasto de Tokens' : 'Audit Token Spend'}
         </button>
         <button
-          onClick={() => triggerVoice('Deploy research subagent to scrape latest security CVEs')}
+          onClick={() => triggerVoice(
+            lang === 'es' ? 'Desplegar subagente de investigación para CVEs' : 'Deploy research subagent to scrape latest security CVEs',
+            lang === 'es' ? 'rastreo de vulnerabilidades CVE' : 'CVE security research'
+          )}
           className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-cyan-950 text-zinc-200 border border-zinc-800 hover:border-cyan-500 text-[11px] transition-all"
         >
-          Dispatch Research Agent
+          {lang === 'es' ? 'Despachar Agente de Investigación' : 'Dispatch Research Agent'}
         </button>
       </div>
-      <p className="text-[10px] text-zinc-500 italic px-1 text-center">Interactive demo — sample data</p>
+      <p className="text-[10px] text-zinc-500 italic px-1 text-center">
+        {lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}
+      </p>
     </div>
   );
 };
 
 export const SaaSDashboardDemo: React.FC = () => {
+  const { lang } = useLanguage();
   const [isDemoAuthenticated, setIsDemoAuthenticated] = useState(false);
   const [tier, setTier] = useState<'starter' | 'pro' | 'scale'>('pro');
   const [apiKey, setApiKey] = useState('sk_live_syntro_8f93a2b7e1');
@@ -217,12 +236,16 @@ export const SaaSDashboardDemo: React.FC = () => {
         </div>
         <div className="z-10">
           <h3 className="text-white font-extrabold text-base">SyntroSaaS</h3>
-          <p className="text-zinc-400 text-xs mt-1">Enterprise Auth & Governance</p>
+          <p className="text-zinc-400 text-xs mt-1">
+            {lang === 'es' ? 'Autenticación & Gobernanza Enterprise' : 'Enterprise Auth & Governance'}
+          </p>
         </div>
         
         <div className="p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20 max-w-xs z-10">
           <p className="text-[10px] leading-relaxed text-indigo-300">
-            Para proteger datos reales, este simulador usa una sesión de Sandbox automática. No se requieren credenciales.
+            {lang === 'es'
+              ? 'Para proteger datos reales, este simulador usa una sesión de Sandbox automática. No se requieren credenciales.'
+              : 'To protect production data, this simulator uses an automated Sandbox session. No credentials required.'}
           </p>
         </div>
 
@@ -232,11 +255,11 @@ export const SaaSDashboardDemo: React.FC = () => {
             className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold bg-white text-black hover:bg-zinc-200 transition-all shadow-lg active:scale-95"
           >
             <Zap className="w-3.5 h-3.5 fill-current" />
-            Iniciar Demo Automático
+            {lang === 'es' ? 'Iniciar Demo Automático' : 'Launch Live Demo'}
           </button>
           <button disabled className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-[10px] font-medium bg-zinc-900 text-zinc-600 border border-zinc-800 cursor-not-allowed">
             <Key className="w-3 h-3" />
-            Single Sign-On (SSO) Bloqueado
+            {lang === 'es' ? 'Single Sign-On (SSO) Bloqueado' : 'Single Sign-On (SSO) Locked'}
           </button>
         </div>
       </div>
@@ -247,8 +270,12 @@ export const SaaSDashboardDemo: React.FC = () => {
     <div className="p-5 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-4 text-xs font-mono animate-fadeIn">
       <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
         <div>
-          <span className="font-bold text-white block">SyntroSaaS Organization Governance</span>
-          <span className="text-zinc-500 text-[10px]">Multi-Tenant RBAC & Stripe Billing Simulator</span>
+          <span className="font-bold text-white block">
+            {lang === 'es' ? 'Gobernanza Organizacional SyntroSaaS' : 'SyntroSaaS Organization Governance'}
+          </span>
+          <span className="text-zinc-500 text-[10px]">
+            {lang === 'es' ? 'Simulador Multi-Tenant RBAC & Facturación Stripe' : 'Multi-Tenant RBAC & Stripe Billing Simulator'}
+          </span>
         </div>
         <div className="flex gap-1 bg-zinc-900 p-1 rounded-xl border border-zinc-800">
           {(['starter', 'pro', 'scale'] as const).map(t => (
@@ -267,42 +294,72 @@ export const SaaSDashboardDemo: React.FC = () => {
 
       <div className="grid grid-cols-3 gap-2 text-center">
         <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
-          <span className="text-[9px] text-zinc-400 block">Monthly Quota</span>
-          <span className="font-bold text-white text-xs">{tier === 'starter' ? '10K API Calls' : tier === 'pro' ? '100K API Calls' : 'Unlimited'}</span>
+          <span className="text-[9px] text-zinc-400 block">{lang === 'es' ? 'Cuota Mensual' : 'Monthly Quota'}</span>
+          <span className="font-bold text-white text-xs">
+            {tier === 'starter' ? '10K API Calls' : tier === 'pro' ? '100K API Calls' : (lang === 'es' ? 'Ilimitado' : 'Unlimited')}
+          </span>
         </div>
         <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
-          <span className="text-[9px] text-zinc-400 block">Team Seats</span>
-          <span className="font-bold text-white text-xs">{tier === 'starter' ? '2 Seats' : tier === 'pro' ? '10 Seats' : 'Unlimited'}</span>
+          <span className="text-[9px] text-zinc-400 block">{lang === 'es' ? 'Puestos de Equipo' : 'Team Seats'}</span>
+          <span className="font-bold text-white text-xs">
+            {tier === 'starter' ? (lang === 'es' ? '2 Puestos' : '2 Seats') : tier === 'pro' ? (lang === 'es' ? '10 Puestos' : '10 Seats') : (lang === 'es' ? 'Ilimitado' : 'Unlimited')}
+          </span>
         </div>
         <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
-          <span className="text-[9px] text-zinc-400 block">Stripe Status</span>
-          <span className="font-bold text-emerald-400 text-xs">Active (Paid)</span>
+          <span className="text-[9px] text-zinc-400 block">{lang === 'es' ? 'Estado Stripe' : 'Stripe Status'}</span>
+          <span className="font-bold text-emerald-400 text-xs">{lang === 'es' ? 'Activo (Pagado)' : 'Active (Paid)'}</span>
         </div>
       </div>
 
       <div className="p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 flex items-center justify-between">
         <div className="min-w-0 pr-2">
-          <span className="text-[10px] text-zinc-500 block">Active Scoped API Key:</span>
+          <span className="text-[10px] text-zinc-500 block">{lang === 'es' ? 'API Key activa delimitada:' : 'Active Scoped API Key:'}</span>
           <code className="text-red-400 font-bold truncate block">{apiKey}</code>
         </div>
         <button
           onClick={() => setApiKey(`sk_live_syntro_${Math.random().toString(36).substring(2, 10)}`)}
           className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-[10px] shrink-0"
         >
-          Rotate Key
+          {lang === 'es' ? 'Rotar Clave' : 'Rotate Key'}
         </button>
       </div>
-      <p className="text-[10px] text-zinc-500 italic px-1 text-center">Interactive demo — sample data</p>
+      <p className="text-[10px] text-zinc-500 italic px-1 text-center">
+        {lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}
+      </p>
     </div>
   );
 };
 
 export const RagChatDemo: React.FC = () => {
-  const [messages, setMessages] = useState([
+  const { lang } = useLanguage();
+  const defaultMessages = lang === 'es' ? [
     { role: 'user', text: '¿Cómo funciona la autenticación multi-tenant y la base de datos vectorial?' },
     { role: 'assistant', text: 'SyntroSaaS utiliza Supabase PostgreSQL con Row-Level Security (RLS) estricto y la extensión pgvector para búsquedas semánticas híbridas.', citation: 'Source: architecture_spec.md § 4.2' },
-  ]);
+  ] : [
+    { role: 'user', text: 'How does multi-tenant authentication and the vector database work?' },
+    { role: 'assistant', text: 'SyntroSaaS leverages Supabase PostgreSQL with strict Row-Level Security (RLS) and the pgvector extension for hybrid semantic search.', citation: 'Source: architecture_spec.md § 4.2' },
+  ];
+  const [messages, setMessages] = useState<Array<{ role: string; text: string; citation?: string }>>([]);
+  const activeMessages = messages.length > 0 ? messages : defaultMessages;
   const [input, setInput] = useState('');
+
+  const sendQuery = (text: string, simScore: string) => {
+    if (input === text) return;
+    setInput(text);
+    setMessages(prev => [...(prev.length ? prev : defaultMessages), { role: 'user', text }]);
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          text: lang === 'es' 
+            ? `Respuesta generada con contexto verificado en PGVector para "${text}". Cero alucinaciones con guardrails activos.`
+            : `Response generated with verified PGVector context for "${text}". Zero hallucinations with active guardrails.`,
+          citation: `Document chunk [${simScore} cosine similarity]`,
+        },
+      ]);
+    }, 600);
+  };
 
   return (
     <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-3 text-xs font-mono">
@@ -311,11 +368,13 @@ export const RagChatDemo: React.FC = () => {
           <Zap className="w-4 h-4 text-amber-400" />
           <span>PGVector RAG Stream Simulator</span>
         </span>
-        <span className="text-[10px] text-emerald-400 font-bold">● Anti-Hallucination Guardrails Active</span>
+        <span className="text-[10px] text-emerald-400 font-bold">
+          {lang === 'es' ? '● Guardrails Anti-Alucinación Activos' : '● Anti-Hallucination Guardrails Active'}
+        </span>
       </div>
 
       <div className="h-44 overflow-y-auto space-y-2.5 p-2 bg-black/50 rounded-xl border border-zinc-900">
-        {messages.map((m, i) => (
+        {activeMessages.map((m, i) => (
           <div key={i} className={`p-2.5 rounded-xl text-[11px] leading-relaxed ${
             m.role === 'user' ? 'bg-zinc-900 text-zinc-200 ml-8' : 'bg-red-950/40 text-zinc-100 border border-red-500/30 mr-8'
           }`}>
@@ -332,49 +391,27 @@ export const RagChatDemo: React.FC = () => {
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2 sm:flex-row">
           <button
-            onClick={() => {
-              if (input === '¿Cómo evitan alucinaciones?') return;
-              setInput('¿Cómo evitan alucinaciones?');
-              const text = '¿Cómo evitan alucinaciones?';
-              setMessages(prev => [...prev, { role: 'user', text }]);
-              setTimeout(() => {
-                setMessages(prev => [
-                  ...prev,
-                  {
-                    role: 'assistant',
-                    text: `Respuesta generada con contexto verificado en PGVector para "${text}". Cero alucinaciones con guardrails activos.`,
-                    citation: `Document chunk [0.94 cosine similarity]`,
-                  },
-                ]);
-              }, 600);
-            }}
+            onClick={() => sendQuery(
+              lang === 'es' ? '¿Cómo evitan alucinaciones?' : 'How do you prevent hallucinations?',
+              '0.94'
+            )}
             className="flex-1 px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] border border-zinc-800 transition-colors text-left"
           >
-            ¿Cómo evitan alucinaciones?
+            {lang === 'es' ? '¿Cómo evitan alucinaciones?' : 'How do you prevent hallucinations?'}
           </button>
           <button
-            onClick={() => {
-              if (input === '¿Qué formatos aceptan?') return;
-              setInput('¿Qué formatos aceptan?');
-              const text = '¿Qué formatos aceptan?';
-              setMessages(prev => [...prev, { role: 'user', text }]);
-              setTimeout(() => {
-                setMessages(prev => [
-                  ...prev,
-                  {
-                    role: 'assistant',
-                    text: `Respuesta generada con contexto verificado en PGVector para "${text}". Cero alucinaciones con guardrails activos.`,
-                    citation: `Document chunk [0.91 cosine similarity]`,
-                  },
-                ]);
-              }, 600);
-            }}
+            onClick={() => sendQuery(
+              lang === 'es' ? '¿Qué formatos aceptan?' : 'What formats are supported?',
+              '0.91'
+            )}
             className="flex-1 px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] border border-zinc-800 transition-colors text-left"
           >
-            ¿Qué formatos aceptan?
+            {lang === 'es' ? '¿Qué formatos aceptan?' : 'What formats are supported?'}
           </button>
         </div>
-        <p className="text-[10px] text-zinc-500 italic px-1 text-center">Interactive demo — sample data</p>
+        <p className="text-[10px] text-zinc-500 italic px-1 text-center">
+          {lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}
+        </p>
       </div>
     </div>
   );

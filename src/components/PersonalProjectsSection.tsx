@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { personalProjects } from '../data/personalProjectsData';
 import { ExternalLink, Database, Server, Smartphone, Monitor, Shield, GraduationCap } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const TECH_ICONS: Record<string, React.ReactNode> = {
   'Python': <Monitor className="w-4 h-4" />,
@@ -10,7 +11,9 @@ const TECH_ICONS: Record<string, React.ReactNode> = {
   'SQLite': <Database className="w-4 h-4" />,
 };
 
-export function PersonalProjectsSection({ lang, hideHeader = false }: { lang: 'es' | 'en' | 'ES' | 'EN', hideHeader?: boolean }) {
+export function PersonalProjectsSection({ lang: propLang, hideHeader = false }: { lang?: 'es' | 'en' | 'ES' | 'EN', hideHeader?: boolean }) {
+  const { lang: contextLang } = useLanguage();
+  const lang = (propLang || contextLang).toLowerCase();
   return (
     <section className="py-24 bg-zinc-950 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 relative z-10">

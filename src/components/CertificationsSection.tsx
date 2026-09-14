@@ -1,8 +1,11 @@
 import React from 'react';
 import { CERTIFICATIONS } from '../data/portfolioData';
 import { Award, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const CertificationsSection: React.FC = () => {
+  const { lang } = useLanguage();
+
   return (
     <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       
@@ -10,13 +13,19 @@ export const CertificationsSection: React.FC = () => {
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium shadow-lg">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>VERIFIED CREDENTIALS</span>
+          <span>{lang === 'es' ? 'CREDENCIALES VERIFICADAS' : 'VERIFIED CREDENTIALS'}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Professional <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Certifications</span> & Rigor.
+          {lang === 'es' ? (
+            <>Certificaciones <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Profesionales</span> & Rigor.</>
+          ) : (
+            <>Professional <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Certifications</span> & Rigor.</>
+          )}
         </h2>
         <p className="text-xs sm:text-sm text-zinc-400">
-          International standards in Agile development, English communication proficiency, and modern project governance.
+          {lang === 'es' 
+            ? 'Estándares internacionales en desarrollo ágil, competencia comunicativa en inglés y gobernanza moderna de proyectos.'
+            : 'International standards in Agile development, English communication proficiency, and modern project governance.'}
         </p>
       </div>
 
@@ -31,7 +40,7 @@ export const CertificationsSection: React.FC = () => {
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">
-                  {cert.date}
+                  {cert.date === 'Certified' ? (lang === 'es' ? 'Certificado' : 'Certified') : cert.date}
                 </span>
               </div>
 
@@ -42,7 +51,9 @@ export const CertificationsSection: React.FC = () => {
 
               {/* Skills Tags */}
               <div className="space-y-1.5 pt-2">
-                <span className="text-[10px] font-mono uppercase text-zinc-400 block font-bold">Validated Competencies</span>
+                <span className="text-[10px] font-mono uppercase text-zinc-400 block font-bold">
+                  {lang === 'es' ? 'Competencias Validadas' : 'Validated Competencies'}
+                </span>
                 <ul className="space-y-1 text-xs text-zinc-300">
                   {cert.skills.map((s, sIdx) => (
                     <li key={sIdx} className="flex items-center gap-2 text-[11px]">
@@ -55,8 +66,8 @@ export const CertificationsSection: React.FC = () => {
             </div>
 
             <div className="pt-3 border-t border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-zinc-400">
-              <span>Status: Active & Verified</span>
-              <span className="text-emerald-400 font-bold">100% Validated</span>
+              <span>{lang === 'es' ? 'Estado: Activo & Verificado' : 'Status: Active & Verified'}</span>
+              <span className="text-emerald-400 font-bold">{lang === 'es' ? '100% Validado' : '100% Validated'}</span>
             </div>
 
           </div>
