@@ -1,130 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
-import type { Project } from '../../data/portfolioData';
-import { Mic, Activity, Network } from 'lucide-react';
-import { VirtualCanvas } from '../VirtualCanvas';
-import { DeviceMockup } from '../DeviceMockup';
-import { ScrollAffordance } from '../ScrollAffordance';
-import { useLanguage } from '../../context/LanguageContext';
+const fs = require('fs');
+let content = fs.readFileSync('src/components/project-layouts/CommandCenterLayout.tsx', 'utf8');
 
-const COMMAND_SECTIONS = [
-  { id: 'command-interactive', label: 'Interfaz' },
-  { id: 'command-features', label: 'Funciones' },
-];
+if (!content.includes('DeviceMockup')) {
+  content = content.replace("import { VirtualCanvas }", "import { VirtualCanvas } from '../VirtualCanvas';\nimport { DeviceMockup }");
+}
 
-export function CommandCenterLayout({ project }: { project: Project }) {
-  const { lang } = useLanguage();
-  const [bootSequence, setBootSequence] = useState(true);
-  const [bootText, setBootText] = useState('');
-  
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const containerRef = useRef<HTMLDivElement>(null);
+let sectionStart = content.indexOf('<section id="command-interactive"');
+let sectionEnd = content.indexOf('</section>', sectionStart) + 10;
+let oldSection = content.substring(sectionStart, sectionEnd);
 
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime = Date.now();
-    
-    const animate = () => {
-      if (window.innerWidth < 1024) {
-        const elapsed = Date.now() - startTime;
-        const speed = 0.0008;
-        setMousePos({
-          x: 0.5 + Math.sin(elapsed * speed) * 0.2,
-          y: 0.5 + Math.cos(elapsed * speed * 1.2) * 0.2
-        });
-      }
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
-    
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
-
-
-  // Boot sequence logic
-  useEffect(() => {
-    const lines = lang === 'es' ? [
-      lang === 'es' ? '[SYS] Inicializando Núcleo Neural...' : '[SYS] Initializing Neural Core...',
-      '[NET] Estableciendo WebSocket seguro a la API de OpenAI...',
-      '[AUTH] Protocolo zero-trust confirmado.',
-      '[MEM] Cargando Base de Datos Vectorial RAG (Pinecone).',
-      '[UI] Compilando Interfaz Espacial...',
-      lang === 'es' ? 'SISTEMA EN LÍNEA.' : 'SYSTEM ONLINE.'
-    ] : [
-      '[SYS] Initializing Neural Kernel...',
-      '[NET] Establishing secure WebSocket to OpenAI API...',
-      '[AUTH] Zero-trust protocol confirmed.',
-      '[MEM] Loading RAG Vector Database (Pinecone).',
-      '[UI] Compiling Spatial Interface...',
-      'SYSTEM ONLINE.'
-    ];
-    
-    let currentLine = 0;
-    let currentChar = 0;
-    let text = '';
-
-    const typeWriter = setInterval(() => {
-      if (currentLine >= lines.length) {
-        clearInterval(typeWriter);
-        setTimeout(() => setBootSequence(false), 800);
-        return;
-      }
-      
-      if (currentChar < lines[currentLine].length) {
-        text += lines[currentLine][currentChar];
-        setBootText(text);
-        currentChar++;
-      } else {
-        text += '\n';
-        currentLine++;
-        currentChar = 0;
-      }
-    }, 20); // very fast typing
-
-    return () => clearInterval(typeWriter);
-  }, [lang]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || bootSequence) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    setMousePos({ x, y });
-  };
-
-  const rotateX = (0.5 - mousePos.y) * 20;
-  const rotateY = (mousePos.x - 0.5) * 20;
-
-  return (
-    <article className="min-h-screen bg-[#020617] text-slate-300 font-sans overflow-hidden relative">
-      <ScrollAffordance sections={COMMAND_SECTIONS} accentColor="sky" />
-
-      {/* BOOT SEQUENCE OVERLAY */}
-      <div 
-        className={`fixed inset-0 z-50 bg-black flex flex-col p-6 pt-32 md:p-12 md:pt-32 transition-all duration-1000 ease-in-out ${
-          bootSequence ? 'opacity-100 pointer-events-auto' : 'opacity-0 scale-110 pointer-events-none'
-        }`}
-      >
-        <div className="font-mono text-green-500 text-sm md:text-lg whitespace-pre-wrap">
-          {bootText}
-          <span className="animate-pulse">_</span>
-        </div>
-      </div>
-
-      {/* BACKGROUND NODE GRAPH (CSS Fake) */}
-      <div 
-        className="fixed inset-0 z-0 pointer-events-none opacity-30"
-        style={{
-          background: `
-            radial-gradient(circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
-            linear-gradient(rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 1))
-          `
-        }}
-      ></div>
-
-      {/* ============================================================ */}
-      {/* DESKTOP: Interactive 3D Space (lg+) */}
-      {/* ============================================================ */}
-      
+let newSection = `
         {/* ========================================================== */}
         {/* MOBILE SHOWCASE: Native Desktop Mockup instead of 3D Canvas */}
         {/* ========================================================== */}
@@ -152,7 +37,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
             {/* Holographic 3D Container */}
             <div className="relative w-full aspect-[21/9] flex items-center justify-center transition-transform duration-300 ease-out"
               style={{ 
-                transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                transform: \`rotateX(\${rotateX}deg) rotateY(\${rotateY}deg)\`,
                 transformStyle: 'preserve-3d'
               }}
             >
@@ -220,7 +105,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                        key={i} 
                        className="w-2 bg-emerald-400 rounded-full"
                        style={{ 
-                         height: `${Math.max(10, Math.random() * 100)}%`,
+                         height: \`\${Math.max(10, Math.random() * 100)}%\`,
                          transition: 'height 0.2s ease'
                        }}
                      ></div>
@@ -248,40 +133,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
             </div>
           </VirtualCanvas>
         </section>
+`;
 
-
-      <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">
-              <h2 className="text-3xl font-bold text-white mb-4">{project.title}</h2>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2">
-                {project.stack.map(s => (
-                  <span key={s} className="px-3 py-1 bg-slate-800/50 border border-slate-700 rounded-md text-xs text-blue-300 font-mono">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-               {project.features.map((feature, i) => (
-                 <div key={i} className="bg-slate-900/40 border border-slate-800/50 p-5 rounded-xl flex items-start gap-4 hover:border-blue-500/30 transition-colors">
-                   <div className="p-2 bg-blue-500/10 rounded-lg shrink-0">
-                     <Network className="w-4 h-4 text-blue-400" />
-                   </div>
-                   <p className="text-sm text-slate-300 leading-relaxed">{feature}</p>
-                 </div>
-               ))}
-            </div>
-         </div>
-      </section>
-
-    </article>
-  );
-}
-
-
-
-
+content = content.replace(oldSection, newSection);
+fs.writeFileSync('src/components/project-layouts/CommandCenterLayout.tsx', content);

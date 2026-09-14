@@ -8,6 +8,7 @@ export interface PersonalProject {
   tech: string[];
   image: string;
   images?: { url: string; captionES: string; captionEN: string }[];
+  liveUrl?: string;
   featuresES?: string[];
   featuresEN?: string[];
   githubUrl?: string;
