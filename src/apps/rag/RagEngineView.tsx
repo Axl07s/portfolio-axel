@@ -41,32 +41,23 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#07080d] text-zinc-100 flex flex-col font-mono animate-fadeIn">
       
-      {/* Return Bar */}
-      <div className="bg-gradient-to-r from-red-950 via-zinc-950 to-zinc-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-white shadow-glow-red transition-all active:scale-95"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Volver al Portafolio Maestro</span>
-        </button>
-
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-red-950/60 border border-red-500/30 text-red-400">
-            ● PostgreSQL PGVector (HNSW) • Zero-Hallucination
-          </span>
-        </div>
-      </div>
-
-      {/* Header */}
-      <header className="border-b border-zinc-800/80 px-6 py-4 flex items-center justify-between max-w-7xl mx-auto w-full">
-        <div className="flex items-center gap-3">
+      {/* Header with integrated back button */}
+      <header className="border-b border-zinc-800/80 px-4 sm:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto w-full sticky top-0 bg-[#07090e]/90 backdrop-blur-md z-30">
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={onBack}
+            className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
+            title="Volver"
+            aria-label="Volver"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
           <div className="w-8 h-8 rounded-xl bg-red-500/20 border border-red-400 text-red-300 flex items-center justify-center font-bold">
-            <Database className="w-5 h-5" />
+            <Database className="w-4 h-4" />
           </div>
           <div>
-            <h1 className="text-base font-bold text-white tracking-wider">ENTERPRISE AI RAG ENGINE</h1>
-            <span className="text-[10px] text-red-400">High-Accuracy Knowledge Base with Vector Embeddings</span>
+            <h1 className="text-sm sm:text-base font-bold text-white tracking-wider">ENTERPRISE RAG</h1>
+            <span className="text-[10px] text-red-400 hidden sm:inline">PGVector Embeddings</span>
           </div>
         </div>
 

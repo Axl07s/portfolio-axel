@@ -16,32 +16,23 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#07090e] text-zinc-100 flex flex-col animate-fadeIn font-sans">
       
-      {/* Return Bar */}
-      <div className="bg-gradient-to-r from-red-950 via-zinc-950 to-zinc-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-white shadow-glow-red transition-all active:scale-95"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Volver al Portafolio Maestro</span>
-        </button>
-
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-emerald-400">
-            ● Supabase Auth & Stripe RLS Active
-          </span>
-        </div>
-      </div>
-
-      {/* App Navbar */}
-      <header className="border-b border-zinc-800/80 px-6 py-4 flex items-center justify-between max-w-7xl mx-auto w-full">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg">
+      {/* App Navbar with discrete back navigation */}
+      <header className="border-b border-zinc-800/80 px-4 sm:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto w-full sticky top-0 bg-[#07090e]/90 backdrop-blur-md z-30">
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={onBack}
+            className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
+            title="Volver"
+            aria-label="Volver"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg text-sm">
             S
           </div>
-          <span className="font-extrabold text-lg text-white">SyntroSaaS</span>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-            Next.js 15 App Router
+          <span className="font-extrabold text-base text-white">SyntroSaaS</span>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 hidden sm:inline">
+            Next.js 15
           </span>
         </div>
 
