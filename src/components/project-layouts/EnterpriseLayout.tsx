@@ -84,7 +84,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
              <div 
                className="relative w-full h-[800px] lg:h-full flex items-center justify-center transition-transform duration-300 ease-out"
                style={{ 
-                 transform: `rotateX(${50 + rotateX}deg) rotateZ(${-30 + rotateY}deg)`,
+                 transform: `rotateX(${rotateX * 0.5}deg) rotateY(${rotateY * 0.5}deg)`,
                  transformStyle: 'preserve-3d' 
                }}
              >
@@ -101,7 +101,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* The Base Plate (OS Kernel) */}
                 <div 
                   className="absolute w-[600px] h-[600px] bg-slate-900/50 border-4 border-emerald-500/20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] flex items-center justify-center"
-                  style={{ transform: `translateZ(-150px)` }}
+                  style={{ transform: `translateZ(-20px)` }}
                 >
                    <div className="w-[450px] h-[450px] border-2 border-emerald-500/10 rounded-full animate-spin-slow flex items-center justify-center">
                      <div className="w-[300px] h-[300px] border border-emerald-500/20 rounded-full flex items-center justify-center">
@@ -117,7 +117,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* The Isolated Threat (Ransomware) */}
                 <div 
                   className="absolute w-28 h-28 bg-red-950/80 border-2 border-red-500 rounded-2xl flex flex-col items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.5)] transition-transform duration-700"
-                  style={{ transform: `translateZ(50px) translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px)` }}
+                  style={{ transform: `translateZ(10px) translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px)` }}
                 >
                    <AlertTriangle className="w-10 h-10 text-red-500 mb-2 animate-pulse" />
                    <span className="text-red-500 font-mono text-[10px] font-bold">RANSOM.EXE</span>
@@ -126,7 +126,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* Force Field Cylinder */}
                 <div 
                   className="absolute w-52 h-52 border-4 border-dashed border-emerald-500 rounded-full animate-spin-slow opacity-80 transition-transform duration-700"
-                  style={{ transform: `translateZ(50px)` }}
+                  style={{ transform: `translateZ(10px)` }}
                 ></div>
     
                 {/* Security Analyst Dashboard (Floating UI) */}

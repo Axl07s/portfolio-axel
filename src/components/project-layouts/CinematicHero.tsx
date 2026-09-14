@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HeroAbstract } from '../HeroAbstract';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { ScrambleText } from '../effects/ScrambleText';
 import { Particles } from '../effects/Particles';
@@ -82,27 +83,20 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
               
               
+              
               <motion.div 
-                className="w-full h-full absolute inset-0 flex items-center justify-center p-6 md:p-24 overflow-hidden"
+                className="w-full h-full absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, ease: 'linear' }}
               >
-                {/* Dynamic Pro Background Glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/5 via-black/40 to-black z-0"></div>
-                <div className="absolute w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] opacity-20 blur-[100px] rounded-full z-0" style={{ backgroundColor: accentColor }}></div>
-                
-                {/* Floating Mockup */}
-                <motion.img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="relative z-10 max-w-full max-h-[80%] md:max-h-full object-contain rounded-2xl shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] border border-white/5"
-                  initial={{ scale: 0.8, opacity: 0, y: 50 }}
-                  animate={{ scale: 1, opacity: 1, y: [0, -15, 0] }}
-                  transition={{ 
-                    scale: { duration: 1.5, ease: "easeOut" },
-                    opacity: { duration: 1.5 },
-                    y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }
-                  }}
-                />
+                {project.id === 'suiteseguridad' || project.id === 'jarvis-hud' || project.id === 'ai-rag-knowledge' ? (
+                  <HeroAbstract theme={project.id === 'suiteseguridad' ? 'cyber' : project.id === 'jarvis-hud' ? 'ai' : 'data'} />
+                ) : (
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                )}
               </motion.div>
+
 
 
               <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
