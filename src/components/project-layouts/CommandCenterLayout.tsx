@@ -16,19 +16,12 @@ export function CommandCenterLayout({ project }: { project: Project }) {
   const { lang } = useLanguage();
   const [bootSequence, setBootSequence] = useState(true);
   const [bootText, setBootText] = useState('');
-  const [isMobile, setIsMobile] = useState(false);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     let animationFrameId: number;
     let startTime = Date.now();
     
@@ -46,7 +39,6 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     animate();
     
     return () => {
-      window.removeEventListener('resize', checkMobile);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -137,10 +129,101 @@ export function CommandCenterLayout({ project }: { project: Project }) {
       {/* ============================================================ */}
 
         {/* ========================================================== */}
-        {/* DESKTOP 3D HOLOGRAM */}
+        {/* MOBILE SHOWCASE (< lg): Heroic Native Command Center UI */}
         {/* ========================================================== */}
-        <section id="command-interactive"
-          className="relative flex z-10 w-full overflow-hidden"
+        <section id="command-interactive" className="lg:hidden relative z-10 w-full px-4 pt-4 pb-12">
+          {/* Main Mobile Card: Jarvis HUD Window */}
+          <div className="relative w-full rounded-2xl overflow-hidden border border-blue-500/30 bg-[#070d1e]/90 shadow-[0_0_50px_rgba(56,189,248,0.2)] backdrop-blur-xl">
+            {/* Window Header */}
+            <div className="h-10 bg-slate-900/90 border-b border-blue-500/20 px-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80 animate-pulse"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
+                <span className="ml-2 text-[11px] font-mono text-blue-400 tracking-wider font-semibold">JARVIS KERNEL v2.4</span>
+              </div>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full uppercase tracking-widest animate-pulse">
+                {lang === 'es' ? 'EN LÍNEA' : 'ONLINE'}
+              </span>
+            </div>
+
+            {/* Main Interactive Preview Image */}
+            <div 
+              className="relative aspect-video w-full overflow-hidden bg-black/60 cursor-pointer group"
+              onClick={() => setLightboxImg(project.images[0]?.url || '/projects/jarvis_01.png')}
+            >
+              <img 
+                src={project.images[0]?.url || '/projects/jarvis_01.png'} 
+                alt="Jarvis Chief HUD" 
+                className="w-full h-full object-cover object-top opacity-95 group-hover:scale-105 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+              
+              {/* Tap to expand hint */}
+              <div className="absolute bottom-3 right-3 bg-black/70 border border-blue-500/40 rounded-lg px-2.5 py-1 text-[10px] font-mono text-blue-300 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
+                <Activity className="w-3 h-3 text-blue-400 animate-pulse" />
+                <span>{lang === 'es' ? 'Tocar para expandir' : 'Tap to expand'}</span>
+              </div>
+            </div>
+
+            {/* Mobile Telemetry & Audio Stream Widgets */}
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gradient-to-b from-[#070d1e]/40 to-[#020617] border-t border-blue-500/20">
+              {/* Telemetry Pill */}
+              <div className="bg-slate-900/80 border border-blue-500/20 rounded-xl p-3 shadow-md">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <Activity className="w-3.5 h-3.5 text-blue-400" />
+                    <span className="text-[11px] font-mono text-blue-300 font-semibold uppercase tracking-wider">Live Telemetry</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-emerald-400 font-bold">42ms P99</span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                    <span>LLM Engine</span>
+                    <span className="text-white">gpt-4-turbo</span>
+                  </div>
+                  <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="w-4/5 h-full bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]"></div>
+                  </div>
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400 pt-0.5">
+                    <span>Context Load</span>
+                    <span className="text-emerald-400">14k / 128k</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Voice Synthesizer Pill */}
+              <div className="bg-slate-900/80 border border-emerald-500/20 rounded-xl p-3 shadow-md flex flex-col justify-between">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <Mic className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-[11px] font-mono text-emerald-300 font-semibold uppercase tracking-wider">Voice Stream</span>
+                  </div>
+                  <span className="text-[9px] font-mono text-slate-400">ElevenLabs &lt;180ms</span>
+                </div>
+                {/* Reactive visualizer bars */}
+                <div className="h-8 flex items-center justify-between gap-1 px-1 bg-black/40 rounded-lg border border-white/5 py-1">
+                  {[45, 80, 25, 95, 60, 40, 90, 75, 30, 85, 50, 70, 40, 65].map((h, i) => (
+                    <div 
+                      key={i} 
+                      className="flex-1 bg-emerald-400/90 rounded-full animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.5)]" 
+                      style={{ 
+                        height: `${h}%`,
+                        animationDelay: `${i * 0.08}s`
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================== */}
+        {/* DESKTOP 3D HOLOGRAM (lg+) */}
+        {/* ========================================================== */}
+        <section id="command-interactive-desktop"
+          className="hidden lg:flex relative z-10 w-full overflow-hidden"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
@@ -153,20 +236,20 @@ export function CommandCenterLayout({ project }: { project: Project }) {
             {/* Holographic 3D Container */}
             <div className="relative w-full aspect-[21/9] flex items-center justify-center transition-transform duration-300 ease-out"
               style={{ 
-                transform: isMobile ? 'none' : `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-                transformStyle: isMobile ? 'flat' : 'preserve-3d'
+                transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                transformStyle: 'preserve-3d'
               }}
             >
               {/* LAYER 1: Background Blur / Glow */}
               <div 
                 className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"
-                style={{ transform: isMobile ? 'none' : 'translateZ(-200px) scale(0.8)' }}
+                style={{ transform: 'translateZ(-200px) scale(0.8)' }}
               ></div>
     
               {/* LAYER 2: The Core UI (Main Dashboard Image) */}
               <div 
                 className="absolute w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
-                style={{ transform: isMobile ? 'none' : 'translateZ(0px)' }}
+                style={{ transform: 'translateZ(0px)' }}
               >
                  <div className="absolute top-0 left-0 w-full h-8 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
                    <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Jarvis Kernel v2.4</div>
@@ -183,7 +266,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               {/* LAYER 3: Left Floating Widget (Telemetry) */}
               <div 
                 className="absolute left-[5%] top-[20%] w-[250px] bg-slate-900/80 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
-                style={{ transform: isMobile ? 'none' : 'translateZ(80px) rotateY(15deg)' }}
+                style={{ transform: 'translateZ(80px) rotateY(15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-4">
                    <Activity className="w-4 h-4 text-blue-400" />
@@ -209,7 +292,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               {/* LAYER 4: Right Floating Widget (Voice / Audio) */}
               <div 
                 className="absolute right-[5%] bottom-[15%] w-[220px] bg-slate-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
-                style={{ transform: isMobile ? 'none' : 'translateZ(120px) rotateY(-15deg)' }}
+                style={{ transform: 'translateZ(120px) rotateY(-15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-3">
                    <Mic className="w-4 h-4 text-emerald-400" />
@@ -234,7 +317,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               <div 
                 className="absolute inset-[-20%] border border-white/5 rounded-[40px] pointer-events-none"
                 style={{ 
-                  transform: isMobile ? 'none' : 'translateZ(180px)',
+                  transform: 'translateZ(180px)',
                   background: 'linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px)',
                   backgroundSize: '100px 100px'
                 }}
