@@ -132,7 +132,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* Security Analyst Dashboard (Floating UI) */}
                 <div 
                    className="absolute top-[10%] left-[10%] w-72 bg-slate-950/90 backdrop-blur-md border-2 border-emerald-500/30 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
-                   style={{ transform: `translateZ(250px) translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px) rotateX(-20deg) rotateZ(10deg)` }}
+                   style={{ transform: `translateZ(250px) translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px) ` }}
                 >
                    <div className="flex justify-between items-center mb-3 pb-3 border-b border-slate-800">
                      <div className="flex items-center gap-2">
@@ -153,7 +153,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* Metrics Widget */}
                 <div 
                    className="absolute bottom-[10%] right-[10%] w-56 bg-slate-950/90 backdrop-blur-md border-2 border-slate-800 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
-                   style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px) rotateX(-10deg) rotateZ(-5deg)` }}
+                   style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px) ` }}
                 >
                    <div className="flex items-center justify-between mb-4">
                      <Shield className="w-5 h-5 text-emerald-500" />
