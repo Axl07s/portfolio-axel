@@ -25,7 +25,7 @@ export const personalProjects: PersonalProject[] = [
     architectureES: 'Arquitectura híbrida C/C++ y Python. Utiliza un recolector de telemetría de baja latencia en el núcleo de Windows (ETW/Sysmon) alimentando un motor de análisis heurístico en espacio de usuario. Detección de patrones con reglas YARA dinámicas y análisis de entropía para detectar payloads cifrados.',
     architectureEN: 'Hybrid C/C++ & Python architecture. Uses a low-latency telemetry collector in the Windows core (ETW/Sysmon) feeding a user-space heuristic analysis engine. Pattern detection with dynamic YARA rules and entropy analysis to detect encrypted payloads.',
     tech: ['Python', 'C++', 'YARA', 'Sysmon', 'ETW API', 'Win32 API'],
-    image: '/projects/suite_mockup.png',
+    image: '/projects/suitesecurity_01.png',
     images: [
       { url: '/projects/suitesecurity_01.png', captionES: 'Dashboard de Análisis y Telemetría en Tiempo Real', captionEN: 'Real-time Telemetry & Analysis Dashboard' },
       { url: '/projects/suitesecurity_02.png', captionES: 'Detección Heurística e Interceptación de Amenazas', captionEN: 'Heuristic Detection & Threat Interception' },
@@ -45,7 +45,7 @@ export const personalProjects: PersonalProject[] = [
     ],
     layoutStyle: 'enterprise',
     seoDescription: 'A hybrid EDR system for Windows that blocks ransomware and monitors malicious activity in real time using YARA and ETW.',
-    seoImage: '/projects/suite_mockup.png'
+    seoImage: '/projects/suitesecurity_01.png'
   },
   {
     id: 'puce-connect-hub',
@@ -55,9 +55,9 @@ export const personalProjects: PersonalProject[] = [
     architectureES: 'Arquitectura móvil con Inyección de Dependencias, BLoC pattern y base de datos embebida Isar con un worker de sincronización en background.',
     architectureEN: 'Mobile architecture using Dependency Injection, BLoC pattern, and an embedded Isar database with a background synchronization worker.',
     tech: ['Flutter', 'Dart', 'Spring Boot', 'Isar DB', 'BLoC'],
-    image: '/projects/puce_mockup.png',
+    image: '/projects/puce_home.png',
     layoutStyle: 'editorial',
     seoDescription: 'Offline-first mobile portal built with Flutter and Spring Boot, featuring background synchronization and secure local caching.',
-    seoImage: '/projects/puce_mockup.png'
+    seoImage: '/projects/puce_home.png'
   }
 ];
