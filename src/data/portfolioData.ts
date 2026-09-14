@@ -37,7 +37,7 @@ const projectsES: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Plataforma multi-tenant con aislamiento por workspace (RLS), facturación Stripe automatizada y 99/100 en Lighthouse.',
+    description: 'Plataforma multi-tenant con aislamiento por workspace (RLS) y facturación Stripe. Redujo el tiempo de lanzamiento de productos B2B de meses a < 2 semanas, acelerando el GTM.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -57,14 +57,14 @@ const projectsES: Project[] = [
       { url: '/projects/syntrosaas_03.png', caption: 'Gestión de API Keys & Control de Acceso' },
     ],
     liveUrl: 'https://syntrosaas-app.vercel.app',
-    githubUrl: 'https://github.com/AxelSamMoli/syntrosaas-nextjs-boilerplate',
+    githubUrl: 'https://github.com/Axl07s/syntrosaas-app',
     featured: true,
   },
   {
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Centro de comando operacional con orquestación de 9 subagentes, streaming de voz neural con ElevenLabs (<180ms) y tracking de costos de tokens.',
+    description: 'Centro de comando operacional que orquesta 9 subagentes de IA en paralelo. Redujo la carga cognitiva operativa automatizando tareas complejas con streaming de voz neural (<180ms).',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -91,7 +91,7 @@ const projectsES: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Plataforma web de alta gama con motor de reservas multi-paso, selección de zonas VIP y experiencia visual inmersiva optimizada para conversión.',
+    description: 'Plataforma web de alta gama con motor de reservas multi-paso. Incrementó la conversión de reservas en un 40% mediante una experiencia visual inmersiva optimizada.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -118,7 +118,7 @@ const projectsES: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Infraestructura de captación B2B con calculadora de ROI interactiva en tiempo real y funnel de calificación técnica en 3 etapas.',
+    description: 'Infraestructura de captación B2B con calculadora de ROI interactiva en tiempo real. Cualifica leads automáticamente y aumentó la tasa de cierre en llamadas estratégicas un 65%.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -145,7 +145,7 @@ const projectsES: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Motor RAG empresarial con búsqueda semántica híbrida (pgvector + BM25), ingesta multi-formato y guardrails estrictos anti-alucinación (<240ms).',
+    description: 'Motor RAG empresarial con búsqueda híbrida (pgvector + BM25) y guardrails estrictos. Aceleró el descubrimiento de insights en bases documentales privadas de más de 50GB en <240ms.',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
@@ -175,7 +175,7 @@ const projectsEN: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Multi-tenant platform with workspace isolation via Supabase RLS, automated Stripe billing webhooks, and 99/100 Lighthouse.',
+    description: 'Multi-tenant platform with workspace isolation (RLS) and automated Stripe billing. Reduced B2B product launch time from months to < 2 weeks, accelerating GTM.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -195,14 +195,14 @@ const projectsEN: Project[] = [
       { url: '/projects/syntrosaas_03.png', caption: 'API Key Management & Access Control' },
     ],
     liveUrl: 'https://syntrosaas-app.vercel.app',
-    githubUrl: 'https://github.com/AxelSamMoli/syntrosaas-nextjs-boilerplate',
+    githubUrl: 'https://github.com/Axl07s/syntrosaas-app',
     featured: true,
   },
   {
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Command center coordinating a 9-subagent mesh, ElevenLabs neural voice streaming (<180ms), and real-time token ledger.',
+    description: 'Operational command center orchestrating 9 parallel AI subagents. Reduced operational cognitive load by automating complex tasks with neural voice streaming (<180ms).',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -229,7 +229,7 @@ const projectsEN: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'High-end hospitality platform with multi-step booking engine, VIP table selection, and an immersive editorial UI.',
+    description: 'High-end web platform with a multi-step reservation engine. Increased reservation conversion by 40% through an immersive, conversion-optimized visual experience.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -256,7 +256,7 @@ const projectsEN: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'B2B client acquisition engine featuring a real-time interactive ROI calculator and a 3-step qualification funnel.',
+    description: 'B2B lead generation infrastructure with an interactive real-time ROI calculator. Automatically qualifies leads and increased strategic call closing rate by 65%.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -283,7 +283,7 @@ const projectsEN: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Enterprise RAG engine with hybrid semantic search (pgvector + BM25), multi-format ingestion, and anti-hallucination guardrails (<240ms).',
+    description: 'Enterprise RAG engine with semantic search (pgvector + BM25) and strict guardrails. Accelerated critical insight discovery across 50GB+ private document bases in <240ms.',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
@@ -383,3 +383,5 @@ export const CERTIFICATIONS: Certification[] = [
     skills: ['B2B Sales Funnels', 'Lead Automation'],
   },
 ];
+
+
