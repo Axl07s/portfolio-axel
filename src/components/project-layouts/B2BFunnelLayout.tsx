@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase } from 'lucide-react';
+import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase, Activity } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
 
 const B2B_SECTIONS = [
@@ -15,6 +16,7 @@ const B2B_SECTIONS = [
 export function B2BFunnelLayout({ project }: { project: Project }) {
   const { lang } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,18 +90,47 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
            <img src={project.images[0]?.url} alt="NexusCorp Hero" className="w-full h-auto object-cover" />
         </div>
 
-        {/* MOBILE PHONE MOCKUP FALLBACK */}
-        <div className="md:hidden flex flex-col items-center gap-8">
-           <div className="w-full max-w-[280px] aspect-[9/19.5] bg-zinc-900 rounded-[2.5rem] border-[10px] border-zinc-900 shadow-[0_0_50px_rgba(79,70,229,0.2)] overflow-hidden relative">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-900 rounded-b-xl z-10"></div>
-              <img src="/projects/nexus_mobile_01.png" alt="NexusCorp Mobile View" className="w-full h-full object-cover object-left-top" />
+        {/* MOBILE PHONE MOCKUP SHOWCASE (< md) */}
+        <div className="md:hidden flex flex-col items-center gap-6">
+           {/* iPhone Pro Frame */}
+           <div 
+             className="w-full max-w-[320px] aspect-[9/19.2] bg-zinc-950 rounded-[3rem] p-2.5 shadow-[0_25px_70px_rgba(79,70,229,0.25)] border-[4px] border-zinc-800 ring-1 ring-white/10 relative overflow-hidden cursor-pointer group"
+             onClick={() => setLightboxImg('/projects/nexus_mobile_01.png')}
+           >
+              {/* Dynamic Island */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 flex items-center justify-between px-3 border border-zinc-800/80 shadow-md">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#1e1e24]"></div>
+                <div className="w-2 h-2 rounded-full bg-indigo-500/40 animate-pulse"></div>
+              </div>
+
+              {/* Inner Screen */}
+              <div className="w-full h-full rounded-[2.4rem] overflow-hidden bg-zinc-950 relative">
+                <img 
+                  src="/projects/nexus_mobile_01.png" 
+                  alt="NexusCorp Mobile View" 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+                />
+                
+                {/* Subtle glass gradient reflection */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                
+                {/* Tap hint overlay */}
+                <div className="absolute bottom-3 right-3 bg-zinc-950/80 border border-indigo-500/40 rounded-lg px-2.5 py-1 text-[10px] font-mono text-indigo-300 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
+                  <Activity className="w-3 h-3 text-indigo-400 animate-pulse" />
+                  <span>{lang === 'es' ? 'Tocar para expandir' : 'Tap to expand'}</span>
+                </div>
+              </div>
            </div>
-           <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 text-center w-full max-w-[280px]">
-              <span className="text-indigo-400 font-mono text-xs uppercase tracking-widest block mb-2">B2B Mobile Funnel</span>
+
+           {/* Mobile Caption Card */}
+           <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-2xl p-4 text-center w-full max-w-[320px] backdrop-blur-sm">
+              <span className="text-indigo-400 font-mono text-xs uppercase tracking-widest font-semibold block mb-1.5">
+                {lang === 'es' ? 'Embudo Táctil B2B' : 'B2B Touch Funnel'}
+              </span>
               <p className="text-zinc-400 text-xs leading-relaxed">
                 {lang === 'es' 
-                  ? 'Flujo de captación optimizado para pantallas táctiles con calificación en tiempo real.'
-                  : 'Touch-optimized acquisition flow with real-time prospect qualification.'}
+                  ? 'Flujo de captación con diagnóstico interactivo en 3 pasos, optimizado para conversión en smartphones.'
+                  : '3-step interactive diagnostic funnel, engineered for high-intent conversion on smartphones.'}
               </p>
            </div>
         </div>
@@ -218,6 +249,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
          </div>
       </section>
 
+      {lightboxImg && <Lightbox imgSrc={lightboxImg} altText="NexusCorp Mockup Preview" onClose={() => setLightboxImg(null)} />}
     </article>
   );
 }
