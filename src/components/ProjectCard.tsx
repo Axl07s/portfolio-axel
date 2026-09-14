@@ -68,9 +68,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             {project.description}
           </p>
 
-          <div className="flex items-center justify-center gap-3 mt-6 sm:mt-7">
+          <div className="flex items-center justify-center gap-3 mt-7 sm:mt-8">
             <span
-              className="inline-flex items-center justify-center gap-1.5 px-4.5 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-semibold transition-all active:scale-95 shadow-lg shadow-white/10"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-semibold tracking-wide transition-all active:scale-95 shadow-lg shadow-white/10"
             >
               <span>{lang === 'es' ? 'Ver Estudio' : 'View Case Study'}</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-zinc-950 shrink-0" />
@@ -82,7 +82,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="group/link inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium transition-all hover:text-white active:scale-95 backdrop-blur-sm"
+                className="group/link inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium tracking-wide transition-all hover:text-white active:scale-95 backdrop-blur-sm"
               >
                 <span>{lang === 'es' ? 'Sitio en Vivo' : 'Live Site'}</span>
                 <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover/link:text-white shrink-0 transition-colors" />
