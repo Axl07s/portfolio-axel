@@ -21,6 +21,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     navigate(`/project/${project.id}`);
   };
 
+  const firstSentence = project.description?.includes('.')
+    ? project.description.split('.')[0].trim() + '.'
+    : project.description;
+
   return (
     <div
       onClick={handleCardClick}
@@ -64,8 +68,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <h3 className="text-xl sm:text-2xl font-bold text-white mt-2.5 mb-2 tracking-tight">
             {project.title}
           </h3>
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-sm line-clamp-2 font-normal">
-            {project.description}
+          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-sm font-normal">
+            {firstSentence}
           </p>
 
           <div className="flex items-center justify-center gap-3 mt-7 sm:mt-8">
