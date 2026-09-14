@@ -240,3 +240,4 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
   );
 }
 
+

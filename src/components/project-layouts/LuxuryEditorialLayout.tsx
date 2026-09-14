@@ -154,36 +154,42 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
          </div>
       </section>
 
-      {/* 2. MOBILE FALLBACK (Stack) */}
-      <section className="lg:hidden flex flex-col gap-24 py-24 px-6">
+            {/* 2. MOBILE FALLBACK (Stack) */}
+      <section className="lg:hidden flex flex-col gap-32 py-24 px-6 overflow-hidden">
         
-        <div className="space-y-6">
+        <div className="space-y-6 relative">
+          <div className="absolute -left-10 top-20 w-40 h-40 bg-[#c9a96e]/10 blur-[50px] rounded-full pointer-events-none"></div>
           <div className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-bold">{lang === 'es' ? '01 / El Salón' : '01 / The Lounge'}</div>
-          <h2 className="text-4xl font-serif text-white">Control Central.</h2>
-          <div className="rounded-2xl overflow-hidden border border-white/10">
-            <img src={project.images[0]?.url} alt="POS" className="w-full h-auto" />
+          <h2 className="text-4xl font-serif text-white leading-tight">Control Central.</h2>
+          <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(201,169,110,0.15)] relative">
+            <img src={project.images[0]?.url} alt="POS" className="w-full h-auto scale-105 hover:scale-100 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-40"></div>
           </div>
           <p className="text-lg text-zinc-400 font-light leading-relaxed">
             Un punto de venta (POS) en modo oscuro diseñado para no interrumpir la atmósfera tenue del salón.
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 relative">
+          <div className="absolute -right-10 top-20 w-40 h-40 bg-[#c9a96e]/10 blur-[50px] rounded-full pointer-events-none"></div>
           <div className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-bold">02 / La Cocina</div>
-          <h2 className="text-4xl font-serif text-white">Kitchen Display.</h2>
-          <div className="rounded-2xl overflow-hidden border border-white/10">
-            <img src={project.images[1]?.url} alt="KDS" className="w-full h-auto" />
+          <h2 className="text-4xl font-serif text-white leading-tight">Kitchen Display.</h2>
+          <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(201,169,110,0.15)] relative">
+            <img src={project.images[1]?.url} alt="KDS" className="w-full h-auto scale-105 hover:scale-100 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-40"></div>
           </div>
           <p className="text-lg text-zinc-400 font-light leading-relaxed">
             Sincronización vía WebSockets en tiempo real. Los chefs ven los tiempos codificados por colores para el servicio perfecto.
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 relative">
+          <div className="absolute -left-10 top-20 w-40 h-40 bg-[#c9a96e]/10 blur-[50px] rounded-full pointer-events-none"></div>
           <div className="text-[#c9a96e] text-xs tracking-[0.3em] uppercase font-bold">03 / El Comensal</div>
-          <h2 className="text-4xl font-serif text-white">Checkout Invisible.</h2>
-          <div className="rounded-2xl overflow-hidden border border-white/10">
-            <img src={project.images[2]?.url} alt="APP" className="w-full h-auto" />
+          <h2 className="text-4xl font-serif text-white leading-tight">Checkout Invisible.</h2>
+          <div className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(201,169,110,0.15)] relative">
+            <img src={project.images[2]?.url} alt="APP" className="w-full h-auto scale-105 hover:scale-100 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-40"></div>
           </div>
           <p className="text-lg text-zinc-400 font-light leading-relaxed">
             El comensal ve el menú degustación, el estado de sus platos, y puede pagar la cuenta en 1-click. Fricción cero.
@@ -247,4 +253,5 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 
