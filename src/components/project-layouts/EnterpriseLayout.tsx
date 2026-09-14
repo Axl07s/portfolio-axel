@@ -67,12 +67,12 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
          >
             {/* The Base Plate (OS Kernel) */}
             <div 
-              className="absolute w-[600px] h-[600px] bg-slate-900/50 border-4 border-emerald-500/20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] flex items-center justify-center"
+              className="absolute w-full sm:w-[600px] aspect-square sm:h-[600px] bg-slate-900/50 border-4 border-emerald-500/20 rounded-[3rem] shadow-[0_0_100px_rgba(16,185,129,0.1)] flex items-center justify-center"
               style={{ transform: `translateZ(-150px)` }}
             >
-               <div className="w-[450px] h-[450px] border-2 border-emerald-500/10 rounded-full animate-spin-slow flex items-center justify-center">
-                 <div className="w-[300px] h-[300px] border border-emerald-500/20 rounded-full flex items-center justify-center">
-                   <div className="w-[150px] h-[150px] border border-emerald-500/30 rounded-full"></div>
+               <div className="w-[75%] sm:w-[450px] aspect-square sm:h-[450px] border-2 border-emerald-500/10 rounded-full animate-spin-slow flex items-center justify-center">
+                 <div className="w-[50%] sm:w-[300px] aspect-square sm:h-[300px] border border-emerald-500/20 rounded-full flex items-center justify-center">
+                   <div className="w-[25%] sm:w-[150px] aspect-square sm:h-[150px] border border-emerald-500/30 rounded-full"></div>
                  </div>
                </div>
                
@@ -396,6 +396,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
 
 
 

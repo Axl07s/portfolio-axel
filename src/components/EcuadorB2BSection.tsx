@@ -48,7 +48,7 @@ export const EcuadorB2BSection: React.FC = () => {
       <div className="relative rounded-3xl p-8 sm:p-12 glass-obsidian border border-red-500/30 overflow-hidden shadow-2xl">
         
         {/* Glow background */}
-        <div className="absolute top-0 right-0 w-[450px] h-[300px] bg-red-600/15 blur-[100px] rounded-full pointer-events-none -z-10" />
+        <div className="absolute top-0 right-0 w-full sm:w-[450px] h-[300px] bg-red-600/15 blur-[100px] rounded-full pointer-events-none -z-10" />
         
         {/* Header */}
         <div className="max-w-3xl space-y-4">
@@ -126,3 +126,4 @@ export const EcuadorB2BSection: React.FC = () => {
     </section>
   );
 };
+

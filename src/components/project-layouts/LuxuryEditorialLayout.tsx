@@ -65,7 +65,7 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
         
         {/* Subtle Ambient Light */}
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#c9a96e] opacity-5 blur-[150px] pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] sm:w-[800px] h-[150vw] sm:h-[800px] rounded-full bg-[#c9a96e] opacity-5 blur-[150px] pointer-events-none"
           style={{ transform: `translate(-50%, -50%) translateY(${scrollY * 0.5}px)` }}
         ></div>
 
@@ -253,5 +253,6 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 
 

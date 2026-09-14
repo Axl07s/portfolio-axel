@@ -11,7 +11,7 @@ export const ContactSection: React.FC = () => {
       <div className="relative rounded-3xl p-8 sm:p-14 border border-zinc-800 bg-zinc-900/40 backdrop-blur-md overflow-hidden text-center space-y-8 shadow-2xl">
         
         {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-[600px] h-[300px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <div className="max-w-2xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950 border border-indigo-500/30 text-indigo-400 text-xs font-mono font-medium shadow-sm">
@@ -97,4 +97,5 @@ export const ContactSection: React.FC = () => {
     </section>
   );
 };
+
 

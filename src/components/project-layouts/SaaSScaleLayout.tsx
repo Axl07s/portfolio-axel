@@ -43,7 +43,7 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         
         <div 
-          className="absolute left-0 top-0 -z-10 w-[600px] h-[600px] rounded-full bg-indigo-600/20 blur-[120px] transition-transform duration-1000 ease-out pointer-events-none"
+          className="absolute left-0 top-0 -z-10 w-[150vw] sm:w-[600px] h-[150vw] sm:h-[600px] rounded-full bg-indigo-600/20 blur-[120px] transition-transform duration-1000 ease-out pointer-events-none"
           style={{ transform: `translate(${mousePos.x * 200 - 100}px, ${mousePos.y * 200 - 100}px)` }}
         ></div>
 
@@ -283,5 +283,6 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 
 
