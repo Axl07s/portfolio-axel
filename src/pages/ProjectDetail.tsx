@@ -85,10 +85,10 @@ export function ProjectDetail() {
               href={personalProject?.githubUrl || freelanceProject?.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-black hover:bg-zinc-900 text-white px-5 py-3 rounded-full font-medium transition-all shadow-[0_10px_40px_rgba(0,0,0,0.8)] border border-white/10 backdrop-blur-md hover:scale-105"
+              className="flex items-center gap-2 bg-black hover:bg-zinc-900 text-white px-5 py-3 rounded-full font-bold transition-all shadow-[0_10px_40px_rgba(0,0,0,0.8)] border border-white/20 backdrop-blur-md hover:scale-105"
             >
               <Code2 className="w-5 h-5" />
-              <span className="hidden sm:inline">GitHub</span>
+              <span className="text-white font-bold">GitHub</span>
             </a>
           )}
           
