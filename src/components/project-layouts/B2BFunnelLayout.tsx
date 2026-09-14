@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase, Activity } from 'lucide-react';
+import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
@@ -90,49 +90,63 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
            <img src={project.images[0]?.url} alt="NexusCorp Hero" className="w-full h-auto object-cover" />
         </div>
 
-        {/* MOBILE PHONE MOCKUP SHOWCASE (< md) */}
-        <div className="md:hidden flex flex-col items-center gap-6">
-           {/* iPhone Pro Frame */}
-           <div 
-             className="w-full max-w-[320px] aspect-[9/19.2] bg-zinc-950 rounded-[3rem] p-2.5 shadow-[0_25px_70px_rgba(79,70,229,0.25)] border-[4px] border-zinc-800 ring-1 ring-white/10 relative overflow-hidden cursor-pointer group"
-             onClick={() => setLightboxImg('/projects/nexus_mobile_01.png')}
-           >
-              {/* Dynamic Island */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-30 flex items-center justify-between px-3 border border-zinc-800/80 shadow-md">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#1e1e24]"></div>
-                <div className="w-2 h-2 rounded-full bg-indigo-500/40 animate-pulse"></div>
+        {/* MOBILE SHOWCASE — Jarvis pattern (<md) */}
+        <div className="md:hidden">
+          <div className="bg-gradient-to-b from-zinc-950 to-black border border-zinc-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(79,70,229,0.15)]">
+            {/* Window header */}
+            <div className="flex items-center gap-2 px-4 py-3 bg-[#111118] border-b border-zinc-800">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+              <div className="flex-1 flex items-center justify-center">
+                <span className="text-[11px] font-mono text-zinc-500">nexuscorp.agency</span>
               </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                <span className="text-[10px] font-mono text-indigo-400 uppercase">Live</span>
+              </div>
+            </div>
 
-              {/* Inner Screen */}
-              <div className="w-full h-full rounded-[2.4rem] overflow-hidden bg-zinc-950 relative">
-                <img 
-                  src="/projects/nexus_mobile_01.png" 
-                  alt="NexusCorp Mobile View" 
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
-                />
-                
-                {/* Subtle glass gradient reflection */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
-                
-                {/* Tap hint overlay */}
-                <div className="absolute bottom-3 right-3 bg-zinc-950/80 border border-indigo-500/40 rounded-lg px-2.5 py-1 text-[10px] font-mono text-indigo-300 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
-                  <Activity className="w-3 h-3 text-indigo-400 animate-pulse" />
-                  <span>{lang === 'es' ? 'Tocar para expandir' : 'Tap to expand'}</span>
+            {/* Main screenshot — tap to lightbox */}
+            <div
+              className="relative aspect-video w-full cursor-pointer"
+              onClick={() => setLightboxImg('/projects/nexus_mobile_01.png')}
+            >
+              <img
+                src="/projects/nexus_mobile_01.png"
+                alt="NexusCorp Mobile"
+                className="w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 border border-zinc-700 rounded text-[10px] font-mono text-zinc-400">
+                {lang === 'es' ? 'Toca para ampliar' : 'Tap to expand'}
+              </div>
+            </div>
+
+            {/* Metrics strip */}
+            <div className="grid grid-cols-3 gap-px bg-zinc-800">
+              {project.metrics.slice(0, 3).map((m, i) => (
+                <div key={i} className="bg-[#0a0a10] p-4 flex flex-col items-center justify-center text-center">
+                  <div className="text-xl font-black text-white">{m.value}</div>
+                  <div className="text-[10px] font-mono uppercase text-zinc-500 mt-0.5">{m.label}</div>
                 </div>
-              </div>
-           </div>
+              ))}
+            </div>
 
-           {/* Mobile Caption Card */}
-           <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-2xl p-4 text-center w-full max-w-[320px] backdrop-blur-sm">
-              <span className="text-indigo-400 font-mono text-xs uppercase tracking-widest font-semibold block mb-1.5">
-                {lang === 'es' ? 'Embudo Táctil B2B' : 'B2B Touch Funnel'}
-              </span>
-              <p className="text-zinc-400 text-xs leading-relaxed">
-                {lang === 'es' 
-                  ? 'Flujo de captación con diagnóstico interactivo en 3 pasos, optimizado para conversión en smartphones.'
-                  : '3-step interactive diagnostic funnel, engineered for high-intent conversion on smartphones.'}
-              </p>
-           </div>
+            {/* Caption */}
+            <div className="px-4 py-3 bg-[#0a0a0a] border-t border-zinc-800">
+              <div className="text-[11px] font-mono text-indigo-400 uppercase tracking-widest mb-1">
+                {lang === 'es' ? 'Embudo B2B Táctil' : 'B2B Touch Funnel'}
+              </div>
+              <div className="text-[11px] text-zinc-500">
+                {lang === 'es'
+                  ? 'Diagnóstico interactivo en 3 pasos, optimizado para conversión en smartphones.'
+                  : '3-step interactive diagnostic funnel engineered for high-intent mobile conversion.'}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
