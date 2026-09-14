@@ -76,7 +76,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
       {/* BOOT SEQUENCE OVERLAY */}
       <div 
-        className={`fixed inset-0 z-50 bg-black flex flex-col p-6 md:p-12 transition-all duration-1000 ease-in-out ${
+        className={`fixed inset-0 z-50 bg-black flex flex-col p-6 pt-32 md:p-12 md:pt-32 transition-all duration-1000 ease-in-out ${
           bootSequence ? 'opacity-100 pointer-events-auto' : 'opacity-0 scale-110 pointer-events-none'
         }`}
       >
@@ -290,6 +290,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     </article>
   );
 }
+
 
 
 
