@@ -3,22 +3,32 @@ import type { Project } from '../../data/portfolioData';
 import { Search, ArrowRight, Binary, Cpu, ShieldCheck, Zap, LineChart, Database } from 'lucide-react';
 import { VirtualCanvas } from '../VirtualCanvas';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
 
-const GRAPH_SECTIONS = [
+const getGraphSections = (lang: 'es' | 'en') => [
   { id: 'graph-hero', label: 'Intro' },
-  { id: 'graph-blueprint', label: 'Arquitectura' },
-  { id: 'graph-value', label: 'Valor B2B' },
+  { id: 'graph-blueprint', label: lang === 'es' ? 'Arquitectura' : 'Architecture' },
+  { id: 'graph-value', label: lang === 'es' ? 'Valor B2B' : 'B2B Value' },
+  { id: 'graph-gallery', label: lang === 'es' ? 'Galería' : 'Gallery' },
 ];
 
 export function GraphTerminalLayout({ project }: { project: Project }) {
   const { lang } = useLanguage();
   
+  const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     let animationFrameId: number;
     let startTime = Date.now();
     let cycleCounter = 0;
@@ -42,12 +52,14 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     };
     animate();
     
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
-
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isMobile) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
@@ -59,7 +71,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#050505] text-zinc-300 font-sans selection:bg-blue-500/30 overflow-hidden">
-      <ScrollAffordance sections={GRAPH_SECTIONS} accentColor="blue" />
+      <ScrollAffordance sections={getGraphSections(lang)} accentColor="blue" />
       
       <header id="graph-hero" className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-mono text-blue-400 mb-8">
@@ -94,19 +106,22 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
            <VirtualCanvas
              canvasWidth="1000px"
              desktopHeight="auto"
-             className="py-24"
+             mobileHeight="500px"
+             className="py-12 md:py-24"
            >
              <div 
                className="relative w-full aspect-video transition-transform duration-700 ease-out flex items-center justify-center"
                style={{ 
-                 transform: `rotateX(${rotateX + (isHovered ? 25 : 0)}deg) rotateY(${rotateY + (isHovered ? -15 : 0)}deg) rotateZ(${isHovered ? 5 : 0}deg)`,
-                 transformStyle: 'preserve-3d' 
+                 transform: isMobile
+                   ? 'none'
+                   : `rotateX(${rotateX + (isHovered ? 25 : 0)}deg) rotateY(${rotateY + (isHovered ? -15 : 0)}deg) rotateZ(${isHovered ? 5 : 0}deg)`,
+                 transformStyle: isMobile ? 'flat' : 'preserve-3d' 
                }}
              >
                 {/* Background Wireframe Layer */}
                 <div 
                   className={`absolute inset-[-10%] border-2 border-blue-500/20 bg-[linear-gradient(to_right,#1e3a8a22_1px,transparent_1px),linear-gradient(to_bottom,#1e3a8a22_1px,transparent_1px)] bg-[size:40px_40px] rounded-[40px] flex items-center justify-center transition-all duration-700 ease-out ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-                  style={{ transform: `translateZ(${isHovered ? '-250px' : '0px'})` }}
+                  style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '-250px' : '0px'})` }}
                 >
                    <div className="font-mono text-6xl font-black text-blue-500/10 tracking-tighter uppercase border-8 border-blue-500/10 p-12 rounded-[3rem]">
                      RAG VECTOR ENGINE
@@ -116,12 +131,12 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                 {/* The Bento Grid (Front Layer) */}
                 <div 
                   className="w-full h-full grid grid-cols-4 grid-rows-3 gap-6 relative z-10 transition-transform duration-700"
-                  style={{ transform: `translateZ(${isHovered ? '100px' : '0px'})` }}
+                  style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '100px' : '0px'})` }}
                 >
                    {/* Main Stat Tile */}
                    <div 
                      className="col-span-2 row-span-2 bg-gradient-to-br from-blue-900/40 to-black border border-blue-500/30 rounded-3xl p-8 flex flex-col justify-between shadow-[0_0_50px_rgba(59,130,246,0.15)] transition-transform duration-700"
-                     style={{ transform: `translateZ(${isHovered ? '50px' : '0px'})` }}
+                     style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '50px' : '0px'})` }}
                    >
                      <div className="flex items-center gap-3 mb-6">
                        <Database className="w-6 h-6 text-blue-400" />
@@ -136,7 +151,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                    {/* Secondary Tile */}
                    <div 
                      className="col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-6 flex items-center justify-between transition-transform duration-700"
-                     style={{ transform: `translateZ(${isHovered ? '120px' : '0px'})` }}
+                     style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '120px' : '0px'})` }}
                    >
                      <div>
                        <div className="text-zinc-500 text-sm font-mono mb-1">Avg Retrieval Latency</div>
@@ -148,7 +163,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                    {/* Pipeline Tile */}
                    <div 
                      className="col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-6 relative overflow-hidden transition-transform duration-700"
-                     style={{ transform: `translateZ(${isHovered ? '80px' : '0px'})` }}
+                     style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '80px' : '0px'})` }}
                    >
                      <div className="absolute right-0 top-0 w-32 h-32 bg-blue-500/5 blur-3xl"></div>
                      <div className="flex items-center gap-2 mb-4">
@@ -165,7 +180,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                    {/* Wide Terminal Tile */}
                    <div 
                      className="col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
-                     style={{ transform: `translateZ(${isHovered ? '180px' : '0px'})` }}
+                     style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '180px' : '0px'})` }}
                    >
                      <div className="flex-1 font-mono text-sm">
                        <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector cosine similarity + BM25 rerank</div>
@@ -178,12 +193,12 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
     
                    {/* Action Tile */}
                    <div 
-                     className="col-span-1 row-span-1 bg-blue-600 rounded-3xl p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
-                     style={{ transform: `translateZ(${isHovered ? '200px' : '0px'})` }}
+                     className="col-span-1 row-span-1 bg-blue-600 rounded-3xl p-3 sm:p-4 md:p-6 flex flex-col justify-between hover:bg-blue-500 transition-colors cursor-pointer"
+                     style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '200px' : '0px'})` }}
                    >
-                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group">
-                        <span className="font-bold text-white uppercase tracking-widest">Deploy<br/>System</span>
-                        <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-2 transition-transform" />
+                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group py-2 md:py-3 px-2 md:px-4">
+                        <span className="font-bold text-white uppercase tracking-widest text-xs sm:text-sm md:text-base">Deploy<br/>System</span>
+                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-2 transition-transform" />
                      </a>
                    </div>
                 </div>
@@ -196,7 +211,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">{lang === 'es' ? 'Arquitectura RAG Determinista y Anti-Alucinación' : 'Deterministic Anti-Hallucination RAG Architecture'}</h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            Los LLMs generalistas alucinan ante falta de contexto factual. Este motor RAG inyecta la base de conocimiento corporativa directamente en el contexto del modelo con scoring de similitud, garantizando respuestas fundamentadas y trazables.
+            {lang === 'es'
+              ? 'Los LLMs generalistas alucinan ante falta de contexto factual. Este motor RAG inyecta la base de conocimiento corporativa directamente en el contexto del modelo con scoring de similitud, garantizando respuestas fundamentadas y trazables.'
+              : 'General-purpose LLMs hallucinate when lacking factual context. This RAG engine injects the corporate knowledge base directly into the model context with similarity scoring, ensuring grounded and traceable responses.'}
           </p>
         </div>
 
@@ -205,7 +222,9 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <ShieldCheck className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Trazabilidad a Nivel de Chunk</h3>
+            <h3 className="text-xl font-bold text-white mb-3">
+              {lang === 'es' ? 'Trazabilidad a Nivel de Chunk' : 'Chunk-Level Traceability'}
+            </h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Cada respuesta generada cita explícitamente el documento fuente y fragmento vectorial original con score de relevancia. Umbrales de similitud estrictos fuerzan abstención determinista si la evidencia no supera el nivel de confianza.' : 'Each generated response explicitly cites the source document and original vector chunk with relevance score. Strict similarity thresholds force deterministic abstention if evidence does not meet confidence levels.'}
             </p>
@@ -245,8 +264,27 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         </div>
       </section>
 
+      {/* Gallery Carousel */}
+      {project.images && project.images.length > 0 && (
+        <section id="graph-gallery" className="max-w-7xl mx-auto px-6 py-12 z-20">
+          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
+            {project.images.map((img, idx) => (
+              <div key={idx} className="flex-none w-[85vw] sm:w-[60vw] md:w-auto snap-center flex flex-col gap-4 group">
+                <div className="bg-[#0a0a0a] border border-zinc-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
+                  <img src={img.url} alt={img.caption} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                </div>
+                <p className="text-zinc-400 text-sm font-medium border-l-2 border-blue-500/50 pl-3">
+                  {img.caption}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {lightboxImg && <Lightbox imgSrc={lightboxImg} altText="Gallery" onClose={() => setLightboxImg(null)} />}
+
     </article>
   );
 }
-
-
