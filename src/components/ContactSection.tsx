@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Mail, Globe, ArrowRight } from 'lucide-react';
+import { MessageCircle, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export const ContactSection: React.FC = () => {
@@ -57,19 +57,26 @@ export const ContactSection: React.FC = () => {
             </span>
           </a>
 
-          {/* Card 2: Fiverr */}
+          {/* Card 2: Fiverr Escrow */}
           <a
             href="https://www.fiverr.com/axl_29"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-5 rounded-2xl bg-zinc-950/50 border border-indigo-500/40 hover:border-indigo-500 shadow-sm flex flex-col items-center justify-between text-center group transition-all"
+            className="p-5 rounded-2xl bg-zinc-950/50 border border-emerald-500/40 hover:border-emerald-500 shadow-sm flex flex-col items-center justify-between text-center group transition-all"
           >
-            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Globe className="w-5 h-5 text-zinc-400 group-hover:text-indigo-400 transition-colors" />
+            <div className="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <ShieldCheck className="w-5 h-5 text-emerald-400" />
             </div>
-            <h3 className="text-sm font-bold text-white mb-1">Fiverr</h3>
-            <p className="text-[11px] text-zinc-400 font-mono mb-4">{lang === 'es' ? 'Contratar en plataforma' : 'Hire on platform'}</p>
-            <span className="text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">axl_29 &rarr;</span>
+            <div>
+              <span className="font-bold text-sm text-white block">Fiverr Escrow</span>
+              <span className="text-[11px] text-zinc-400 font-mono">
+                {lang === 'es' ? 'Pago protegido • Calificación 5.0 ★' : 'Escrow Protected • 5.0 ★ Rating'}
+              </span>
+            </div>
+            <span className="mt-3 text-xs font-bold text-emerald-400 flex items-center gap-1">
+              <span>{lang === 'es' ? 'Perfil Verificado' : 'Verified Profile'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
           </a>
 
           {/* Card 3: Direct Email */}

@@ -7,8 +7,8 @@ export const translations = {
     
     // Hero
     'hero.status': 'AVAILABLE FOR FREELANCE PROJECTS',
-    'hero.title': 'Production SaaS & AI Systems',
-    "hero.subtitle": "Freelance engineer for the whole stack. I analyze your operations to uncover the technical bottlenecks costing you money, and build the exact infrastructure needed to solve them at the root and scale your business.",
+    'hero.title': 'Full-Stack Engineering & AI Systems',
+    "hero.subtitle": "Full-stack product engineer. I build modern web applications, scalable MVPs, and applied AI systems engineered for production.",
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -25,7 +25,7 @@ export const translations = {
     'projects.features': 'Core Architecture',
     
     // Footer
-    'footer.description': 'SaaS Architect and technical consultant specializing in multi-tenant platforms, applied AI systems, and high-performance architectures.',
+    'footer.description': 'Full-stack product engineer specializing in modern web applications, MVPs, and applied AI systems.',
     'footer.links': 'Links',
     'footer.legal': 'All rights reserved.',
     
@@ -53,8 +53,8 @@ export const translations = {
     
     // Hero
     'hero.status': 'DISPONIBLE PARA PROYECTOS FREELANCE',
-    'hero.title': 'Arquitectura SaaS & Sistemas de IA',
-    'hero.subtitle': 'Ingeniero freelance para todo el stack. Analizo tus operaciones para detectar los problemas técnicos que te hacen perder dinero, y construyo la infraestructura exacta para resolverlos de raíz y escalar tu negocio.',
+    'hero.title': 'Ingeniería Full-Stack & Sistemas de IA',
+    'hero.subtitle': 'Ingeniero de producto full-stack. Construyo aplicaciones web modernas, MVPs escalables y sistemas con IA listos para producción.',
     'hero.cta.primary': 'Cotizar Proyecto',
     'hero.cta.secondary': 'Ver Portafolio',
     
@@ -71,7 +71,7 @@ export const translations = {
     'projects.features': 'Arquitectura Core',
     
     // Footer
-    'footer.description': 'Arquitecto SaaS y consultor técnico especializado en plataformas multi-tenant, sistemas de IA y arquitecturas de alto rendimiento.',
+    'footer.description': 'Ingeniero de software full-stack especializado en aplicaciones web modernas, MVPs y sistemas con IA.',
     'footer.links': 'Enlaces',
     'footer.legal': 'Todos los derechos reservados.',
     

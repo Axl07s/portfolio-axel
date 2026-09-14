@@ -51,7 +51,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
                 {lang === 'es' ? 'DISPONIBLE' : 'AVAILABLE'}
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400 font-mono hidden sm:block">SaaS Architect & Consultant</p>
+            <p className="text-[11px] text-zinc-400 font-mono hidden sm:block">
+              {lang === 'es' ? 'Full-Stack & AI Product Engineer' : 'Full-Stack & AI Product Engineer'}
+            </p>
           </div>
         </Link>
 

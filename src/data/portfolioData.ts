@@ -91,7 +91,7 @@ const projectsES: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Plataforma web de alta gama con motor de reservas multi-paso. Incrementó la conversión de reservas en un 40% mediante una experiencia visual inmersiva optimizada.',
+    description: 'Plataforma web de alta gama con motor de reservas multi-paso. Optimiza la experiencia de usuario y captura de comensales mediante una interfaz inmersiva y reactiva.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -118,7 +118,7 @@ const projectsES: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Infraestructura de captación B2B con calculadora de ROI interactiva en tiempo real. Cualifica leads automáticamente y aumentó la tasa de cierre en llamadas estratégicas un 65%.',
+    description: 'Infraestructura de captación B2B con calculadora de ROI interactiva en tiempo real. Cualifica prospectos automáticamente y agiliza el embudo de ventas estratégicas.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -229,7 +229,7 @@ const projectsEN: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'High-end web platform with a multi-step reservation engine. Increased reservation conversion by 40% through an immersive, conversion-optimized visual experience.',
+    description: 'High-end web platform with a multi-step reservation engine. Streamlines table booking and guest acquisition through an immersive, high-performance UI.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -256,7 +256,7 @@ const projectsEN: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'B2B lead generation infrastructure with an interactive real-time ROI calculator. Automatically qualifies leads and increased strategic call closing rate by 65%.',
+    description: 'B2B lead generation infrastructure with an interactive real-time ROI calculator. Automatically qualifies prospects and accelerates strategic sales pipelines.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
