@@ -165,7 +165,7 @@ const projectsES: Project[] = [
       { url: '/projects/rag_03.png', caption: 'Navegador de Fragmentos Vectoriales' },
     ],
     liveUrl: 'https://enterprise-rag-app-plum.vercel.app',
-    githubUrl: 'https://github.com/AxelSamMoli/enterprise-ai-rag-fastapi',
+    githubUrl: 'https://github.com/Axl07s/enterprise-rag-app',
     featured: true,
   },
 ];
@@ -303,7 +303,7 @@ const projectsEN: Project[] = [
       { url: '/projects/rag_03.png', caption: 'Vector Chunk Browser' },
     ],
     liveUrl: 'https://enterprise-rag-app-plum.vercel.app',
-    githubUrl: 'https://github.com/AxelSamMoli/enterprise-ai-rag-fastapi',
+    githubUrl: 'https://github.com/Axl07s/enterprise-rag-app',
     featured: true,
   },
 ];
@@ -383,5 +383,6 @@ export const CERTIFICATIONS: Certification[] = [
     skills: ['B2B Sales Funnels', 'Lead Automation'],
   },
 ];
+
 
 
