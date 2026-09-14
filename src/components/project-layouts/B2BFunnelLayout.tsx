@@ -110,11 +110,11 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
             {/* Main screenshot — tap to lightbox */}
             <div
               className="relative aspect-video w-full cursor-pointer"
-              onClick={() => setLightboxImg('/projects/nexus_mobile_01.png')}
+              onClick={() => setLightboxImg(project.images[0]?.url || '/projects/nexus_01.png')}
             >
               <img
-                src="/projects/nexus_mobile_01.png"
-                alt="NexusCorp Mobile"
+                src={project.images[0]?.url || '/projects/nexus_01.png'}
+                alt="NexusCorp Desktop"
                 className="w-full h-full object-cover object-top"
                 loading="lazy"
                 decoding="async"
