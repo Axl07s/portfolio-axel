@@ -7,12 +7,12 @@ import { Lightbox } from '../Lightbox';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
-const ENTERPRISE_SECTIONS = [
+const getEnterpriseSections = (lang: 'es' | 'en') => [
   { id: 'enterprise-hero', label: 'Intro' },
   { id: 'enterprise-hologram', label: 'Demo 3D' },
   { id: 'enterprise-dashboard', label: 'Dashboard' },
-  { id: 'enterprise-gallery', label: 'Galería' },
-  { id: 'enterprise-features', label: 'Características' },
+  { id: 'enterprise-gallery', label: lang === 'es' ? 'Galería' : 'Gallery' },
+  { id: 'enterprise-features', label: lang === 'es' ? 'Características' : 'Features' },
 ];
 
 export function EnterpriseLayout({ project }: { project: PersonalProject }) {
@@ -56,7 +56,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
 
   return (
     <article className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-emerald-500/30 overflow-hidden">
-      <ScrollAffordance sections={ENTERPRISE_SECTIONS} accentColor="emerald" />
+      <ScrollAffordance sections={getEnterpriseSections(lang)} accentColor="emerald" />
 
       {/* Hero Section */}
       <div id="enterprise-hero"><CinematicHero project={project} lang={lang} /></div>
@@ -79,6 +79,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
            <VirtualCanvas
              canvasWidth="1000px"
              desktopHeight="700px"
+             mobileHeight="500px"
              className="py-12"
            >
              <div 
@@ -132,7 +133,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* Security Analyst Dashboard (Floating UI) */}
                 <div 
                    className="absolute top-[10%] left-[10%] w-72 bg-slate-950/90 backdrop-blur-md border-2 border-emerald-500/30 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
-                   style={{ transform: `translateZ(250px) translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px) ` }}
+                   style={{ transform: `translateZ(60px) translate(${(mousePos.x - 0.5) * 50}px, ${(mousePos.y - 0.5) * 50}px) ` }}
                 >
                    <div className="flex justify-between items-center mb-3 pb-3 border-b border-slate-800">
                      <div className="flex items-center gap-2">
@@ -153,7 +154,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 {/* Metrics Widget */}
                 <div 
                    className="absolute bottom-[10%] right-[10%] w-56 bg-slate-950/90 backdrop-blur-md border-2 border-slate-800 rounded-2xl p-5 shadow-2xl transition-transform duration-500"
-                   style={{ transform: `translateZ(200px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px) ` }}
+                   style={{ transform: `translateZ(40px) translate(${(mousePos.x - 0.5) * 20}px, ${(mousePos.y - 0.5) * 20}px) ` }}
                 >
                    <div className="flex items-center justify-between mb-4">
                      <Shield className="w-5 h-5 text-emerald-500" />
@@ -293,9 +294,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {/* Extended Gallery */}
       {project.images && project.images.length > 0 && (
         <section id="enterprise-gallery" className="max-w-7xl mx-auto px-6 py-12 z-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
             {project.images.map((img, idx) => (
-              <div key={idx} className="flex flex-col gap-4 group">
+              <div key={idx} className="flex-none w-[85vw] sm:w-[60vw] md:w-auto snap-center flex flex-col gap-4 group">
                 <div className="bg-[#0f111a] border border-slate-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
                   <img src={img.url} alt={lang === 'es' ? img.captionES : img.captionEN} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
@@ -327,7 +328,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Shield className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Mitigación de Ransomware</h3>
+            <h3 className="text-xl font-bold text-white mb-3">
+              {lang === 'es' ? 'Mitigación de Ransomware' : 'Ransomware Mitigation'}
+            </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Detección de patrones de cifrado masivo mediante cálculo de entropía de Shannon en buffers de I/O de disco. Suspende deterministamente el hilo del proceso atacante en menos de 12ms antes de comprometer archivos críticos.' : 'Detection of massive encryption patterns via Shannon entropy calculation on disk I/O buffers. Deterministically suspends the attacking process thread in under 12ms before critical files are compromised.'}
             </p>
@@ -337,7 +340,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Bajo Impacto Operativo</h3>
+            <h3 className="text-xl font-bold text-white mb-3">
+              {lang === 'es' ? 'Bajo Impacto Operativo' : 'Low Operational Impact'}
+            </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Driver C/C++ en espacio de kernel con buffers circulares de memoria compartida. Procesa eventos de telemetría a escala con un overhead de CPU medido inferior al 0.8%.' : 'C/C++ driver in kernel space with shared memory ring buffers. Processes telemetry events at scale with a measured CPU overhead of less than 0.8%.'}
             </p>
@@ -347,7 +352,9 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Server className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">Motor Heurístico &amp; Reglas YARA</h3>
+            <h3 className="text-xl font-bold text-white mb-3">
+              {lang === 'es' ? 'Motor Heurístico & Reglas YARA' : 'Heuristic Engine & YARA Rules'}
+            </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Canal asíncrono en espacio de usuario (Python) que correlaciona telemetría de Sysmon y evalúa binarios sospechosos contra un compendio de reglas YARA y heurísticas de comportamiento.' : 'Asynchronous user-space channel (Python) that correlates Sysmon telemetry and evaluates suspicious binaries against a compendium of YARA rules and behavioral heuristics.'}
             </p>
