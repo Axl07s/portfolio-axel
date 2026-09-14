@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
 
         {/* Primary Authentic Headline */}
         <motion.div variants={item}>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
+          <h1 className="text-[2.5rem] leading-[1.05] sm:leading-[1.1] sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
             {lang === 'es' ? 'Hola, soy Axel. Construyo software en el que ' : "Hey, I'm Axel. I ship software "} 
             <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-indigo-600">
@@ -114,7 +114,7 @@ export const Hero: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-        className="mt-24 pt-10 border-t border-zinc-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-left"
+        className="mt-16 sm:mt-24 pt-8 sm:pt-10 border-t border-zinc-800/60 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left"
       >
         <div>
           <span className="text-2xl font-bold tracking-tight text-white font-mono block">10+</span>
@@ -142,6 +142,7 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
+
 
 
 

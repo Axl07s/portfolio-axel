@@ -16,7 +16,7 @@ export function Home() {
   const portfolioProjects = getPortfolioProjects(lang).slice(0, 3);
 
   return (
-    <>
+    <main className="w-full overflow-x-hidden">
       <Hero />
 
       <ExpertiseSection />
@@ -57,9 +57,11 @@ export function Home() {
           ))}
         </div>
       </section>
-    </>
+    </main>
   );
 }
+
+
 
 
 
