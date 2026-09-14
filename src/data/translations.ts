@@ -8,7 +8,7 @@ export const translations = {
     // Hero
     'hero.status': 'AVAILABLE FOR FREELANCE PROJECTS',
     'hero.title': 'Production SaaS & AI Systems',
-    "hero.subtitle": "Freelance engineer for the whole stack. I help businesses launch faster, untangle what's fragile, and build systems that don't fall over at 3am.",
+    "hero.subtitle": "Freelance Software Engineer. I architect scalable infrastructure, accelerate B2B product launches, and build mission-critical platforms that don't collapse under pressure.",
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -54,7 +54,7 @@ export const translations = {
     // Hero
     'hero.status': 'DISPONIBLE PARA PROYECTOS FREELANCE',
     'hero.title': 'Arquitectura SaaS & Sistemas de IA',
-    'hero.subtitle': 'Ingeniero freelance para todo el stack. Ayudo a negocios a lanzar más rápido, desenredar código frágil y construir sistemas que no se caen a las 3 de la mañana.',
+    'hero.subtitle': 'Ingeniero de Software freelance. Diseño arquitecturas escalables, acelero el lanzamiento de productos B2B y construyo plataformas críticas que no colapsan bajo presión.',
     'hero.cta.primary': 'Cotizar Proyecto',
     'hero.cta.secondary': 'Ver Portafolio',
     
@@ -94,6 +94,7 @@ export const translations = {
 };
 
 export type TranslationKey = keyof typeof translations.en;
+
 
 
 
