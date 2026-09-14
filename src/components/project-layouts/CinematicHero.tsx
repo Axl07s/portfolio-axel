@@ -16,32 +16,16 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
   const isCyber = project.id === 'suiteseguridad';
   const accentColor = isCyber ? '#10b981' : '#6366f1'; 
 
-  const mockMetrics = [
-    { value: '+99%', label: lang === 'es' ? 'DETECCIÓN EDR' : 'EDR DETECTION' },
-    { value: '< 5ms', label: lang === 'es' ? 'LATENCIA KERNEL' : 'KERNEL LATENCY' },
-    { value: 'ZERO', label: lang === 'es' ? 'FALSOS POSITIVOS' : 'FALSE POSITIVES' },
-  ];
+  
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 3000);
-    const t2 = setTimeout(() => setPhase(2), 6500);
-    const t3 = setTimeout(() => setPhase(3), 11000);
-    const t4 = setTimeout(() => setPhase(4), 16000);
-    
-    const loop = setInterval(() => {
-      setPhase(0);
-      setTimeout(() => setPhase(1), 3000);
-      setTimeout(() => setPhase(2), 6500);
-      setTimeout(() => setPhase(3), 11000);
-      setTimeout(() => setPhase(4), 16000);
-    }, 22000);
+    // Just 2 fast phases, no loops.
+    const t1 = setTimeout(() => setPhase(1), 500); // 0.5s scramble text
+    const t2 = setTimeout(() => setPhase(2), 2000); // 1.5s visual pop
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      clearTimeout(t3);
-      clearTimeout(t4);
-      clearInterval(loop);
     };
   }, []);
 
@@ -81,7 +65,7 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
         )}
 
         {/* PHASE 1 & 2: Hero Visuals & 3D Pan */}
-        {(phase === 1 || phase === 2) && (
+        {phase >= 1 && (
           <motion.div 
             key="phase1"
             className="absolute inset-0 flex items-center justify-center pt-16"
@@ -134,97 +118,7 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
           </motion.div>
         )}
 
-        {/* PHASE 3: Metrics & Bento Pop */}
-        {phase === 3 && (
-          <motion.div 
-            key="phase3"
-            className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: 'blur(10px)' }}
-            transition={{ duration: 1 }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full max-w-6xl mt-16 md:mt-0">
-              {mockMetrics.map((metric, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: i * 0.2, type: 'spring' }}
-                  className="bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
-                  <motion.div 
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: (i * 0.2) + 0.5, type: 'spring' }}
-                    className="text-4xl md:text-6xl font-black mb-2 md:mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                    style={{ color: accentColor }}
-                  >
-                    {metric.value}
-                  </motion.div>
-                  <div className="text-zinc-400 font-medium tracking-wide uppercase text-xs md:text-sm">
-                    {metric.label}
-                  </div>
-                </motion.div>
-              ))}
-              
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 }}
-                className="col-span-1 md:col-span-3 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 flex flex-wrap gap-2 md:gap-4 justify-center items-center mt-2 md:mt-8"
-              >
-                <div className="w-full text-center text-zinc-500 tracking-widest text-[10px] md:text-xs uppercase mb-2">Tech Stack</div>
-                {project.tech.map((tech: string, i: number) => (
-                  <motion.span 
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + (i * 0.1) }}
-                    className="px-3 py-1.5 md:px-4 md:py-2 bg-black/50 border border-white/5 rounded-lg text-white font-medium text-xs md:text-sm"
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* PHASE 4: Outro */}
-        {phase === 4 && (
-          <motion.div 
-            key="phase4"
-            className="absolute inset-0 flex flex-col items-center justify-center bg-black z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1.5, ease: 'easeOut' }}
-              className="relative text-center"
-            >
-              <div className="absolute inset-0 blur-3xl opacity-30" style={{ backgroundColor: accentColor }} />
-              <div className="text-xl md:text-2xl font-light text-zinc-400 mb-2">{lang === 'es' ? 'Diseñado & Desarrollado por' : 'Engineered & Designed by'}</div>
-              <div className="text-6xl md:text-8xl font-black text-white tracking-tighter">
-                AXEL
-              </div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2 }}
-              className="mt-12 text-zinc-500 uppercase tracking-[0.4em] text-[10px] md:text-xs"
-            >
-              {lang === 'es' ? 'Haz scroll para detalles' : 'Scroll down for details'}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
       
       {/* Scroll indicator hinting there is content below */}
       <motion.div 
