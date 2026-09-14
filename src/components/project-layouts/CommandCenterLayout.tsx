@@ -21,28 +21,6 @@ export function CommandCenterLayout({ project }: { project: Project }) {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let animationFrameId: number;
-    let startTime = Date.now();
-    
-    const animate = () => {
-      if (window.innerWidth < 1024) {
-        const elapsed = Date.now() - startTime;
-        const speed = 0.0008;
-        setMousePos({
-          x: 0.5 + Math.sin(elapsed * speed) * 0.2,
-          y: 0.5 + Math.cos(elapsed * speed * 1.2) * 0.2
-        });
-      }
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
-    
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   // Boot sequence logic
   useEffect(() => {
     const lines = lang === 'es' ? [
@@ -133,7 +111,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         {/* ========================================================== */}
         <section id="command-interactive" className="lg:hidden relative z-10 w-full px-4 pt-4 pb-12">
           {/* Main Mobile Card: Jarvis HUD Window */}
-          <div className="relative w-full rounded-2xl overflow-hidden border border-blue-500/30 bg-[#070d1e]/90 shadow-[0_0_50px_rgba(56,189,248,0.2)] backdrop-blur-xl">
+          <div className="relative w-full rounded-2xl overflow-hidden border border-blue-500/30 bg-[#070d1e]/90 shadow-[0_0_30px_rgba(56,189,248,0.15)] backdrop-blur-md lg:backdrop-blur-xl">
             {/* Window Header */}
             <div className="h-10 bg-slate-900/90 border-b border-blue-500/20 px-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
