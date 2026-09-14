@@ -8,7 +8,7 @@ export const translations = {
     // Hero
     'hero.status': 'AVAILABLE FOR FREELANCE PROJECTS',
     'hero.title': 'Production SaaS & AI Systems',
-    'hero.subtitle': 'Freelance engineer for the whole stack. I help businesses launch faster, untangle what''s fragile, and build systems that don''t fall over at 3am.',
+    "hero.subtitle": "Freelance engineer for the whole stack. I help businesses launch faster, untangle what's fragile, and build systems that don't fall over at 3am.",
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -94,6 +94,7 @@ export const translations = {
 };
 
 export type TranslationKey = keyof typeof translations.en;
+
 
 
 
