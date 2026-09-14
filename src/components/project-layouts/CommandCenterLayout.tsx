@@ -3,22 +3,32 @@ import type { Project } from '../../data/portfolioData';
 import { Mic, Activity, Network } from 'lucide-react';
 import { VirtualCanvas } from '../VirtualCanvas';
 import { ScrollAffordance } from '../ScrollAffordance';
+import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
 
-const COMMAND_SECTIONS = [
-  { id: 'command-interactive', label: 'Interfaz' },
-  { id: 'command-features', label: 'Funciones' },
+const getCommandSections = (lang: 'es' | 'en') => [
+  { id: 'command-interactive', label: lang === 'es' ? 'Interfaz' : 'Interface' },
+  { id: 'command-features', label: lang === 'es' ? 'Funciones' : 'Features' },
+  { id: 'command-gallery', label: lang === 'es' ? 'Galería' : 'Gallery' },
 ];
 
 export function CommandCenterLayout({ project }: { project: Project }) {
   const { lang } = useLanguage();
   const [bootSequence, setBootSequence] = useState(true);
   const [bootText, setBootText] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     let animationFrameId: number;
     let startTime = Date.now();
     
@@ -35,14 +45,16 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     };
     animate();
     
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
-
 
   // Boot sequence logic
   useEffect(() => {
     const lines = lang === 'es' ? [
-      lang === 'es' ? '[SYS] Inicializando Núcleo Neural...' : '[SYS] Initializing Neural Core...',
+      '[SYS] Inicializando Núcleo Neural...',
       '[NET] Estableciendo WebSocket seguro a la API de OpenAI...',
       '[AUTH] Protocolo zero-trust confirmado.',
       '[MEM] Cargando Base de Datos Vectorial RAG (Pinecone).',
@@ -95,7 +107,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#020617] text-slate-300 font-sans overflow-hidden relative">
-      <ScrollAffordance sections={COMMAND_SECTIONS} accentColor="sky" />
+      <ScrollAffordance sections={getCommandSections(lang)} accentColor="sky" />
 
       {/* BOOT SEQUENCE OVERLAY */}
       <div 
@@ -136,24 +148,25 @@ export function CommandCenterLayout({ project }: { project: Project }) {
           <VirtualCanvas
              canvasWidth="1200px"
              desktopHeight="100vh"
+             mobileHeight="500px"
           >
             {/* Holographic 3D Container */}
             <div className="relative w-full aspect-[21/9] flex items-center justify-center transition-transform duration-300 ease-out"
               style={{ 
-                transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-                transformStyle: 'preserve-3d'
+                transform: isMobile ? 'none' : `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                transformStyle: isMobile ? 'flat' : 'preserve-3d'
               }}
             >
               {/* LAYER 1: Background Blur / Glow */}
               <div 
                 className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"
-                style={{ transform: 'translateZ(-200px) scale(0.8)' }}
+                style={{ transform: isMobile ? 'none' : 'translateZ(-200px) scale(0.8)' }}
               ></div>
     
               {/* LAYER 2: The Core UI (Main Dashboard Image) */}
               <div 
                 className="absolute w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
-                style={{ transform: 'translateZ(0px)' }}
+                style={{ transform: isMobile ? 'none' : 'translateZ(0px)' }}
               >
                  <div className="absolute top-0 left-0 w-full h-8 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
                    <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Jarvis Kernel v2.4</div>
@@ -170,7 +183,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               {/* LAYER 3: Left Floating Widget (Telemetry) */}
               <div 
                 className="absolute left-[5%] top-[20%] w-[250px] bg-slate-900/80 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
-                style={{ transform: 'translateZ(80px) rotateY(15deg)' }}
+                style={{ transform: isMobile ? 'none' : 'translateZ(80px) rotateY(15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-4">
                    <Activity className="w-4 h-4 text-blue-400" />
@@ -196,7 +209,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               {/* LAYER 4: Right Floating Widget (Voice / Audio) */}
               <div 
                 className="absolute right-[5%] bottom-[15%] w-[220px] bg-slate-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
-                style={{ transform: 'translateZ(120px) rotateY(-15deg)' }}
+                style={{ transform: isMobile ? 'none' : 'translateZ(120px) rotateY(-15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-3">
                    <Mic className="w-4 h-4 text-emerald-400" />
@@ -221,7 +234,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               <div 
                 className="absolute inset-[-20%] border border-white/5 rounded-[40px] pointer-events-none"
                 style={{ 
-                  transform: 'translateZ(180px)',
+                  transform: isMobile ? 'none' : 'translateZ(180px)',
                   background: 'linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px)',
                   backgroundSize: '100px 100px'
                 }}
@@ -237,8 +250,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
           </VirtualCanvas>
         </section>
 
-
-      <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
+      <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-20">
          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">
               <h2 className="text-3xl font-bold text-white mb-4">{project.title}</h2>
@@ -266,10 +278,26 @@ export function CommandCenterLayout({ project }: { project: Project }) {
          </div>
       </section>
 
+      {/* Gallery Carousel */}
+      {project.images && project.images.length > 0 && (
+        <section id="command-gallery" className="max-w-7xl mx-auto px-6 py-12 z-20">
+          <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
+            {project.images.map((img, idx) => (
+              <div key={idx} className="flex-none w-[85vw] sm:w-[60vw] md:w-auto snap-center flex flex-col gap-4 group">
+                <div className="bg-[#0f111a] border border-slate-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
+                  <img src={img.url} alt={img.caption} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                </div>
+                <p className="text-slate-400 text-sm font-medium border-l-2 border-blue-500/50 pl-3">
+                  {img.caption}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {lightboxImg && <Lightbox imgSrc={lightboxImg} altText="Gallery" onClose={() => setLightboxImg(null)} />}
     </article>
   );
 }
-
-
-
-

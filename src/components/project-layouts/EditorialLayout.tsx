@@ -5,10 +5,10 @@ import { WifiOff, RefreshCcw, Cloud } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
-const EDITORIAL_SECTIONS = [
+const getEditorialSections = (lang: 'es' | 'en') => [
   { id: 'editorial-hero', label: 'Intro' },
   { id: 'editorial-phones', label: 'App Flow' },
-  { id: 'editorial-features', label: 'Arquitectura' },
+  { id: 'editorial-features', label: lang === 'es' ? 'Arquitectura' : 'Architecture' },
 ];
 
 export function EditorialLayout({ project }: { project: PersonalProject }) {
@@ -31,14 +31,12 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
 
   return (
     <article className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans selection:bg-indigo-500/30 overflow-hidden">
-      <ScrollAffordance sections={EDITORIAL_SECTIONS} accentColor="indigo" />
+      <ScrollAffordance sections={getEditorialSections(lang)} accentColor="indigo" />
 
-      {/* Hero Section */}
-      
       {/* Hero Section */}
       <section id="editorial-hero" className="pt-32 pb-16 px-6 text-center max-w-5xl mx-auto z-20 relative">
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full text-[10px] font-mono tracking-widest uppercase mb-6">
-          Arquitectura Flutter & BLoC
+          {lang === 'es' ? 'Arquitectura Flutter & BLoC' : 'Flutter & BLoC Architecture'}
         </div>
         <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-tight">
           PUCE Connect Hub
@@ -103,6 +101,8 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
                   <img src={imgSrc} alt="App Screen" className="w-full h-full object-cover object-top" />
                   {/* Subtle glass reflection */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"></div>
+
+
                 </div>
               );
             })}
@@ -114,12 +114,14 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
            <div className="flex justify-between items-center mb-3">
              <div className="flex items-center gap-2">
                <WifiOff className="w-5 h-5 text-indigo-400" />
-               <span className="text-white font-bold text-sm">Modo Offline</span>
+               <span className="text-white font-bold text-sm">{lang === 'es' ? 'Modo Offline' : 'Offline Mode'}</span>
              </div>
              <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
            </div>
            <p className="text-sm text-zinc-400 leading-relaxed">
-             Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en &lt;50ms.
+             {lang === 'es'
+               ? 'Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en <50ms.'
+               : 'Active embedded Isar Database. Instant dispatch of schedules, grades and attendance from local NoSQL storage in <50ms.'}
            </p>
          </div>
 
@@ -132,7 +134,9 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
              <Cloud className="w-4 h-4 text-zinc-600" />
            </div>
            <p className="text-sm text-zinc-400 leading-relaxed">
-             Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.
+             {lang === 'es'
+               ? 'Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.'
+               : 'Background workers queuing transactional mutations and synchronizing deltas with Spring Boot upon network recovery.'}
            </p>
          </div>
       </section>
@@ -174,9 +178,11 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 shadow-sm flex items-start gap-3">
             <WifiOff className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-sm text-white mb-1">Modo Offline</div>
+              <div className="font-bold text-sm text-white mb-1">{lang === 'es' ? 'Modo Offline' : 'Offline Mode'}</div>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                Isar Database embebida. Horarios, notas y asistencia disponibles sin red en &lt;50ms.
+                {lang === 'es'
+                  ? 'Isar Database embebida. Horarios, notas y asistencia disponibles sin red en <50ms.'
+                  : 'Embedded Isar Database. Schedules, grades and attendance available offline in <50ms.'}
               </p>
             </div>
           </div>
@@ -185,7 +191,9 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
             <div>
               <div className="font-bold text-sm text-white mb-1">Background Sync</div>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                Mutaciones encoladas y sincronizadas con Spring Boot al recuperar conexión.
+                {lang === 'es'
+                  ? 'Mutaciones encoladas y sincronizadas con Spring Boot al recuperar conexión.'
+                  : 'Mutations queued and synchronized with Spring Boot upon reconnecting.'}
               </p>
             </div>
           </div>

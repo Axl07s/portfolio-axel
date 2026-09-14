@@ -4,10 +4,10 @@ import { Server, Shield, CheckCircle2, ArrowRight, User, Activity, Settings, Dat
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
-const SAAS_SECTIONS = [
+const getSaaSSections = (lang: 'es' | 'en') => [
   { id: 'saas-hero', label: 'Intro' },
-  { id: 'saas-showcase', label: 'Producto' },
-  { id: 'saas-features', label: 'Arquitectura' },
+  { id: 'saas-showcase', label: lang === 'es' ? 'Producto' : 'Product' },
+  { id: 'saas-features', label: lang === 'es' ? 'Arquitectura' : 'Architecture' },
 ];
 
 export function SaaSScaleLayout({ project }: { project: Project }) {
@@ -36,7 +36,7 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#0a0a0a] text-zinc-50 font-sans overflow-hidden">
-      <ScrollAffordance sections={SAAS_SECTIONS} accentColor="indigo" />
+      <ScrollAffordance sections={getSaaSSections(lang)} accentColor="indigo" />
 
       {/* Hero Section */}
       <header id="saas-hero" className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-4 flex flex-col items-center text-center">
@@ -195,7 +195,7 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
       {/* ============================================================ */}
       {/* MOBILE: Desktop screenshot + phone mockup stacked (< lg) */}
       {/* ============================================================ */}
-      <section id="saas-showcase" className="lg:hidden relative z-20 py-12 px-4">
+      <section id="saas-showcase-mobile" className="lg:hidden relative z-20 py-12 px-4">
         {/* Desktop screenshot */}
         <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl mb-6">
           <div className="h-10 bg-zinc-950 flex items-center px-4 border-b border-zinc-800">
@@ -272,7 +272,7 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
       {/* Features List */}
       <section id="saas-features" className="py-24 max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-20">
         <div>
-          <h3 className="text-3xl font-semibold mb-8 text-white">Arquitectura Multi-Tenant &amp; Aislamiento RLS</h3>
+          <h3 className="text-3xl font-semibold mb-8 text-white">{lang === 'es' ? 'Arquitectura Multi-Tenant & Aislamiento RLS' : 'Multi-Tenant Architecture & RLS Isolation'}</h3>
           <ul className="space-y-6">
             {project.features.map((feature, i) => (
               <li key={i} className="flex items-start gap-4 text-zinc-300 group">
@@ -295,9 +295,13 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
            
            <div className="bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/30 hover:border-indigo-400 rounded-2xl p-8 flex flex-col items-start justify-center transition-colors group">
              <h4 className="text-xl font-semibold text-white mb-2">{lang === 'es' ? 'Ver Código Fuente' : 'View Source Code'}</h4>
-             <p className="text-zinc-400 text-sm mb-6">Arquitectura full-stack en Next.js 15 y React 19 con Supabase RLS y Stripe, optimizada para despliegue edge en Vercel.</p>
+             <p className="text-zinc-400 text-sm mb-6">
+               {lang === 'es'
+                 ? 'Arquitectura full-stack en Next.js 15 y React 19 con Supabase RLS y Stripe, optimizada para despliegue edge en Vercel.'
+                 : 'Full-stack architecture in Next.js 15 and React 19 with Supabase RLS and Stripe, optimized for edge deployment on Vercel.'}
+             </p>
              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg font-medium transition-all group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]">
-               Repositorio GitHub <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+               {lang === 'es' ? 'Repositorio GitHub' : 'GitHub Repository'} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
              </a>
            </div>
         </div>
