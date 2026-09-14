@@ -9,6 +9,7 @@ const ENTERPRISE_SECTIONS = [
   { id: 'enterprise-hero', label: 'Intro' },
   { id: 'enterprise-hologram', label: 'Demo 3D' },
   { id: 'enterprise-dashboard', label: 'Dashboard' },
+  { id: 'enterprise-gallery', label: 'Galería' },
   { id: 'enterprise-features', label: 'Características' },
 ];
 
@@ -296,6 +297,45 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
       </section>
 
+            {/* Dynamic Features from Data */}
+      {(project.featuresES || project.featuresEN) && (
+        <section className="max-w-5xl mx-auto px-6 pb-24">
+          <div className="bg-slate-900/40 border border-emerald-500/20 rounded-2xl p-8 md:p-12">
+            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <Activity className="w-6 h-6 text-emerald-400" />
+              {lang === 'es' ? 'Capacidades Críticas' : 'Critical Capabilities'}
+            </h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+              {(lang === 'es' && project.featuresES ? project.featuresES : project.featuresEN || []).map((feature, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></div>
+                  <span className="text-slate-300 leading-relaxed">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* Extended Gallery */}
+      {project.images && project.images.length > 0 && (
+        <section id="enterprise-gallery" className="max-w-7xl mx-auto px-6 py-12 z-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {project.images.map((img, idx) => (
+              <div key={idx} className="flex flex-col gap-4 group">
+                <div className="bg-[#0f111a] border border-slate-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center">
+                  <img src={img.url} alt={lang === 'es' ? img.captionES : img.captionEN} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                </div>
+                <p className="text-slate-400 text-sm font-medium border-l-2 border-emerald-500/50 pl-3">
+                  {lang === 'es' ? img.captionES : img.captionEN}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Marketing B2B - Enterprise Security Value */}
       <section id="enterprise-features" className="max-w-5xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
@@ -356,6 +396,8 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
     </article>
   );
 }
+
+
 
 
 

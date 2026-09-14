@@ -1,24 +1,7 @@
-export interface PersonalProject {
-  id: string;
-  title: string;
-  descriptionES: string;
-  descriptionEN: string;
-  architectureES: string;
-  architectureEN: string;
-  tech: string[];
-  image: string;
-  images?: { url: string; captionES: string; captionEN: string }[];
-  featuresES?: string[];
-  featuresEN?: string[];
-  githubUrl?: string;
-  layoutStyle: 'bento' | 'editorial' | 'enterprise';
-  seoDescription: string;
-  seoImage: string;
-}
+const fs = require('fs');
+let content = fs.readFileSync('src/data/personalProjectsData.ts', 'utf8');
 
-export const personalProjects: PersonalProject[] = [
-  {
-    id: 'suiteseguridad',
+const newBlock = `id: 'suiteseguridad',
     title: 'SuiteSeguridad EDR',
     descriptionES: 'Sistema EDR híbrido para Windows enfocado en la prevención proactiva mediante la integración profunda con ETW (Event Tracing for Windows) y telemetría de red. Bloquea ransomware, monitorea actividad maliciosa en memoria y neutraliza procesos anómalos en tiempo real con cero falsos positivos.',
     descriptionEN: 'Hybrid EDR system for Windows focused on proactive prevention through deep integration with ETW (Event Tracing for Windows) and network telemetry. Blocks ransomware, monitors malicious memory activity, and neutralizes anomalous processes in real-time with zero false positives.',
@@ -46,18 +29,7 @@ export const personalProjects: PersonalProject[] = [
     layoutStyle: 'enterprise',
     seoDescription: 'A hybrid EDR system for Windows that blocks ransomware and monitors malicious activity in real time using YARA and ETW.',
     seoImage: '/projects/suite_mockup.png'
-  },
-  {
-    id: 'puce-connect-hub',
-    title: 'PUCE Connect Hub',
-    descriptionES: 'Portal móvil offline-first para sincronización robusta de notas y asistencia académica bajo conectividad intermitente.',
-    descriptionEN: 'Offline-first mobile portal for robust synchronization of grades and academic attendance under intermittent connectivity.',
-    architectureES: 'Arquitectura móvil con Inyección de Dependencias, BLoC pattern y base de datos embebida Isar con un worker de sincronización en background.',
-    architectureEN: 'Mobile architecture using Dependency Injection, BLoC pattern, and an embedded Isar database with a background synchronization worker.',
-    tech: ['Flutter', 'Dart', 'Spring Boot', 'Isar DB', 'BLoC'],
-    image: '/projects/puce_mockup.png',
-    layoutStyle: 'editorial',
-    seoDescription: 'Offline-first mobile portal built with Flutter and Spring Boot, featuring background synchronization and secure local caching.',
-    seoImage: '/projects/puce_mockup.png'
-  }
-];
+  },`;
+
+content = content.replace(/id: 'suiteseguridad',[\s\S]*?seoImage:.*?\n  \},/, newBlock);
+fs.writeFileSync('src/data/personalProjectsData.ts', content);
