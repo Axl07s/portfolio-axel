@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { Shield, Activity, AlertTriangle, Zap, Server, } from 'lucide-react';
 import { VirtualCanvas } from '../VirtualCanvas';
+import { Lightbox } from '../Lightbox';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -17,6 +18,7 @@ const ENTERPRISE_SECTIONS = [
 export function EnterpriseLayout({ project }: { project: PersonalProject }) {
   const { lang } = useLanguage();
   
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -294,7 +296,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {project.images.map((img, idx) => (
               <div key={idx} className="flex flex-col gap-4 group">
-                <div className="bg-[#0f111a] border border-slate-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center">
+                <div className="bg-[#0f111a] border border-slate-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
                   <img src={img.url} alt={lang === 'es' ? img.captionES : img.captionEN} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                 </div>
@@ -364,6 +366,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
       </section>
 
+      {lightboxImg && <Lightbox imgSrc={lightboxImg} altText="Gallery" onClose={() => setLightboxImg(null)} />}
     </article>
   );
 }

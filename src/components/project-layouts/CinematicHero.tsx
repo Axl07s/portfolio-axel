@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HeroAbstract } from '../HeroAbstract';
 import type { PersonalProject } from '../../data/personalProjectsData';
 import { ScrambleText } from '../effects/ScrambleText';
 import { Particles } from '../effects/Particles';
@@ -96,14 +97,20 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
           >
             <div className="relative w-[90vw] md:w-[80vw] h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10" />
-              <motion.img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover object-top md:object-center"
+              
+              <motion.div 
+                className="w-full h-full absolute inset-0"
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 10, ease: 'linear' }}
-              />
+              >
+                {project.id === 'suiteseguridad' || project.id === 'jarvis-hud' || project.id === 'ai-rag-knowledge' ? (
+                  <HeroAbstract theme={project.id === 'suiteseguridad' ? 'cyber' : project.id === 'jarvis-hud' ? 'ai' : 'data'} />
+                ) : (
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                )}
+              </motion.div>
+
               <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
