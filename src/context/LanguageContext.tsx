@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { translations } from '../data/translations';
 import type { TranslationKey } from '../data/translations';
 
@@ -13,14 +13,15 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Language>('es');
-
-  useEffect(() => {
+  const getInitialLang = (): Language => {
     const saved = localStorage.getItem('portfolio_lang') as Language;
-    if (saved === 'en' || saved === 'es') {
-      setLangState(saved);
-    }
-  }, []);
+    if (saved === 'en' || saved === 'es') return saved;
+    // Auto-detect browser language; default to 'es' for anything non-English
+    const browserLang = navigator.language || (navigator as { userLanguage?: string }).userLanguage || '';
+    return browserLang.toLowerCase().startsWith('en') ? 'en' : 'es';
+  };
+
+  const [lang, setLangState] = useState<Language>(getInitialLang);
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);

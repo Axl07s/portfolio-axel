@@ -87,6 +87,72 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       </header>
 
       {/* ============================================================ */}
+      {/* MOBILE: Native RAG card (< lg) */}
+      {/* ============================================================ */}
+      <section className="lg:hidden px-4 pb-12">
+        <div className="bg-gradient-to-b from-zinc-950 to-black border border-zinc-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(59,130,246,0.1)]">
+          {/* Window header */}
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0a14] border-b border-zinc-800">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+            <div className="flex-1 flex items-center justify-center">
+              <span className="text-[11px] font-mono text-zinc-500">rag-vector-engine / terminal</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+              <span className="text-[10px] font-mono text-blue-400 uppercase">LIVE</span>
+            </div>
+          </div>
+
+          {/* Main screenshot — tap to lightbox */}
+          <div
+            className="relative aspect-video w-full cursor-pointer"
+            onClick={() => setLightboxImg('/projects/rag_01.png')}
+          >
+            <img
+              src="/projects/rag_01.png"
+              alt="RAG Engine UI"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 border border-zinc-700 rounded text-[10px] font-mono text-zinc-400">
+              {lang === 'es' ? 'Toca para ampliar' : 'Tap to expand'}
+            </div>
+          </div>
+
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 gap-px bg-zinc-800">
+            <div className="bg-[#050510] p-5 flex flex-col gap-1">
+              <div className="flex items-center gap-2 mb-2">
+                <Database className="w-4 h-4 text-blue-400" />
+                <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Knowledge Base</span>
+              </div>
+              <div className="text-4xl font-black text-white tracking-tighter">2.4M</div>
+              <div className="text-[11px] font-mono text-blue-500/70 uppercase">Vector Embeddings</div>
+            </div>
+            <div className="bg-[#050510] p-5 flex flex-col justify-between">
+              <div className="text-[10px] font-mono text-zinc-500 mb-1">Avg Retrieval Latency</div>
+              <div className="text-3xl font-bold text-white"><span className="text-emerald-400">~</span>240ms</div>
+              <div className="flex gap-1.5 mt-3 flex-wrap">
+                <span className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">PDFs</span>
+                <span className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Notion</span>
+                <span className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Confluence</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Terminal line */}
+          <div className="px-4 py-3 bg-[#0a0a0a] border-t border-zinc-800">
+            <div className="font-mono text-[11px] text-zinc-500 mb-1"># hybrid_retriever: pgvector cosine + BM25 rerank</div>
+            <div className="font-mono text-[11px] text-blue-400">results = await retriever.get_relevant_documents(query, k=5)</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* DESKTOP: Exploding 3D Blueprint Bento (lg+) */}
       {/* ============================================================ */}
 
@@ -94,7 +160,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         {/* DESKTOP 3D HOLOGRAM */}
         {/* ========================================================== */}
         <section id="graph-blueprint"
-          className="relative flex z-20 cursor-crosshair overflow-hidden w-full"
+          className="relative hidden lg:flex z-20 cursor-crosshair overflow-hidden w-full"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovered(true)}
@@ -271,7 +337,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
             {project.images.map((img, idx) => (
               <div key={idx} className="flex-none w-[85vw] sm:w-[60vw] md:w-auto snap-center flex flex-col gap-4 group">
                 <div className="bg-[#0a0a0a] border border-zinc-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
-                  <img src={img.url} alt={img.caption} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  <img src={img.url} alt={img.caption} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                 </div>
                 <p className="text-zinc-400 text-sm font-medium border-l-2 border-blue-500/50 pl-3">

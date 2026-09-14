@@ -190,7 +190,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 </div>
                 <div>
                   <h4 className="text-white font-bold mb-1">{lang === 'es' ? 'Análisis de Memoria Dinámica' : 'Dynamic Memory Analysis'}</h4>
-                  <p className="text-sm text-slate-500">Escaneo de regiones de memoria PAGE_EXECUTE_READWRITE en busca de payloads cifrados o ofuscados.</p>
+                  <p className="text-sm text-slate-500">{lang === 'es' ? 'Escaneo de regiones de memoria PAGE_EXECUTE_READWRITE en busca de payloads cifrados o ofuscados.' : 'Scanning PAGE_EXECUTE_READWRITE memory regions for encrypted or obfuscated payloads.'}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -199,7 +199,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 </div>
                 <div>
                   <h4 className="text-white font-bold mb-1">{lang === 'es' ? 'Aislamiento de Red Automático' : 'Automatic Network Isolation'}</h4>
-                  <p className="text-sm text-slate-500">Bloqueo de comunicación C2 (Command & Control) manipulando la tabla de ruteo local del host comprometido.</p>
+                  <p className="text-sm text-slate-500">{lang === 'es' ? 'Bloqueo de comunicación C2 (Command & Control) manipulando la tabla de ruteo local del host comprometido.' : 'Blocking C2 (Command & Control) communication by manipulating the routing table of the compromised host.'}</p>
                 </div>
               </div>
             </div>

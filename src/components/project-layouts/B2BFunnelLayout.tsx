@@ -5,11 +5,11 @@ import { ScrollAffordance } from '../ScrollAffordance';
 import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
 
-const B2B_SECTIONS = [
+const getB2BSections = (lang: 'es' | 'en') => [
   { id: 'b2b-hero', label: 'Intro' },
-  { id: 'b2b-showcase', label: 'Producto' },
+  { id: 'b2b-showcase', label: lang === 'es' ? 'Producto' : 'Product' },
   { id: 'b2b-roi', label: 'ROI' },
-  { id: 'b2b-architecture', label: 'Arquitectura' },
+  { id: 'b2b-architecture', label: lang === 'es' ? 'Arquitectura' : 'Architecture' },
   { id: 'b2b-stack', label: 'Stack' },
 ];
 
@@ -28,7 +28,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
 
   return (
     <article className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans selection:bg-[#4f46e5] selection:text-white pb-32">
-      <ScrollAffordance sections={B2B_SECTIONS} accentColor="indigo" />
+      <ScrollAffordance sections={getB2BSections(lang)} accentColor="indigo" />
 
       {/* 1. HERO SECTION - Dark & Technical */}
       <header id="b2b-hero" className="relative pt-32 pb-24 px-6 md:px-12 max-w-screen-2xl mx-auto flex flex-col items-center text-center">
