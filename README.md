@@ -1,32 +1,22 @@
-# React + TypeScript + Vite
+# Axel Molineros — Full-Stack Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Interactive developer portfolio showcasing production-ready web applications, SaaS dashboards, and AI integrations.
 
-Currently, two official plugins are available:
+🚀 **Live Production:** [portfolio-axel-nine-orcin.vercel.app](https://portfolio-axel-nine-orcin.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack & Architecture
+- **Framework:** React 19, Vite, TypeScript
+- **Styling & Motion:** Tailwind CSS, Framer Motion
+- **Architecture:** Modular component hierarchy, strict TypeScript typing, responsive mobile-first UI
+- **Deployment:** Vercel CI/CD Pipeline
 
-## React Compiler
+## 📦 Featured Applications Inside
+- **Nexus SaaS Dashboard:** Real-time analytics UI with modular data grids, metrics visualizer, and custom dark/light theme.
+- **Enterprise RAG Engine:** AI search interface powered by FastAPI & Vector DB concepts.
+- **GearStack Studio:** Interactive hardware matrix tracker with dynamic category filtering.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## 💻 Local Setup
+```bash
+npm install
+npm run dev
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
