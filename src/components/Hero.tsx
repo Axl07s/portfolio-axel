@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center overflow-hidden">
+    <section className="relative pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-left overflow-hidden">
       
       <Particles />
       <div 
@@ -40,48 +40,44 @@ export const Hero: React.FC = () => {
         }}
       />
 
-      {/* Subtle Indigo Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-[500px] h-[300px] bg-indigo-500/15 blur-[120px] rounded-full pointer-events-none -z-10" />
-
       <motion.div 
         variants={container}
         initial="hidden"
         animate="show"
-        className="space-y-8"
+        className="space-y-8 max-w-3xl"
       >
         
         {/* Minimalist Role Pill */}
-        <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-950/80 backdrop-blur-sm border border-indigo-500/30 text-indigo-400 text-xs font-mono font-medium shadow-[0_0_15px_rgba(99,102,241,0.1)]">
-          <span className="w-2 h-2 rounded-full bg-indigo-500 animate-[pulse_2s_ease-in-out_infinite]" />
+        <motion.div variants={item} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 text-zinc-300 text-xs font-mono font-medium">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-[pulse_2s_ease-in-out_infinite]" />
           <ScrambleText text={t('hero.status')} delay={800} />
         </motion.div>
 
         {/* Primary Authentic Headline */}
         <motion.div variants={item}>
-          <h1 className="text-[2.5rem] leading-[1.05] sm:leading-[1.1] sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
+          <h1 className="text-[2.5rem] leading-[1.05] sm:leading-[1.1] sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white">
             {lang === 'es' ? 'Hola, soy Axel. Construyo software en el que ' : "Hey, I'm Axel. I ship software "} 
             <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-indigo-600">
+            <span className="text-zinc-400">
               {lang === 'es' ? 'tu negocio puede confiar.' : 'your business can rely on.'}
             </span>
           </h1>
         </motion.div>
 
         {/* Honest, Personal Biography */}
-        <motion.p variants={item} className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-normal leading-relaxed">
+        <motion.p variants={item} className="text-base sm:text-lg text-zinc-400 max-w-2xl font-normal leading-relaxed">
           {t('hero.subtitle')}
         </motion.p>
 
         {/* Clean, Non-Marketing Action CTAs */}
-        <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-4 pt-4">
+        <motion.div variants={item} className="flex flex-wrap items-center justify-start gap-4 pt-4">
           {/* Primary CTA: Quote / Contact */}
           <a
             href={lang === 'es' ? "https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto" : "https://wa.me/593995267503?text=Hi%20Axel,%20I%20would%20like%20to%20quote%20a%20project"}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold bg-white text-black hover:bg-zinc-100 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 active:scale-95 overflow-hidden"
+            className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-bold bg-white text-black hover:bg-zinc-200 emil-btn"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-indigo-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
             <span>{t('hero.cta.primary')}</span>
             <MessageCircle className="w-4 h-4 text-black group-hover:scale-110 transition-transform" />
           </a>
@@ -89,17 +85,17 @@ export const Hero: React.FC = () => {
           {/* Secondary CTA: Portfolio */}
           <Link
             to="/projects"
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-700 transition-all hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 emil-btn"
           >
             <span>{t('hero.cta.secondary')}</span>
-            <ArrowDown className="w-4 h-4 text-zinc-400 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
+            <ArrowDown className="w-4 h-4 text-zinc-400 group-hover:text-white group-hover:translate-y-0.5 transition-transform" />
           </Link>
           
           <a
             href="https://github.com/Axl07s"
             target="_blank"
             rel="noopener noreferrer"
-            className="group p-4 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 transition-all hover:-translate-y-0.5"
+            className="group p-3 rounded-md bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 emil-btn"
             aria-label="GitHub Profile"
             title="GitHub Profile"
           >
