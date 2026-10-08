@@ -19,11 +19,11 @@ export function Home() {
     <main className="w-full overflow-x-hidden">
       <Hero />
 
-      <ExpertiseSection />
+      <div className="h-32"></div><ExpertiseSection />
 
-      <PersonalProjectsSection lang={lang} hideHeader={false} />
+      <div className="h-32"></div><PersonalProjectsSection lang={lang} hideHeader={false} />
 
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <div className="h-32"></div><section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl space-y-4">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-white">
@@ -48,7 +48,7 @@ export function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-col gap-12">
           {portfolioProjects.map((project) => (
             <ProjectCard
               key={project.id}

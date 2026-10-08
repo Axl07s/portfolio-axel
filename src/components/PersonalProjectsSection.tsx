@@ -40,10 +40,10 @@ export function PersonalProjectsSection({ lang: propLang, hideHeader = false }: 
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 lg:w-5/12">
                                 {project.id === 'puce-connect-hub' ? (
-                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-blue-900 to-zinc-950 shrink-0 relative group-hover:border-blue-500/50 transition-colors flex items-center justify-center shadow-inner">
+                  <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-950 shrink-0 relative group-hover:border-emerald-500/50 transition-colors flex items-center justify-center shadow-inner">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-blue-500/20 blur-2xl rounded-full" />
-                    <GraduationCap className="w-10 h-10 text-blue-400 relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-emerald-500/20 blur-2xl rounded-full" />
+                    <GraduationCap className="w-10 h-10 text-white relative z-10 group-hover:scale-110 transition-transform duration-500" />
                   </div>
                 ) : project.id === 'suiteseguridad' ? (
                   <div className="w-full sm:w-40 md:w-44 h-28 rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-emerald-950 to-zinc-950 shrink-0 relative group-hover:border-emerald-500/50 transition-colors flex items-center justify-center shadow-inner">
@@ -63,7 +63,7 @@ export function PersonalProjectsSection({ lang: propLang, hideHeader = false }: 
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors">
                       {project.title}
                     </h3>
                     {project.githubUrl && (
@@ -100,10 +100,10 @@ export function PersonalProjectsSection({ lang: propLang, hideHeader = false }: 
                   </p>
                 </div>
                 <div className="sm:w-1/2">
-                  <h4 className="text-xs text-blue-500/80 uppercase tracking-wider mb-2 font-semibold">
+                  <h4 className="text-xs text-emerald-500 uppercase tracking-wider mb-2 font-semibold">
                     {lang.toLowerCase() === 'es' ? 'Decisión de Arquitectura' : 'Architecture Decision'}
                   </h4>
-                  <p className="text-sm text-zinc-400 leading-relaxed border-l-2 border-blue-500/20 pl-3">
+                  <p className="text-sm text-zinc-400 leading-relaxed border-l-2 border-emerald-500/20 pl-3">
                     {lang.toLowerCase() === 'es' ? project.architectureES : project.architectureEN}
                   </p>
                 </div>
