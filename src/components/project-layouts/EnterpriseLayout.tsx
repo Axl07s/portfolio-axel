@@ -219,7 +219,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                    </div>
                    <div className="h-12 flex items-end gap-1 opacity-50">
                       {[...Array(15)].map((_, i) => (
-                        <div key={i} className="flex-1 bg-emerald-500" style={{ height: `${Math.max(20, Math.random() * 100)}%` }}></div>
+                       <div key={i} className="flex-1 bg-emerald-500" style={{ height: `${[30, 80, 45, 90, 60, 20, 75, 40, 85, 55, 35, 95, 50, 70, 80][i]}%` }}></div>
                       ))}
                    </div>
                 </div>

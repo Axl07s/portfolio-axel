@@ -282,7 +282,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                        key={i} 
                        className="w-2 bg-emerald-400 rounded-full"
                        style={{ 
-                         height: `${Math.max(10, Math.random() * 100)}%`,
+                         height: `${[30, 80, 45, 90, 60, 20, 75, 40, 85, 55, 35, 95][i]}%`,
                          transition: 'height 0.2s ease'
                        }}
                      ></div>
