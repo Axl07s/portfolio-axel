@@ -67,7 +67,7 @@ export function ProjectDetail() {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      <div className="project-detail-loaded relative w-full flex-1 flex flex-col min-h-screen pt-24 pb-12">
+      <div className="project-detail-loaded relative w-full flex-1 flex flex-col min-h-screen pt-24 pb-36">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 z-50 relative">
           <Link to="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-50 transition-colors group">
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

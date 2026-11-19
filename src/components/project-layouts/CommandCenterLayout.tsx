@@ -23,6 +23,12 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
   // Boot sequence logic
   useEffect(() => {
+    // On mobile devices, bypass blocking boot overlay immediately
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setBootSequence(false);
+      return;
+    }
+
     const lines = lang === 'es' ? [
       '[SYS] Inicializando Núcleo Neural...',
       '[NET] Estableciendo WebSocket seguro a la API de OpenAI...',

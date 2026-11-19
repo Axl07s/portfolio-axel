@@ -33,11 +33,11 @@ export const Hero: React.FC = () => {
           className="space-y-8 col-span-1 lg:col-span-7 relative z-10 lg:pr-12"
         >
           <motion.div variants={item}>
-            <h1 className="font-display text-[4rem] leading-[1.05] md:text-[80px] lg:text-[96px] font-bold tracking-[-0.04em] text-neutral-50">
-              {lang === 'es' ? 'Construyo software' : 'I ship software'}
+            <h1 className="font-display text-[3.25rem] leading-[1.08] sm:text-[4rem] md:text-[76px] lg:text-[88px] font-bold tracking-[-0.04em] text-neutral-50">
+              {lang === 'es' ? 'Plataformas web modernas' : 'High-performance web'}
               <br/>
               <span className="text-neutral-500">
-                {lang === 'es' ? 'en el que tu negocio puede confiar.' : 'your business can rely on.'}
+                {lang === 'es' ? 'y sistemas con IA listos para producción.' : '& applied AI systems for business.'}
               </span>
             </h1>
           </motion.div>

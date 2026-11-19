@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
 
 export interface SectionItem {
   id: string;
@@ -19,15 +18,8 @@ function resolveAccent(accentColor?: string) {
 }
 
 export function ScrollAffordance({ sections, accentColor }: ScrollAffordanceProps) {
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id ?? '');
   const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     if (!sections.length) return;
@@ -74,15 +66,6 @@ export function ScrollAffordance({ sections, accentColor }: ScrollAffordanceProp
 
   return (
     <>
-      {/* Scroll Indicator */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed bottom-10 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-1 transition-opacity duration-700 ease-out"
-        style={{ opacity: scrolled ? 0 : 1 }}
-      >
-        <ChevronDown className="h-6 w-6 animate-bounce text-neutral-400" strokeWidth={1.5} />
-      </div>
-
       {/* Section Dots - desktop only */}
       <nav
         aria-label="Navegacion por secciones"

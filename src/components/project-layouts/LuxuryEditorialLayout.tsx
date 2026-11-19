@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { Project } from '../../data/portfolioData';
-import { ChefHat, CreditCard, Utensils, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import { ChefHat, CreditCard, Utensils, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -85,10 +85,6 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
           <p className="text-xl md:text-2xl text-neutral-400 font-light max-w-3xl leading-relaxed mt-4">
             {project.description}
           </p>
-
-          <div className="absolute bottom-12 animate-bounce text-[#c9a96e]/50">
-            <ChevronDown className="w-8 h-8" />
-          </div>
         </div>
       </header>
 
