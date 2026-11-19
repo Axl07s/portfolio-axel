@@ -45,7 +45,7 @@ const projectsES: Project[] = [
     metrics: [
       { label: 'Cobros', value: '100% Automáticos' },
       { label: 'Time-to-Market', value: '< 2 Semanas' },
-      { label: 'Seguridad', value: 'Zero-Trust RLS' },
+      { label: 'Seguridad', value: '100% Datos Aislados' },
     ],
     features: [
       'Organización multi-tenant con aislamiento de datos por workspace, invitaciones de equipo y roles RBAC',
@@ -73,7 +73,7 @@ const projectsES: Project[] = [
     metrics: [
       { label: 'Disponibilidad', value: '24/7 Continua' },
       { label: 'Calificación', value: '5.0 / 5.0 Verificada' },
-      { label: 'Voz Neural', value: '< 180ms Latencia' },
+      { label: 'Respuesta', value: 'Voz en Tiempo Real' },
     ],
     features: [
       'Malla neuronal para coordinar 9 subagentes de investigación, código y finanzas en paralelo',
@@ -187,7 +187,7 @@ const projectsEN: Project[] = [
     metrics: [
       { label: 'Billing', value: '100% Automated' },
       { label: 'Time-to-Market', value: '< 2 Weeks' },
-      { label: 'Security', value: 'Zero-Trust RLS' },
+      { label: 'Security', value: '100% Data Isolation' },
     ],
     features: [
       'Multi-tenant workspace organization with data isolation, team invites, and RBAC roles',
@@ -215,7 +215,7 @@ const projectsEN: Project[] = [
     metrics: [
       { label: 'Uptime', value: '24/7 Uninterrupted' },
       { label: 'Client Rating', value: '5.0 / 5.0 Verified' },
-      { label: 'Neural Voice', value: '< 180ms Latency' },
+      { label: 'Response', value: 'Real-Time Voice' },
     ],
     features: [
       'Neural mesh coordinating 9 parallel subagents across research, coding, and finance',

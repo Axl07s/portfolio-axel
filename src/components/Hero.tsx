@@ -63,6 +63,34 @@ export const Hero: React.FC = () => {
               <span>{t('hero.cta.secondary')}</span>
             </a>
           </motion.div>
+
+          {/* Minimalist Commercial Proof Strip */}
+          <motion.div variants={item} className="pt-8 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div>
+              <span className="text-2xl font-bold tracking-tight text-white font-mono block">10+</span>
+              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
+                {lang === 'es' ? 'Sistemas B2B' : 'B2B Systems'}
+              </span>
+            </div>
+            <div>
+              <span className="text-2xl font-bold tracking-tight text-white font-mono block">&lt; 1s</span>
+              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
+                {lang === 'es' ? 'Carga Instantánea' : 'Instant Loading'}
+              </span>
+            </div>
+            <div>
+              <span className="text-2xl font-bold tracking-tight text-white font-mono block">100%</span>
+              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
+                {lang === 'es' ? 'Datos Aislados' : 'Data Isolation'}
+              </span>
+            </div>
+            <div>
+              <span className="text-2xl font-bold tracking-tight text-emerald-400 font-mono block">5.0 ★</span>
+              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
+                {lang === 'es' ? 'Fiverr Verificado' : 'Fiverr Verified'}
+              </span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Right asset column */}
