@@ -51,12 +51,30 @@ export const personalProjects: PersonalProject[] = [
   {
     id: 'puce-connect-hub',
     title: 'PUCE Connect Hub',
-    descriptionES: 'Portal móvil offline-first para sincronización robusta de notas y asistencia académica bajo conectividad intermitente.',
-    descriptionEN: 'Offline-first mobile portal for robust synchronization of grades and academic attendance under intermittent connectivity.',
-    architectureES: 'Arquitectura móvil con Inyección de Dependencias, BLoC pattern y base de datos embebida Isar con un worker de sincronización en background.',
-    architectureEN: 'Mobile architecture using Dependency Injection, BLoC pattern, and an embedded Isar database with a background synchronization worker.',
-    tech: ['Flutter', 'Dart', 'Spring Boot', 'Isar DB', 'BLoC'],
+    descriptionES: 'Portal móvil offline-first para sincronización robusta de notas y asistencia académica bajo conectividad intermitente en campus universitarios.',
+    descriptionEN: 'Offline-first mobile portal for robust synchronization of grades and academic attendance under intermittent connectivity in university campuses.',
+    architectureES: 'Arquitectura móvil con Inyección de Dependencias, BLoC pattern y base de datos embebida Isar con un worker de sincronización delta en segundo plano y backend en Spring Boot.',
+    architectureEN: 'Mobile architecture using Dependency Injection, BLoC pattern, and an embedded Isar database with a background delta synchronization worker and Spring Boot backend.',
+    tech: ['Flutter', 'Dart', 'Spring Boot', 'Isar DB', 'BLoC', 'PostgreSQL'],
     image: '/projects/puce_home.png',
+    images: [
+      { url: '/projects/puce_login.png', captionES: 'Autenticación Criptográfica & Keystore', captionEN: 'Cryptographic Authentication & Keystore' },
+      { url: '/projects/puce_home.png', captionES: 'Dashboard de Materias & Horarios en Tiempo Real', captionEN: 'Real-Time Subjects & Schedules Dashboard' },
+      { url: '/projects/puce_grades.png', captionES: 'Sábana de Calificaciones & Promedios Ponderados', captionEN: 'Grades Sheet & Weighted Averages' },
+      { url: '/projects/puce_attendance.png', captionES: 'Control de Asistencia & Validación Offline', captionEN: 'Attendance Tracking & Offline Validation' }
+    ],
+    featuresES: [
+      'Motor NoSQL Isar embebido en Flash memory: despacho de horarios y notas en <50ms sin red.',
+      'Máquina de estados reactiva con BLoC: aislamiento estricto de eventos y UI determinista a 120 FPS.',
+      'Worker de sincronización en segundo plano: encolamiento transaccional de mutaciones con reintentos idempotentes hacia Spring Boot.',
+      'Almacenamiento seguro de tokens y credenciales con encriptación AES-256 en Android Keystore e iOS Keychain.'
+    ],
+    featuresEN: [
+      'Embedded Isar NoSQL engine in Flash memory: dispatch of schedules and grades in <50ms without network.',
+      'Reactive state machine with BLoC: strict event isolation and deterministic 120 FPS UI.',
+      'Background synchronization worker: transactional mutation queueing with idempotent retries to Spring Boot.',
+      'Secure credential and token storage with AES-256 encryption in Android Keystore and iOS Keychain.'
+    ],
     layoutStyle: 'editorial',
     seoDescription: 'Offline-first mobile portal built with Flutter and Spring Boot, featuring background synchronization and secure local caching.',
     seoImage: '/projects/puce_home.png'
