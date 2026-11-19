@@ -30,7 +30,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
   }, [images.length]);
 
   return (
-    <article className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans selection:bg-indigo-500/30 overflow-hidden">
+    <article className="min-h-screen bg-[#0a0a0b] text-neutral-100 font-sans selection:bg-indigo-500/30 overflow-hidden">
       <ScrollAffordance sections={getEditorialSections(lang)} accentColor="indigo" />
 
       {/* Hero Section */}
@@ -38,10 +38,10 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full text-[10px] font-mono tracking-widest uppercase mb-6">
           {lang === 'es' ? 'Arquitectura Flutter & BLoC' : 'Flutter & BLoC Architecture'}
         </div>
-        <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-tight">
+        <h1 className="text-6xl md:text-8xl font-black text-neutral-50 tracking-tighter mb-8 leading-tight">
           PUCE Connect Hub
         </h1>
-        <p className="text-xl md:text-3xl text-zinc-400 font-light leading-relaxed mb-12">
+        <p className="text-xl md:text-3xl text-neutral-400 font-light leading-relaxed mb-12">
           {lang === 'es' ? 'Portal móvil offline-first para sincronización robusta de notas y asistencia académica bajo conectividad intermitente.' : 'Offline-first mobile portal for robust synchronization of grades and attendance under intermittent connectivity.'}
         </p>
       </section>
@@ -95,7 +95,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
               return (
                 <div 
                   key={imgSrc}
-                  className={`absolute w-[260px] h-[520px] bg-zinc-950 rounded-[2.5rem] border-[6px] border-zinc-800 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${opacity}`}
+                  className={`absolute w-[260px] h-[520px] bg-neutral-950 rounded-[2.5rem] border-[6px] border-neutral-800 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${opacity}`}
                   style={{ transform, zIndex }}
                 >
                   <img src={imgSrc} alt="App Screen" className="w-full h-full object-cover object-top" />
@@ -110,30 +110,30 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
          </div>
 
          {/* Callout Cards (Fixed to the sides, floating above, moved closer to center) */}
-         <div className="absolute top-1/4 left-[5%] xl:left-[15%] w-72 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-2xl p-6 shadow-2xl z-30 hidden md:block">
+         <div className="absolute top-1/4 left-[5%] xl:left-[15%] w-72 bg-neutral-900/90 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl z-30 hidden md:block">
            <div className="flex justify-between items-center mb-3">
              <div className="flex items-center gap-2">
                <WifiOff className="w-5 h-5 text-indigo-400" />
-               <span className="text-white font-bold text-sm">{lang === 'es' ? 'Modo Offline' : 'Offline Mode'}</span>
+               <span className="text-neutral-50 font-bold text-sm">{lang === 'es' ? 'Modo Offline' : 'Offline Mode'}</span>
              </div>
              <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
            </div>
-           <p className="text-sm text-zinc-400 leading-relaxed">
+           <p className="text-sm text-neutral-400 leading-relaxed">
              {lang === 'es'
                ? 'Isar Database embebida activa. Despacho instantáneo de horarios, notas y asistencia desde almacenamiento NoSQL local en <50ms.'
                : 'Active embedded Isar Database. Instant dispatch of schedules, grades and attendance from local NoSQL storage in <50ms.'}
            </p>
          </div>
 
-         <div className="absolute bottom-1/4 right-[5%] xl:right-[15%] w-72 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 text-white rounded-2xl p-6 shadow-2xl z-30 hidden md:block">
+         <div className="absolute bottom-1/4 right-[5%] xl:right-[15%] w-72 bg-neutral-900/90 backdrop-blur-md border border-neutral-800 text-neutral-50 rounded-2xl p-6 shadow-2xl z-30 hidden md:block">
            <div className="flex justify-between items-center mb-3">
              <div className="flex items-center gap-2">
                <RefreshCcw className="w-5 h-5 text-indigo-400" />
                <span className="font-bold text-sm">Background Sync</span>
              </div>
-             <Cloud className="w-4 h-4 text-zinc-600" />
+             <Cloud className="w-4 h-4 text-neutral-600" />
            </div>
-           <p className="text-sm text-zinc-400 leading-relaxed">
+           <p className="text-sm text-neutral-400 leading-relaxed">
              {lang === 'es'
                ? 'Workers en segundo plano encolando mutaciones transaccionales y sincronizando deltas con Spring Boot al reanudar red.'
                : 'Background workers queuing transactional mutations and synchronizing deltas with Spring Boot upon network recovery.'}
@@ -147,7 +147,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
       <section id="editorial-phones-mobile" className="lg:hidden relative py-16 px-6 z-20">
         {/* Centered phone with crossfade */}
         <div className="flex justify-center mb-8">
-          <div className="w-[240px] h-[480px] bg-zinc-950 rounded-[2.5rem] border-[6px] border-zinc-800 shadow-2xl overflow-hidden relative">
+          <div className="w-[240px] h-[480px] bg-neutral-950 rounded-[2.5rem] border-[6px] border-neutral-800 shadow-2xl overflow-hidden relative">
             {images.map((imgSrc, index) => (
               <img 
                 key={imgSrc}
@@ -167,7 +167,7 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
             <button
               key={i}
               onClick={() => setCurrentImageIndex(i)}
-              className={`w-2 h-2 rounded-full transition-colors ${i === currentImageIndex ? 'bg-indigo-500' : 'bg-zinc-700'}`}
+              className={`w-2 h-2 rounded-full transition-colors ${i === currentImageIndex ? 'bg-indigo-500' : 'bg-neutral-700'}`}
               aria-label={`Ver pantalla ${i + 1}`}
             />
           ))}
@@ -175,22 +175,22 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
 
         {/* Feature callout cards */}
         <div className="space-y-4 max-w-sm mx-auto">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 shadow-sm flex items-start gap-3">
+          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-4 shadow-sm flex items-start gap-3">
             <WifiOff className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-sm text-white mb-1">{lang === 'es' ? 'Modo Offline' : 'Offline Mode'}</div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
+              <div className="font-bold text-sm text-neutral-50 mb-1">{lang === 'es' ? 'Modo Offline' : 'Offline Mode'}</div>
+              <p className="text-xs text-neutral-400 leading-relaxed">
                 {lang === 'es'
                   ? 'Isar Database embebida. Horarios, notas y asistencia disponibles sin red en <50ms.'
                   : 'Embedded Isar Database. Schedules, grades and attendance available offline in <50ms.'}
               </p>
             </div>
           </div>
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex items-start gap-3">
+          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-4 flex items-start gap-3">
             <RefreshCcw className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-sm text-white mb-1">Background Sync</div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
+              <div className="font-bold text-sm text-neutral-50 mb-1">Background Sync</div>
+              <p className="text-xs text-neutral-400 leading-relaxed">
                 {lang === 'es'
                   ? 'Mutaciones encoladas y sincronizadas con Spring Boot al recuperar conexión.'
                   : 'Mutations queued and synchronized with Spring Boot upon reconnecting.'}
@@ -202,13 +202,13 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
 
       {/* Marketing B2B - Mobile Value */}
       <section id="editorial-features" className="max-w-6xl mx-auto px-6 pt-12 pb-32">
-        <div className="pt-12 border-t border-zinc-800">
-          <h4 className="text-lg font-bold text-white mb-6">
+        <div className="pt-12 border-t border-neutral-800">
+          <h4 className="text-lg font-bold text-neutral-50 mb-6">
             {lang === 'es' ? 'Tecnologías Base:' : 'Tech Stack:'}
           </h4>
           <div className="flex flex-wrap gap-3">
              {project.tech.map((t, i) => (
-               <span key={i} className="px-4 py-2 bg-zinc-900 text-zinc-300 border border-zinc-800 rounded-lg text-sm font-bold uppercase tracking-wider">{t}</span>
+               <span key={i} className="px-4 py-2 bg-neutral-900 text-neutral-300 border border-neutral-800 rounded-lg text-sm font-bold uppercase tracking-wider">{t}</span>
              ))}
           </div>
         </div>

@@ -17,13 +17,13 @@ export function Projects() {
       </Helmet>
 
       <div className="max-w-3xl mb-16 space-y-6">
-        <h1 className="text-5xl sm:text-7xl font-medium tracking-tighter text-white">
+        <h1 className="text-5xl sm:text-7xl font-medium tracking-tighter text-neutral-50">
           {lang === 'es' ? 'Proyectos ' : 'B2B '}
-          <span className="text-zinc-500">
+          <span className="text-neutral-500">
             {lang === 'es' ? 'B2B' : 'Projects'}
           </span>
         </h1>
-        <p className="text-lg text-zinc-400 max-w-xl">
+        <p className="text-lg text-neutral-400 max-w-xl">
           {t('projects.subtitle')}
         </p>
       </div>

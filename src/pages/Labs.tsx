@@ -13,13 +13,13 @@ export function Labs() {
       </Helmet>
 
       <div className="max-w-3xl mb-16 space-y-6">
-        <h1 className="text-5xl sm:text-7xl font-medium tracking-tighter text-white">
+        <h1 className="text-5xl sm:text-7xl font-medium tracking-tighter text-neutral-50">
           {lang === 'es' ? 'Laboratorio & ' : 'Labs & '}
-          <span className="text-zinc-500">
+          <span className="text-neutral-500">
             {lang === 'es' ? 'Experimentos' : 'Experiments'}
           </span>
         </h1>
-        <p className="text-lg text-zinc-400 max-w-xl">
+        <p className="text-lg text-neutral-400 max-w-xl">
           {lang === 'es' 
             ? 'Ingeniería de sistemas e investigación aplicada: detección de amenazas a nivel de kernel en C/C++ (EDR/ETW) y arquitecturas móviles offline-first.' 
             : 'Systems engineering and applied research: low-level threat detection in C/C++ (EDR/ETW) and offline-first mobile architectures.'}

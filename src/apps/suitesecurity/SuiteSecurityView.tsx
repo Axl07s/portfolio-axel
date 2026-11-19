@@ -44,10 +44,10 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
     <div className="min-h-screen bg-[#080b0f] text-emerald-100 flex flex-col font-mono animate-fadeIn">
       
       {/* Return Bar */}
-      <div className="bg-gradient-to-r from-red-950 via-zinc-950 to-zinc-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
+      <div className="bg-gradient-to-r from-red-950 via-neutral-950 to-neutral-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-white shadow-glow-red transition-all active:scale-95"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-neutral-50 shadow-glow-red transition-all active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver al Portafolio Maestro</span>
@@ -67,7 +67,7 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-base font-bold text-white tracking-wider">SUITESECURITY EDR</h1>
+            <h1 className="text-base font-bold text-neutral-50 tracking-wider">SUITESECURITY EDR</h1>
             <span className="text-[10px] text-emerald-400">Windows Native Endpoint Detection & Threat Intelligence</span>
           </div>
         </div>
@@ -78,7 +78,7 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-3 py-1.5 rounded-xl font-bold uppercase transition-all ${
-                activeTab === tab ? 'bg-emerald-500 text-black shadow-md' : 'text-zinc-400 hover:text-emerald-200'
+                activeTab === tab ? 'bg-emerald-500 text-black shadow-md' : 'text-neutral-400 hover:text-emerald-200'
               }`}
             >
               {tab === 'monitor' ? 'Process Monitor' : tab === 'yara' ? 'YARA Scanner' : 'Quarantine Vault'}
@@ -93,27 +93,27 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
         {activeTab === 'monitor' && (
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-zinc-800">
-                <span className="text-[9px] text-zinc-400 block uppercase">Active Processes</span>
-                <span className="text-xl font-bold text-white mt-1 block">184 Live</span>
+              <div className="p-3.5 rounded-2xl bg-black/60 border border-neutral-800">
+                <span className="text-[9px] text-neutral-400 block uppercase">Active Processes</span>
+                <span className="text-xl font-bold text-neutral-50 mt-1 block">184 Live</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-zinc-800">
-                <span className="text-[9px] text-zinc-400 block uppercase">Threat Score</span>
+              <div className="p-3.5 rounded-2xl bg-black/60 border border-neutral-800">
+                <span className="text-[9px] text-neutral-400 block uppercase">Threat Score</span>
                 <span className="text-xl font-bold text-emerald-400 mt-1 block">0 (Protected)</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-zinc-800">
-                <span className="text-[9px] text-zinc-400 block uppercase">Memory Footprint</span>
-                <span className="text-xl font-bold text-white mt-1 block">38.4 MB</span>
+              <div className="p-3.5 rounded-2xl bg-black/60 border border-neutral-800">
+                <span className="text-[9px] text-neutral-400 block uppercase">Memory Footprint</span>
+                <span className="text-xl font-bold text-neutral-50 mt-1 block">38.4 MB</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-zinc-800">
-                <span className="text-[9px] text-zinc-400 block uppercase">Driver Hook</span>
+              <div className="p-3.5 rounded-2xl bg-black/60 border border-neutral-800">
+                <span className="text-[9px] text-neutral-400 block uppercase">Driver Hook</span>
                 <span className="text-xl font-bold text-emerald-400 mt-1 block">ETW Subscribed</span>
               </div>
             </div>
 
-            <div className="rounded-2xl bg-black/70 border border-zinc-800 overflow-hidden shadow-xl">
+            <div className="rounded-2xl bg-black/70 border border-neutral-800 overflow-hidden shadow-xl">
               <table className="w-full text-left text-xs">
-                <thead className="bg-zinc-900 border-b border-zinc-800 text-zinc-400">
+                <thead className="bg-neutral-900 border-b border-neutral-800 text-neutral-400">
                   <tr>
                     <th className="p-3">PID</th>
                     <th className="p-3">Process Name</th>
@@ -122,13 +122,13 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
                     <th className="p-3">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-900">
+                <tbody className="divide-y divide-neutral-900">
                   {processes.map(p => (
-                    <tr key={p.pid} className="hover:bg-zinc-900/50">
-                      <td className="p-3 font-mono text-zinc-400">{p.pid}</td>
-                      <td className="p-3 font-bold text-white">{p.name}</td>
-                      <td className="p-3 text-[10px] text-zinc-500 truncate max-w-xs">{p.path}</td>
-                      <td className="p-3 font-mono text-zinc-400">{p.mem}</td>
+                    <tr key={p.pid} className="hover:bg-neutral-900/50">
+                      <td className="p-3 font-mono text-neutral-400">{p.pid}</td>
+                      <td className="p-3 font-bold text-neutral-50">{p.name}</td>
+                      <td className="p-3 text-[10px] text-neutral-500 truncate max-w-xs">{p.path}</td>
+                      <td className="p-3 font-mono text-neutral-400">{p.mem}</td>
                       <td className="p-3">
                         <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                           p.status === 'Clean' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
@@ -146,7 +146,7 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
 
         {activeTab === 'yara' && (
           <div className="space-y-4 animate-fadeIn max-w-2xl mx-auto">
-            <h2 className="text-sm font-bold text-white uppercase">YARA Signature & VirusTotal Evaluator</h2>
+            <h2 className="text-sm font-bold text-neutral-50 uppercase">YARA Signature & VirusTotal Evaluator</h2>
             
             <div className="flex gap-2">
               <input
@@ -154,7 +154,7 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
                 value={scanInput}
                 onChange={e => setScanInput(e.target.value)}
                 placeholder="Enter process name, file path or SHA-256 hash..."
-                className="flex-1 bg-black/80 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                className="flex-1 bg-black/80 border border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-50 focus:outline-none focus:border-emerald-500"
               />
               <button
                 onClick={handleScan}
@@ -166,13 +166,13 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
               </button>
             </div>
 
-            <div className="p-4 rounded-2xl bg-black/80 border border-zinc-800 min-h-[160px] space-y-1 text-xs">
+            <div className="p-4 rounded-2xl bg-black/80 border border-neutral-800 min-h-[160px] space-y-1 text-xs">
               {scanLog.length === 0 && (
-                <p className="text-zinc-500 italic">Type a file path above (e.g. C:\Windows\explorer.exe) and click Scan Binary...</p>
+                <p className="text-neutral-500 italic">Type a file path above (e.g. C:\Windows\explorer.exe) and click Scan Binary...</p>
               )}
               {scanLog.map((log, i) => (
                 <div key={i} className={`leading-relaxed ${
-                  log.includes('SAFE') ? 'text-emerald-400 font-bold' : 'text-zinc-400'
+                  log.includes('SAFE') ? 'text-emerald-400 font-bold' : 'text-neutral-400'
                 }`}>
                   {log}
                 </div>
@@ -187,11 +187,11 @@ export const SuiteSecurityView: React.FC<SuiteSecurityViewProps> = ({ onBack }) 
               <div className="flex items-center gap-3">
                 <ShieldAlert className="w-6 h-6 text-rose-400" />
                 <div>
-                  <span className="font-bold text-white text-xs block">1 Malicious Threat Quarantined</span>
-                  <span className="text-[10px] text-zinc-400">Isolated in AES-256 encrypted sandbox directory.</span>
+                  <span className="font-bold text-neutral-50 text-xs block">1 Malicious Threat Quarantined</span>
+                  <span className="text-[10px] text-neutral-400">Isolated in AES-256 encrypted sandbox directory.</span>
                 </div>
               </div>
-              <button className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs">
+              <button className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-neutral-50 font-bold text-xs">
                 Purge All
               </button>
             </div>

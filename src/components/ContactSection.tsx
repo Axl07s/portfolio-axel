@@ -8,26 +8,26 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       
-      <div className="relative rounded-3xl p-8 sm:p-14 border border-zinc-800 bg-zinc-900/40 backdrop-blur-md overflow-hidden text-center space-y-8 shadow-2xl">
+      <div className="relative rounded-3xl p-8 sm:p-14 border border-neutral-800 bg-neutral-900/40 backdrop-blur-md overflow-hidden text-center space-y-8 shadow-2xl">
         
         {/* Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full sm:w-[600px] h-[300px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <div className="max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950 border border-indigo-500/30 text-indigo-400 text-xs font-mono font-medium shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-950 border border-indigo-500/30 text-indigo-400 text-xs font-mono font-medium shadow-sm">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
             <span>{lang === 'es' ? 'TRABAJEMOS JUNTOS' : "LET'S WORK TOGETHER"}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-50 tracking-tight leading-tight">
             {lang === 'es' ? '¿Tienes un sistema por desplegar? ' : 'Have a system to ship? '}
             <br />
-            <span className="text-zinc-400">
+            <span className="text-neutral-400">
               {lang === 'es' ? 'Vamos a construirlo con rigor de ingeniería.' : "Let's engineer it for production."}
             </span>
           </h2>
 
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
             {lang === 'es' 
               ? 'Desde MVPs de SaaS multi-tenant desplegados en < 2 semanas hasta centros de comando de IA y aplicaciones móviles offline-first: construidos con arquitecturas limpias y grado de producción.' 
               : 'From multi-tenant SaaS MVPs shipped in < 2 weeks to AI command centers and offline-first mobile apps: engineered with clean architecture and production-grade reliability.'}
@@ -42,14 +42,14 @@ export const ContactSection: React.FC = () => {
             href="https://wa.me/593995267503?text=Hola%20Axel,%20vi%20tu%20portafolio%20y%20quiero%20cotizar%20un%20proyecto"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-5 rounded-2xl bg-zinc-950/50 border border-indigo-500/40 hover:border-indigo-500 shadow-sm flex flex-col items-center justify-between text-center group transition-all"
+            className="p-5 rounded-2xl bg-neutral-950/50 border border-indigo-500/40 hover:border-indigo-500 shadow-sm flex flex-col items-center justify-between text-center group transition-all"
           >
             <div className="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <MessageCircle className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <span className="font-bold text-sm text-white block">WhatsApp Direct</span>
-              <span className="text-[11px] text-zinc-400 font-mono">{lang === 'es' ? 'Respuesta rápida (<1h)' : 'Fastest Response (<1h)'}</span>
+              <span className="font-bold text-sm text-neutral-50 block">WhatsApp Direct</span>
+              <span className="text-[11px] text-neutral-400 font-mono">{lang === 'es' ? 'Respuesta rápida (<1h)' : 'Fastest Response (<1h)'}</span>
             </div>
             <span className="mt-3 text-xs font-bold text-indigo-400 flex items-center gap-1">
               <span>{lang === 'es' ? 'Iniciar Chat' : 'Start Chat'}</span>
@@ -62,14 +62,14 @@ export const ContactSection: React.FC = () => {
             href="https://www.fiverr.com/axl_29"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-5 rounded-2xl bg-zinc-950/50 border border-emerald-500/40 hover:border-emerald-500 shadow-sm flex flex-col items-center justify-between text-center group transition-all"
+            className="p-5 rounded-2xl bg-neutral-950/50 border border-emerald-500/40 hover:border-emerald-500 shadow-sm flex flex-col items-center justify-between text-center group transition-all"
           >
             <div className="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
               <ShieldCheck className="w-5 h-5 text-emerald-400" />
             </div>
             <div>
-              <span className="font-bold text-sm text-white block">Fiverr Escrow</span>
-              <span className="text-[11px] text-zinc-400 font-mono">
+              <span className="font-bold text-sm text-neutral-50 block">Fiverr Escrow</span>
+              <span className="text-[11px] text-neutral-400 font-mono">
                 {lang === 'es' ? 'Pago protegido • Calificación 5.0 ★' : 'Escrow Protected • 5.0 ★ Rating'}
               </span>
             </div>
@@ -82,16 +82,16 @@ export const ContactSection: React.FC = () => {
           {/* Card 3: Direct Email */}
           <a
             href="mailto:AxelSamMoli@gmail.com"
-            className="p-5 rounded-2xl bg-zinc-950/50 border border-zinc-800 hover:border-zinc-700 flex flex-col items-center justify-between text-center group transition-all"
+            className="p-5 rounded-2xl bg-neutral-950/50 border border-neutral-800 hover:border-neutral-700 flex flex-col items-center justify-between text-center group transition-all"
           >
-            <div className="w-10 h-10 rounded-xl bg-zinc-900 text-zinc-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-              <Mail className="w-5 h-5 text-zinc-300" />
+            <div className="w-10 h-10 rounded-xl bg-neutral-900 text-neutral-300 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <Mail className="w-5 h-5 text-neutral-300" />
             </div>
             <div>
-              <span className="font-bold text-sm text-white block">Email Inquiry</span>
-              <span className="text-[11px] text-zinc-400 font-mono">AxelSamMoli@gmail.com</span>
+              <span className="font-bold text-sm text-neutral-50 block">Email Inquiry</span>
+              <span className="text-[11px] text-neutral-400 font-mono">AxelSamMoli@gmail.com</span>
             </div>
-            <span className="mt-3 text-xs font-bold text-zinc-300 flex items-center gap-1">
+            <span className="mt-3 text-xs font-bold text-neutral-300 flex items-center gap-1">
               <span>{lang === 'es' ? 'Enviar Email' : 'Send Email'}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </span>

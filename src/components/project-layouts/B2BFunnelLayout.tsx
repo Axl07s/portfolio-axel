@@ -27,7 +27,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
   }, []);
 
   return (
-    <article className="min-h-screen bg-[#0a0a0b] text-zinc-100 font-sans selection:bg-[#4f46e5] selection:text-white pb-32">
+    <article className="min-h-screen bg-[#0a0a0b] text-neutral-100 font-sans selection:bg-[#4f46e5] selection:text-neutral-50 pb-32">
       <ScrollAffordance sections={getB2BSections(lang)} accentColor="indigo" />
 
       {/* 1. HERO SECTION - Dark & Technical */}
@@ -43,15 +43,15 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
           {project.title}
         </h1>
         
-        <p className="text-xl md:text-2xl font-light text-zinc-400 max-w-3xl leading-relaxed mb-16">
+        <p className="text-xl md:text-2xl font-light text-neutral-400 max-w-3xl leading-relaxed mb-16">
           {project.description}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
           {project.metrics.map((m, i) => (
-            <div key={i} className="bg-[#121214] border border-zinc-800 p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-indigo-500/50 transition-colors">
-              <div className="text-3xl font-black text-white mb-2">{m.value}</div>
-              <div className="text-xs font-mono uppercase tracking-widest text-zinc-500 group-hover:text-indigo-400 transition-colors">{m.label}</div>
+            <div key={i} className="bg-[#121214] border border-neutral-800 p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-indigo-500/50 transition-colors">
+              <div className="text-3xl font-black text-neutral-50 mb-2">{m.value}</div>
+              <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 group-hover:text-indigo-400 transition-colors">{m.label}</div>
             </div>
           ))}
         </div>
@@ -63,7 +63,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
              {lang === 'es' ? 'Ingeniería de Adquisición' : 'Acquisition Engineering'}
            </h2>
-           <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+           <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
              {lang === 'es'
                ? 'Arquitectura de captación orientada a conversión. Un embudo interactivo con diagnóstico en 3 pasos diseñado para cualificar prospectos B2B de alto valor.'
                : 'Conversion-driven acquisition architecture. An interactive 3-step diagnostic funnel designed to qualify high-value B2B prospects.'}
@@ -72,18 +72,18 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
         
         {/* DESKTOP BROWSER MOCKUP */}
         <div 
-          className="hidden md:block relative rounded-3xl overflow-hidden border border-zinc-800 shadow-[0_0_100px_rgba(79,70,229,0.15)] bg-zinc-950 transition-transform duration-1000 ease-out"
+          className="hidden md:block relative rounded-3xl overflow-hidden border border-neutral-800 shadow-[0_0_100px_rgba(79,70,229,0.15)] bg-neutral-950 transition-transform duration-1000 ease-out"
           style={{ transform: `translateY(${Math.max(0, 50 - scrollY * 0.05)}px)` }}
         >
            {/* macOS Browser Header */}
-           <div className="h-12 bg-[#18181b] border-b border-zinc-800 flex items-center px-4 gap-4">
+           <div className="h-12 bg-[#18181b] border-b border-neutral-800 flex items-center px-4 gap-4">
               <div className="flex gap-2">
-                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
-                 <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                 <div className="w-3 h-3 rounded-full bg-neutral-700"></div>
+                 <div className="w-3 h-3 rounded-full bg-neutral-700"></div>
+                 <div className="w-3 h-3 rounded-full bg-neutral-700"></div>
               </div>
-              <div className="flex-1 max-w-md mx-auto bg-zinc-900 rounded-md h-7 flex items-center justify-center border border-zinc-800">
-                <span className="text-xs font-mono text-zinc-500">nexuscorp.agency</span>
+              <div className="flex-1 max-w-md mx-auto bg-neutral-900 rounded-md h-7 flex items-center justify-center border border-neutral-800">
+                <span className="text-xs font-mono text-neutral-500">nexuscorp.agency</span>
               </div>
            </div>
            {/* Main Image */}
@@ -92,14 +92,14 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
 
         {/* MOBILE SHOWCASE — Jarvis pattern (<md) */}
         <div className="md:hidden">
-          <div className="bg-gradient-to-b from-zinc-950 to-black border border-zinc-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(79,70,229,0.15)]">
+          <div className="bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(79,70,229,0.15)]">
             {/* Window header */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-[#111118] border-b border-zinc-800">
+            <div className="flex items-center gap-2 px-4 py-3 bg-[#111118] border-b border-neutral-800">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
               <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
               <div className="flex-1 flex items-center justify-center">
-                <span className="text-[11px] font-mono text-zinc-500">nexuscorp.agency</span>
+                <span className="text-[11px] font-mono text-neutral-500">nexuscorp.agency</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
@@ -120,27 +120,27 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                 decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 border border-zinc-700 rounded text-[10px] font-mono text-zinc-400">
+              <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 border border-neutral-700 rounded text-[10px] font-mono text-neutral-400">
                 {lang === 'es' ? 'Toca para ampliar' : 'Tap to expand'}
               </div>
             </div>
 
             {/* Metrics strip */}
-            <div className="grid grid-cols-3 gap-px bg-zinc-800">
+            <div className="grid grid-cols-3 gap-px bg-neutral-800">
               {project.metrics.slice(0, 3).map((m, i) => (
                 <div key={i} className="bg-[#0a0a10] p-4 flex flex-col items-center justify-center text-center">
-                  <div className="text-xl font-black text-white">{m.value}</div>
-                  <div className="text-[10px] font-mono uppercase text-zinc-500 mt-0.5">{m.label}</div>
+                  <div className="text-xl font-black text-neutral-50">{m.value}</div>
+                  <div className="text-[10px] font-mono uppercase text-neutral-500 mt-0.5">{m.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Caption */}
-            <div className="px-4 py-3 bg-[#0a0a0a] border-t border-zinc-800">
+            <div className="px-4 py-3 bg-[#0a0a0a] border-t border-neutral-800">
               <div className="text-[11px] font-mono text-indigo-400 uppercase tracking-widest mb-1">
                 {lang === 'es' ? 'Embudo B2B Táctil' : 'B2B Touch Funnel'}
               </div>
-              <div className="text-[11px] text-zinc-500">
+              <div className="text-[11px] text-neutral-500">
                 {lang === 'es'
                   ? 'Diagnóstico interactivo en 3 pasos, optimizado para conversión en smartphones.'
                   : '3-step interactive diagnostic funnel engineered for high-intent mobile conversion.'}
@@ -151,7 +151,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
       </section>
 
       {/* 3. DEEP DIVE: ROI CALCULATOR & QUALIFICATION */}
-      <section id="b2b-roi" className="py-24 bg-[#050505] border-y border-zinc-900 relative overflow-hidden">
+      <section id="b2b-roi" className="py-24 bg-[#050505] border-y border-neutral-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
         
         <div className="max-w-[90rem] mx-auto px-6 md:px-12 relative z-10">
@@ -166,23 +166,23 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                <h2 className="text-4xl md:text-5xl font-black tracking-tight">
                  {lang === 'es' ? 'Simulador de ROI Dinámico' : 'Dynamic ROI Simulator'}
                </h2>
-               <p className="text-xl text-zinc-400 font-light leading-relaxed">
+               <p className="text-xl text-neutral-400 font-light leading-relaxed">
                  {lang === 'es' ? 'En servicios B2B de alto valor, la certidumbre cuantitativa acelera el ciclo de cierre. Desarrollé un simulador reactivo en TypeScript que calcula en tiempo real proyecciones de pipeline y retorno neto con base en las métricas comerciales del prospecto.' : 'In high-ticket B2B services, quantitative certainty accelerates the closing cycle. I developed a reactive TypeScript simulator that calculates real-time pipeline projections and net return based on the prospect commercial metrics.'}
                </p>
                
                <ul className="space-y-4 pt-4">
                  <li className="flex items-start gap-4">
-                   <div className="mt-1 bg-zinc-900 p-1 rounded"><TrendingUp className="w-4 h-4 text-indigo-400" /></div>
+                   <div className="mt-1 bg-neutral-900 p-1 rounded"><TrendingUp className="w-4 h-4 text-indigo-400" /></div>
                    <div>
-                     <h4 className="font-bold text-white">Modelado Financiero Reactivo</h4>
-                     <p className="text-zinc-500 text-sm">{lang === 'es' ? 'Cálculo de retorno proyectado, volumen de leads y valor anual de pipeline a 60fps con sliders interactivos.' : 'Projected return calculation, lead volume, and annual pipeline value at 60fps with interactive sliders.'}</p>
+                     <h4 className="font-bold text-neutral-50">Modelado Financiero Reactivo</h4>
+                     <p className="text-neutral-500 text-sm">{lang === 'es' ? 'Cálculo de retorno proyectado, volumen de leads y valor anual de pipeline a 60fps con sliders interactivos.' : 'Projected return calculation, lead volume, and annual pipeline value at 60fps with interactive sliders.'}</p>
                    </div>
                  </li>
                  <li className="flex items-start gap-4">
-                   <div className="mt-1 bg-zinc-900 p-1 rounded"><Filter className="w-4 h-4 text-indigo-400" /></div>
+                   <div className="mt-1 bg-neutral-900 p-1 rounded"><Filter className="w-4 h-4 text-indigo-400" /></div>
                    <div>
-                     <h4 className="font-bold text-white">{lang === 'es' ? 'Cualificación Algorítmica en 3 Pasos' : '3-Step Algorithmic Qualification'}</h4>
-                     <p className="text-zinc-500 text-sm">{lang === 'es' ? 'Filtra prospectos por umbrales presupuestarios mínimos y enruta leads calificados a booking de diagnóstico estratégico.' : 'Filters prospects by minimum budget thresholds and routes qualified leads to strategic diagnostic booking.'}</p>
+                     <h4 className="font-bold text-neutral-50">{lang === 'es' ? 'Cualificación Algorítmica en 3 Pasos' : '3-Step Algorithmic Qualification'}</h4>
+                     <p className="text-neutral-500 text-sm">{lang === 'es' ? 'Filtra prospectos por umbrales presupuestarios mínimos y enruta leads calificados a booking de diagnóstico estratégico.' : 'Filters prospects by minimum budget thresholds and routes qualified leads to strategic diagnostic booking.'}</p>
                    </div>
                  </li>
                </ul>
@@ -191,7 +191,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
             {/* Right: Actual Image */}
             <div className="relative group">
                <div className="absolute -inset-4 bg-indigo-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-               <div className="relative rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+               <div className="relative rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl">
                  <img src={project.images[1]?.url} alt="ROI Calculator" className="w-full h-auto object-cover" />
                </div>
             </div>
@@ -212,27 +212,27 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                <h2 className="text-4xl md:text-5xl font-black tracking-tight">
                  {lang === 'es' ? 'Arquitectura y Casos de Estudio' : 'Architecture & Case Studies'}
                </h2>
-               <p className="text-xl text-zinc-400 font-light leading-relaxed">
+               <p className="text-xl text-neutral-400 font-light leading-relaxed">
                  {lang === 'es' ? 'Demostración de capacidades respaldada por casos de estudio estructurados: problema operativo del cliente, stack tecnológico implementado y resultados cuantitativos verificados.' : 'Capability demonstration backed by structured case studies: client operational problem, implemented tech stack, and verified quantitative results.'}
                </p>
                
                <div className="grid grid-cols-2 gap-6 pt-4">
-                  <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
+                  <div className="bg-[#121214] p-6 rounded-2xl border border-neutral-800">
                     <Zap className="w-6 h-6 text-indigo-400 mb-4" />
-                    <h4 className="font-bold text-white mb-2">{lang === 'es' ? 'Modales de Inspección Profunda' : 'Deep Inspection Modals'}</h4>
-                    <p className="text-xs text-zinc-500">{lang === 'es' ? 'Visualización asíncrona de arquitectura y métricas por cliente sin recarga de página ni pérdida de estado de navegación.' : 'Asynchronous visualization of architecture and client metrics without page reloads or loss of navigation state.'}</p>
+                    <h4 className="font-bold text-neutral-50 mb-2">{lang === 'es' ? 'Modales de Inspección Profunda' : 'Deep Inspection Modals'}</h4>
+                    <p className="text-xs text-neutral-500">{lang === 'es' ? 'Visualización asíncrona de arquitectura y métricas por cliente sin recarga de página ni pérdida de estado de navegación.' : 'Asynchronous visualization of architecture and client metrics without page reloads or loss of navigation state.'}</p>
                   </div>
-                  <div className="bg-[#121214] p-6 rounded-2xl border border-zinc-800">
+                  <div className="bg-[#121214] p-6 rounded-2xl border border-neutral-800">
                     <Target className="w-6 h-6 text-indigo-400 mb-4" />
-                    <h4 className="font-bold text-white mb-2">{lang === 'es' ? 'Puntos de Fricción Mínima' : 'Minimal Friction Points'}</h4>
-                    <p className="text-xs text-zinc-500">{lang === 'es' ? 'Llamados a la acción contextuales integrados tras cada prueba cuantitativa de valor, maximizando la conversión a llamadas estratégicas.' : 'Contextual CTAs integrated after every quantitative proof of value, maximizing conversion to strategic calls.'}</p>
+                    <h4 className="font-bold text-neutral-50 mb-2">{lang === 'es' ? 'Puntos de Fricción Mínima' : 'Minimal Friction Points'}</h4>
+                    <p className="text-xs text-neutral-500">{lang === 'es' ? 'Llamados a la acción contextuales integrados tras cada prueba cuantitativa de valor, maximizando la conversión a llamadas estratégicas.' : 'Contextual CTAs integrated after every quantitative proof of value, maximizing conversion to strategic calls.'}</p>
                   </div>
                </div>
             </div>
 
             {/* Left Side (Image) */}
             <div className="relative">
-               <div className="rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+               <div className="rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl">
                  <img src={project.images[2]?.url} alt="Architecture & Case Studies" className="w-full h-auto object-cover" />
                </div>
             </div>
@@ -242,12 +242,12 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
 
       {/* 5. TECH STACK BENTO */}
       <section id="b2b-stack" className="px-6 md:px-12 max-w-screen-xl mx-auto">
-         <div className="bg-[#121214] border border-zinc-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+         <div className="bg-[#121214] border border-neutral-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
              <div>
                <h3 className="text-2xl font-bold mb-2">
                  {lang === 'es' ? 'Stack Tecnológico Central' : 'Core Tech Stack'}
                </h3>
-               <p className="text-zinc-500 max-w-md">
+               <p className="text-neutral-500 max-w-md">
                  {lang === 'es'
                    ? 'Arquitectura frontend con Vite, React, TypeScript y Tailwind CSS, garantizando tiempos de carga inferiores a 800ms.'
                    : 'Frontend architecture with Vite, React, TypeScript, and Tailwind CSS, guaranteeing load times under 800ms.'}
@@ -255,7 +255,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
              </div>
             <div className="flex flex-wrap justify-end gap-3">
                {project.stack.map((tech, i) => (
-                  <span key={i} className="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-300 font-mono text-sm">
+                  <span key={i} className="px-4 py-2 bg-neutral-900 border border-neutral-700 rounded-lg text-neutral-300 font-mono text-sm">
                     {tech}
                   </span>
                ))}

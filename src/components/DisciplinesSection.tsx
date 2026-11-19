@@ -69,46 +69,46 @@ export const DisciplinesSection: React.FC = () => {
 
   return (
     <section id="disciplines" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-      <div className="rounded-3xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-md overflow-hidden p-8 sm:p-12 lg:p-16 shadow-2xl">
+      <div className="rounded-3xl border border-neutral-800/80 bg-neutral-900/40 backdrop-blur-md overflow-hidden p-8 sm:p-12 lg:p-16 shadow-2xl">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20">
             {lang === 'es' ? 'Competencias Centrales' : 'Core Competencies'}
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-white">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-neutral-50">
             {lang === 'es' ? 'Diseñado para la ' : 'Engineered for '}
-            <span className="text-zinc-400">{lang === 'es' ? 'Excelencia.' : 'Excellence.'}</span>
+            <span className="text-neutral-400">{lang === 'es' ? 'Excelencia.' : 'Excellence.'}</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+          <p className="text-sm sm:text-base text-neutral-400 leading-relaxed">
             {lang === 'es' ? 'Cierro la brecha entre el diseño visual de clase mundial y la ingeniería de software robusta y escalable.' : 'I bridge the gap between world-class visual design and robust, scalable software engineering.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 divide-y md:divide-y-0 md:divide-x divide-zinc-800/80">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 divide-y md:divide-y-0 md:divide-x divide-neutral-800/80">
           {disciplines.map((d, i) => (
             <div key={i} className={`flex flex-col text-center items-center ${i > 0 ? 'pt-8 md:pt-0 md:pl-8 lg:pl-12' : ''}`}>
-              <div className="w-14 h-14 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center mb-6 shadow-inner">
+              <div className="w-14 h-14 rounded-2xl bg-neutral-950 border border-neutral-800 flex items-center justify-center mb-6 shadow-inner">
                 {d.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 tracking-tight">{d.title}</h3>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-8 flex-1">{d.tagline}</p>
+              <h3 className="text-xl font-bold text-neutral-50 mb-3 tracking-tight">{d.title}</h3>
+              <p className="text-sm text-neutral-400 leading-relaxed mb-8 flex-1">{d.tagline}</p>
 
-              <div className="w-full space-y-6 pt-6 border-t border-zinc-800/60">
+              <div className="w-full space-y-6 pt-6 border-t border-neutral-800/60">
                 <div>
                   <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-400 mb-2">
                     {d.skillsTitle}
                   </h4>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{d.skills}</p>
+                  <p className="text-xs text-neutral-300 leading-relaxed">{d.skills}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 mb-2.5">
+                  <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-neutral-400 mb-2.5">
                     {d.toolsTitle}
                   </h4>
                   <div className="flex flex-wrap justify-center gap-1.5">
                     {d.tools.map((tool, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-zinc-950 text-zinc-300 border border-zinc-800"
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-neutral-950 text-neutral-300 border border-neutral-800"
                       >
                         {tool}
                       </span>

@@ -14,35 +14,35 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-zinc-100 flex flex-col animate-fadeIn font-sans">
+    <div className="min-h-screen bg-[#07090e] text-neutral-100 flex flex-col animate-fadeIn font-sans">
       
       {/* App Navbar with discrete back navigation */}
-      <header className="border-b border-zinc-800/80 px-4 sm:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto w-full sticky top-0 bg-[#07090e]/90 backdrop-blur-md z-30">
+      <header className="border-b border-neutral-800/80 px-4 sm:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto w-full sticky top-0 bg-[#07090e]/90 backdrop-blur-md z-30">
         <div className="flex items-center gap-2.5">
           <button
             onClick={onBack}
-            className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
+            className="p-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-neutral-50 hover:border-neutral-700 transition-colors"
             title="Volver"
             aria-label="Volver"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg text-sm">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-neutral-50 shadow-lg text-sm">
             S
           </div>
-          <span className="font-extrabold text-base text-white">SyntroSaaS</span>
+          <span className="font-extrabold text-base text-neutral-50">SyntroSaaS</span>
           <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 hidden sm:inline">
             Next.js 15
           </span>
         </div>
 
-        <nav className="flex items-center gap-1 bg-zinc-900/80 p-1 rounded-2xl border border-zinc-800 text-xs">
+        <nav className="flex items-center gap-1 bg-neutral-900/80 p-1 rounded-2xl border border-neutral-800 text-xs">
           {(['overview', 'dashboard', 'keys', 'pricing'] as const).map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-3 py-1.5 rounded-xl font-medium capitalize transition-all ${
-                activeTab === tab ? 'bg-indigo-600 text-white shadow-md' : 'text-zinc-400 hover:text-white'
+                activeTab === tab ? 'bg-indigo-600 text-neutral-50 shadow-md' : 'text-neutral-400 hover:text-neutral-50'
               }`}
             >
               {tab}
@@ -60,19 +60,19 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
               <span className="text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
                 Production-Ready Next.js 15 Boilerplate
               </span>
-              <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight">
+              <h1 className="text-4xl sm:text-6xl font-black text-neutral-50 tracking-tight">
                 Stop rebuilding <br />
                 <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   auth, payments & dashboards
                 </span>
               </h1>
-              <p className="text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
+              <p className="text-sm text-neutral-400 max-w-xl mx-auto leading-relaxed">
                 Ship your software product in days with pre-configured Supabase PostgreSQL Row-Level Security, Stripe billing subscriptions, and multi-tenant organizations.
               </p>
               <div className="flex justify-center gap-3 pt-2">
                 <button
                   onClick={() => setActiveTab('dashboard')}
-                  className="px-6 py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg flex items-center gap-2 text-xs transition-all"
+                  className="px-6 py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 text-neutral-50 shadow-lg flex items-center gap-2 text-xs transition-all"
                 >
                   <span>Explorar Dashboard en Vivo</span>
                   <ChevronRight className="w-4 h-4" />
@@ -81,30 +81,30 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-3">
+              <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-white text-base">Zero-Trust Supabase RLS</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <h3 className="font-bold text-neutral-50 text-base">Zero-Trust Supabase RLS</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
                   Strict tenant isolation enforced at the database level with PostgreSQL policies.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-3">
+              <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
                   <CreditCard className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-white text-base">Stripe Tiered Webhooks</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <h3 className="font-bold text-neutral-50 text-base">Stripe Tiered Webhooks</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
                   Monthly & yearly subscriptions with customer billing portal and auto seat management.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-3">
+              <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center">
                   <Zap className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-white text-base">Next.js 15 App Router</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <h3 className="font-bold text-neutral-50 text-base">Next.js 15 App Router</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed">
                   React 19 Server Components, streaming suspense, and 99/100 Lighthouse performance.
                 </p>
               </div>
@@ -114,15 +114,15 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
 
         {activeTab === 'dashboard' && (
           <div className="space-y-6 animate-fadeIn">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
               <div>
-                <h2 className="text-xl font-bold text-white">Organization Plan & Quotas</h2>
-                <p className="text-xs text-zinc-400 font-mono">Tenant ID: org_syntro_alpha9</p>
+                <h2 className="text-xl font-bold text-neutral-50">Organization Plan & Quotas</h2>
+                <p className="text-xs text-neutral-400 font-mono">Tenant ID: org_syntro_alpha9</p>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setSelectedPlan(prev => (prev === 'pro' ? 'scale' : 'pro'))}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md"
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-neutral-50 shadow-md"
                 >
                   Upgrade to {selectedPlan === 'pro' ? 'Scale ($199/mo)' : 'Pro ($79/mo)'}
                 </button>
@@ -130,35 +130,35 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-5 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-2">
-                <span className="text-xs text-zinc-400 font-mono">Monthly API Calls</span>
+              <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-2">
+                <span className="text-xs text-neutral-400 font-mono">Monthly API Calls</span>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-2xl font-bold text-white">64,120</span>
+                  <span className="text-2xl font-bold text-neutral-50">64,120</span>
                   <span className="text-xs text-indigo-400 font-mono font-bold">64.1%</span>
                 </div>
-                <div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-neutral-800 h-2 rounded-full overflow-hidden">
                   <div className="bg-indigo-500 h-full w-[64%]" />
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-2">
-                <span className="text-xs text-zinc-400 font-mono">Active Team Seats</span>
+              <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-2">
+                <span className="text-xs text-neutral-400 font-mono">Active Team Seats</span>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-2xl font-bold text-white">8 / 10</span>
+                  <span className="text-2xl font-bold text-neutral-50">8 / 10</span>
                   <span className="text-xs text-purple-400 font-mono font-bold">80%</span>
                 </div>
-                <div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-neutral-800 h-2 rounded-full overflow-hidden">
                   <div className="bg-purple-500 h-full w-[80%]" />
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-2">
-                <span className="text-xs text-zinc-400 font-mono">Encrypted S3 Storage</span>
+              <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-2">
+                <span className="text-xs text-neutral-400 font-mono">Encrypted S3 Storage</span>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-2xl font-bold text-white">42.8 GB</span>
+                  <span className="text-2xl font-bold text-neutral-50">42.8 GB</span>
                   <span className="text-xs text-emerald-400 font-mono font-bold">Tier OK</span>
                 </div>
-                <div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-neutral-800 h-2 rounded-full overflow-hidden">
                   <div className="bg-emerald-500 h-full w-[42%]" />
                 </div>
               </div>
@@ -168,10 +168,10 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
 
         {activeTab === 'keys' && (
           <div className="space-y-6 animate-fadeIn">
-            <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
+            <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
               <div>
-                <h2 className="text-xl font-bold text-white">Production API Keys & Scoped Tokens</h2>
-                <p className="text-xs text-zinc-400">Generate and revoke scoped credentials for SDK integration.</p>
+                <h2 className="text-xl font-bold text-neutral-50">Production API Keys & Scoped Tokens</h2>
+                <p className="text-xs text-neutral-400">Generate and revoke scoped credentials for SDK integration.</p>
               </div>
               <button
                 onClick={() => {
@@ -184,16 +184,16 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
                     status: 'Active',
                   }]);
                 }}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white flex items-center gap-2"
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-neutral-50 flex items-center gap-2"
               >
                 <Key className="w-3.5 h-3.5" />
                 <span>Create Scoped Key</span>
               </button>
             </div>
 
-            <div className="rounded-2xl bg-zinc-950 border border-zinc-800 overflow-hidden">
+            <div className="rounded-2xl bg-neutral-950 border border-neutral-800 overflow-hidden">
               <table className="w-full text-left text-xs font-mono">
-                <thead className="bg-zinc-900 border-b border-zinc-800 text-zinc-400">
+                <thead className="bg-neutral-900 border-b border-neutral-800 text-neutral-400">
                   <tr>
                     <th className="p-3.5">Key Name & Hash</th>
                     <th className="p-3.5">Permission Scope</th>
@@ -201,15 +201,15 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
                     <th className="p-3.5">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-900">
+                <tbody className="divide-y divide-neutral-900">
                   {keysList.map((k, i) => (
-                    <tr key={i} className="hover:bg-zinc-900/40">
-                      <td className="p-3.5 font-bold text-white">
+                    <tr key={i} className="hover:bg-neutral-900/40">
+                      <td className="p-3.5 font-bold text-neutral-50">
                         {k.name}
-                        <span className="text-[10px] text-zinc-500 block font-normal">{k.key}</span>
+                        <span className="text-[10px] text-neutral-500 block font-normal">{k.key}</span>
                       </td>
                       <td className="p-3.5 text-indigo-300">{k.scope}</td>
-                      <td className="p-3.5 text-zinc-400">{k.created}</td>
+                      <td className="p-3.5 text-neutral-400">{k.created}</td>
                       <td className="p-3.5 text-emerald-400 font-bold">{k.status}</td>
                     </tr>
                   ))}
@@ -222,35 +222,35 @@ export const SyntroSaaSView: React.FC<SyntroSaaSViewProps> = ({ onBack }) => {
         {activeTab === 'pricing' && (
           <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto py-6">
             <div className="text-center space-y-2">
-              <h2 className="text-3xl font-bold text-white">Transparent SaaS Pricing</h2>
-              <p className="text-xs text-zinc-400">Built-in Stripe billing with instant customer portal.</p>
+              <h2 className="text-3xl font-bold text-neutral-50">Transparent SaaS Pricing</h2>
+              <p className="text-xs text-neutral-400">Built-in Stripe billing with instant customer portal.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono font-bold text-zinc-400 uppercase">Starter</span>
-                <div className="text-3xl font-extrabold text-white">$29<span className="text-xs font-normal text-zinc-400">/mo</span></div>
-                <ul className="space-y-2 text-xs text-zinc-300">
+              <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-4">
+                <span className="text-xs font-mono font-bold text-neutral-400 uppercase">Starter</span>
+                <div className="text-3xl font-extrabold text-neutral-50">$29<span className="text-xs font-normal text-neutral-400">/mo</span></div>
+                <ul className="space-y-2 text-xs text-neutral-300">
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> 10,000 API calls</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> 2 Team seats</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Community support</li>
                 </ul>
               </div>
 
-              <div className="p-6 rounded-2xl bg-gradient-to-b from-indigo-950/60 to-zinc-950 border border-indigo-500/60 space-y-4 relative shadow-xl">
+              <div className="p-6 rounded-2xl bg-gradient-to-b from-indigo-950/60 to-neutral-950 border border-indigo-500/60 space-y-4 relative shadow-xl">
                 <span className="text-xs font-mono font-bold text-indigo-300 uppercase">Pro (Popular)</span>
-                <div className="text-3xl font-extrabold text-white">$79<span className="text-xs font-normal text-zinc-400">/mo</span></div>
-                <ul className="space-y-2 text-xs text-zinc-300">
+                <div className="text-3xl font-extrabold text-neutral-50">$79<span className="text-xs font-normal text-neutral-400">/mo</span></div>
+                <ul className="space-y-2 text-xs text-neutral-300">
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" /> 100,000 API calls</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" /> 10 Team seats</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" /> Priority webhooks</li>
                 </ul>
               </div>
 
-              <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-4">
-                <span className="text-xs font-mono font-bold text-zinc-400 uppercase">Enterprise</span>
-                <div className="text-3xl font-extrabold text-white">$199<span className="text-xs font-normal text-zinc-400">/mo</span></div>
-                <ul className="space-y-2 text-xs text-zinc-300">
+              <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-4">
+                <span className="text-xs font-mono font-bold text-neutral-400 uppercase">Enterprise</span>
+                <div className="text-3xl font-extrabold text-neutral-50">$199<span className="text-xs font-normal text-neutral-400">/mo</span></div>
+                <ul className="space-y-2 text-xs text-neutral-300">
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-purple-400" /> Unlimited API calls</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-purple-400" /> Unlimited seats</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-purple-400" /> Custom SLA & Support</li>

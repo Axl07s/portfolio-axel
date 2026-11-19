@@ -15,7 +15,7 @@ const TECH_STACK = [
   {
     name: 'Next.js',
     icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-white">
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-neutral-50">
         <path d="M11.984 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.984 0zM19.7 17.5l-6.736-9.155H11.2v9.31h1.365v-6.9l5.807 8.043a10.45 10.45 0 01-5.188 1.419c-5.748 0-10.413-4.665-10.413-10.413 0-5.748 4.665-10.413 10.413-10.413 5.748 0 10.413 4.665 10.413 10.413a10.428 10.428 0 01-3.484 7.696zm-1.896-1.78l1.32-1.817V7.182h-1.32v8.538z"/>
       </svg>
     ),
@@ -57,18 +57,18 @@ const TECH_STACK = [
 export const TechCarousel: React.FC = () => {
   return (
     <div className="w-full mt-16 max-w-[800px] mx-auto overflow-hidden relative">
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-neutral-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-neutral-950 to-transparent z-10 pointer-events-none" />
       
       <div className="flex w-fit animate-[scroll_25s_linear_infinite] hover:[animation-play-state:paused]">
         {/* We repeat the array 3 times for a seamless infinite loop */}
         {[...TECH_STACK, ...TECH_STACK, ...TECH_STACK].map((tech, i) => (
           <div 
             key={i} 
-            className="flex items-center gap-2 px-5 py-2 mx-2 rounded-full bg-zinc-900/40 border border-zinc-800/60 whitespace-nowrap transition-colors hover:bg-zinc-800/80 hover:border-zinc-700 cursor-default"
+            className="flex items-center gap-2 px-5 py-2 mx-2 rounded-full bg-neutral-900/40 border border-neutral-800/60 whitespace-nowrap transition-colors hover:bg-neutral-800/80 hover:border-neutral-700 cursor-default"
           >
             {tech.icon}
-            <span className="text-sm font-medium text-zinc-400">{tech.name}</span>
+            <span className="text-sm font-medium text-neutral-400">{tech.name}</span>
           </div>
         ))}
       </div>

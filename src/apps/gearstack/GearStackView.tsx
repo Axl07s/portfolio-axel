@@ -68,20 +68,20 @@ export function GearStackView({ onBack }: GearStackViewProps) {
   }, [activeCategory, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#09090b] text-zinc-100 animate-fadeIn">
+    <div className="min-h-screen flex flex-col bg-[#09090b] text-neutral-100 animate-fadeIn">
       
       {/* Return to Portfolio Banner */}
-      <div className="bg-gradient-to-r from-red-950 via-zinc-950 to-zinc-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
+      <div className="bg-gradient-to-r from-red-950 via-neutral-950 to-neutral-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-white shadow-glow-red transition-all active:scale-95"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-neutral-50 shadow-glow-red transition-all active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver al Portafolio</span>
         </button>
 
         <div className="flex items-center gap-3">
-          <span className="text-[11px] font-mono text-zinc-400 hidden sm:inline">
+          <span className="text-[11px] font-mono text-neutral-400 hidden sm:inline">
             Amazon Tag Activo: <strong className="text-orange-400">axeltech0b-20</strong>
           </span>
           <button
@@ -116,25 +116,25 @@ export function GearStackView({ onBack }: GearStackViewProps) {
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         
         {/* Controls Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-zinc-800/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-neutral-800/80">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-sm text-zinc-200">
+            <span className="font-bold text-sm text-neutral-200">
               Showing <span className="text-orange-400 font-mono font-extrabold">{filteredProducts.length}</span> Curated Products
             </span>
             {searchQuery && (
-              <span className="text-xs text-zinc-400 font-mono">for "{searchQuery}"</span>
+              <span className="text-xs text-neutral-400 font-mono">for "{searchQuery}"</span>
             )}
           </div>
 
           {/* Sort Selector */}
           <div className="flex items-center gap-2 text-xs">
-            <span className="text-zinc-500 font-mono flex items-center gap-1">
+            <span className="text-neutral-500 font-mono flex items-center gap-1">
               <ArrowUpDown className="w-3 h-3 text-orange-400" /> Sort by:
             </span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-1.5 text-zinc-300 font-medium focus:outline-none focus:border-orange-500/50"
+              className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-1.5 text-neutral-300 font-medium focus:outline-none focus:border-orange-500/50"
             >
               <option value="featured">Editor's Choice</option>
               <option value="rating">Highest Rated (★)</option>
@@ -146,10 +146,10 @@ export function GearStackView({ onBack }: GearStackViewProps) {
 
         {/* Products Grid */}
         {filteredProducts.length === 0 ? (
-          <div className="py-20 text-center glass-panel rounded-3xl border border-zinc-800 my-8">
-            <SlidersHorizontal className="w-10 h-10 text-zinc-600 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-zinc-200">No hardware matched your criteria.</h3>
-            <p className="text-xs text-zinc-500 mt-1 max-w-sm mx-auto">
+          <div className="py-20 text-center glass-panel rounded-3xl border border-neutral-800 my-8">
+            <SlidersHorizontal className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-neutral-200">No hardware matched your criteria.</h3>
+            <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
               Try adjusting your search terms or clearing category filters.
             </p>
             <button
@@ -179,14 +179,14 @@ export function GearStackView({ onBack }: GearStackViewProps) {
       {isTwitchScannerOpen && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
           <div className="w-full max-w-2xl bg-[#090d16] border border-cyan-500/40 rounded-3xl p-6 relative shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-zinc-800 mb-4">
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800 mb-4">
+              <h3 className="text-base font-bold text-neutral-50 flex items-center gap-2">
                 <Radio className="w-4 h-4 text-cyan-400" />
                 <span>GearStack Twitch Setup Scanner</span>
               </h3>
               <button
                 onClick={() => setIsTwitchScannerOpen(false)}
-                className="px-2.5 py-1 rounded-lg bg-zinc-900 text-zinc-400 hover:text-white text-xs"
+                className="px-2.5 py-1 rounded-lg bg-neutral-900 text-neutral-400 hover:text-neutral-50 text-xs"
               >
                 Cerrar
               </button>

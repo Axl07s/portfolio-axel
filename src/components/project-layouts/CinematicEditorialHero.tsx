@@ -44,7 +44,7 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
   }, []);
 
   return (
-    <div className="relative w-full h-[100vh] bg-[#f8f9fa] dark:bg-[#0a0a0b] overflow-hidden font-sans text-zinc-900 dark:text-zinc-100 transition-colors duration-1000">
+    <div className="relative w-full h-[100vh] bg-[#f8f9fa] dark:bg-[#0a0a0b] overflow-hidden font-sans text-neutral-900 dark:text-neutral-100 transition-colors duration-1000">
       <AnimatePresence mode="wait">
         {/* PHASE 0: Minimalist statement */}
         {phase === 0 && (
@@ -57,7 +57,7 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
             <motion.div 
               initial={{ opacity: 0, y: 10 }} 
               animate={{ opacity: 1, y: 0 }} 
-              className="text-sm font-medium tracking-[0.2em] uppercase text-zinc-400"
+              className="text-sm font-medium tracking-[0.2em] uppercase text-neutral-400"
             >
               {lang === 'es' ? 'Diseñado para Estudiantes' : 'Designed for Students'}
             </motion.div>
@@ -78,10 +78,10 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
               <Smartphone className="w-3.5 h-3.5" />
               <span>Arquitectura Flutter & BLoC</span>
             </div>
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-tight mb-8 max-w-5xl text-zinc-900 dark:text-white">
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-tight mb-8 max-w-5xl text-neutral-900 dark:text-neutral-50">
               {project.title}
             </h1>
-            <p className="text-xl md:text-3xl font-light text-zinc-500 dark:text-zinc-400 max-w-3xl leading-relaxed">
+            <p className="text-xl md:text-3xl font-light text-neutral-500 dark:text-neutral-400 max-w-3xl leading-relaxed">
               {lang === 'es' ? project.descriptionES : project.descriptionEN}
             </p>
           </motion.div>
@@ -103,10 +103,10 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
                 initial={{ y: 200, opacity: 0, rotate: -10 }}
                 animate={{ y: 40, opacity: 1, rotate: -5 }}
                 transition={{ duration: 1.2, delay: 0.2 }}
-                className="hidden md:block w-64 h-[500px] rounded-[3rem] border-8 border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-2xl relative bg-black"
+                className="hidden md:block w-64 h-[500px] rounded-[3rem] border-8 border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-2xl relative bg-black"
               >
                 <img src={images[1]} alt="Home" className="w-full h-full object-cover" />
-                <div className="absolute top-0 inset-x-0 h-6 bg-zinc-200 dark:bg-zinc-800 rounded-b-3xl mx-16"></div>
+                <div className="absolute top-0 inset-x-0 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-b-3xl mx-16"></div>
               </motion.div>
 
               {/* Center Phone (Main) */}
@@ -114,10 +114,10 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
                 initial={{ y: 200, opacity: 0 }}
                 animate={{ y: -40, opacity: 1 }}
                 transition={{ duration: 1.2 }}
-                className="w-72 md:w-80 h-[550px] md:h-[600px] rounded-[3rem] border-8 border-zinc-800 dark:border-zinc-700 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative bg-black z-20"
+                className="w-72 md:w-80 h-[550px] md:h-[600px] rounded-[3rem] border-8 border-neutral-800 dark:border-neutral-700 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative bg-black z-20"
               >
                 <img src={images[0]} alt="Login" className="w-full h-full object-cover" />
-                <div className="absolute top-0 inset-x-0 h-6 bg-zinc-800 dark:bg-zinc-700 rounded-b-3xl mx-20"></div>
+                <div className="absolute top-0 inset-x-0 h-6 bg-neutral-800 dark:bg-neutral-700 rounded-b-3xl mx-20"></div>
               </motion.div>
 
               {/* Right Phone (offset) */}
@@ -125,10 +125,10 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
                 initial={{ y: 200, opacity: 0, rotate: 10 }}
                 animate={{ y: 40, opacity: 1, rotate: 5 }}
                 transition={{ duration: 1.2, delay: 0.4 }}
-                className="hidden md:block w-64 h-[500px] rounded-[3rem] border-8 border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-2xl relative bg-black"
+                className="hidden md:block w-64 h-[500px] rounded-[3rem] border-8 border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-2xl relative bg-black"
               >
                 <img src={images[2]} alt="Grades" className="w-full h-full object-cover" />
-                <div className="absolute top-0 inset-x-0 h-6 bg-zinc-200 dark:bg-zinc-800 rounded-b-3xl mx-16"></div>
+                <div className="absolute top-0 inset-x-0 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-b-3xl mx-16"></div>
               </motion.div>
             </div>
           </motion.div>
@@ -145,8 +145,8 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
             transition={{ duration: 1 }}
           >
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-light text-zinc-900 dark:text-white mb-4 tracking-tight">{lang === 'es' ? 'Arquitectura Offline-First' : 'Offline-First Architecture'}</h2>
-              <p className="text-zinc-500 max-w-xl mx-auto">{lang === 'es' ? 'Sincronización transparente en segundo plano cuando la conectividad es restaurada.' : 'Seamless background synchronization when connectivity is restored.'}</p>
+              <h2 className="text-4xl font-light text-neutral-900 dark:text-neutral-50 mb-4 tracking-tight">{lang === 'es' ? 'Arquitectura Offline-First' : 'Offline-First Architecture'}</h2>
+              <p className="text-neutral-500 max-w-xl mx-auto">{lang === 'es' ? 'Sincronización transparente en segundo plano cuando la conectividad es restaurada.' : 'Seamless background synchronization when connectivity is restored.'}</p>
             </div>
             
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl">
@@ -156,7 +156,7 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="px-6 py-3 bg-white dark:bg-zinc-900 shadow-xl dark:shadow-none border border-zinc-100 dark:border-zinc-800 rounded-full text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                  className="px-6 py-3 bg-neutral-50 dark:bg-neutral-900 shadow-xl dark:shadow-none border border-neutral-100 dark:border-neutral-800 rounded-full text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   {tech}
                 </motion.span>
@@ -181,8 +181,8 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
               transition={{ delay: 0.5, duration: 1.5, ease: 'easeOut' }}
               className="text-center"
             >
-              <div className="text-xl font-medium text-zinc-400 mb-4 tracking-widest uppercase">Experience</div>
-              <div className="text-6xl md:text-8xl font-black text-zinc-900 dark:text-white tracking-tighter">
+              <div className="text-xl font-medium text-neutral-400 mb-4 tracking-widest uppercase">Experience</div>
+              <div className="text-6xl md:text-8xl font-black text-neutral-900 dark:text-neutral-50 tracking-tighter">
                 ELEGANCE
               </div>
             </motion.div>
@@ -197,13 +197,13 @@ export function CinematicEditorialHero({ project, lang }: CinematicEditorialHero
         transition={{ delay: 2, duration: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
       >
-        <span className="text-[10px] text-zinc-400 tracking-widest uppercase mb-2">Scroll</span>
+        <span className="text-[10px] text-neutral-400 tracking-widest uppercase mb-2">Scroll</span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-4 h-6 border-2 border-zinc-400 rounded-full flex justify-center p-1"
+          className="w-4 h-6 border-2 border-neutral-400 rounded-full flex justify-center p-1"
         >
-          <div className="w-1 h-1 bg-zinc-400 rounded-full" />
+          <div className="w-1 h-1 bg-neutral-400 rounded-full" />
         </motion.div>
       </motion.div>
     </div>

@@ -70,7 +70,7 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
   const rotateY = (mousePos.x - 0.5) * 15;
 
   return (
-    <article className="min-h-screen bg-[#050505] text-zinc-300 font-sans selection:bg-blue-500/30 overflow-hidden">
+    <article className="min-h-screen bg-[#050505] text-neutral-300 font-sans selection:bg-blue-500/30 overflow-hidden">
       <ScrollAffordance sections={getGraphSections(lang)} accentColor="blue" />
       
       <header id="graph-hero" className="relative pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
@@ -78,10 +78,10 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
           <Binary className="w-3.5 h-3.5" />
           <span>Enterprise AI Architecture</span>
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-neutral-50 mb-6">
           {project.title}
         </h1>
-        <p className="text-xl text-zinc-400 max-w-2xl leading-relaxed">
+        <p className="text-xl text-neutral-400 max-w-2xl leading-relaxed">
           {project.description}
         </p>
       </header>
@@ -90,14 +90,14 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
       {/* MOBILE: Native RAG card (< lg) */}
       {/* ============================================================ */}
       <section className="lg:hidden px-4 pb-12">
-        <div className="bg-gradient-to-b from-zinc-950 to-black border border-zinc-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(59,130,246,0.1)]">
+        <div className="bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(59,130,246,0.1)]">
           {/* Window header */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0a14] border-b border-zinc-800">
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0a14] border-b border-neutral-800">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
             <div className="flex-1 flex items-center justify-center">
-              <span className="text-[11px] font-mono text-zinc-500">rag-vector-engine / terminal</span>
+              <span className="text-[11px] font-mono text-neutral-500">rag-vector-engine / terminal</span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
@@ -118,35 +118,35 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 border border-zinc-700 rounded text-[10px] font-mono text-zinc-400">
+            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/70 border border-neutral-700 rounded text-[10px] font-mono text-neutral-400">
               {lang === 'es' ? 'Toca para ampliar' : 'Tap to expand'}
             </div>
           </div>
 
           {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-px bg-zinc-800">
+          <div className="grid grid-cols-2 gap-px bg-neutral-800">
             <div className="bg-[#050510] p-5 flex flex-col gap-1">
               <div className="flex items-center gap-2 mb-2">
                 <Database className="w-4 h-4 text-blue-400" />
                 <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Knowledge Base</span>
               </div>
-              <div className="text-4xl font-black text-white tracking-tighter">2.4M</div>
+              <div className="text-4xl font-black text-neutral-50 tracking-tighter">2.4M</div>
               <div className="text-[11px] font-mono text-blue-500/70 uppercase">Vector Embeddings</div>
             </div>
             <div className="bg-[#050510] p-5 flex flex-col justify-between">
-              <div className="text-[10px] font-mono text-zinc-500 mb-1">Avg Retrieval Latency</div>
-              <div className="text-3xl font-bold text-white"><span className="text-emerald-400">~</span>240ms</div>
+              <div className="text-[10px] font-mono text-neutral-500 mb-1">Avg Retrieval Latency</div>
+              <div className="text-3xl font-bold text-neutral-50"><span className="text-emerald-400">~</span>240ms</div>
               <div className="flex gap-1.5 mt-3 flex-wrap">
-                <span className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">PDFs</span>
-                <span className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Notion</span>
-                <span className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Confluence</span>
+                <span className="px-2 py-0.5 bg-neutral-900 border border-neutral-800 rounded text-[10px] font-mono text-neutral-500">PDFs</span>
+                <span className="px-2 py-0.5 bg-neutral-900 border border-neutral-800 rounded text-[10px] font-mono text-neutral-500">Notion</span>
+                <span className="px-2 py-0.5 bg-neutral-900 border border-neutral-800 rounded text-[10px] font-mono text-neutral-500">Confluence</span>
               </div>
             </div>
           </div>
 
           {/* Terminal line */}
-          <div className="px-4 py-3 bg-[#0a0a0a] border-t border-zinc-800">
-            <div className="font-mono text-[11px] text-zinc-500 mb-1"># hybrid_retriever: pgvector cosine + BM25 rerank</div>
+          <div className="px-4 py-3 bg-[#0a0a0a] border-t border-neutral-800">
+            <div className="font-mono text-[11px] text-neutral-500 mb-1"># hybrid_retriever: pgvector cosine + BM25 rerank</div>
             <div className="font-mono text-[11px] text-blue-400">results = await retriever.get_relevant_documents(query, k=5)</div>
           </div>
         </div>
@@ -209,47 +209,47 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                        <span className="font-mono text-blue-400 tracking-widest uppercase">Knowledge Base</span>
                      </div>
                      <div>
-                       <div className="text-7xl font-black text-white tracking-tighter mb-2">2.4M</div>
+                       <div className="text-7xl font-black text-neutral-50 tracking-tighter mb-2">2.4M</div>
                        <div className="text-blue-500/80 font-mono text-sm uppercase">Vector Embeddings</div>
                      </div>
                    </div>
     
                    {/* Secondary Tile */}
                    <div 
-                     className="col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-6 flex items-center justify-between transition-transform duration-700"
+                     className="col-span-2 row-span-1 bg-neutral-950 border border-neutral-800 rounded-3xl p-6 flex items-center justify-between transition-transform duration-700"
                      style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '120px' : '0px'})` }}
                    >
                      <div>
-                       <div className="text-zinc-500 text-sm font-mono mb-1">Avg Retrieval Latency</div>
-                       <div className="text-3xl font-bold text-white"><span className="text-emerald-400">~</span>240ms</div>
+                       <div className="text-neutral-500 text-sm font-mono mb-1">Avg Retrieval Latency</div>
+                       <div className="text-3xl font-bold text-neutral-50"><span className="text-emerald-400">~</span>240ms</div>
                      </div>
-                     <Cpu className="w-10 h-10 text-zinc-700" />
+                     <Cpu className="w-10 h-10 text-neutral-700" />
                    </div>
     
                    {/* Pipeline Tile */}
                    <div 
-                     className="col-span-2 row-span-1 bg-zinc-950 border border-zinc-800 rounded-3xl p-6 relative overflow-hidden transition-transform duration-700"
+                     className="col-span-2 row-span-1 bg-neutral-950 border border-neutral-800 rounded-3xl p-6 relative overflow-hidden transition-transform duration-700"
                      style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '80px' : '0px'})` }}
                    >
                      <div className="absolute right-0 top-0 w-32 h-32 bg-blue-500/5 blur-3xl"></div>
                      <div className="flex items-center gap-2 mb-4">
                        <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-                       <span className="text-xs font-mono text-zinc-400 uppercase">Ingestion Pipeline</span>
+                       <span className="text-xs font-mono text-neutral-400 uppercase">Ingestion Pipeline</span>
                      </div>
                      <div className="flex gap-2">
-                       <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">PDFs</span>
-                       <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Notion</span>
-                       <span className="px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-[10px] font-mono text-zinc-500">Confluence</span>
+                       <span className="px-2 py-1 bg-neutral-900 border border-neutral-800 rounded text-[10px] font-mono text-neutral-500">PDFs</span>
+                       <span className="px-2 py-1 bg-neutral-900 border border-neutral-800 rounded text-[10px] font-mono text-neutral-500">Notion</span>
+                       <span className="px-2 py-1 bg-neutral-900 border border-neutral-800 rounded text-[10px] font-mono text-neutral-500">Confluence</span>
                      </div>
                    </div>
     
                    {/* Wide Terminal Tile */}
                    <div 
-                     className="col-span-3 row-span-1 bg-[#0a0a0a] border border-zinc-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
+                     className="col-span-3 row-span-1 bg-[#0a0a0a] border border-neutral-800 rounded-3xl p-6 flex items-center transition-transform duration-700"
                      style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '180px' : '0px'})` }}
                    >
                      <div className="flex-1 font-mono text-sm">
-                       <div className="text-zinc-500 mb-2"># Hybrid retrieval: pgvector cosine similarity + BM25 rerank</div>
+                       <div className="text-neutral-500 mb-2"># Hybrid retrieval: pgvector cosine similarity + BM25 rerank</div>
                        <div className="text-blue-400">results = await hybrid_retriever.get_relevant_documents(query, k=5)</div>
                      </div>
                      <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
@@ -263,8 +263,8 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
                      style={{ transform: isMobile ? 'none' : `translateZ(${isHovered ? '200px' : '0px'})` }}
                    >
                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between h-full group py-2 md:py-3 px-2 md:px-4">
-                        <span className="font-bold text-white uppercase tracking-widest text-xs sm:text-sm md:text-base">Deploy<br/>System</span>
-                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-2 transition-transform" />
+                        <span className="font-bold text-neutral-50 uppercase tracking-widest text-xs sm:text-sm md:text-base">Deploy<br/>System</span>
+                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-neutral-50 group-hover:translate-x-2 transition-transform" />
                      </a>
                    </div>
                 </div>
@@ -275,8 +275,8 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
 
       <section id="graph-value" className="max-w-5xl mx-auto px-6 pb-32">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">{lang === 'es' ? 'Arquitectura RAG Determinista y Anti-Alucinación' : 'Deterministic Anti-Hallucination RAG Architecture'}</h2>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-3xl md:text-5xl font-bold text-neutral-50 mb-6 tracking-tight">{lang === 'es' ? 'Arquitectura RAG Determinista y Anti-Alucinación' : 'Deterministic Anti-Hallucination RAG Architecture'}</h2>
+          <p className="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
             {lang === 'es'
               ? 'Los LLMs generalistas alucinan ante falta de contexto factual. Este motor RAG inyecta la base de conocimiento corporativa directamente en el contexto del modelo con scoring de similitud, garantizando respuestas fundamentadas y trazables.'
               : 'General-purpose LLMs hallucinate when lacking factual context. This RAG engine injects the corporate knowledge base directly into the model context with similarity scoring, ensuring grounded and traceable responses.'}
@@ -284,46 +284,46 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+          <div className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl">
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <ShieldCheck className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className="text-xl font-bold text-neutral-50 mb-3">
               {lang === 'es' ? 'Trazabilidad a Nivel de Chunk' : 'Chunk-Level Traceability'}
             </h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
+            <p className="text-neutral-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Cada respuesta generada cita explícitamente el documento fuente y fragmento vectorial original con score de relevancia. Umbrales de similitud estrictos fuerzan abstención determinista si la evidencia no supera el nivel de confianza.' : 'Each generated response explicitly cites the source document and original vector chunk with relevance score. Strict similarity thresholds force deterministic abstention if evidence does not meet confidence levels.'}
             </p>
           </div>
 
-          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+          <div className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl">
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">{lang === 'es' ? 'Pipeline de Ingesta Asíncrona' : 'Asynchronous Ingestion Pipeline'}</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
+            <h3 className="text-xl font-bold text-neutral-50 mb-3">{lang === 'es' ? 'Pipeline de Ingesta Asíncrona' : 'Asynchronous Ingestion Pipeline'}</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Extracción asíncrona de texto en FastAPI para PDF, DOCX y Markdown. Los documentos se segmentan en ventanas de chunks contextuales, se vectorizan con embeddings de alta dimensionalidad y se indexan en pgvector.' : 'Asynchronous text extraction in FastAPI for PDF, DOCX, and Markdown. Documents are segmented into contextual chunk windows, vectorized with high-dimensional embeddings, and indexed in pgvector.'}
             </p>
           </div>
 
-          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+          <div className="bg-neutral-900/50 border border-neutral-800 p-8 rounded-2xl">
             <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
               <LineChart className="w-6 h-6 text-blue-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">{lang === 'es' ? 'Búsqueda Híbrida & Reranking' : 'Hybrid Search & Reranking'}</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
+            <h3 className="text-xl font-bold text-neutral-50 mb-3">{lang === 'es' ? 'Búsqueda Híbrida & Reranking' : 'Hybrid Search & Reranking'}</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed">
               {lang === 'es' ? 'Combina búsqueda densa por embeddings en pgvector con búsqueda por palabras clave BM25. Un pipeline de reranking contextual reordena los fragmentos más pertinentes en menos de 240ms.' : 'Combines dense embedding search in pgvector with BM25 keyword search. A contextual reranking pipeline reorders the most pertinent fragments in less than 240ms.'}
             </p>
           </div>
         </div>
 
-        <div className="mt-16 pt-12 border-t border-zinc-800/50">
-          <h4 className="text-lg font-semibold text-white mb-6">{lang === 'es' ? 'Capacidades Técnicas Implementadas:' : 'Implemented Technical Capabilities:'}</h4>
+        <div className="mt-16 pt-12 border-t border-neutral-800/50">
+          <h4 className="text-lg font-semibold text-neutral-50 mb-6">{lang === 'es' ? 'Capacidades Técnicas Implementadas:' : 'Implemented Technical Capabilities:'}</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {project.features.map((f, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                <span className="text-zinc-300 text-sm">{f}</span>
+                <span className="text-neutral-300 text-sm">{f}</span>
               </div>
             ))}
           </div>
@@ -336,11 +336,11 @@ export function GraphTerminalLayout({ project }: { project: Project }) {
           <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 -mx-4 md:mx-0 px-4 md:px-0">
             {project.images.map((img, idx) => (
               <div key={idx} className="flex-none w-[85vw] sm:w-[60vw] md:w-auto snap-center flex flex-col gap-4 group">
-                <div className="bg-[#0a0a0a] border border-zinc-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
+                <div className="bg-[#0a0a0a] border border-neutral-800 rounded-xl overflow-hidden shadow-lg relative aspect-video flex items-center justify-center cursor-pointer" onClick={() => setLightboxImg(img.url)}>
                   <img src={img.url} alt={img.caption} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                 </div>
-                <p className="text-zinc-400 text-sm font-medium border-l-2 border-blue-500/50 pl-3">
+                <p className="text-neutral-400 text-sm font-medium border-l-2 border-blue-500/50 pl-3">
                   {img.caption}
                 </p>
               </div>

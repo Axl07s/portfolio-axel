@@ -62,7 +62,7 @@ export function App() {
   }, [activeCategory, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#09090b] text-zinc-100">
+    <div className="min-h-screen flex flex-col bg-[#09090b] text-neutral-100">
       
       {/* Top Navigation */}
       <Navbar
@@ -86,25 +86,25 @@ export function App() {
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         
         {/* Controls Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-zinc-800/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-neutral-800/80">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-sm text-zinc-200">
+            <span className="font-bold text-sm text-neutral-200">
               Showing <span className="text-orange-400 font-mono font-extrabold">{filteredProducts.length}</span> Curated Products
             </span>
             {searchQuery && (
-              <span className="text-xs text-zinc-400 font-mono">for "{searchQuery}"</span>
+              <span className="text-xs text-neutral-400 font-mono">for "{searchQuery}"</span>
             )}
           </div>
 
           {/* Sort Selector */}
           <div className="flex items-center gap-2 text-xs">
-            <span className="text-zinc-500 font-mono flex items-center gap-1">
+            <span className="text-neutral-500 font-mono flex items-center gap-1">
               <ArrowUpDown className="w-3 h-3 text-orange-400" /> Sort by:
             </span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-1.5 text-zinc-300 font-medium focus:outline-none focus:border-orange-500/50"
+              className="bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-1.5 text-neutral-300 font-medium focus:outline-none focus:border-orange-500/50"
             >
               <option value="featured">Editor's Choice</option>
               <option value="rating">Highest Rated (★)</option>
@@ -116,10 +116,10 @@ export function App() {
 
         {/* Products Grid */}
         {filteredProducts.length === 0 ? (
-          <div className="py-20 text-center glass-panel rounded-3xl border border-zinc-800 my-8">
-            <SlidersHorizontal className="w-10 h-10 text-zinc-600 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-zinc-200">No hardware matched your criteria.</h3>
-            <p className="text-xs text-zinc-500 mt-1 max-w-sm mx-auto">
+          <div className="py-20 text-center glass-panel rounded-3xl border border-neutral-800 my-8">
+            <SlidersHorizontal className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-neutral-200">No hardware matched your criteria.</h3>
+            <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
               Try adjusting your search terms or clearing category filters.
             </p>
             <button

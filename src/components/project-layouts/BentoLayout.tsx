@@ -41,26 +41,26 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
           
           {/* External Monitor Frame (Background) */}
           <div className="absolute top-4 right-[-10%] md:top-8 md:right-[-5%] w-[350px] md:w-[650px] -rotate-3 opacity-40 group-hover:opacity-70 group-hover:-rotate-1 transition-all duration-700 pointer-events-none z-0">
-            <div className="bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl border border-zinc-700 shadow-2xl">
-              <div className="bg-black rounded-lg overflow-hidden border border-zinc-900 aspect-video relative">
+            <div className="bg-neutral-800 p-2 md:p-3 rounded-xl md:rounded-2xl border border-neutral-700 shadow-2xl">
+              <div className="bg-black rounded-lg overflow-hidden border border-neutral-900 aspect-video relative">
                 <img src="/projects/suitesecurity_02.png" alt="SuiteSeguridad Monitor" className="w-full h-full object-cover object-left-top" />
               </div>
-              <div className="h-4 md:h-6 w-16 md:w-24 bg-zinc-700 mx-auto mt-2 rounded-b-sm"></div>
-              <div className="h-1 md:h-1.5 w-24 md:w-36 bg-zinc-600 mx-auto mt-0.5 rounded-full"></div>
+              <div className="h-4 md:h-6 w-16 md:w-24 bg-neutral-700 mx-auto mt-2 rounded-b-sm"></div>
+              <div className="h-1 md:h-1.5 w-24 md:w-36 bg-neutral-600 mx-auto mt-0.5 rounded-full"></div>
             </div>
           </div>
 
           {/* MacBook Frame (Foreground) */}
           <div className="relative z-10 w-[110%] md:w-[115%] md:-ml-[5%] group-hover:translate-y-[-10px] transition-transform duration-700 flex flex-col items-center mt-auto">
             {/* Screen */}
-            <div className="bg-zinc-800 p-1.5 md:p-3 rounded-t-xl md:rounded-t-3xl border-t border-l border-r border-zinc-700 shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-full">
-              <div className="bg-black rounded-lg md:rounded-xl overflow-hidden border border-zinc-900 aspect-[16/10] relative">
+            <div className="bg-neutral-800 p-1.5 md:p-3 rounded-t-xl md:rounded-t-3xl border-t border-l border-r border-neutral-700 shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-full">
+              <div className="bg-black rounded-lg md:rounded-xl overflow-hidden border border-neutral-900 aspect-[16/10] relative">
                 <img src="/projects/suitesecurity_01.png" alt="SuiteSeguridad MacBook" className="w-full h-full object-cover object-top" />
               </div>
             </div>
             {/* Keyboard base */}
-            <div className="bg-zinc-700 h-2 md:h-5 w-[104%] rounded-b-xl md:rounded-b-3xl border-b border-l border-r border-zinc-600 relative flex justify-center shadow-2xl z-20">
-              <div className="w-1/6 h-1 md:h-1.5 bg-zinc-500 rounded-b-lg"></div>
+            <div className="bg-neutral-700 h-2 md:h-5 w-[104%] rounded-b-xl md:rounded-b-3xl border-b border-l border-r border-neutral-600 relative flex justify-center shadow-2xl z-20">
+              <div className="w-1/6 h-1 md:h-1.5 bg-neutral-500 rounded-b-lg"></div>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
                 <span className="text-[#a5d6ff]">"{lang}"</span>
                 <span className="text-[#ff7b72]">&gt;</span>
               </div>
-              <p className="text-xs md:text-sm text-[#c9d1d9] leading-relaxed group-hover/desc:text-white transition-colors">
+              <p className="text-xs md:text-sm text-[#c9d1d9] leading-relaxed group-hover/desc:text-neutral-50 transition-colors">
                 {lang === 'es' ? project.descriptionES : project.descriptionEN}
               </p>
               <div className="text-[9px] md:text-[10px] font-mono text-[#8b949e] mt-1.5">
@@ -137,7 +137,7 @@ export function BentoLayout({ project }: { project: PersonalProject }) {
         {/* Architecture Diagram Card (Row 4, Span 3) */}
         <div className="md:col-span-3 bg-[#0d1117] border border-[#30363d] rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center min-h-[300px]">
           <div className="w-full flex flex-col md:flex-row md:items-center justify-between mb-8 gap-2">
-            <h3 className="text-lg md:text-xl font-bold text-white tracking-tight">
+            <h3 className="text-lg md:text-xl font-bold text-neutral-50 tracking-tight">
               {lang === 'es' ? 'Flujo de Detección y Mitigación' : 'Detection & Mitigation Flow'}
             </h3>
             <div className="flex items-center gap-2 text-[#8b949e]">

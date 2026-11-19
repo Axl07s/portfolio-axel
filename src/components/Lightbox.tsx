@@ -22,9 +22,9 @@ export function Lightbox({ imgSrc, altText, onClose }: { imgSrc: string; altText
     >
       <button 
         onClick={onClose}
-        className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors border border-white/10"
+        className="absolute top-6 right-6 w-12 h-12 bg-neutral-50/10 hover:bg-neutral-50/20 rounded-full flex items-center justify-center transition-colors border border-white/10"
       >
-        <X className="w-6 h-6 text-white" />
+        <X className="w-6 h-6 text-neutral-50" />
       </button>
       <img 
         src={imgSrc} 

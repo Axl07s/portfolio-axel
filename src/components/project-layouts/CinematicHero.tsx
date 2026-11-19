@@ -30,7 +30,7 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
   }, []);
 
   return (
-    <div className="relative w-full min-h-[60vh] md:min-h-screen h-[100vh] bg-black overflow-hidden font-mono text-zinc-200">
+    <div className="relative w-full min-h-[60vh] md:min-h-screen h-[100vh] bg-black overflow-hidden font-mono text-neutral-200">
       <Particles density={isCyber ? 100 : 50} color={accentColor} maxOpacity={0.3} />
       
       <AnimatePresence mode="wait">
@@ -46,11 +46,11 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
               <motion.div 
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
-                className="text-xs text-zinc-500 mb-4 tracking-[0.3em]"
+                className="text-xs text-neutral-500 mb-4 tracking-[0.3em]"
               >
                 {lang === 'es' ? '[ INICIALIZANDO SISTEMA ]' : '[ SYSTEM INITIALIZATION ]'}
               </motion.div>
-              <div className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter uppercase drop-shadow-2xl px-4 text-center">
+              <div className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-black text-neutral-50 tracking-tighter uppercase drop-shadow-2xl px-4 text-center">
                 <ScrambleText text={project.title} />
               </div>
               <motion.div 
@@ -109,7 +109,7 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2 }}
-                  className="text-4xl md:text-7xl lg:text-8xl font-black text-white"
+                  className="text-4xl md:text-7xl lg:text-8xl font-black text-neutral-50"
                 >
                   {project.title}
                 </motion.h1>
@@ -127,15 +127,15 @@ export function CinematicHero({ project, lang }: CinematicHeroProps) {
         transition={{ delay: 2, duration: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
       >
-        <span className="text-[10px] text-zinc-500 tracking-widest uppercase mb-2">
+        <span className="text-[10px] text-neutral-500 tracking-widest uppercase mb-2">
           {lang === 'es' ? 'Deslizar' : 'Scroll'}
         </span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-4 h-6 border-2 border-zinc-600 rounded-full flex justify-center p-1"
+          className="w-4 h-6 border-2 border-neutral-600 rounded-full flex justify-center p-1"
         >
-          <div className="w-1 h-1 bg-zinc-400 rounded-full" />
+          <div className="w-1 h-1 bg-neutral-400 rounded-full" />
         </motion.div>
       </motion.div>
     </div>

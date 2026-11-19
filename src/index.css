@@ -46,7 +46,7 @@
 }
 
 .glass-obsidian-card:hover {
-  border-color: rgba(255, 255, 255, 0.15); /* zinc-300 */
+  border-color: rgba(255, 255, 255, 0.15); /* neutral-300 */
   box-shadow: 0 0 35px -5px rgba(255, 255, 255, 0.15);
 }
 
@@ -75,7 +75,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #52525b; /* zinc-300 */
+  background: #52525b; /* neutral-300 */
 }
 
 @keyframes fadeIn {

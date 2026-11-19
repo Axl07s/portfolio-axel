@@ -12,7 +12,7 @@ import { ScrollToTop } from './components/ScrollToTop';
 
 function AppContent() {
     return (
-    <div className="min-h-screen flex flex-col overflow-x-clip bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-white">
+    <div className="min-h-screen flex flex-col overflow-x-clip bg-[#0a0a0a] text-[#fafaf9] selection:bg-emerald-500/30 selection:text-white">
       <Navbar onOpenContact={() => {
         const el = document.getElementById('contact');
         el?.scrollIntoView({ behavior: 'smooth' });

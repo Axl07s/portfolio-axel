@@ -28,18 +28,18 @@ export const TechStackSection: React.FC = () => {
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950 border border-red-500/30 text-red-400 text-xs font-mono font-medium shadow-glow-red">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-950 border border-red-500/30 text-red-400 text-xs font-mono font-medium shadow-glow-red">
           <Cpu className="w-3.5 h-3.5" />
           <span>{lang === 'es' ? 'MATRIZ DE INGENIERÍA' : 'ENGINEERING MATRIX'}</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-50 tracking-tight">
           {lang === 'es' ? (
             <>Stack Tecnológico <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Probado en Batalla</span>.</>
           ) : (
             <>Battle-Tested <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">Tech Stack</span>.</>
           )}
         </h2>
-        <p className="text-xs sm:text-sm text-zinc-400">
+        <p className="text-xs sm:text-sm text-neutral-400">
           {lang === 'es'
             ? 'Desarrollo con frameworks modernos de alto rendimiento diseñados para escalabilidad rápida, seguridad empresarial y mantenibilidad limpia.'
             : 'I build with high-throughput modern frameworks designed for rapid scale, enterprise security, and clean maintainability.'}
@@ -49,17 +49,17 @@ export const TechStackSection: React.FC = () => {
       {/* 4 Pillars Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {SKILL_CATEGORIES.map((cat, idx) => (
-          <div key={idx} className="glass-obsidian-card p-6 rounded-3xl border border-zinc-800/80 space-y-4 hover:border-red-500/40 transition-all flex flex-col justify-between">
+          <div key={idx} className="glass-obsidian-card p-6 rounded-3xl border border-neutral-800/80 space-y-4 hover:border-red-500/40 transition-all flex flex-col justify-between">
             
             <div>
               {/* Pillar Header */}
-              <div className="flex items-center gap-3 pb-3 border-b border-zinc-800/80">
-                <div className="w-10 h-10 rounded-xl bg-zinc-900 flex items-center justify-center border border-zinc-800">
+              <div className="flex items-center gap-3 pb-3 border-b border-neutral-800/80">
+                <div className="w-10 h-10 rounded-xl bg-neutral-900 flex items-center justify-center border border-neutral-800">
                   {getIcon(cat.icon)}
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-white">{categoryTitles[cat.title]?.[lang] || cat.title}</h3>
-                  <span className="text-[10px] font-mono text-zinc-400">
+                  <h3 className="font-bold text-sm text-neutral-50">{categoryTitles[cat.title]?.[lang] || cat.title}</h3>
+                  <span className="text-[10px] font-mono text-neutral-400">
                     {cat.skills.length} {lang === 'es' ? 'Tecnologías Clave' : 'Core Technologies'}
                   </span>
                 </div>
@@ -69,11 +69,11 @@ export const TechStackSection: React.FC = () => {
               <ul className="mt-4 space-y-2.5">
                 {cat.skills.map((skill, sIdx) => (
                   <li key={sIdx} className="flex items-center justify-between text-xs">
-                    <span className="text-zinc-300 font-medium">{skill.name}</span>
+                    <span className="text-neutral-300 font-medium">{skill.name}</span>
                     <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
                       skill.level === 'Expert'
                         ? 'bg-red-500/10 text-red-400 border-red-500/30'
-                        : 'bg-zinc-900 text-zinc-400 border-zinc-800'
+                        : 'bg-neutral-900 text-neutral-400 border-neutral-800'
                     }`}>
                       {skill.level === 'Expert' ? (lang === 'es' ? 'Experto' : 'Expert') : (lang === 'es' ? 'Avanzado' : 'Advanced')}
                     </span>
@@ -83,7 +83,7 @@ export const TechStackSection: React.FC = () => {
             </div>
 
             {/* Bottom Status */}
-            <div className="pt-3 border-t border-zinc-800/60 flex items-center gap-1.5 text-[11px] font-mono text-zinc-400">
+            <div className="pt-3 border-t border-neutral-800/60 flex items-center gap-1.5 text-[11px] font-mono text-neutral-400">
               <Check className="w-3.5 h-3.5 text-red-500" />
               <span>{lang === 'es' ? 'Probado en Producción' : 'Production Tested'}</span>
             </div>

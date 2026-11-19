@@ -37,10 +37,10 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
     <div className="min-h-screen bg-[#030611] text-cyan-100 flex flex-col font-mono animate-fadeIn">
       
       {/* Return Bar */}
-      <div className="bg-gradient-to-r from-red-950 via-zinc-950 to-zinc-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
+      <div className="bg-gradient-to-r from-red-950 via-neutral-950 to-neutral-950 border-b border-red-500/30 px-4 py-2.5 flex items-center justify-between z-40 sticky top-0 backdrop-blur-md">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-white shadow-glow-red transition-all active:scale-95"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-red-600 hover:bg-red-500 text-neutral-50 shadow-glow-red transition-all active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver al Portafolio Maestro</span>
@@ -60,7 +60,7 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
             <Bot className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-base font-bold text-white tracking-wider">JARVIS AI COMMAND CENTER</h1>
+            <h1 className="text-base font-bold text-neutral-50 tracking-wider">JARVIS AI COMMAND CENTER</h1>
             <span className="text-[10px] text-cyan-400">Autonomous Neural Mesh & Real-Time Executive HUD</span>
           </div>
         </div>
@@ -71,7 +71,7 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-3 py-1.5 rounded-xl font-bold uppercase transition-all ${
-                activeTab === tab ? 'bg-cyan-500 text-black shadow-md' : 'text-zinc-400 hover:text-cyan-200'
+                activeTab === tab ? 'bg-cyan-500 text-black shadow-md' : 'text-neutral-400 hover:text-cyan-200'
               }`}
             >
               {tab === 'hud' ? 'Chief Brain HUD' : tab === 'agents' ? '9-Agent Network' : 'Token Ledger'}
@@ -95,7 +95,7 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
                 <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
                   state === 'speaking' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500 animate-pulse' :
                   state === 'listening' ? 'bg-amber-500/20 text-amber-300 border-amber-500' :
-                  'bg-zinc-900 text-zinc-500 border-zinc-800'
+                  'bg-neutral-900 text-neutral-500 border-neutral-800'
                 }`}>
                   {state.toUpperCase()}
                 </span>
@@ -115,33 +115,33 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
                 ))}
               </div>
 
-              <div className="p-4 rounded-2xl bg-zinc-950/80 border border-cyan-500/30 text-xs leading-relaxed text-zinc-200">
+              <div className="p-4 rounded-2xl bg-neutral-950/80 border border-cyan-500/30 text-xs leading-relaxed text-neutral-200">
                 {hudMessage}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <button
                   onClick={() => handleVoiceCommand('Ejecutar auditoría de seguridad en contratos y dependencias')}
-                  className="p-3 rounded-xl bg-zinc-900 hover:bg-cyan-950 text-xs text-left border border-zinc-800 hover:border-cyan-500 transition-all text-cyan-200"
+                  className="p-3 rounded-xl bg-neutral-900 hover:bg-cyan-950 text-xs text-left border border-neutral-800 hover:border-cyan-500 transition-all text-cyan-200"
                 >
-                  <span className="font-bold block text-white">Auditar Seguridad</span>
-                  <span className="text-[10px] text-zinc-400">Dispatch a Security Bot (Llama 3)</span>
+                  <span className="font-bold block text-neutral-50">Auditar Seguridad</span>
+                  <span className="text-[10px] text-neutral-400">Dispatch a Security Bot (Llama 3)</span>
                 </button>
 
                 <button
                   onClick={() => handleVoiceCommand('Monitorear nuevos clientes B2B en Ecuador y propuestas')}
-                  className="p-3 rounded-xl bg-zinc-900 hover:bg-cyan-950 text-xs text-left border border-zinc-800 hover:border-cyan-500 transition-all text-cyan-200"
+                  className="p-3 rounded-xl bg-neutral-900 hover:bg-cyan-950 text-xs text-left border border-neutral-800 hover:border-cyan-500 transition-all text-cyan-200"
                 >
-                  <span className="font-bold block text-white">Scraping Prospectos B2B</span>
-                  <span className="text-[10px] text-zinc-400">Dispatch a Market Bot (DeepSeek)</span>
+                  <span className="font-bold block text-neutral-50">Scraping Prospectos B2B</span>
+                  <span className="text-[10px] text-neutral-400">Dispatch a Market Bot (DeepSeek)</span>
                 </button>
 
                 <button
                   onClick={() => handleVoiceCommand('Calcular coste de tokens y balances por modelo')}
-                  className="p-3 rounded-xl bg-zinc-900 hover:bg-cyan-950 text-xs text-left border border-zinc-800 hover:border-cyan-500 transition-all text-cyan-200"
+                  className="p-3 rounded-xl bg-neutral-900 hover:bg-cyan-950 text-xs text-left border border-neutral-800 hover:border-cyan-500 transition-all text-cyan-200"
                 >
-                  <span className="font-bold block text-white">Balance de Finanzas</span>
-                  <span className="text-[10px] text-zinc-400">Dispatch a Ledger Bot (Haiku)</span>
+                  <span className="font-bold block text-neutral-50">Balance de Finanzas</span>
+                  <span className="text-[10px] text-neutral-400">Dispatch a Ledger Bot (Haiku)</span>
                 </button>
               </div>
             </div>
@@ -150,20 +150,20 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
 
         {activeTab === 'agents' && (
           <div className="space-y-4 animate-fadeIn">
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">9-Agent Autonomous Mesh Status</h2>
+            <h2 className="text-sm font-bold text-neutral-50 uppercase tracking-wider">9-Agent Autonomous Mesh Status</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {subagents.map(agent => (
                 <div key={agent.id} className="p-4 rounded-2xl bg-black/60 border border-cyan-500/20 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs text-white">{agent.name}</span>
+                    <span className="font-bold text-xs text-neutral-50">{agent.name}</span>
                     <span className={`px-2 py-0.5 rounded text-[9px] font-bold ${
-                      agent.status === 'Active' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-zinc-800 text-zinc-500'
+                      agent.status === 'Active' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-neutral-800 text-neutral-500'
                     }`}>
                       {agent.status}
                     </span>
                   </div>
                   <span className="text-[10px] text-cyan-400 block">{agent.model} ({agent.latency})</span>
-                  <p className="text-[11px] text-zinc-400">{agent.task}</p>
+                  <p className="text-[11px] text-neutral-400">{agent.task}</p>
                 </div>
               ))}
             </div>
@@ -174,27 +174,27 @@ export const JarvisView: React.FC<JarvisViewProps> = ({ onBack }) => {
           <div className="space-y-6 animate-fadeIn">
             <div className="flex items-center justify-between pb-4 border-b border-cyan-500/20">
               <div>
-                <h2 className="text-sm font-bold text-white uppercase">Real-Time Model Spend Audit</h2>
-                <p className="text-xs text-zinc-400">Aggregated API ledger across OpenAI, Anthropic & ElevenLabs.</p>
+                <h2 className="text-sm font-bold text-neutral-50 uppercase">Real-Time Model Spend Audit</h2>
+                <p className="text-xs text-neutral-400">Aggregated API ledger across OpenAI, Anthropic & ElevenLabs.</p>
               </div>
               <div className="text-right">
-                <span className="text-[10px] text-zinc-400 block">Total Month Spend</span>
+                <span className="text-[10px] text-neutral-400 block">Total Month Spend</span>
                 <span className="text-xl font-bold text-cyan-400">${tokenCost} USD</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-black/60 border border-zinc-800">
-                <span className="text-zinc-400 block">Claude 3.5 Sonnet</span>
-                <span className="text-base font-bold text-white mt-1 block">$8.42 (56.8%)</span>
+              <div className="p-4 rounded-xl bg-black/60 border border-neutral-800">
+                <span className="text-neutral-400 block">Claude 3.5 Sonnet</span>
+                <span className="text-base font-bold text-neutral-50 mt-1 block">$8.42 (56.8%)</span>
               </div>
-              <div className="p-4 rounded-xl bg-black/60 border border-zinc-800">
-                <span className="text-zinc-400 block">GPT-4o & Mini</span>
-                <span className="text-base font-bold text-white mt-1 block">$4.10 (27.6%)</span>
+              <div className="p-4 rounded-xl bg-black/60 border border-neutral-800">
+                <span className="text-neutral-400 block">GPT-4o & Mini</span>
+                <span className="text-base font-bold text-neutral-50 mt-1 block">$4.10 (27.6%)</span>
               </div>
-              <div className="p-4 rounded-xl bg-black/60 border border-zinc-800">
-                <span className="text-zinc-400 block">ElevenLabs Neural Voice</span>
-                <span className="text-base font-bold text-white mt-1 block">$2.30 (15.6%)</span>
+              <div className="p-4 rounded-xl bg-black/60 border border-neutral-800">
+                <span className="text-neutral-400 block">ElevenLabs Neural Voice</span>
+                <span className="text-base font-bold text-neutral-50 mt-1 block">$2.30 (15.6%)</span>
               </div>
             </div>
           </div>

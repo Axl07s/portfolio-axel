@@ -42,12 +42,12 @@ export const TwitchScannerDemo: React.FC = () => {
   return (
     <div className="space-y-4 text-xs font-mono">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-        <div className="flex-1 flex items-center bg-zinc-950 px-3 py-2 rounded-xl border border-zinc-800">
-          <span className="text-zinc-500 mr-2">twitch.tv/</span>
+        <div className="flex-1 flex items-center bg-neutral-950 px-3 py-2 rounded-xl border border-neutral-800">
+          <span className="text-neutral-500 mr-2">twitch.tv/</span>
           <select
             value={channel}
             onChange={(e) => setChannel(e.target.value)}
-            className="bg-transparent text-white font-mono text-xs focus:outline-none flex-1 appearance-none cursor-pointer"
+            className="bg-transparent text-neutral-50 font-mono text-xs focus:outline-none flex-1 appearance-none cursor-pointer"
           >
             <option value="indie_dev_mike">indie_dev_mike (Coding Streamer)</option>
             <option value="sarah_designs">sarah_designs (Art & UI/UX)</option>
@@ -63,11 +63,11 @@ export const TwitchScannerDemo: React.FC = () => {
           <span>{scanning ? (lang === 'es' ? 'Escaneando Stream...' : 'Scanning Stream...') : (lang === 'es' ? 'Ejecutar Escaneo' : 'Run Live Scan')}</span>
         </button>
       </div>
-      <p className="text-[10px] text-zinc-500 italic px-1">{lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}</p>
+      <p className="text-[10px] text-neutral-500 italic px-1">{lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}</p>
 
       {/* Terminal Output */}
-      <div className="p-4 rounded-2xl bg-[#090d16] border border-cyan-500/30 text-zinc-300 min-h-[160px] space-y-1 overflow-x-auto shadow-inner">
-        <div className="flex items-center gap-1.5 pb-2 mb-2 border-b border-zinc-800/80 text-[10px] text-zinc-500">
+      <div className="p-4 rounded-2xl bg-[#090d16] border border-cyan-500/30 text-neutral-300 min-h-[160px] space-y-1 overflow-x-auto shadow-inner">
+        <div className="flex items-center gap-1.5 pb-2 mb-2 border-b border-neutral-800/80 text-[10px] text-neutral-500">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
@@ -75,7 +75,7 @@ export const TwitchScannerDemo: React.FC = () => {
         </div>
 
         {logs.length === 0 && !scanning && (
-          <p className="text-zinc-500 italic">{lang === 'es' ? 'Haz clic en "Ejecutar Escaneo" para auditar esta configuración...' : 'Click "Run Live Scan" to audit this stream setup...'}</p>
+          <p className="text-neutral-500 italic">{lang === 'es' ? 'Haz clic en "Ejecutar Escaneo" para auditar esta configuración...' : 'Click "Run Live Scan" to audit this stream setup...'}</p>
         )}
 
         {logs.map((log, idx) => (
@@ -84,7 +84,7 @@ export const TwitchScannerDemo: React.FC = () => {
             log.startsWith('✗') ? 'text-rose-400 font-semibold' :
             log.startsWith('→') ? 'text-amber-400 font-bold' :
             log.startsWith('▸') ? 'text-cyan-400 font-bold' :
-            log.startsWith('$') ? 'text-white font-bold' : 'text-zinc-400'
+            log.startsWith('$') ? 'text-neutral-50 font-bold' : 'text-neutral-400'
           }`}>
             {log}
           </div>
@@ -93,40 +93,40 @@ export const TwitchScannerDemo: React.FC = () => {
 
       {/* Recommended Upgrades Bundle */}
       {scanComplete && (
-        <div className="p-4 rounded-2xl bg-zinc-950 border border-cyan-500/40 animate-fadeIn space-y-3">
+        <div className="p-4 rounded-2xl bg-neutral-950 border border-cyan-500/40 animate-fadeIn space-y-3">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-bold text-white flex items-center gap-1.5">
+            <span className="font-bold text-neutral-50 flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-cyan-400" />
               <span>{lang === 'es' ? 'Bundle de Afiliados Recomendado' : 'Recommended Affiliate Bundle'}</span>
             </span>
-            <span className="text-zinc-400 text-[10px]">Tag: <strong className="text-cyan-400">axeltech0b-20</strong></span>
+            <span className="text-neutral-400 text-[10px]">Tag: <strong className="text-cyan-400">axeltech0b-20</strong></span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
-            <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-between">
               <div>
-                <span className="font-bold text-white block">Elgato Wave XLR</span>
-                <span className="text-zinc-400 text-[10px]">$159.99</span>
+                <span className="font-bold text-neutral-50 block">Elgato Wave XLR</span>
+                <span className="text-neutral-400 text-[10px]">$159.99</span>
               </div>
               <a href="https://www.amazon.com/s?k=Elgato+Wave+XLR&tag=axeltech0b-20" target="_blank" rel="nofollow sponsored noopener noreferrer" className="p-1.5 rounded-lg bg-cyan-500 text-black hover:bg-cyan-400">
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-between">
               <div>
-                <span className="font-bold text-white block">Elgato Stream Deck MK.2</span>
-                <span className="text-zinc-400 text-[10px]">$149.99</span>
+                <span className="font-bold text-neutral-50 block">Elgato Stream Deck MK.2</span>
+                <span className="text-neutral-400 text-[10px]">$149.99</span>
               </div>
               <a href="https://www.amazon.com/s?k=Elgato+Stream+Deck+MK2&tag=axeltech0b-20" target="_blank" rel="nofollow sponsored noopener noreferrer" className="p-1.5 rounded-lg bg-cyan-500 text-black hover:bg-cyan-400">
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-between">
               <div>
-                <span className="font-bold text-white block">Elgato Key Light Air</span>
-                <span className="text-zinc-400 text-[10px]">$129.99</span>
+                <span className="font-bold text-neutral-50 block">Elgato Key Light Air</span>
+                <span className="text-neutral-400 text-[10px]">$129.99</span>
               </div>
               <a href="https://www.amazon.com/s?k=Elgato+Key+Light+Air&tag=axeltech0b-20" target="_blank" rel="nofollow sponsored noopener noreferrer" className="p-1.5 rounded-lg bg-cyan-500 text-black hover:bg-cyan-400">
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -163,14 +163,14 @@ export const JarvisVoiceDemo: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Bot className="w-5 h-5 text-cyan-400" />
-          <span className="font-bold text-white uppercase tracking-wider">
+          <span className="font-bold text-neutral-50 uppercase tracking-wider">
             {lang === 'es' ? 'Simulación HUD Neural Jarvis' : 'Jarvis Neural HUD Simulation'}
           </span>
         </div>
         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
           state === 'speaking' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500 animate-pulse' :
           state === 'listening' ? 'bg-amber-500/20 text-amber-300 border-amber-500' :
-          'bg-zinc-800 text-zinc-400 border-zinc-700'
+          'bg-neutral-800 text-neutral-400 border-neutral-700'
         }`}>
           {state.toUpperCase()}
         </span>
@@ -183,14 +183,14 @@ export const JarvisVoiceDemo: React.FC = () => {
             key={i}
             className={`w-1.5 rounded-full transition-all duration-150 ${
               state === 'speaking' ? 'bg-cyan-400' :
-              state === 'listening' ? 'bg-amber-400' : 'bg-zinc-700'
+              state === 'listening' ? 'bg-amber-400' : 'bg-neutral-700'
             }`}
             style={{ height: state === 'speaking' ? `${Math.max(15, (h * Math.random() * 1.2))}%` : '15%' }}
           />
         ))}
       </div>
 
-      <p className="text-zinc-300 leading-relaxed bg-black/40 p-3 rounded-xl border border-white/5">
+      <p className="text-neutral-300 leading-relaxed bg-black/40 p-3 rounded-xl border border-white/5">
         {message || defaultMessage}
       </p>
 
@@ -200,7 +200,7 @@ export const JarvisVoiceDemo: React.FC = () => {
             lang === 'es' ? 'Auditar gasto actual de tokens' : 'Audit current token spend across OpenAI and Anthropic models',
             lang === 'es' ? 'auditoría de costos de tokens' : 'token spend audit'
           )}
-          className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-cyan-950 text-zinc-200 border border-zinc-800 hover:border-cyan-500 text-[11px] transition-all"
+          className="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-cyan-950 text-neutral-200 border border-neutral-800 hover:border-cyan-500 text-[11px] transition-all"
         >
           {lang === 'es' ? 'Auditar Gasto de Tokens' : 'Audit Token Spend'}
         </button>
@@ -209,12 +209,12 @@ export const JarvisVoiceDemo: React.FC = () => {
             lang === 'es' ? 'Desplegar subagente de investigación para CVEs' : 'Deploy research subagent to scrape latest security CVEs',
             lang === 'es' ? 'rastreo de vulnerabilidades CVE' : 'CVE security research'
           )}
-          className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-cyan-950 text-zinc-200 border border-zinc-800 hover:border-cyan-500 text-[11px] transition-all"
+          className="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-cyan-950 text-neutral-200 border border-neutral-800 hover:border-cyan-500 text-[11px] transition-all"
         >
           {lang === 'es' ? 'Despachar Agente de Investigación' : 'Dispatch Research Agent'}
         </button>
       </div>
-      <p className="text-[10px] text-zinc-500 italic px-1 text-center">
+      <p className="text-[10px] text-neutral-500 italic px-1 text-center">
         {lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}
       </p>
     </div>
@@ -229,14 +229,14 @@ export const SaaSDashboardDemo: React.FC = () => {
 
   if (!isDemoAuthenticated) {
     return (
-      <div className="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 flex flex-col items-center justify-center text-center space-y-5 font-sans relative overflow-hidden min-h-[340px]">
+      <div className="p-6 rounded-2xl bg-neutral-950 border border-neutral-800 flex flex-col items-center justify-center text-center space-y-5 font-sans relative overflow-hidden min-h-[340px]">
         <div className="absolute inset-0 bg-indigo-500/5 blur-[50px] pointer-events-none"></div>
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg text-xl z-10">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-neutral-50 shadow-lg text-xl z-10">
           S
         </div>
         <div className="z-10">
-          <h3 className="text-white font-extrabold text-base">SyntroSaaS</h3>
-          <p className="text-zinc-400 text-xs mt-1">
+          <h3 className="text-neutral-50 font-extrabold text-base">SyntroSaaS</h3>
+          <p className="text-neutral-400 text-xs mt-1">
             {lang === 'es' ? 'Autenticación & Gobernanza Enterprise' : 'Enterprise Auth & Governance'}
           </p>
         </div>
@@ -252,12 +252,12 @@ export const SaaSDashboardDemo: React.FC = () => {
         <div className="w-full max-w-xs space-y-2 z-10">
           <button
             onClick={() => setIsDemoAuthenticated(true)}
-            className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold bg-white text-black hover:bg-zinc-200 transition-all shadow-lg active:scale-95"
+            className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-bold bg-neutral-50 text-black hover:bg-neutral-200 transition-all shadow-lg active:scale-95"
           >
             <Zap className="w-3.5 h-3.5 fill-current" />
             {lang === 'es' ? 'Iniciar Demo Automático' : 'Launch Live Demo'}
           </button>
-          <button disabled className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-[10px] font-medium bg-zinc-900 text-zinc-600 border border-zinc-800 cursor-not-allowed">
+          <button disabled className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-[10px] font-medium bg-neutral-900 text-neutral-600 border border-neutral-800 cursor-not-allowed">
             <Key className="w-3 h-3" />
             {lang === 'es' ? 'Single Sign-On (SSO) Bloqueado' : 'Single Sign-On (SSO) Locked'}
           </button>
@@ -267,23 +267,23 @@ export const SaaSDashboardDemo: React.FC = () => {
   }
 
   return (
-    <div className="p-5 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-4 text-xs font-mono animate-fadeIn">
-      <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
+    <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-4 text-xs font-mono animate-fadeIn">
+      <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
         <div>
-          <span className="font-bold text-white block">
+          <span className="font-bold text-neutral-50 block">
             {lang === 'es' ? 'Gobernanza Organizacional SyntroSaaS' : 'SyntroSaaS Organization Governance'}
           </span>
-          <span className="text-zinc-500 text-[10px]">
+          <span className="text-neutral-500 text-[10px]">
             {lang === 'es' ? 'Simulador Multi-Tenant RBAC & Facturación Stripe' : 'Multi-Tenant RBAC & Stripe Billing Simulator'}
           </span>
         </div>
-        <div className="flex gap-1 bg-zinc-900 p-1 rounded-xl border border-zinc-800">
+        <div className="flex gap-1 bg-neutral-900 p-1 rounded-xl border border-neutral-800">
           {(['starter', 'pro', 'scale'] as const).map(t => (
             <button
               key={t}
               onClick={() => setTier(t)}
               className={`px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase transition-all ${
-                tier === t ? 'bg-red-600 text-white shadow-glow-red' : 'text-zinc-400 hover:text-white'
+                tier === t ? 'bg-red-600 text-neutral-50 shadow-glow-red' : 'text-neutral-400 hover:text-neutral-50'
               }`}
             >
               {t}
@@ -293,37 +293,37 @@ export const SaaSDashboardDemo: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
-          <span className="text-[9px] text-zinc-400 block">{lang === 'es' ? 'Cuota Mensual' : 'Monthly Quota'}</span>
-          <span className="font-bold text-white text-xs">
+        <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
+          <span className="text-[9px] text-neutral-400 block">{lang === 'es' ? 'Cuota Mensual' : 'Monthly Quota'}</span>
+          <span className="font-bold text-neutral-50 text-xs">
             {tier === 'starter' ? '10K API Calls' : tier === 'pro' ? '100K API Calls' : (lang === 'es' ? 'Ilimitado' : 'Unlimited')}
           </span>
         </div>
-        <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
-          <span className="text-[9px] text-zinc-400 block">{lang === 'es' ? 'Puestos de Equipo' : 'Team Seats'}</span>
-          <span className="font-bold text-white text-xs">
+        <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
+          <span className="text-[9px] text-neutral-400 block">{lang === 'es' ? 'Puestos de Equipo' : 'Team Seats'}</span>
+          <span className="font-bold text-neutral-50 text-xs">
             {tier === 'starter' ? (lang === 'es' ? '2 Puestos' : '2 Seats') : tier === 'pro' ? (lang === 'es' ? '10 Puestos' : '10 Seats') : (lang === 'es' ? 'Ilimitado' : 'Unlimited')}
           </span>
         </div>
-        <div className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800">
-          <span className="text-[9px] text-zinc-400 block">{lang === 'es' ? 'Estado Stripe' : 'Stripe Status'}</span>
+        <div className="p-2.5 rounded-xl bg-neutral-900 border border-neutral-800">
+          <span className="text-[9px] text-neutral-400 block">{lang === 'es' ? 'Estado Stripe' : 'Stripe Status'}</span>
           <span className="font-bold text-emerald-400 text-xs">{lang === 'es' ? 'Activo (Pagado)' : 'Active (Paid)'}</span>
         </div>
       </div>
 
-      <div className="p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 flex items-center justify-between">
+      <div className="p-3 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between">
         <div className="min-w-0 pr-2">
-          <span className="text-[10px] text-zinc-500 block">{lang === 'es' ? 'API Key activa delimitada:' : 'Active Scoped API Key:'}</span>
+          <span className="text-[10px] text-neutral-500 block">{lang === 'es' ? 'API Key activa delimitada:' : 'Active Scoped API Key:'}</span>
           <code className="text-red-400 font-bold truncate block">{apiKey}</code>
         </div>
         <button
           onClick={() => setApiKey(`sk_live_syntro_${Math.random().toString(36).substring(2, 10)}`)}
-          className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-[10px] shrink-0"
+          className="px-3 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-50 text-[10px] shrink-0"
         >
           {lang === 'es' ? 'Rotar Clave' : 'Rotate Key'}
         </button>
       </div>
-      <p className="text-[10px] text-zinc-500 italic px-1 text-center">
+      <p className="text-[10px] text-neutral-500 italic px-1 text-center">
         {lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}
       </p>
     </div>
@@ -362,9 +362,9 @@ export const RagChatDemo: React.FC = () => {
   };
 
   return (
-    <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-3 text-xs font-mono">
-      <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
-        <span className="font-bold text-white flex items-center gap-1.5">
+    <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3 text-xs font-mono">
+      <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+        <span className="font-bold text-neutral-50 flex items-center gap-1.5">
           <Zap className="w-4 h-4 text-amber-400" />
           <span>PGVector RAG Stream Simulator</span>
         </span>
@@ -373,10 +373,10 @@ export const RagChatDemo: React.FC = () => {
         </span>
       </div>
 
-      <div className="h-44 overflow-y-auto space-y-2.5 p-2 bg-black/50 rounded-xl border border-zinc-900">
+      <div className="h-44 overflow-y-auto space-y-2.5 p-2 bg-black/50 rounded-xl border border-neutral-900">
         {activeMessages.map((m, i) => (
           <div key={i} className={`p-2.5 rounded-xl text-[11px] leading-relaxed ${
-            m.role === 'user' ? 'bg-zinc-900 text-zinc-200 ml-8' : 'bg-red-950/40 text-zinc-100 border border-red-500/30 mr-8'
+            m.role === 'user' ? 'bg-neutral-900 text-neutral-200 ml-8' : 'bg-red-950/40 text-neutral-100 border border-red-500/30 mr-8'
           }`}>
             <p>{m.text}</p>
             {m.citation && (
@@ -395,7 +395,7 @@ export const RagChatDemo: React.FC = () => {
               lang === 'es' ? '¿Cómo evitan alucinaciones?' : 'How do you prevent hallucinations?',
               '0.94'
             )}
-            className="flex-1 px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] border border-zinc-800 transition-colors text-left"
+            className="flex-1 px-3 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-[11px] border border-neutral-800 transition-colors text-left"
           >
             {lang === 'es' ? '¿Cómo evitan alucinaciones?' : 'How do you prevent hallucinations?'}
           </button>
@@ -404,12 +404,12 @@ export const RagChatDemo: React.FC = () => {
               lang === 'es' ? '¿Qué formatos aceptan?' : 'What formats are supported?',
               '0.91'
             )}
-            className="flex-1 px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] border border-zinc-800 transition-colors text-left"
+            className="flex-1 px-3 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-[11px] border border-neutral-800 transition-colors text-left"
           >
             {lang === 'es' ? '¿Qué formatos aceptan?' : 'What formats are supported?'}
           </button>
         </div>
-        <p className="text-[10px] text-zinc-500 italic px-1 text-center">
+        <p className="text-[10px] text-neutral-500 italic px-1 text-center">
           {lang === 'es' ? 'Demo interactiva — datos de muestra' : 'Interactive demo — sample data'}
         </p>
       </div>

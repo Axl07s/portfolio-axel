@@ -103,7 +103,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 <Activity className="w-3.5 h-3.5 text-emerald-400" />
                 <span className="text-[10px] uppercase">Telemetry</span>
               </div>
-              <div className="text-xl font-bold text-white">ETW & Sysmon</div>
+              <div className="text-xl font-bold text-neutral-50">ETW & Sysmon</div>
               <span className="text-[9px] text-emerald-400/80 mt-1">&lt;2ms Latency Hooks</span>
             </div>
             <div className="bg-[#060b17] p-4 flex flex-col justify-between">
@@ -111,7 +111,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
                 <span className="text-[10px] uppercase">Interception</span>
               </div>
-              <div className="text-xl font-bold text-white">YARA + Shannon</div>
+              <div className="text-xl font-bold text-neutral-50">YARA + Shannon</div>
               <span className="text-[9px] text-red-400/80 mt-1">Process Hollowing Block</span>
             </div>
           </div>
@@ -201,7 +201,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                    </div>
                    
                    <div className="space-y-2 font-mono text-[10px] text-slate-400">
-                     <div className="flex justify-between"><span className="text-slate-500">Event ID:</span> <span className="text-white">4688</span></div>
+                     <div className="flex justify-between"><span className="text-slate-500">Event ID:</span> <span className="text-neutral-50">4688</span></div>
                      <div className="flex justify-between"><span className="text-slate-500">Process:</span> <span className="text-red-400">C:\Temp\malware.exe</span></div>
                      <div className="flex justify-between"><span className="text-slate-500">Entropy:</span> <span className="text-red-400">7.99 (High)</span></div>
                      <div className="flex justify-between"><span className="text-slate-500">Action:</span> <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">BLOCKED</span></div>
@@ -215,7 +215,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                 >
                    <div className="flex items-center justify-between mb-4">
                      <Shield className="w-5 h-5 text-emerald-500" />
-                     <span className="text-white font-bold">100% Secure</span>
+                     <span className="text-neutral-50 font-bold">100% Secure</span>
                    </div>
                    <div className="h-12 flex items-end gap-1 opacity-50">
                       {[...Array(15)].map((_, i) => (
@@ -231,7 +231,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       <section id="enterprise-yara" className="relative w-full max-w-6xl mx-auto px-6 py-24 z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="text-3xl font-bold text-neutral-50 mb-6">
               {lang === 'es' ? 'Motor Heurístico de Comportamiento' : 'Behavioral Heuristic Engine'}
             </h2>
             <p className="text-slate-400 text-lg mb-8 leading-relaxed">
@@ -246,7 +246,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                   <Activity className="w-4 h-4 text-emerald-400" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1">{lang === 'es' ? 'Análisis de Memoria Dinámica' : 'Dynamic Memory Analysis'}</h4>
+                  <h4 className="text-neutral-50 font-bold mb-1">{lang === 'es' ? 'Análisis de Memoria Dinámica' : 'Dynamic Memory Analysis'}</h4>
                   <p className="text-sm text-slate-500">{lang === 'es' ? 'Escaneo de regiones de memoria PAGE_EXECUTE_READWRITE en busca de payloads cifrados o ofuscados.' : 'Scanning PAGE_EXECUTE_READWRITE memory regions for encrypted or obfuscated payloads.'}</p>
                 </div>
               </div>
@@ -255,7 +255,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1">{lang === 'es' ? 'Aislamiento de Red Automático' : 'Automatic Network Isolation'}</h4>
+                  <h4 className="text-neutral-50 font-bold mb-1">{lang === 'es' ? 'Aislamiento de Red Automático' : 'Automatic Network Isolation'}</h4>
                   <p className="text-sm text-slate-500">{lang === 'es' ? 'Bloqueo de comunicación C2 (Command & Control) manipulando la tabla de ruteo local del host comprometido.' : 'Blocking C2 (Command & Control) communication by manipulating the routing table of the compromised host.'}</p>
                 </div>
               </div>
@@ -332,7 +332,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {(project.featuresES || project.featuresEN) && (
         <section className="max-w-5xl mx-auto px-6 pb-24">
           <div className="bg-slate-900/40 border border-emerald-500/20 rounded-2xl p-8 md:p-12">
-            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <h3 className="text-2xl font-bold text-neutral-50 mb-6 flex items-center gap-3">
               <Activity className="w-6 h-6 text-emerald-400" />
               {lang === 'es' ? 'Capacidades Críticas' : 'Critical Capabilities'}
             </h3>
@@ -370,7 +370,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
       {/* Marketing B2B - Enterprise Security Value */}
       <section id="enterprise-features" className="max-w-5xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-neutral-50 mb-6 tracking-tight">
             {lang === 'es' ? 'Protección Proactiva a Nivel Kernel' : 'Proactive Kernel-Level Protection'}
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -385,7 +385,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Shield className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className="text-xl font-bold text-neutral-50 mb-3">
               {lang === 'es' ? 'Mitigación de Ransomware' : 'Ransomware Mitigation'}
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -397,7 +397,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className="text-xl font-bold text-neutral-50 mb-3">
               {lang === 'es' ? 'Bajo Impacto Operativo' : 'Low Operational Impact'}
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -409,7 +409,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6">
               <Server className="w-6 h-6 text-emerald-400" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className="text-xl font-bold text-neutral-50 mb-3">
               {lang === 'es' ? 'Motor Heurístico & Reglas YARA' : 'Heuristic Engine & YARA Rules'}
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -419,7 +419,7 @@ export function EnterpriseLayout({ project }: { project: PersonalProject }) {
         </div>
 
         <div className="mt-16 pt-12 border-t border-slate-800/50">
-          <h4 className="text-lg font-semibold text-white mb-6">
+          <h4 className="text-lg font-semibold text-neutral-50 mb-6">
             {lang === 'es' ? 'Stack Tecnológico y Arquitectura:' : 'Tech Stack & Architecture:'}
           </h4>
           <div className="flex flex-wrap gap-3">

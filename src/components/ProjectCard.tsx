@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Project } from '../data/portfolioData';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectCardProps {
@@ -9,26 +9,21 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const mainImage = project.images[0]?.url || '/projects/syntrosaas_01.png';
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // Only navigate if the click wasn't on the live link
     if ((e.target as HTMLElement).closest('a')) {
       return;
     }
     navigate(`/project/${project.id}`);
   };
 
-  const firstSentence = project.description?.includes('.')
-    ? project.description.split('.')[0].trim() + '.'
-    : project.description;
-
   return (
     <div
       onClick={handleCardClick}
-      className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 bg-zinc-900 border border-zinc-800 hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+      className="group relative cursor-pointer w-full h-[320px] md:h-[450px] lg:h-[500px] overflow-hidden rounded-[24px] bg-[#0f0f0f] flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
       aria-label={`${t('projects.viewLive')} ${project.title}`}
       tabIndex={0}
       onKeyDown={(e) => {
@@ -38,74 +33,43 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         }
       }}
     >
-      {/* Studio Browser Window Chrome */}
-      <div className="h-9 px-4 bg-zinc-950/90 border-b border-zinc-800/80 flex items-center justify-between select-none shrink-0">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-700/80 group-hover:bg-rose-500/80 transition-colors" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-700/80 group-hover:bg-amber-500/80 transition-colors" />
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-700/80 group-hover:bg-emerald-500/80 transition-colors" />
-        </div>
-        <div className="text-[11px] font-mono text-zinc-400 truncate max-w-[160px]">
-          {project.title.toLowerCase().replace(/\s+/g, '-')}.app
-        </div>
-        <div className="w-8" />
-      </div>
-
-      {/* Main Canvas / Screenshot (16:10) */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-950">
+      {/* Background Image Container */}
+      <div className="absolute inset-0 w-full h-full bg-[#111]">
         <img
           src={mainImage}
           alt={project.title}
-          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover object-top opacity-70 transition-transform duration-[1.5s] ease-out group-hover:scale-[1.03] group-hover:opacity-100"
           loading="lazy"
         />
+        {/* Soft bottom gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent opacity-80" />
+      </div>
 
-        {/* Hover Overlay */}
-        <div className="hidden sm:flex absolute inset-0 flex-col items-center justify-center text-center p-6 bg-zinc-950/95 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+      {/* Content */}
+      <div className="absolute inset-x-0 bottom-0 p-8 md:p-10 flex flex-col items-start z-10 transform transition-transform duration-500 ease-out translate-y-4 group-hover:translate-y-0">
+        <div className="flex items-center gap-3 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex-wrap">
+          <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-emerald-500/20">
             {project.category}
           </span>
-          <h3 className="text-xl sm:text-2xl font-bold text-white mt-2.5 mb-2 tracking-tight">
-            {project.title}
-          </h3>
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-sm font-normal">
-            {firstSentence}
-          </p>
-
-          <div className="flex items-center justify-center gap-3 mt-7 sm:mt-8">
-            <span
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-xs font-semibold tracking-wide transition-all emil-btn shadow-lg shadow-white/10"
-            >
-              <span>{lang === 'es' ? 'Ver Estudio' : 'View Case Study'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-950 shrink-0" />
+          {project.stack?.slice(0, 3).map((tech, i) => (
+            <span key={i} className="text-xs font-mono font-medium text-neutral-400 uppercase tracking-widest bg-[#0a0a0a]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5">
+              {tech}
             </span>
-
-            {project.liveUrl && project.liveUrl !== '#' && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="group/link inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium tracking-wide transition-all hover:text-white emil-btn backdrop-blur-sm"
-              >
-                <span>{lang === 'es' ? 'Sitio en Vivo' : 'Live Site'}</span>
-                <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover/link:text-white shrink-0 transition-colors" />
-              </a>
-            )}
-          </div>
+          ))}
         </div>
-
-        {/* Persistent Mobile Card Info */}
-        <div className="sm:hidden p-4 bg-zinc-950 border-t border-zinc-800 flex items-center justify-between">
+        
+        <div className="flex justify-between items-end w-full">
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold block">
-              {project.category}
-            </span>
-            <h3 className="text-sm font-bold text-white">{project.title}</h3>
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-neutral-50 mb-2 tracking-[-0.02em]">
+              {project.title}
+            </h3>
+            <p className="text-base text-neutral-400 font-medium max-w-[45ch] line-clamp-2">
+              {project.description}
+            </p>
           </div>
-          <div className="flex items-center gap-1 text-xs font-semibold text-zinc-400">
-            <span>{lang === 'es' ? 'Explorar' : 'Explore'}</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+          
+          <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-500 ease-[0.16,1,0.3,1] shadow-xl">
+            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
         </div>
       </div>

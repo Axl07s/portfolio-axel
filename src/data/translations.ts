@@ -8,7 +8,7 @@ export const translations = {
     // Hero
     'hero.status': 'AVAILABLE FOR FREELANCE PROJECTS',
     'hero.title': 'Full-Stack Engineering & AI Systems',
-    "hero.subtitle": "Full-stack product engineer. I build modern web applications, scalable MVPs, and applied AI systems engineered for production.",
+    "hero.subtitle": "Full-stack product engineer. I build websites, automation tools, and AI systems that help businesses grow and save time.",
     'hero.cta.primary': 'Get a Quote',
     'hero.cta.secondary': 'View Portfolio',
     
@@ -18,14 +18,14 @@ export const translations = {
     
     // Projects
     'projects.title': 'Featured Client Work & SaaS',
-    'projects.subtitle': 'Multi-tenant SaaS platforms, AI agent orchestration, and B2B acquisition tools deployed to production.',
+    'projects.subtitle': 'Production-ready solutions: automated booking systems, interactive business portals, and AI tools built with robust engineering.',
     'projects.viewLive': 'Live Deploy',
     'projects.viewGithub': 'Source Code',
     'projects.metrics': 'Business Impact',
     'projects.features': 'Core Architecture',
     
     // Footer
-    'footer.description': 'Full-stack product engineer specializing in modern web applications, MVPs, and applied AI systems.',
+    'footer.description': 'Full-stack product engineer specializing in modern web applications, automation, and AI systems.',
     'footer.links': 'Links',
     'footer.legal': 'All rights reserved.',
     
@@ -54,7 +54,7 @@ export const translations = {
     // Hero
     'hero.status': 'DISPONIBLE PARA PROYECTOS FREELANCE',
     'hero.title': 'Ingeniería Full-Stack & Sistemas de IA',
-    'hero.subtitle': 'Ingeniero de producto full-stack. Construyo aplicaciones web modernas, MVPs escalables y sistemas con IA listos para producción.',
+    'hero.subtitle': 'Ingeniero de producto full-stack. Construyo aplicaciones web modernas, herramientas de automatización y sistemas con IA que ayudan a los negocios a vender más y ahorrar tiempo.',
     'hero.cta.primary': 'Cotizar Proyecto',
     'hero.cta.secondary': 'Ver Portafolio',
     
@@ -64,14 +64,14 @@ export const translations = {
     
     // Projects
     'projects.title': 'Proyectos y SaaS Destacados',
-    'projects.subtitle': 'Plataformas SaaS multi-tenant, orquestación de agentes de IA y herramientas de adquisición B2B desplegadas en producción.',
+    'projects.subtitle': 'Sistemas listos para producción: plataformas de reservas automatizadas, portales de clientes y soluciones con IA construidas con ingeniería robusta.',
     'projects.viewLive': 'Ver en vivo',
     'projects.viewGithub': 'Código Fuente',
     'projects.metrics': 'Impacto de Negocio',
     'projects.features': 'Arquitectura Core',
     
     // Footer
-    'footer.description': 'Ingeniero de software full-stack especializado en aplicaciones web modernas, MVPs y sistemas con IA.',
+    'footer.description': 'Ingeniero de software full-stack especializado en aplicaciones web modernas, automatización y sistemas con IA.',
     'footer.links': 'Enlaces',
     'footer.legal': 'Todos los derechos reservados.',
     

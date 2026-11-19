@@ -67,9 +67,9 @@ export function ScrollAffordance({ sections, accentColor }: ScrollAffordanceProp
       indigo: 'bg-indigo-400 shadow-[0_0_8px_rgba(129,140,248,0.6)]',
       blue: 'bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.6)]',
       sky: 'bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.6)]',
-      white: 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]',
+      white: 'bg-neutral-50 shadow-[0_0_8px_rgba(255,255,255,0.5)]',
     };
-    return `scale-125 ${map[accent.value] ?? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]'}`;
+    return `scale-125 ${map[accent.value] ?? 'bg-neutral-50 shadow-[0_0_8px_rgba(255,255,255,0.5)]'}`;
   };
 
   return (
@@ -80,7 +80,7 @@ export function ScrollAffordance({ sections, accentColor }: ScrollAffordanceProp
         className="pointer-events-none fixed bottom-10 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-1 transition-opacity duration-700 ease-out"
         style={{ opacity: scrolled ? 0 : 1 }}
       >
-        <ChevronDown className="h-6 w-6 animate-bounce text-zinc-400" strokeWidth={1.5} />
+        <ChevronDown className="h-6 w-6 animate-bounce text-neutral-400" strokeWidth={1.5} />
       </div>
 
       {/* Section Dots - desktop only */}
@@ -93,7 +93,7 @@ export function ScrollAffordance({ sections, accentColor }: ScrollAffordanceProp
           return (
             <div key={id} className="group relative flex items-center pointer-events-auto">
               <span
-                className="absolute right-6 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 text-[11px] font-medium text-zinc-300 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100"
+                className="absolute right-6 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 text-[11px] font-medium text-neutral-300 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100"
                 style={{ pointerEvents: 'none' }}
               >
                 {String(i + 1).padStart(2, '0')} {label}
@@ -103,7 +103,7 @@ export function ScrollAffordance({ sections, accentColor }: ScrollAffordanceProp
                 aria-label={`Ir a ${label}`}
                 className={[
                   'h-2 w-2 rounded-full transition-all duration-300 ease-out focus:outline-none',
-                  isActive ? getActiveDotClass() : 'bg-zinc-500 hover:bg-zinc-300 hover:scale-110',
+                  isActive ? getActiveDotClass() : 'bg-neutral-500 hover:bg-neutral-300 hover:scale-110',
                 ].join(' ')}
                 style={isActive && accent.useCss ? activeDotStyle : {}}
               />

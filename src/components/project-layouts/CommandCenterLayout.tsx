@@ -111,14 +111,14 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         {/* ========================================================== */}
         <section id="command-interactive" className="lg:hidden relative z-10 w-full px-4 pt-4 pb-12">
           {/* Main Mobile Card: Jarvis HUD Window */}
-          <div className="relative w-full rounded-2xl overflow-hidden border border-blue-500/30 bg-[#070d1e]/90 shadow-[0_0_30px_rgba(56,189,248,0.15)] backdrop-blur-md lg:backdrop-blur-xl">
+          <div className="relative w-full rounded-2xl overflow-hidden border border-emerald-500/30 bg-[#070d1e]/90 shadow-[0_0_30px_rgba(56,189,248,0.15)] backdrop-blur-md lg:backdrop-blur-xl">
             {/* Window Header */}
-            <div className="h-10 bg-slate-900/90 border-b border-blue-500/20 px-4 flex items-center justify-between">
+            <div className="h-10 bg-slate-900/90 border-b border-emerald-500/20 px-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/80 animate-pulse"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
-                <span className="ml-2 text-[11px] font-mono text-blue-400 tracking-wider font-semibold">JARVIS KERNEL v2.4</span>
+                <span className="ml-2 text-[11px] font-mono text-emerald-400 tracking-wider font-semibold">JARVIS KERNEL v2.4</span>
               </div>
               <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full uppercase tracking-widest animate-pulse">
                 {lang === 'es' ? 'EN LÍNEA' : 'ONLINE'}
@@ -138,19 +138,19 @@ export function CommandCenterLayout({ project }: { project: Project }) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80 pointer-events-none"></div>
               
               {/* Tap to expand hint */}
-              <div className="absolute bottom-3 right-3 bg-black/70 border border-blue-500/40 rounded-lg px-2.5 py-1 text-[10px] font-mono text-blue-300 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
-                <Activity className="w-3 h-3 text-blue-400 animate-pulse" />
+              <div className="absolute bottom-3 right-3 bg-black/70 border border-emerald-500/40 rounded-lg px-2.5 py-1 text-[10px] font-mono text-blue-300 backdrop-blur-md flex items-center gap-1.5 shadow-lg">
+                <Activity className="w-3 h-3 text-emerald-400 animate-pulse" />
                 <span>{lang === 'es' ? 'Tocar para expandir' : 'Tap to expand'}</span>
               </div>
             </div>
 
             {/* Mobile Telemetry & Audio Stream Widgets */}
-            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gradient-to-b from-[#070d1e]/40 to-[#020617] border-t border-blue-500/20">
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gradient-to-b from-[#070d1e]/40 to-[#020617] border-t border-emerald-500/20">
               {/* Telemetry Pill */}
-              <div className="bg-slate-900/80 border border-blue-500/20 rounded-xl p-3 shadow-md">
+              <div className="bg-slate-900/80 border border-emerald-500/20 rounded-xl p-3 shadow-md">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-1.5">
-                    <Activity className="w-3.5 h-3.5 text-blue-400" />
+                    <Activity className="w-3.5 h-3.5 text-emerald-400" />
                     <span className="text-[11px] font-mono text-blue-300 font-semibold uppercase tracking-wider">Live Telemetry</span>
                   </div>
                   <span className="text-[10px] font-mono text-emerald-400 font-bold">42ms P99</span>
@@ -158,10 +158,10 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                 <div className="space-y-1.5">
                   <div className="flex justify-between text-[10px] font-mono text-slate-400">
                     <span>LLM Engine</span>
-                    <span className="text-white">gpt-4-turbo</span>
+                    <span className="text-neutral-50">gpt-4-turbo</span>
                   </div>
                   <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="w-4/5 h-full bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]"></div>
+                    <div className="w-4/5 h-full bg-emerald-500 rounded-full shadow-[0_0_8px_#3b82f6]"></div>
                   </div>
                   <div className="flex justify-between text-[10px] font-mono text-slate-400 pt-0.5">
                     <span>Context Load</span>
@@ -220,17 +220,17 @@ export function CommandCenterLayout({ project }: { project: Project }) {
             >
               {/* LAYER 1: Background Blur / Glow */}
               <div 
-                className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full"
+                className="absolute inset-0 bg-emerald-500/10 blur-3xl rounded-full"
                 style={{ transform: 'translateZ(-200px) scale(0.8)' }}
               ></div>
     
               {/* LAYER 2: The Core UI (Main Dashboard Image) */}
               <div 
-                className="absolute w-[60%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
+                className="absolute w-[75%] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(56,189,248,0.2)] bg-black/40 backdrop-blur-xl"
                 style={{ transform: 'translateZ(0px)' }}
               >
-                 <div className="absolute top-0 left-0 w-full h-8 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
-                   <div className="text-[10px] font-mono text-blue-400 tracking-widest uppercase">Jarvis Kernel v2.4</div>
+                 <div className="absolute top-0 left-0 w-full h-8 bg-neutral-50/5 border-b border-white/10 flex items-center px-4 justify-between backdrop-blur-md">
+                   <div className="text-[10px] font-mono text-emerald-400 tracking-widest uppercase">Jarvis Kernel v2.4</div>
                    <div className="flex gap-2">
                      <div className="w-2 h-2 rounded-full bg-red-500/80"></div>
                      <div className="w-2 h-2 rounded-full bg-amber-500/80"></div>
@@ -243,17 +243,17 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     
               {/* LAYER 3: Left Floating Widget (Telemetry) */}
               <div 
-                className="absolute left-[5%] top-[20%] w-[250px] bg-slate-900/80 backdrop-blur-xl border border-blue-500/20 rounded-xl p-4 shadow-2xl"
+                className="absolute left-[2%] top-[20%] w-[250px] bg-slate-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
                 style={{ transform: 'translateZ(80px) rotateY(15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-4">
-                   <Activity className="w-4 h-4 text-blue-400" />
-                   <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">Live Telemetry</span>
+                   <Activity className="w-4 h-4 text-emerald-400" />
+                   <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">Live Telemetry</span>
                  </div>
                  <div className="space-y-3">
                    <div>
                      <div className="flex justify-between text-[10px] text-slate-400 mb-1"><span>LLM Latency</span><span>42ms</span></div>
-                     <div className="w-full h-1 bg-slate-800 rounded-full"><div className="w-1/3 h-full bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></div></div>
+                     <div className="w-full h-1 bg-slate-800 rounded-full"><div className="w-1/3 h-full bg-emerald-500 rounded-full shadow-[0_0_10px_#3b82f6]"></div></div>
                    </div>
                    <div>
                      <div className="flex justify-between text-[10px] text-slate-400 mb-1"><span>Context Window</span><span>14k / 128k</span></div>
@@ -269,7 +269,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
     
               {/* LAYER 4: Right Floating Widget (Voice / Audio) */}
               <div 
-                className="absolute right-[5%] bottom-[15%] w-[220px] bg-slate-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
+                className="absolute right-[2%] bottom-[15%] w-[220px] bg-slate-900/80 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-4 shadow-2xl"
                 style={{ transform: 'translateZ(120px) rotateY(-15deg)' }}
               >
                  <div className="flex items-center gap-2 mb-3">
@@ -301,10 +301,10 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                 }}
               >
                 {/* Corner Markers */}
-                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-blue-500/50"></div>
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blue-500/50"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-blue-500/50"></div>
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-blue-500/50"></div>
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-emerald-500/50"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-emerald-500/50"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-emerald-500/50"></div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-emerald-500/50"></div>
               </div>
     
             </div>
@@ -313,8 +313,8 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
       <section id="command-features" className="relative z-10 max-w-6xl mx-auto px-6 pb-20">
          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="md:col-span-1 border-l-2 border-blue-500/30 pl-6">
-              <h2 className="text-3xl font-bold text-white mb-4">{project.title}</h2>
+            <div className="md:col-span-1 border-l-2 border-emerald-500/30 pl-6">
+              <h2 className="text-3xl font-bold text-neutral-50 mb-4">{project.title}</h2>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">{project.description}</p>
               
               <div className="flex flex-wrap gap-2">
@@ -328,9 +328,9 @@ export function CommandCenterLayout({ project }: { project: Project }) {
 
             <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
                {project.features.map((feature, i) => (
-                 <div key={i} className="bg-slate-900/40 border border-slate-800/50 p-5 rounded-xl flex items-start gap-4 hover:border-blue-500/30 transition-colors">
-                   <div className="p-2 bg-blue-500/10 rounded-lg shrink-0">
-                     <Network className="w-4 h-4 text-blue-400" />
+                 <div key={i} className="bg-slate-900/40 border border-slate-800/50 p-5 rounded-xl flex items-start gap-4 hover:border-emerald-500/30 transition-colors">
+                   <div className="p-2 bg-emerald-500/10 rounded-lg shrink-0">
+                     <Network className="w-4 h-4 text-emerald-400" />
                    </div>
                    <p className="text-sm text-slate-300 leading-relaxed">{feature}</p>
                  </div>
@@ -349,7 +349,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                   <img src={img.url} alt={img.caption} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 pointer-events-none"></div>
                 </div>
-                <p className="text-slate-400 text-sm font-medium border-l-2 border-blue-500/50 pl-3">
+                <p className="text-slate-400 text-sm font-medium border-l-2 border-emerald-500/50 pl-3">
                   {img.caption}
                 </p>
               </div>

@@ -39,14 +39,14 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#07080d] text-zinc-100 flex flex-col font-mono animate-fadeIn">
+    <div className="min-h-screen bg-[#07080d] text-neutral-100 flex flex-col font-mono animate-fadeIn">
       
       {/* Header with integrated back button */}
-      <header className="border-b border-zinc-800/80 px-4 sm:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto w-full sticky top-0 bg-[#07090e]/90 backdrop-blur-md z-30">
+      <header className="border-b border-neutral-800/80 px-4 sm:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto w-full sticky top-0 bg-[#07090e]/90 backdrop-blur-md z-30">
         <div className="flex items-center gap-2.5">
           <button
             onClick={onBack}
-            className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-colors"
+            className="p-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-neutral-50 hover:border-neutral-700 transition-colors"
             title="Volver"
             aria-label="Volver"
           >
@@ -56,18 +56,18 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
             <Database className="w-4 h-4" />
           </div>
           <div>
-            <h1 className="text-sm sm:text-base font-bold text-white tracking-wider">ENTERPRISE RAG</h1>
+            <h1 className="text-sm sm:text-base font-bold text-neutral-50 tracking-wider">ENTERPRISE RAG</h1>
             <span className="text-[10px] text-red-400 hidden sm:inline">PGVector Embeddings</span>
           </div>
         </div>
 
-        <nav className="flex items-center gap-1 bg-black/60 p-1 rounded-2xl border border-zinc-800 text-xs">
+        <nav className="flex items-center gap-1 bg-black/60 p-1 rounded-2xl border border-neutral-800 text-xs">
           {(['chat', 'vault', 'chunks'] as const).map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-3 py-1.5 rounded-xl font-bold uppercase transition-all ${
-                activeTab === tab ? 'bg-red-600 text-white shadow-md' : 'text-zinc-400 hover:text-zinc-200'
+                activeTab === tab ? 'bg-red-600 text-neutral-50 shadow-md' : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
               {tab === 'chat' ? 'Grounded Chat' : tab === 'vault' ? 'Document Vault' : 'PGVector Chunks'}
@@ -81,18 +81,18 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
         
         {activeTab === 'chat' && (
           <div className="space-y-4 animate-fadeIn">
-            <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-between text-xs">
-              <span className="font-bold text-white flex items-center gap-2">
+            <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800 flex items-center justify-between text-xs">
+              <span className="font-bold text-neutral-50 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-400" />
                 <span>Anti-Hallucination Verified Channel</span>
               </span>
               <span className="text-emerald-400 text-[10px] font-bold">● PGVector Connected</span>
             </div>
 
-            <div className="h-[380px] overflow-y-auto space-y-3 p-4 rounded-2xl bg-black/70 border border-zinc-800">
+            <div className="h-[380px] overflow-y-auto space-y-3 p-4 rounded-2xl bg-black/70 border border-neutral-800">
               {messages.map((m, i) => (
                 <div key={i} className={`p-3.5 rounded-2xl text-xs leading-relaxed max-w-xl ${
-                  m.role === 'user' ? 'bg-zinc-900 text-zinc-100 ml-auto' : 'bg-red-950/30 border border-red-500/30 text-zinc-200'
+                  m.role === 'user' ? 'bg-neutral-900 text-neutral-100 ml-auto' : 'bg-red-950/30 border border-red-500/30 text-neutral-200'
                 }`}>
                   <p>{m.text}</p>
                   {m.citation && (
@@ -111,11 +111,11 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSend()}
                 placeholder="Pregunta algo sobre la arquitectura, seguridad o API..."
-                className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-red-500"
+                className="flex-1 bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-xs text-neutral-50 focus:outline-none focus:border-red-500"
               />
               <button
                 onClick={handleSend}
-                className="px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-glow-red"
+                className="px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-neutral-50 font-bold text-xs flex items-center gap-1.5 shadow-glow-red"
               >
                 <Send className="w-4 h-4" />
                 <span>Enviar</span>
@@ -126,15 +126,15 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
 
         {activeTab === 'vault' && (
           <div className="space-y-4 animate-fadeIn">
-            <h2 className="text-sm font-bold text-white uppercase">Ingested Knowledge Documents</h2>
+            <h2 className="text-sm font-bold text-neutral-50 uppercase">Ingested Knowledge Documents</h2>
             <div className="space-y-3">
               {documents.map((doc, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-between text-xs">
+                <div key={i} className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-3">
                     <FileText className="w-5 h-5 text-red-400" />
                     <div>
-                      <span className="font-bold text-white block">{doc.name}</span>
-                      <span className="text-[10px] text-zinc-400">{doc.size} • {doc.chunks} Chunks Indexados</span>
+                      <span className="font-bold text-neutral-50 block">{doc.name}</span>
+                      <span className="text-[10px] text-neutral-400">{doc.size} • {doc.chunks} Chunks Indexados</span>
                     </div>
                   </div>
                   <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
@@ -148,13 +148,13 @@ export const RagEngineView: React.FC<RagEngineViewProps> = ({ onBack }) => {
 
         {activeTab === 'chunks' && (
           <div className="space-y-4 animate-fadeIn">
-            <h2 className="text-sm font-bold text-white uppercase">PGVector HNSW Index Vectors</h2>
-            <div className="p-4 rounded-2xl bg-black/70 border border-zinc-800 space-y-2 text-xs">
-              <div className="p-2.5 rounded-xl bg-zinc-900 font-mono text-[11px] text-zinc-300">
+            <h2 className="text-sm font-bold text-neutral-50 uppercase">PGVector HNSW Index Vectors</h2>
+            <div className="p-4 rounded-2xl bg-black/70 border border-neutral-800 space-y-2 text-xs">
+              <div className="p-2.5 rounded-xl bg-neutral-900 font-mono text-[11px] text-neutral-300">
                 <span className="text-red-400 font-bold block">Chunk ID: chunk_00921 (Cosine: 0.941)</span>
                 "The auth system uses Supabase Row-Level Security with custom JWT claims ensuring tenant isolation across all multi-tenant tables."
               </div>
-              <div className="p-2.5 rounded-xl bg-zinc-900 font-mono text-[11px] text-zinc-300">
+              <div className="p-2.5 rounded-xl bg-neutral-900 font-mono text-[11px] text-neutral-300">
                 <span className="text-red-400 font-bold block">Chunk ID: chunk_00922 (Cosine: 0.884)</span>
                 "Stripe webhooks are verified using HMAC-SHA256 signatures before updating subscription tiers in the PostgreSQL database."
               </div>

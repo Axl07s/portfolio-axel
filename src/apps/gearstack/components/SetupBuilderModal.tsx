@@ -39,22 +39,22 @@ export const SetupBuilderModal: React.FC<SetupBuilderModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
-      <div className="relative w-full max-w-4xl glass-panel rounded-3xl border border-zinc-800 bg-zinc-950/95 overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-4xl glass-panel rounded-3xl border border-neutral-800 bg-neutral-950/95 overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header */}
-        <div className="px-6 py-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/60 shrink-0">
+        <div className="px-6 py-4 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/60 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shadow-glow-orange">
-              <Sparkles className="w-5 h-5 text-white" />
+              <Sparkles className="w-5 h-5 text-neutral-50" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">Interactive Setup Architect</h2>
-              <p className="text-xs text-zinc-400">Curated hardware bundles pre-engineered for specific developer workflows</p>
+              <h2 className="text-base font-bold text-neutral-50">Interactive Setup Architect</h2>
+              <p className="text-xs text-neutral-400">Curated hardware bundles pre-engineered for specific developer workflows</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-zinc-400 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 transition-all"
+            className="p-2 rounded-xl text-neutral-400 hover:text-neutral-50 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-all"
           >
             <X className="w-5 h-5" />
           </button>
@@ -73,19 +73,19 @@ export const SetupBuilderModal: React.FC<SetupBuilderModalProps> = ({
                   onClick={() => setSelectedPresetId(preset.id)}
                   className={`p-4 rounded-2xl text-left border transition-all flex flex-col justify-between ${
                     isSelected
-                      ? 'bg-zinc-900 border-orange-500/80 shadow-glow-orange ring-1 ring-orange-500/40'
-                      : 'bg-zinc-950/60 border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/40'
+                      ? 'bg-neutral-900 border-orange-500/80 shadow-glow-orange ring-1 ring-orange-500/40'
+                      : 'bg-neutral-950/60 border-neutral-800/80 hover:border-neutral-700 hover:bg-neutral-900/40'
                   }`}
                 >
                   <div>
-                    <div className="w-9 h-9 rounded-xl bg-zinc-800 flex items-center justify-center mb-3 border border-zinc-700/50">
+                    <div className="w-9 h-9 rounded-xl bg-neutral-800 flex items-center justify-center mb-3 border border-neutral-700/50">
                       {getIcon(preset.icon)}
                     </div>
-                    <h3 className="font-bold text-sm text-zinc-100">{preset.name}</h3>
-                    <p className="text-xs text-zinc-400 mt-1 line-clamp-2 leading-relaxed">{preset.description}</p>
+                    <h3 className="font-bold text-sm text-neutral-100">{preset.name}</h3>
+                    <p className="text-xs text-neutral-400 mt-1 line-clamp-2 leading-relaxed">{preset.description}</p>
                   </div>
-                  <div className="mt-4 pt-2 border-t border-zinc-800/60 flex items-center justify-between text-xs font-mono">
-                    <span className="text-zinc-500">{preset.productIds.length} Items</span>
+                  <div className="mt-4 pt-2 border-t border-neutral-800/60 flex items-center justify-between text-xs font-mono">
+                    <span className="text-neutral-500">{preset.productIds.length} Items</span>
                     <span className="text-orange-400 font-bold">~${preset.totalBudgetUSD.toFixed(0)}</span>
                   </div>
                 </button>
@@ -94,15 +94,15 @@ export const SetupBuilderModal: React.FC<SetupBuilderModalProps> = ({
           </div>
 
           {/* Bundle Breakdown */}
-          <div className="glass-panel rounded-2xl p-5 border border-zinc-800 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+          <div className="glass-panel rounded-2xl p-5 border border-neutral-800 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-800/80 pb-3">
               <div>
                 <span className="text-[10px] font-mono uppercase font-bold text-orange-400">Included Hardware</span>
-                <h4 className="text-sm font-bold text-zinc-100">{currentPreset.name}</h4>
+                <h4 className="text-sm font-bold text-neutral-100">{currentPreset.name}</h4>
               </div>
               <div className="text-right">
-                <span className="text-[10px] font-mono uppercase text-zinc-400 block">Total Bundle Estimate</span>
-                <span className="text-xl font-mono font-extrabold text-white">
+                <span className="text-[10px] font-mono uppercase text-neutral-400 block">Total Bundle Estimate</span>
+                <span className="text-xl font-mono font-extrabold text-neutral-50">
                   {formatPrice(totalUSD, totalEUR, currency)}
                 </span>
               </div>
@@ -113,18 +113,18 @@ export const SetupBuilderModal: React.FC<SetupBuilderModalProps> = ({
               {presetProducts.map((p) => {
                 const affiliateUrl = getAmazonAffiliateUrl(p.asin, currency);
                 return (
-                  <div key={p.id} className="p-3 rounded-xl bg-zinc-900/80 border border-zinc-800/60 flex items-center justify-between gap-4">
+                  <div key={p.id} className="p-3 rounded-xl bg-neutral-900/80 border border-neutral-800/60 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3 min-w-0">
-                      <img src={p.image} alt={p.name} className="w-12 h-12 rounded-lg object-cover bg-zinc-950 shrink-0 border border-zinc-800" />
+                      <img src={p.image} alt={p.name} className="w-12 h-12 rounded-lg object-cover bg-neutral-950 shrink-0 border border-neutral-800" />
                       <div className="min-w-0">
                         <span className="text-[10px] uppercase font-mono font-semibold text-orange-400">{p.brand}</span>
-                        <h5 className="text-xs font-bold text-zinc-100 truncate">{p.name}</h5>
-                        <span className="text-[11px] text-zinc-400 truncate block">{p.bestFor}</span>
+                        <h5 className="text-xs font-bold text-neutral-100 truncate">{p.name}</h5>
+                        <span className="text-[11px] text-neutral-400 truncate block">{p.bestFor}</span>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
-                      <span className="text-xs font-mono font-bold text-zinc-200">
+                      <span className="text-xs font-mono font-bold text-neutral-200">
                         {formatPrice(p.priceUSD, p.priceEUR, currency)}
                       </span>
                       <a

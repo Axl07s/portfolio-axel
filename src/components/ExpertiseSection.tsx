@@ -7,65 +7,94 @@ export function ExpertiseSection() {
 
   const features = [
     {
-      icon: <Database className="w-5 h-5 text-emerald-500" />,
-      titleES: 'Arquitectura SaaS Multi-Tenant',
-      titleEN: 'Multi-Tenant SaaS Architecture',
-      descES: 'Aislamiento de datos nivel fila (RLS), sharding y escalabilidad horizontal con Supabase, Postgres y Next.js.',
-      descEN: 'Row-level security (RLS), sharding, and horizontal scalability with Supabase, Postgres, and Next.js.',
-      span: 'md:col-span-2'
+      icon: <Database className="w-5 h-5 text-emerald-400" />,
+      titleES: 'Plataformas Web & SaaS',
+      titleEN: 'Web Platforms & SaaS',
+      descES: 'Sistemas web completos con panel de control, gestión de clientes, pagos en línea y base de datos segura. Tu negocio operando 24/7 sin intervención manual.',
+      descEN: 'Full web systems with admin panel, client management, online payments, and secure database. Your business running 24/7 without manual intervention.',
+      span: 'md:col-span-2 md:row-span-2',
+      visual: (
+        <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none opacity-20 transition-opacity duration-700 group-hover:opacity-40">
+          <div className="absolute -right-20 -top-20 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl mix-blend-screen" />
+          <div className="absolute right-10 top-10 w-[200px] h-[150px] border border-emerald-500/10 rounded-xl bg-[#0a0a0a]/50 backdrop-blur-md transform rotate-12" />
+        </div>
+      ),
+      bg: 'bg-[#111111] border-neutral-800 hover:border-emerald-500/30'
     },
     {
-      icon: <ShieldAlert className="w-5 h-5 text-emerald-500" />,
-      titleES: 'Ciberseguridad & EDR',
-      titleEN: 'Cybersecurity & EDR',
-      descES: 'Desarrollo de sensores de bajo nivel en C/C++, intercepción ETW y motores heurísticos YARA en Windows.',
-      descEN: 'Development of low-level C/C++ sensors, ETW interception, and YARA heuristic engines on Windows.',
-      span: 'md:col-span-1'
+      icon: <ShieldAlert className="w-5 h-5 text-neutral-300" />,
+      titleES: 'Seguridad & Protección',
+      titleEN: 'Security & Protection',
+      descES: 'Sistemas con autenticación robusta, datos cifrados y auditoría de accesos. Tu información y la de tus clientes siempre protegida.',
+      descEN: 'Systems with robust authentication, encrypted data, and access auditing. Your data and your clients\' data always protected.',
+      span: 'md:col-span-1',
+      visual: null,
+      bg: 'bg-[#1a1a1a] border-neutral-800'
     },
     {
-      icon: <Cpu className="w-5 h-5 text-emerald-500" />,
-      titleES: 'IA & Sistemas RAG',
-      titleEN: 'AI & RAG Systems',
-      descES: 'Orquestación de LLMs, bases de datos vectoriales (pgvector) y síntesis de voz en tiempo real con latencia sub-500ms.',
-      descEN: 'LLM orchestration, vector databases (pgvector), and real-time voice synthesis with sub-500ms latency.',
-      span: 'md:col-span-1'
+      icon: <Cpu className="w-5 h-5 text-neutral-300" />,
+      titleES: 'Automatización con IA',
+      titleEN: 'AI Automation',
+      descES: 'Chatbots, cotizadores automáticos y asistentes virtuales que atienden a tus clientes y capturan leads mientras duermes.',
+      descEN: 'Chatbots, automated quoters, and virtual assistants that attend clients and capture leads while you sleep.',
+      span: 'md:col-span-1',
+      visual: null,
+      bg: 'bg-[#161616] border-neutral-800'
     },
     {
-      icon: <Network className="w-5 h-5 text-emerald-500" />,
-      titleES: 'Infraestructura & DevOps',
-      titleEN: 'Infrastructure & DevOps',
-      descES: 'Despliegues automatizados, Vercel, Docker, y arquitecturas serverless orientadas a reducción radical de costos.',
-      descEN: 'Automated deployments, Vercel, Docker, and serverless architectures aimed at radical cost reduction.',
-      span: 'md:col-span-2'
+      icon: <Network className="w-5 h-5 text-emerald-950" />,
+      titleES: 'Despliegue & Soporte Continuo',
+      titleEN: 'Deployment & Ongoing Support',
+      descES: 'Tu producto llega a usuarios reales, corre sin interrupciones y escala sin costos adicionales conforme tu negocio crece.',
+      descEN: 'Your product reaches real users, runs without downtime, and scales at no extra cost as your business grows.',
+      span: 'md:col-span-3',
+      visual: (
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none opacity-40">
+          <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(to right, #10b981 1px, transparent 1px)', backgroundSize: '40px 100%' }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#00b978] via-[#00b978]/80 to-transparent" />
+        </div>
+      ),
+      bg: 'bg-emerald-500 border-emerald-400 text-emerald-950',
+      titleColor: 'text-emerald-950',
+      descColor: 'text-emerald-950/80',
+      iconContainer: 'bg-emerald-400/20 border-emerald-400/30'
     }
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full relative z-10">
-      
-      <div className="mb-12 max-w-xl">
-        <h2 className="text-3xl font-display font-bold text-white tracking-tighter mb-4">
-          {lang === 'es' ? 'Ingeniería Especializada.' : 'Specialized Engineering.'}
+    <section className="py-32 px-4 sm:px-6 lg:px-12 max-w-[1400px] mx-auto w-full relative z-10">
+      <div className="mb-16 max-w-2xl">
+        <h2 className="text-[2.5rem] md:text-[3.5rem] leading-[1.05] font-display font-bold text-neutral-50 tracking-[-0.03em] mb-4">
+          {lang === 'es' ? 'Lo que construyo.' : 'What I build.'}
         </h2>
+        <p className="text-xl text-neutral-400 font-medium">
+          {lang === 'es' ? 'Soluciones digitales que funcionan para tu negocio, no solo para los desarrolladores.' : 'Digital solutions that work for your business, not just for developers.'}
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[280px] gap-6">
         {features.map((feat, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className={`group relative bg-zinc-900 border border-zinc-800 hover:border-zinc-700 p-8 rounded-xl overflow-hidden flex flex-col justify-between ${feat.span}`}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className={`group relative border p-10 rounded-[24px] overflow-hidden flex flex-col justify-between transition-all duration-500 ${feat.bg} ${feat.span}`}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            <div className="mb-12 p-4 bg-zinc-950 rounded-md inline-flex border border-zinc-800 self-start">
+            {feat.visual}
+            
+            <div className={`mb-12 p-4 rounded-xl inline-flex self-start relative z-10 border transition-transform duration-500 group-hover:-translate-y-1 ${feat.iconContainer || 'bg-[#0a0a0a] border-white/5'}`}>
               {feat.icon}
             </div>
-            <div>
-              <h3 className="text-lg font-bold text-white mb-3 tracking-tight">{lang === 'es' ? feat.titleES : feat.titleEN}</h3>
-              <p className="text-sm text-zinc-400 leading-relaxed max-w-[50ch]">{lang === 'es' ? feat.descES : feat.descEN}</p>
+            
+            <div className="relative z-10 mt-auto">
+              <h3 className={`text-2xl font-bold mb-3 tracking-[-0.02em] ${feat.titleColor || 'text-neutral-50'}`}>
+                {lang === 'es' ? feat.titleES : feat.titleEN}
+              </h3>
+              <p className={`text-base leading-relaxed max-w-[45ch] ${feat.descColor || 'text-neutral-400'}`}>
+                {lang === 'es' ? feat.descES : feat.descEN}
+              </p>
             </div>
           </motion.div>
         ))}

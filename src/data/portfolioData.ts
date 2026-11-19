@@ -37,7 +37,7 @@ const projectsES: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Plataforma multi-tenant con aislamiento por workspace (RLS) y facturación Stripe. Redujo el tiempo de lanzamiento de productos B2B de meses a < 2 semanas, acelerando el GTM.',
+    description: 'Plataforma web para suscripciones y facturación automatizada con Stripe. Permite lanzar y monetizar productos digitales en menos de 2 semanas con control multi-workspace y RLS.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -64,7 +64,7 @@ const projectsES: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Centro de comando operacional que orquesta 9 subagentes de IA en paralelo. Redujo la carga cognitiva operativa automatizando tareas complejas con streaming de voz neural (<180ms).',
+    description: 'Centro de comando operacional que orquesta 9 agentes de IA en paralelo con streaming de voz neural (<180ms). Automatiza flujos de trabajo e investigación técnica compleja.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -91,7 +91,7 @@ const projectsES: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Plataforma web de alta gama con motor de reservas multi-paso. Optimiza la experiencia de usuario y captura de comensales mediante una interfaz inmersiva y reactiva.',
+    description: 'Portal gastronómico con motor de reservas en tiempo real y menú interactivo. Optimiza la experiencia del cliente y captura reservas directas sin comisiones a plataformas intermediarias.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -118,7 +118,7 @@ const projectsES: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Infraestructura de captación B2B con calculadora de ROI interactiva en tiempo real. Cualifica prospectos automáticamente y agiliza el embudo de ventas estratégicas.',
+    description: 'Infraestructura de captación comercial con calculadora de ROI interactiva y wizard de cualificación en 3 pasos. Convierte visitas en prospectos calificados para servicios B2B.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -145,7 +145,7 @@ const projectsES: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Motor RAG empresarial con búsqueda híbrida (pgvector + BM25) y guardrails estrictos. Aceleró el descubrimiento de insights en bases documentales privadas de más de 50GB en <240ms.',
+    description: 'Buscador inteligente con IA y citación exacta de fuentes en bases documentales privadas. Localiza respuestas verificadas en milisegundos con cero alucinaciones.',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
@@ -175,7 +175,7 @@ const projectsEN: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Multi-tenant platform with workspace isolation (RLS) and automated Stripe billing. Reduced B2B product launch time from months to < 2 weeks, accelerating GTM.',
+    description: 'Web platform for subscriptions and automated Stripe billing. Launch and monetize digital products in under 2 weeks with multi-workspace access control and RLS.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -202,7 +202,7 @@ const projectsEN: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Operational command center orchestrating 9 parallel AI subagents. Reduced operational cognitive load by automating complex tasks with neural voice streaming (<180ms).',
+    description: 'Operational command center orchestrating 9 parallel AI subagents with real-time neural voice (<180ms). Automates complex workflows and multi-agent coordination.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
@@ -229,7 +229,7 @@ const projectsEN: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'High-end web platform with a multi-step reservation engine. Streamlines table booking and guest acquisition through an immersive, high-performance UI.',
+    description: 'High-end hospitality portal with a real-time reservation engine and interactive menu. Captures direct bookings without paying fees to third-party platforms.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
@@ -256,7 +256,7 @@ const projectsEN: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'B2B lead generation infrastructure with an interactive real-time ROI calculator. Automatically qualifies prospects and accelerates strategic sales pipelines.',
+    description: 'B2B client acquisition infrastructure with an interactive ROI calculator and 3-step qualification wizard. Converts traffic into qualified enterprise leads.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
@@ -283,7 +283,7 @@ const projectsEN: Project[] = [
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
     category: 'AI Knowledge Base',
-    description: 'Enterprise RAG engine with semantic search (pgvector + BM25) and strict guardrails. Accelerated critical insight discovery across 50GB+ private document bases in <240ms.',
+    description: 'Enterprise AI search engine with verifiable source citations across private document bases. Finds verified answers in milliseconds with zero hallucinations.',
     role: 'AI/ML Engineer',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [

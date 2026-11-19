@@ -43,5 +43,5 @@ export function HeroAbstract({ theme }: { theme: 'cyber' | 'ai' | 'data' | 'saas
     );
   }
 
-  return <div className="absolute inset-0 w-full h-full bg-zinc-950"></div>;
+  return <div className="absolute inset-0 w-full h-full bg-neutral-950"></div>;
 }
