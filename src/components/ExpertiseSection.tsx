@@ -72,7 +72,7 @@ export function ExpertiseSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[280px] gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-auto md:auto-rows-[280px] gap-6">
         {features.map((feat, i) => (
           <motion.div
             key={i}
@@ -80,19 +80,19 @@ export function ExpertiseSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className={`group relative border p-10 rounded-[24px] overflow-hidden flex flex-col justify-between transition-all duration-500 ${feat.bg} ${feat.span}`}
+            className={`group relative border p-6 sm:p-8 md:p-10 rounded-[24px] overflow-hidden flex flex-col justify-between transition-all duration-500 min-h-[260px] md:min-h-0 ${feat.bg} ${feat.span}`}
           >
             {feat.visual}
             
-            <div className={`mb-12 p-4 rounded-xl inline-flex self-start relative z-10 border transition-transform duration-500 group-hover:-translate-y-1 ${feat.iconContainer || 'bg-[#0a0a0a] border-white/5'}`}>
+            <div className={`mb-6 sm:mb-8 md:mb-12 p-3.5 sm:p-4 rounded-xl inline-flex self-start relative z-10 border transition-transform duration-500 group-hover:-translate-y-1 ${feat.iconContainer || 'bg-[#0a0a0a] border-white/5'}`}>
               {feat.icon}
             </div>
             
             <div className="relative z-10 mt-auto">
-              <h3 className={`text-2xl font-bold mb-3 tracking-[-0.02em] ${feat.titleColor || 'text-neutral-50'}`}>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-2 sm:mb-3 tracking-[-0.02em] ${feat.titleColor || 'text-neutral-50'}`}>
                 {lang === 'es' ? feat.titleES : feat.titleEN}
               </h3>
-              <p className={`text-base leading-relaxed max-w-[45ch] ${feat.descColor || 'text-neutral-400'}`}>
+              <p className={`text-sm sm:text-base leading-relaxed max-w-[45ch] ${feat.descColor || 'text-neutral-400'}`}>
                 {lang === 'es' ? feat.descES : feat.descEN}
               </p>
             </div>

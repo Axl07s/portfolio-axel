@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Project } from '../data/portfolioData';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectCardProps {
@@ -57,8 +57,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             ))}
           </div>
 
-          <div className="w-9 h-9 rounded-full bg-white/[0.06] group-hover:bg-white text-neutral-400 group-hover:text-black flex items-center justify-center transition-all duration-300 shrink-0">
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          <div className="flex items-center gap-2">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/[0.06] hover:bg-emerald-500 hover:text-neutral-950 text-neutral-300 transition-all border border-white/10"
+                title="Abrir Demo en Vivo"
+              >
+                <span>Live Demo</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+            <div className="w-9 h-9 rounded-full bg-white/[0.06] group-hover:bg-white text-neutral-400 group-hover:text-black flex items-center justify-center transition-all duration-300 shrink-0">
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
           </div>
         </div>
 
