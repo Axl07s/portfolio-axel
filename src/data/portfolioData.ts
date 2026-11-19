@@ -8,6 +8,7 @@ export interface Project {
   title: string;
   category: string;
   description: string;
+  architecture?: string;
   role: string;
   stack: string[];
   metrics: { label: string; value: string }[];
@@ -37,13 +38,14 @@ const projectsES: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Plataforma web para suscripciones y facturación automatizada con Stripe. Permite lanzar y monetizar productos digitales en menos de 2 semanas con control multi-workspace y RLS.',
+    description: 'Plataforma para monetizar productos digitales con cobros recurrentes y suscripciones automáticas vía Stripe. Elimina la conciliación manual y suspende accesos por impago en tiempo real.',
+    architecture: 'Arquitectura Next.js 15 App Router con Server Actions, aislamiento multi-tenant en Supabase mediante Row-Level Security (RLS) y conciliación asíncrona de webhooks con Stripe.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
+      { label: 'Cobros', value: '100% Automáticos' },
       { label: 'Time-to-Market', value: '< 2 Semanas' },
-      { label: 'Lighthouse', value: '99/100' },
-      { label: 'Auth', value: 'Zero-Trust RLS' },
+      { label: 'Seguridad', value: 'Zero-Trust RLS' },
     ],
     features: [
       'Organización multi-tenant con aislamiento de datos por workspace, invitaciones de equipo y roles RBAC',
@@ -64,13 +66,14 @@ const projectsES: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Centro de comando operacional que orquesta 9 agentes de IA en paralelo con streaming de voz neural (<180ms). Automatiza flujos de trabajo e investigación técnica compleja.',
+    description: 'Centro de comando operacional con inteligencia artificial para empresas. Automatiza el triaje, la atención al cliente y flujos de investigación 24/7 orquestando 9 agentes en paralelo con voz neural.',
+    architecture: 'Topología de red con 9 subagentes de IA en paralelo, streaming de voz neural ElevenLabs (<180ms) con visualizador Web Audio API y auditoría en tiempo real de consumo de tokens.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
-      { label: 'Client Rating', value: '5.0 / 5.0' },
-      { label: 'Agent Network', value: '9 Subagents' },
-      { label: 'Voice Latency', value: '< 180ms' },
+      { label: 'Disponibilidad', value: '24/7 Continua' },
+      { label: 'Calificación', value: '5.0 / 5.0 Verificada' },
+      { label: 'Voz Neural', value: '< 180ms Latencia' },
     ],
     features: [
       'Malla neuronal para coordinar 9 subagentes de investigación, código y finanzas en paralelo',
@@ -91,13 +94,14 @@ const projectsES: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'Portal gastronómico con motor de reservas en tiempo real y menú interactivo. Optimiza la experiencia del cliente y captura reservas directas sin comisiones a plataformas intermediarias.',
+    description: 'Portal gastronómico de alta gama con motor de reservas directas en tiempo real. Elimina las comisiones del 15% al 20% de intermediarios de delivery y optimiza la rotación de mesas VIP.',
+    architecture: 'Arquitectura SPA desacoplada en React 18 y Vite, validación de formularios multi-paso en memoria, menú categorizado dinámico y renderizado a 60 FPS sin dependencias de CMS pesados.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
-      { label: 'Secciones', value: '7 Completas' },
-      { label: 'Reservas', value: 'Multi-Paso' },
-      { label: 'Mobile', value: '100% Responsivo' },
+      { label: 'Comisiones', value: '0% a Terceros' },
+      { label: 'Reservas', value: 'Multi-Paso Directa' },
+      { label: 'Mobile', value: '100% Fluido' },
     ],
     features: [
       'Navegador de menú categorizado con tarjetas de platos, precios y descripciones',
@@ -118,13 +122,14 @@ const projectsES: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'Infraestructura de captación comercial con calculadora de ROI interactiva y wizard de cualificación en 3 pasos. Convierte visitas en prospectos calificados para servicios B2B.',
+    description: 'Infraestructura de prospección comercial para firmas B2B. Filtra y califica empresas interesadas con calculadora de ROI interactiva antes de agendar llamadas, descartando contactos sin presupuesto.',
+    architecture: 'Simulador matemático reactivo en cliente que proyecta pipeline comercial en milisegundos, wizard modular de cualificación en 3 pasos y modales de retos técnicos desacoplados.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
-      { label: 'Funnel', value: 'Wizard 3 Pasos' },
+      { label: 'Filtro Comercial', value: 'Wizard 3 Etapas' },
       { label: 'Calculadora', value: 'ROI Real-Time' },
-      { label: 'Target', value: 'Enterprise B2B' },
+      { label: 'Segmento', value: 'Enterprise B2B' },
     ],
     features: [
       'Simulador de ROI reactivo que modela pipeline comercial y retornos con sliders interactivos',
@@ -175,13 +180,14 @@ const projectsEN: Project[] = [
     id: 'syntrosaas',
     title: 'SyntroSaaS',
     category: 'Full-Stack SaaS',
-    description: 'Web platform for subscriptions and automated Stripe billing. Launch and monetize digital products in under 2 weeks with multi-workspace access control and RLS.',
+    description: 'Digital product monetization and automated recurring subscription engine with Stripe. Eliminates manual billing reconciliations and automatically revokes access upon non-payment.',
+    architecture: 'Next.js 15 App Router with Server Actions, Supabase multi-tenant data isolation via Row-Level Security (RLS), and asynchronous Stripe webhook reconciliation.',
     role: 'Full-Stack Architect',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
+      { label: 'Billing', value: '100% Automated' },
       { label: 'Time-to-Market', value: '< 2 Weeks' },
-      { label: 'Lighthouse', value: '99/100' },
-      { label: 'Auth', value: 'Zero-Trust RLS' },
+      { label: 'Security', value: 'Zero-Trust RLS' },
     ],
     features: [
       'Multi-tenant workspace organization with data isolation, team invites, and RBAC roles',
@@ -202,13 +208,14 @@ const projectsEN: Project[] = [
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
     category: 'AI Dashboard',
-    description: 'Operational command center orchestrating 9 parallel AI subagents with real-time neural voice (<180ms). Automates complex workflows and multi-agent coordination.',
+    description: 'Enterprise AI operational hub. Automates customer triage, inquiry routing, and technical research 24/7 by coordinating 9 parallel subagents with real-time neural voice.',
+    architecture: 'Network topology coordinating 9 parallel AI subagents, ElevenLabs neural voice streaming (<180ms) with Web Audio API waveform visualizer, and token spend auditing.',
     role: 'Lead Frontend Engineer',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
-      { label: 'Client Rating', value: '5.0 / 5.0' },
-      { label: 'Agent Network', value: '9 Subagents' },
-      { label: 'Voice Latency', value: '< 180ms' },
+      { label: 'Uptime', value: '24/7 Uninterrupted' },
+      { label: 'Client Rating', value: '5.0 / 5.0 Verified' },
+      { label: 'Neural Voice', value: '< 180ms Latency' },
     ],
     features: [
       'Neural mesh coordinating 9 parallel subagents across research, coding, and finance',
@@ -229,13 +236,14 @@ const projectsEN: Project[] = [
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
     category: 'Hospitality Platform',
-    description: 'High-end hospitality portal with a real-time reservation engine and interactive menu. Captures direct bookings without paying fees to third-party platforms.',
+    description: 'High-end gastronomy portal with direct real-time table reservations. Eliminates 15% to 20% platform commissions from third-party delivery apps and optimizes VIP table rotation.',
+    architecture: 'Decoupled React 18 & Vite SPA architecture, in-memory multi-step form validation, dynamic categorized dining menu, and 60 FPS rendering without bloated CMS overhead.',
     role: 'Frontend Developer & Designer',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
-      { label: 'Sections', value: '7 Complete' },
-      { label: 'Booking Flow', value: 'Multi-Step' },
-      { label: 'Mobile', value: 'Fully Responsive' },
+      { label: 'Commissions', value: '0% Third-Party Fees' },
+      { label: 'Bookings', value: 'Direct Multi-Step' },
+      { label: 'Mobile', value: '100% Fluid' },
     ],
     features: [
       'Categorized menu browser with dish cards, prices, and descriptions',
@@ -256,12 +264,13 @@ const projectsEN: Project[] = [
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
     category: 'B2B Lead Generation',
-    description: 'B2B client acquisition infrastructure with an interactive ROI calculator and 3-step qualification wizard. Converts traffic into qualified enterprise leads.',
+    description: 'Commercial client acquisition infrastructure for B2B firms. Pre-qualifies enterprise prospects with an interactive ROI calculator before scheduling calls, filtering out unqualified inquiries.',
+    architecture: 'Client-side reactive mathematical simulator projecting pipeline returns in milliseconds, modular 3-step diagnostic wizard, and decoupled technical challenge modals.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
-      { label: 'Funnel', value: '3-Step Wizard' },
-      { label: 'Calculator', value: 'Real-Time ROI' },
+      { label: 'Lead Filter', value: '3-Step Wizard' },
+      { label: 'Diagnostic', value: 'Real-Time ROI' },
       { label: 'Target', value: 'Enterprise B2B' },
     ],
     features: [

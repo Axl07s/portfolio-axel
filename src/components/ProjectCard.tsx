@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Project } from '../data/portfolioData';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, Code2, Cpu, Briefcase, Layers } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectCardProps {
@@ -9,12 +9,13 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const navigate = useNavigate();
+  const [showTech, setShowTech] = useState(false);
   const mainImage = project.images[0]?.url || '/projects/syntrosaas_01.png';
 
   const handleCardClick = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('a')) {
+    if ((e.target as HTMLElement).closest('a') || (e.target as HTMLElement).closest('button')) {
       return;
     }
     navigate(`/project/${project.id}`);
@@ -42,19 +43,40 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         }
       }}
     >
-      {/* Top Header: Category, Stack, Title, and Complete Unabridged Description */}
+      {/* Top Header: Category, Mode Toggle, Title, and Dual Layer Body */}
       <div className="p-6 sm:p-8 flex flex-col gap-4">
-        {/* Badges Bar */}
+        {/* Badges Bar & Toggle Pill */}
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[11px] font-mono font-semibold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
               {project.category}
             </span>
-            {project.stack?.slice(0, 3).map((tech, i) => (
-              <span key={i} className="text-[11px] font-mono font-medium text-neutral-400 uppercase tracking-wider bg-white/[0.04] px-2.5 py-1 rounded-full border border-white/5">
-                {tech}
-              </span>
-            ))}
+            {/* Toggle Dual-Layer Button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTech(!showTech);
+              }}
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium transition-all duration-300 border ${
+                showTech
+                  ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/25'
+                  : 'bg-white/[0.04] border-white/10 text-neutral-400 hover:text-neutral-200 hover:bg-white/[0.08]'
+              }`}
+              title={showTech ? 'Ver propuesta comercial' : 'Ver arquitectura y stack'}
+            >
+              {showTech ? (
+                <>
+                  <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>{lang === 'es' ? 'Resultado Comercial' : 'Business View'}</span>
+                </>
+              ) : (
+                <>
+                  <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>{lang === 'es' ? 'Arquitectura & Stack' : 'Architecture & Stack'}</span>
+                </>
+              )}
+            </button>
           </div>
 
           <div className="flex items-center gap-2">
@@ -77,15 +99,83 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
 
-        {/* Title and Complete Description */}
+        {/* Title */}
         <div>
-          <h3 className="text-2xl sm:text-3xl font-display font-bold text-neutral-50 mb-2 tracking-[-0.02em] group-hover:text-emerald-400 transition-colors">
-            {project.title}
+          <h3 className="text-2xl sm:text-3xl font-display font-bold text-neutral-50 tracking-[-0.02em] group-hover:text-emerald-400 transition-colors flex items-center gap-2">
+            <span>{project.title}</span>
+            {showTech && (
+              <span className="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20 font-normal">
+                Engineering Layer
+              </span>
+            )}
           </h3>
-          <p className="text-sm sm:text-base text-neutral-300 font-normal leading-relaxed">
-            {project.description}
-          </p>
         </div>
+
+        {/* Dual Layer View Switcher (Business vs Technical) */}
+        {!showTech ? (
+          /* Layer 1: Business Outcome View (Default) */
+          <div className="transition-opacity duration-300 animate-fadeIn">
+            <p className="text-sm sm:text-base text-neutral-300 font-normal leading-relaxed">
+              {project.description}
+            </p>
+            {/* Business metrics pill bar */}
+            <div className="flex items-center gap-2 mt-3 flex-wrap">
+              {project.metrics.map((m, i) => (
+                <span key={i} className="text-[11px] font-mono text-neutral-400 bg-white/[0.03] border border-white/[0.06] px-2.5 py-1 rounded-lg">
+                  <span className="text-neutral-500 mr-1.5">{m.label}:</span>
+                  <span className="text-neutral-200 font-semibold">{m.value}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* Layer 2: Technical Architecture & Stack View */
+          <div className="transition-opacity duration-300 animate-fadeIn space-y-3 bg-[#111116] border border-white/[0.08] p-4 rounded-xl">
+            {/* Architecture Mechanism */}
+            <div>
+              <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-indigo-400 mb-1">
+                <Layers className="w-3 h-3" />
+                <span>{lang === 'es' ? 'Arquitectura & Patrones' : 'Architecture & Patterns'}</span>
+              </div>
+              <p className="text-xs text-neutral-300 leading-relaxed font-sans">
+                {project.architecture || project.features[0]}
+              </p>
+            </div>
+
+            {/* Stack Tags */}
+            <div className="pt-1">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 mb-1.5">
+                {lang === 'es' ? 'Tecnologías Clave' : 'Key Stack'}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {project.stack.map((t, i) => (
+                  <span key={i} className="text-[10px] font-mono text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* GitHub Repo Button if present */}
+            {project.githubUrl && (
+              <div className="pt-1 flex items-center justify-between border-t border-white/5">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 hover:text-neutral-200 transition-colors"
+                >
+                  <Code2 className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>{lang === 'es' ? 'Ver Repositorio GitHub' : 'View GitHub Repo'}</span>
+                </a>
+                <span className="text-[10px] font-mono text-neutral-500">
+                  Código de Producción
+                </span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Bottom Framed Browser Window (No text overlay, crisp interface presentation) */}
