@@ -16,14 +16,14 @@ export function Projects() {
         <meta name="description" content={lang === 'es' ? 'Catálogo de plataformas SaaS multi-tenant, sistemas de IA y aplicaciones B2B en producción por Axel Molineros.' : 'Production B2B applications, multi-tenant SaaS platforms, and applied AI systems engineered by Axel Molineros.'} />
       </Helmet>
 
-      <div className="max-w-3xl mb-16 space-y-6">
-        <h1 className="text-5xl sm:text-7xl font-medium tracking-tighter text-neutral-50">
-          {lang === 'es' ? 'Proyectos ' : 'B2B '}
-          <span className="text-neutral-500">
-            {lang === 'es' ? 'B2B' : 'Projects'}
+      <div className="max-w-3xl mb-16 space-y-4">
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-[#F5F5F0]">
+          {lang === 'es' ? 'Soluciones & ' : 'Interactive '}
+          <span className="text-[#C8A97E]">
+            {lang === 'es' ? 'Sistemas Web' : 'Solutions'}
           </span>
         </h1>
-        <p className="text-lg text-neutral-400 max-w-xl">
+        <p className="text-base sm:text-lg text-[#A3A39E] max-w-xl">
           {t('projects.subtitle')}
         </p>
       </div>

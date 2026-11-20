@@ -37,7 +37,7 @@ const projectsES: Project[] = [
   {
     id: 'syntrosaas',
     title: 'SyntroSaaS',
-    category: 'Full-Stack SaaS',
+    category: 'Sistemas Web & Cobros',
     description: 'Sistema base para cobrar membresías y suscripciones automáticas con tarjeta, con espacios privados y aislados para cada cliente.',
     architecture: 'Aislamiento multi-tenant en Supabase mediante Row-Level Security (RLS), conciliación asíncrona de webhooks con Stripe Checkout y Server Actions en Next.js 15.',
     role: 'Full-Stack Architect',
@@ -65,7 +65,7 @@ const projectsES: Project[] = [
   {
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
-    category: 'AI Dashboard',
+    category: 'Automatización con IA',
     description: 'Panel de asistentes inteligentes 24/7 diseñado para atender clientes, procesar datos y ejecutar tareas operativas en paralelo mientras te enfocas en vender.',
     architecture: 'Malla operativa orquestando 9 subagentes de IA en paralelo, streaming de voz neural ElevenLabs (<180ms) con Web Audio API y búsqueda semántica con RAG/pgvector.',
     role: 'Lead Frontend Engineer',
@@ -93,7 +93,7 @@ const projectsES: Project[] = [
   {
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
-    category: 'Hospitality Platform',
+    category: 'Portales & Reservas',
     description: 'Plataforma de reservas directas diseñada para restaurantes y negocios de hospitalidad que buscan proyectar estatus y dejar de pagar comisiones del 15% a apps intermediarias.',
     architecture: 'Motor de reservas multipaso en tiempo real, validación de formularios en memoria, menú categorizado dinámico y arquitectura React 18 optimizada a 60 FPS sin dependencias de CMS pesados.',
     role: 'Frontend Developer & Designer',
@@ -121,8 +121,8 @@ const projectsES: Project[] = [
   {
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
-    category: 'B2B Lead Generation',
-    description: 'Embudo de captación comercial para empresas y agencias B2B con calculadora de ROI interactiva que precalifica prospectos antes de agendar llamadas, descartando contactos sin presupuesto.',
+    category: 'Captación de Clientes',
+    description: 'Embudo de captación comercial para empresas y firmas de servicios con calculadora interactiva que califica prospectos antes de agendar llamadas, descartando contactos sin presupuesto.',
     architecture: 'Simulador matemático reactivo en cliente que proyecta pipeline comercial en milisegundos, wizard modular de cualificación en 3 pasos y modales de retos técnicos desacoplados en Vite y Tailwind.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
@@ -179,7 +179,7 @@ const projectsEN: Project[] = [
   {
     id: 'syntrosaas',
     title: 'SyntroSaaS',
-    category: 'Full-Stack SaaS',
+    category: 'Web Systems & Billing',
     description: 'Turnkey foundation to bill automated recurring credit card subscriptions with private, isolated workspaces for each client.',
     architecture: 'Multi-tenant workspace isolation in Supabase via Row-Level Security (RLS), asynchronous Stripe Checkout webhook reconciliation, and Next.js 15 Server Actions.',
     role: 'Full-Stack Architect',
@@ -207,7 +207,7 @@ const projectsEN: Project[] = [
   {
     id: 'jarvis-hud',
     title: 'Jarvis AI Command Center',
-    category: 'AI Dashboard',
+    category: 'AI Automation',
     description: '24/7 smart assistant dashboard engineered to serve clients, process data, and execute operational workflows in parallel while you focus on sales.',
     architecture: 'Operational mesh orchestrating 9 parallel AI subagents, ElevenLabs neural voice streaming (<180ms) with Web Audio API, and semantic search with RAG/pgvector.',
     role: 'Lead Frontend Engineer',
@@ -235,7 +235,7 @@ const projectsEN: Project[] = [
   {
     id: 'kure-gastronomy',
     title: 'KURE Fine Dining',
-    category: 'Hospitality Platform',
+    category: 'Portals & Booking',
     description: 'Direct reservation platform designed for restaurants and hospitality venues looking to project prestige and stop paying 15% commissions to middleman apps.',
     architecture: 'Real-time multi-step reservation engine, in-memory form validation, dynamic categorized menu, and optimized 60 FPS React 18 architecture without bloated CMS overhead.',
     role: 'Frontend Developer & Designer',
@@ -263,8 +263,8 @@ const projectsEN: Project[] = [
   {
     id: 'nexuscorp-b2b',
     title: 'NexusCorp B2B Agency',
-    category: 'B2B Lead Generation',
-    description: 'Commercial acquisition funnel for B2B firms with an interactive ROI calculator pre-qualifying prospects before booking calls, filtering out leads without budget.',
+    category: 'Client Acquisition',
+    description: 'Commercial acquisition funnel for service businesses with an interactive ROI calculator pre-qualifying prospects before booking calls, filtering out leads without budget.',
     architecture: 'Client-side reactive mathematical simulator projecting pipeline ROI in milliseconds, modular 3-step diagnostic wizard, and decoupled technical challenge modals in Vite & Tailwind.',
     role: 'Frontend Developer & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],

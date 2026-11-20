@@ -12,8 +12,8 @@ const DOMAIN = 'https://portfolio-axel-nine.vercel.app';
 const routes = [
   {
     path: '/',
-    title: 'Axel Molineros — Full-Stack & AI Product Engineer | Soluciones B2B & SaaS',
-    description: 'Portafolio de Axel Molineros. Sistemas web listos para cobrar suscripciones con Stripe, plataformas SaaS, automatización con agentes de IA y portales comerciales de alta conversión.',
+    title: 'Axel Molineros — Sistemas Web y Automatización para Negocios',
+    description: 'Estudio de consultoría y desarrollo web. Plataformas de cobro directo, sistemas de reservas, asistentes inteligentes 24/7 y paneles de control a medida para hacer crecer tu negocio.',
     image: '/projects/syntrosaas_01.png',
   },
   {

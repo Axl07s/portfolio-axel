@@ -6,11 +6,11 @@ export const translations = {
     'nav.certifications': 'Certifications',
     
     // Hero
-    'hero.status': 'AVAILABLE FOR FREELANCE PROJECTS',
-    'hero.title': 'Full-Stack Engineering & AI Systems',
-    "hero.subtitle": "Full-stack product engineer. I build websites, automation tools, and AI systems that help businesses grow and save time.",
+    'hero.status': 'DIGITAL STUDIO & CONSULTING',
+    'hero.title': 'Web Systems & Business Automation',
+    "hero.subtitle": "Bespoke web platforms, automated booking systems, and smart AI assistants that help businesses grow revenue and save operational hours.",
     'hero.cta.primary': 'Get a Quote',
-    'hero.cta.secondary': 'View Portfolio',
+    'hero.cta.secondary': 'View Solutions',
     
     // Tech Stack
     'tech.title': 'Technical Arsenal',
@@ -25,7 +25,7 @@ export const translations = {
     'projects.features': 'Core Architecture',
     
     // Footer
-    'footer.description': 'Full-stack product engineer specializing in modern web applications, automation, and AI systems.',
+    'footer.description': 'Bespoke web platforms, direct billing systems, and smart AI automation for growing businesses.',
     'footer.links': 'Links',
     'footer.legal': 'All rights reserved.',
     
@@ -52,11 +52,11 @@ export const translations = {
     'nav.certifications': 'Certificaciones',
     
     // Hero
-    'hero.status': 'DISPONIBLE PARA PROYECTOS FREELANCE',
-    'hero.title': 'Ingeniería Full-Stack & Sistemas de IA',
-    'hero.subtitle': 'Ingeniero de producto full-stack. Construyo aplicaciones web modernas, herramientas de automatización y sistemas con IA que ayudan a los negocios a vender más y ahorrar tiempo.',
+    'hero.status': 'ESTUDIO DIGITAL & CONSULTORÍA',
+    'hero.title': 'Sistemas Web & Automatización para Negocios',
+    'hero.subtitle': 'Plataformas web a medida, sistemas de reservas y cobros automáticos, y asistentes inteligentes que ayudan a los negocios a vender más y ahorrar tiempo.',
     'hero.cta.primary': 'Cotizar Proyecto',
-    'hero.cta.secondary': 'Ver Portafolio',
+    'hero.cta.secondary': 'Ver Soluciones',
     
     // Tech Stack
     'tech.title': 'Arsenal Técnico',
@@ -71,7 +71,7 @@ export const translations = {
     'projects.features': 'Arquitectura Core',
     
     // Footer
-    'footer.description': 'Ingeniero de software full-stack especializado en aplicaciones web modernas, automatización y sistemas con IA.',
+    'footer.description': 'Plataformas web a medida, sistemas de cobro directo y automatización con IA para empresas y negocios.',
     'footer.links': 'Enlaces',
     'footer.legal': 'Todos los derechos reservados.',
     

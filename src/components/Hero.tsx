@@ -33,41 +33,41 @@ export const Hero: React.FC = () => {
           className="space-y-8 col-span-1 lg:col-span-7 relative z-10 lg:pr-12"
         >
           <motion.div variants={item}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>{lang === 'es' ? 'DISPONIBLE PARA PROYECTOS B2B' : 'AVAILABLE FOR B2B PROJECTS'}</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1f1f1d] border border-white/[0.08] text-[#C8A97E] text-xs font-mono font-medium mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8A97E]" />
+              <span>{lang === 'es' ? 'ESTUDIO DIGITAL & CONSULTORÍA' : 'DIGITAL STUDIO & CONSULTING'}</span>
             </div>
 
-            <h1 className="font-display text-[3.25rem] leading-[1.08] sm:text-[4rem] md:text-[76px] lg:text-[86px] font-bold tracking-[-0.04em] text-neutral-50">
+            <h1 className="font-display text-[3.25rem] leading-[1.08] sm:text-[4rem] md:text-[76px] lg:text-[86px] font-bold tracking-[-0.04em] text-[#F5F5F0]">
               {lang === 'es' ? 'Hola, soy Axel.' : "Hey, I'm Axel."}
               <br/>
-              <span className="text-neutral-500">
-                {lang === 'es' ? 'Construyo software con el que tu negocio puede contar.' : 'I ship software your business can rely on.'}
+              <span className="text-[#A3A39E]">
+                {lang === 'es' ? 'Sistemas web y automatización para hacer crecer tu negocio.' : 'Web systems & automation to scale your business.'}
               </span>
             </h1>
           </motion.div>
 
-          <motion.p variants={item} className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-[42ch]">
+          <motion.p variants={item} className="text-lg md:text-xl text-[#A3A39E] font-normal leading-relaxed max-w-[44ch]">
             {lang === 'es'
-              ? 'Ingeniero de producto full-stack. Construyo plataformas web modernas, herramientas de automatización y sistemas con IA que ayudan a los negocios a vender más y ahorrar tiempo.'
-              : 'Full-stack product engineer. I build modern web platforms, automation tools, and applied AI systems that help businesses grow revenue and save operational hours.'}
+              ? 'Consultoría y desarrollo a medida. Creo páginas web de alto impacto, plataformas de cobro directo y asistentes inteligentes que convierten visitas en clientes y eliminan tareas manuales.'
+              : 'Bespoke consulting and development. I engineer high-impact websites, direct payment platforms, and smart assistants that turn visitors into clients and eliminate manual chores.'}
           </motion.p>
 
-          <motion.div variants={item} className="pt-4 flex flex-wrap items-center gap-4">
+          <motion.div variants={item} className="pt-2 flex flex-wrap items-center gap-4">
             <a
               href={lang === 'es' ? "https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto" : "https://wa.me/593995267503?text=Hi%20Axel,%20I%20would%20like%20to%20quote%20a%20project"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-bold bg-neutral-50 text-neutral-950 hover:bg-neutral-200 transition-all duration-300 shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-bold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] transition-all duration-300 shadow-md"
             >
               <span>{t('hero.cta.primary')}</span>
-              <ArrowRight className="w-4 h-4 text-neutral-950 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-[#141413] group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#solutions"
-              className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm font-semibold text-neutral-300 hover:text-neutral-50 hover:bg-white/5 border border-white/10 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm font-medium text-[#F5F5F0] hover:bg-white/[0.05] border border-white/10 transition-all duration-300"
             >
-              <span>{lang === 'es' ? 'Ver Soluciones & Demos' : 'View Solutions & Demos'}</span>
+              <span>{lang === 'es' ? 'Ver Soluciones' : 'View Solutions'}</span>
             </a>
           </motion.div>
 
@@ -75,54 +75,66 @@ export const Hero: React.FC = () => {
           <motion.div variants={item} className="pt-8 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <div className="flex items-center gap-1.5 mb-1">
-                <Layers className="w-4 h-4 text-emerald-400" />
-                <span className="text-2xl font-bold tracking-tight text-white font-mono block">10+</span>
+                <Layers className="w-4 h-4 text-[#C8A97E]" />
+                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">10+</span>
               </div>
-              <div className="text-xs font-bold text-neutral-200">
-                {lang === 'es' ? 'Proyectos B2B' : 'B2B Projects'}
+              <div className="text-xs font-bold text-[#F5F5F0]">
+                {lang === 'es' ? 'Proyectos entregados' : 'Delivered Projects'}
               </div>
-              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Sistemas en producción' : 'Production-grade systems'}
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-1.5 mb-1">
-                <Zap className="w-4 h-4 text-emerald-400" />
-                <span className="text-2xl font-bold tracking-tight text-white font-mono block">&lt; 1s</span>
-              </div>
-              <div className="text-xs font-bold text-neutral-200">
-                {lang === 'es' ? 'Carga Instantánea' : 'Instant Load'}
-              </div>
-              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Optimizado para SEO y conversión' : 'Built for SEO & Conversion'}
+              <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Empresas y emprendedores' : 'Businesses & entrepreneurs'}
               </div>
             </div>
 
             <div>
               <div className="flex items-center gap-1.5 mb-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span className="text-2xl font-bold tracking-tight text-white font-mono block">100%</span>
+                <Zap className="w-4 h-4 text-[#C8A97E]" />
+                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">&lt; 1s</span>
               </div>
-              <div className="text-xs font-bold text-neutral-200">
-                {lang === 'es' ? 'Seguridad Empresarial' : 'Enterprise Security'}
+              <div className="text-xs font-bold text-[#F5F5F0]">
+                {lang === 'es' ? 'Carga instantánea' : 'Instant Load'}
               </div>
-              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Datos aislados por cliente' : 'Isolated client data'}
+              <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Tus clientes no esperan' : 'Zero waiting time'}
               </div>
             </div>
 
             <div>
               <div className="flex items-center gap-1.5 mb-1">
-                <Award className="w-4 h-4 text-emerald-400" />
-                <span className="text-2xl font-bold tracking-tight text-emerald-400 font-mono block">5.0 ★</span>
+                <ShieldCheck className="w-4 h-4 text-[#C8A97E]" />
+                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">100%</span>
               </div>
-              <div className="text-xs font-bold text-neutral-200">
-                {lang === 'es' ? 'Fiverr Rating' : 'Fiverr Rating'}
+              <div className="text-xs font-bold text-[#F5F5F0]">
+                {lang === 'es' ? 'Privacidad y seguridad' : 'Privacy & Security'}
               </div>
-              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Calificación verificada' : 'Verified client reviews'}
+              <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Tus datos siempre protegidos' : 'Always protected data'}
               </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <Award className="w-4 h-4 text-[#C8A97E]" />
+                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">5.0 ★</span>
+              </div>
+              <div className="text-xs font-bold text-[#F5F5F0]">
+                {lang === 'es' ? 'Calificación verificada' : 'Verified Rating'}
+              </div>
+              <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Clientes satisfechos' : 'Satisfied clients'}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* SOBER INDUSTRY / SECTOR STRIP (Replaces code languages marquee) */}
+          <motion.div variants={item} className="pt-6">
+            <div className="py-2.5 px-4 rounded-xl bg-[#1f1f1d] border border-white/[0.06] flex items-center justify-between text-xs text-[#A3A39E] overflow-x-auto gap-4 whitespace-nowrap">
+              <span>{lang === 'es' ? 'Sectores:' : 'Sectors:'}</span>
+              <span className="text-[#F5F5F0] font-medium">
+                {lang === 'es'
+                  ? 'Restaurantes · Clínicas y Consultorios · Empresas de Servicios · Tiendas Online · Atención 24/7'
+                  : 'Restaurants · Clinics & Practices · Service Companies · Online Stores · 24/7 Customer Care'}
+              </span>
             </div>
           </motion.div>
         </motion.div>
@@ -134,24 +146,24 @@ export const Hero: React.FC = () => {
           transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
           className="col-span-1 lg:col-span-5 relative"
         >
-          {/* Subtle gradient behind image */}
-          <div className="absolute inset-0 bg-emerald-500/10 blur-[100px] -z-10 rounded-[40px] transform-gpu" />
+          {/* Subtle warm glow behind image */}
+          <div className="absolute inset-0 bg-[#C8A97E]/5 blur-[120px] -z-10 rounded-[40px] transform-gpu" />
           
           {/* High-end Mockup Frame */}
-          <div className="relative rounded-[24px] bg-[#0a0a0a] border border-white/[0.08] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
-            <div className="flex items-center px-4 py-3 bg-[#0f0f0f] border-b border-white/[0.05] gap-2">
+          <div className="relative rounded-[24px] bg-[#1f1f1d] border border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.6)] overflow-hidden">
+            <div className="flex items-center px-4 py-3 bg-[#191918] border-b border-white/[0.05] gap-2">
               <div className="flex gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
-                <div className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
-                <div className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
               </div>
-              <div className="mx-auto px-6 py-1 rounded-md bg-[#1a1a1a] text-[10px] font-mono text-neutral-500 border border-white/[0.05]">
-                syntrosaas-app.vercel.app
+              <div className="mx-auto px-6 py-1 rounded-md bg-[#141413] text-[10px] font-mono text-[#A3A39E] border border-white/[0.05]">
+                plataforma-comercial.com
               </div>
             </div>
             <img 
               src="/projects/syntrosaas_01.png" 
-              alt="SyntroSaaS B2B Platform Mockup" 
+              alt="Plataforma Web para Negocios" 
               className="w-full h-auto aspect-[16/10] object-cover object-top"
             />
           </div>
