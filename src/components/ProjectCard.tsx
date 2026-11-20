@@ -63,17 +63,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/25'
                   : 'bg-white/[0.04] border-white/10 text-neutral-400 hover:text-neutral-200 hover:bg-white/[0.08]'
               }`}
-              title={showTech ? 'Ver propuesta comercial' : 'Ver arquitectura y stack'}
+              title={showTech ? (lang === 'es' ? 'Ver beneficio de negocio' : 'View business outcome') : (lang === 'es' ? 'Ver arquitectura y stack' : 'View Architecture & Stack')}
             >
               {showTech ? (
                 <>
                   <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>{lang === 'es' ? 'Resultado Comercial' : 'Business View'}</span>
+                  <span>{lang === 'es' ? 'Ver Beneficio de Negocio' : 'View Business Outcome'}</span>
                 </>
               ) : (
                 <>
                   <Cpu className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>{lang === 'es' ? 'Arquitectura & Stack' : 'Architecture & Stack'}</span>
+                  <span>{lang === 'es' ? 'Ver arquitectura y stack' : 'View Architecture & Stack'}</span>
                 </>
               )}
             </button>
@@ -86,10 +86,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/[0.06] hover:bg-emerald-500 hover:text-neutral-950 text-neutral-300 transition-all border border-white/10"
-                title="Abrir Demo en Vivo"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/[0.06] hover:bg-emerald-500 hover:text-neutral-950 text-neutral-200 transition-all border border-white/10 shadow-sm"
+                title={lang === 'es' ? 'Probar Demo en Vivo' : 'Try Live Demo'}
               >
-                <span>Live Demo</span>
+                <span>{lang === 'es' ? 'Probar Demo en Vivo' : 'Try Live Demo'}</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}

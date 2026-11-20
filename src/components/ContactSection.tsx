@@ -29,8 +29,8 @@ export const ContactSection: React.FC = () => {
 
           <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
             {lang === 'es' 
-              ? 'Desde MVPs de SaaS multi-tenant desplegados en < 2 semanas hasta centros de comando de IA y aplicaciones móviles offline-first: construidos con arquitecturas limpias y grado de producción.' 
-              : 'From multi-tenant SaaS MVPs shipped in < 2 weeks to AI command centers and offline-first mobile apps: engineered with clean architecture and production-grade reliability.'}
+              ? 'Desde plataformas SaaS listas en menos de 2 semanas hasta sistemas con IA y portales a medida: entrega llave en mano lista para facturar.' 
+              : 'From turnkey SaaS platforms deployed in under 2 weeks to custom AI systems and portals: ready-to-bill software engineered for growth.'}
           </p>
         </div>
 

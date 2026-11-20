@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, Award, Layers } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -33,20 +33,27 @@ export const Hero: React.FC = () => {
           className="space-y-8 col-span-1 lg:col-span-7 relative z-10 lg:pr-12"
         >
           <motion.div variants={item}>
-            <h1 className="font-display text-[3.25rem] leading-[1.08] sm:text-[4rem] md:text-[76px] lg:text-[88px] font-bold tracking-[-0.04em] text-neutral-50">
-              {lang === 'es' ? 'Plataformas web modernas' : 'High-performance web'}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>{lang === 'es' ? 'DISPONIBLE PARA PROYECTOS B2B' : 'AVAILABLE FOR B2B PROJECTS'}</span>
+            </div>
+
+            <h1 className="font-display text-[3.25rem] leading-[1.08] sm:text-[4rem] md:text-[76px] lg:text-[86px] font-bold tracking-[-0.04em] text-neutral-50">
+              {lang === 'es' ? 'Hola, soy Axel.' : "Hey, I'm Axel."}
               <br/>
               <span className="text-neutral-500">
-                {lang === 'es' ? 'y sistemas con IA listos para producción.' : '& applied AI systems for business.'}
+                {lang === 'es' ? 'Construyo software con el que tu negocio puede contar.' : 'I ship software your business can rely on.'}
               </span>
             </h1>
           </motion.div>
 
-          <motion.p variants={item} className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-[40ch]">
-            {t('hero.subtitle')}
+          <motion.p variants={item} className="text-lg md:text-xl text-neutral-400 font-medium leading-relaxed max-w-[42ch]">
+            {lang === 'es'
+              ? 'Ingeniero de producto full-stack. Construyo plataformas web modernas, herramientas de automatización y sistemas con IA que ayudan a los negocios a vender más y ahorrar tiempo.'
+              : 'Full-stack product engineer. I build modern web platforms, automation tools, and applied AI systems that help businesses grow revenue and save operational hours.'}
           </motion.p>
 
-          <motion.div variants={item} className="pt-6 flex flex-wrap items-center gap-4">
+          <motion.div variants={item} className="pt-4 flex flex-wrap items-center gap-4">
             <a
               href={lang === 'es' ? "https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto" : "https://wa.me/593995267503?text=Hi%20Axel,%20I%20would%20like%20to%20quote%20a%20project"}
               target="_blank"
@@ -57,38 +64,65 @@ export const Hero: React.FC = () => {
               <ArrowRight className="w-4 h-4 text-neutral-950 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#projects"
+              href="#solutions"
               className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm font-semibold text-neutral-300 hover:text-neutral-50 hover:bg-white/5 border border-white/10 transition-all duration-300"
             >
-              <span>{t('hero.cta.secondary')}</span>
+              <span>{lang === 'es' ? 'Ver Soluciones & Demos' : 'View Solutions & Demos'}</span>
             </a>
           </motion.div>
 
-          {/* Minimalist Commercial Proof Strip */}
+          {/* Minimalist Commercial Proof Strip with Business Value */}
           <motion.div variants={item} className="pt-8 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
-              <span className="text-2xl font-bold tracking-tight text-white font-mono block">10+</span>
-              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
-                {lang === 'es' ? 'Sistemas B2B' : 'B2B Systems'}
-              </span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <Layers className="w-4 h-4 text-emerald-400" />
+                <span className="text-2xl font-bold tracking-tight text-white font-mono block">10+</span>
+              </div>
+              <div className="text-xs font-bold text-neutral-200">
+                {lang === 'es' ? 'Proyectos B2B' : 'B2B Projects'}
+              </div>
+              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Sistemas en producción' : 'Production-grade systems'}
+              </div>
             </div>
+
             <div>
-              <span className="text-2xl font-bold tracking-tight text-white font-mono block">&lt; 1s</span>
-              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
-                {lang === 'es' ? 'Carga Instantánea' : 'Instant Loading'}
-              </span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <Zap className="w-4 h-4 text-emerald-400" />
+                <span className="text-2xl font-bold tracking-tight text-white font-mono block">&lt; 1s</span>
+              </div>
+              <div className="text-xs font-bold text-neutral-200">
+                {lang === 'es' ? 'Carga Instantánea' : 'Instant Load'}
+              </div>
+              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Optimizado para SEO y conversión' : 'Built for SEO & Conversion'}
+              </div>
             </div>
+
             <div>
-              <span className="text-2xl font-bold tracking-tight text-white font-mono block">100%</span>
-              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
-                {lang === 'es' ? 'Datos Aislados' : 'Data Isolation'}
-              </span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="text-2xl font-bold tracking-tight text-white font-mono block">100%</span>
+              </div>
+              <div className="text-xs font-bold text-neutral-200">
+                {lang === 'es' ? 'Seguridad Empresarial' : 'Enterprise Security'}
+              </div>
+              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Datos aislados por cliente' : 'Isolated client data'}
+              </div>
             </div>
+
             <div>
-              <span className="text-2xl font-bold tracking-tight text-emerald-400 font-mono block">5.0 ★</span>
-              <span className="text-xs text-neutral-400 uppercase tracking-wider font-mono">
-                {lang === 'es' ? 'Fiverr Verificado' : 'Fiverr Verified'}
-              </span>
+              <div className="flex items-center gap-1.5 mb-1">
+                <Award className="w-4 h-4 text-emerald-400" />
+                <span className="text-2xl font-bold tracking-tight text-emerald-400 font-mono block">5.0 ★</span>
+              </div>
+              <div className="text-xs font-bold text-neutral-200">
+                {lang === 'es' ? 'Fiverr Rating' : 'Fiverr Rating'}
+              </div>
+              <div className="text-[11px] text-neutral-500 font-sans mt-0.5 leading-snug">
+                {lang === 'es' ? 'Calificación verificada' : 'Verified client reviews'}
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -112,12 +146,12 @@ export const Hero: React.FC = () => {
                 <div className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
               </div>
               <div className="mx-auto px-6 py-1 rounded-md bg-[#1a1a1a] text-[10px] font-mono text-neutral-500 border border-white/[0.05]">
-                nexus-dashboard.app
+                syntrosaas-app.vercel.app
               </div>
             </div>
             <img 
-              src="/projects/nexus_01.png" 
-              alt="Nexus B2B Platform Mockup" 
+              src="/projects/syntrosaas_01.png" 
+              alt="SyntroSaaS B2B Platform Mockup" 
               className="w-full h-auto aspect-[16/10] object-cover object-top"
             />
           </div>
@@ -126,8 +160,3 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
-
-
-
-
-

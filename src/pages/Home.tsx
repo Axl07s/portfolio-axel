@@ -22,19 +22,19 @@ export function Home() {
       <ExpertiseSection />
 
       <div className="h-16 md:h-24"></div>
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <section id="solutions" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl space-y-4">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-neutral-50">
-              {lang === 'es' ? 'Trabajo ' : 'Selected '}
+              {lang === 'es' ? 'Soluciones y ' : 'Interactive Solutions & '}
               <span className="text-neutral-500">
-                {lang === 'es' ? 'Destacado' : 'Work'}
+                {lang === 'es' ? 'Demos Interactivas' : 'Live Demos'}
               </span>
             </h2>
             <p className="text-sm sm:text-base text-neutral-400">
               {lang === 'es' 
-                ? 'Soluciones desplegadas en producción: reservas automatizadas, plataformas para clientes y sistemas con IA de alto rendimiento.' 
-                : 'Solutions deployed to production: automated booking engines, client platforms, and high-performance AI systems.'}
+                ? 'Arquitecturas funcionales listas para probar en vivo y adaptar a cualquier negocio en menos de 2 semanas.' 
+                : 'Functional architectures ready to test live and adapt to any business in under 2 weeks.'}
             </p>
           </div>
           

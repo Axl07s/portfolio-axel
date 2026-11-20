@@ -27,7 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   const navLinks = [
     { path: '/projects', labelES: 'Proyectos B2B', labelEN: 'B2B Projects' },
-    { path: '/labs', labelES: 'Laboratorio', labelEN: 'Labs' }
+    { path: '/labs', labelES: 'Ingeniería', labelEN: 'Labs' }
   ];
 
   return (
