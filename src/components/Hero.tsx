@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Zap, Award, Layers } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, Clock, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -71,18 +71,20 @@ export const Hero: React.FC = () => {
             </a>
           </motion.div>
 
-          {/* Minimalist Commercial Proof Strip with Business Value */}
+          {/* Minimalist Commercial Proof Strip with Honest Guarantees */}
           <motion.div variants={item} className="pt-8 border-t border-white/[0.08] grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
               <div className="flex items-center gap-1.5 mb-1">
-                <Layers className="w-4 h-4 text-[#C8A97E]" />
-                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">10+</span>
+                <Clock className="w-4 h-4 text-[#C8A97E]" />
+                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">
+                  {lang === 'es' ? '7-10 días' : '7-10 days'}
+                </span>
               </div>
               <div className="text-xs font-bold text-[#F5F5F0]">
-                {lang === 'es' ? 'Proyectos entregados' : 'Delivered Projects'}
+                {lang === 'es' ? 'Entrega rápida' : 'Fast Delivery'}
               </div>
               <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Empresas y emprendedores' : 'Businesses & entrepreneurs'}
+                {lang === 'es' ? 'Llave en mano' : 'Turnkey delivery'}
               </div>
             </div>
 
@@ -95,7 +97,7 @@ export const Hero: React.FC = () => {
                 {lang === 'es' ? 'Carga instantánea' : 'Instant Load'}
               </div>
               <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Tus clientes no esperan' : 'Zero waiting time'}
+                {lang === 'es' ? 'Optimizado para móvil' : 'Optimized for mobile'}
               </div>
             </div>
 
@@ -105,23 +107,25 @@ export const Hero: React.FC = () => {
                 <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">100%</span>
               </div>
               <div className="text-xs font-bold text-[#F5F5F0]">
-                {lang === 'es' ? 'Privacidad y seguridad' : 'Privacy & Security'}
+                {lang === 'es' ? 'Diseño a medida' : 'Bespoke Design'}
               </div>
               <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Tus datos siempre protegidos' : 'Always protected data'}
+                {lang === 'es' ? 'Sin plantillas genéricas' : 'Zero generic templates'}
               </div>
             </div>
 
             <div>
               <div className="flex items-center gap-1.5 mb-1">
-                <Award className="w-4 h-4 text-[#C8A97E]" />
-                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">5.0 ★</span>
+                <MessageCircle className="w-4 h-4 text-[#C8A97E]" />
+                <span className="text-2xl font-bold tracking-tight text-[#C8A97E] font-mono block">
+                  {lang === 'es' ? 'Directo' : 'Direct'}
+                </span>
               </div>
               <div className="text-xs font-bold text-[#F5F5F0]">
-                {lang === 'es' ? 'Calificación verificada' : 'Verified Rating'}
+                {lang === 'es' ? 'Trato y soporte' : 'Direct Support'}
               </div>
               <div className="text-[11px] text-[#A3A39E] font-sans mt-0.5 leading-snug">
-                {lang === 'es' ? 'Clientes satisfechos' : 'Satisfied clients'}
+                {lang === 'es' ? 'Sin intermediarios' : 'No middlemen'}
               </div>
             </div>
           </motion.div>
