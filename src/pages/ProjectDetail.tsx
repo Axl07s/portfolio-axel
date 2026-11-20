@@ -69,23 +69,24 @@ export function ProjectDetail() {
 
       <div className="project-detail-loaded relative w-full flex-1 flex flex-col min-h-screen pt-24 pb-36">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 z-50 relative">
-          <Link to="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-50 transition-colors group">
+          <Link to="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-50 transition-colors group min-h-[44px]">
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium">Volver al Portafolio</span>
+            <span className="font-medium">
+              {lang === 'es' ? 'Volver al Portafolio' : 'Back to Portfolio'}
+            </span>
           </Link>
         </div>
-        
         
         {renderLayout()}
 
         {/* Global Floating Dock for Actions */}
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center p-1.5 bg-neutral-950/80 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
+        <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center p-1.5 bg-neutral-950/85 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
           {(personalProject?.githubUrl || freelanceProject?.githubUrl) && (
             <a 
               href={personalProject?.githubUrl || freelanceProject?.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-2.5 hover:bg-neutral-50/10 rounded-full transition-colors text-neutral-300 hover:text-neutral-50 font-medium text-sm"
+              className="flex items-center gap-2 px-4 py-2.5 lg:px-5 lg:py-2.5 hover:bg-neutral-50/10 rounded-full transition-colors text-neutral-300 hover:text-neutral-50 font-medium text-sm min-h-[44px]"
             >
               <Code2 className="w-4 h-4" />
               <span>{lang === 'es' ? 'Código' : 'Code'}</span>
@@ -101,7 +102,7 @@ export function ProjectDetail() {
               href={personalProject?.liveUrl || freelanceProject?.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2 lg:px-6 lg:py-2.5 bg-neutral-50 hover:bg-neutral-200 text-black rounded-full transition-all font-bold text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105"
+              className="flex items-center gap-2 px-5 py-2.5 lg:px-6 lg:py-2.5 bg-neutral-50 hover:bg-neutral-200 text-black rounded-full transition-all font-bold text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105 min-h-[44px]"
             >
               <ExternalLink className="w-4 h-4" />
               <span>Live Demo</span>

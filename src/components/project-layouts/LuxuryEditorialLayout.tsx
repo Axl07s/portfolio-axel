@@ -3,6 +3,7 @@ import type { Project } from '../../data/portfolioData';
 import { ChefHat, CreditCard, Utensils, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
+import { KureBookingDemo } from '../InteractiveSimulators';
 
 const getLuxurySections = (lang: 'es' | 'en') => [
   { id: 'luxury-hero', label: 'Intro' },
@@ -198,6 +199,29 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
           </p>
         </div>
 
+        {/* Embedded Interactive Reservation Demo (Mobile) */}
+        <div className="pt-4">
+          <KureBookingDemo />
+        </div>
+
+      </section>
+
+      {/* Embedded Interactive Reservation Demo (Desktop) */}
+      <section className="hidden lg:block max-w-4xl mx-auto px-6 py-12 relative z-20">
+        <div className="text-center mb-8">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#c9a96e] bg-[#c9a96e]/10 px-4 py-1.5 rounded-full border border-[#c9a96e]/20">
+            {lang === 'es' ? 'Experiencia Interactiva' : 'Interactive Experience'}
+          </span>
+          <h3 className="text-3xl font-serif text-neutral-50 mt-4">
+            {lang === 'es' ? 'Simula una Reserva en Vivo' : 'Simulate a Live Booking'}
+          </h3>
+          <p className="text-base text-neutral-400 mt-2 max-w-lg mx-auto font-light">
+            {lang === 'es'
+              ? 'Prueba el selector de comensales, turno y confirmacion automatizada con integracion a WhatsApp.'
+              : 'Test guest count selection, seating shifts, and instant WhatsApp booking confirmation.'}
+          </p>
+        </div>
+        <KureBookingDemo />
       </section>
 
       {/* 3. BUSINESS VALUE GRID */}

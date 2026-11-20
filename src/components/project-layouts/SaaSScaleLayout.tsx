@@ -3,6 +3,7 @@ import type { Project } from '../../data/portfolioData';
 import { Server, Shield, CheckCircle2, ArrowRight, User, Activity, Settings, Database, Cloud } from 'lucide-react';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { useLanguage } from '../../context/LanguageContext';
+import { SaaSDashboardDemo } from '../InteractiveSimulators';
 
 const getSaaSSections = (lang: 'es' | 'en') => [
   { id: 'saas-hero', label: 'Intro' },
@@ -193,9 +194,9 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
       </section>
 
       {/* ============================================================ */}
-      {/* MOBILE: Clean Native SaaS Card (< lg) */}
+      {/* MOBILE: Clean Native SaaS Card + Live Interactive Simulator (< lg) */}
       {/* ============================================================ */}
-      <section id="saas-showcase-mobile" className="lg:hidden relative z-20 py-10 px-4">
+      <section id="saas-showcase-mobile" className="lg:hidden relative z-20 py-10 px-4 space-y-6">
         <div className="bg-gradient-to-b from-neutral-950 to-black border border-neutral-800 rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(79,70,229,0.15)]">
           {/* Window Header */}
           <div className="flex items-center gap-2 px-4 py-3 bg-[#111118] border-b border-neutral-800">
@@ -268,6 +269,29 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
             <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span>
           </div>
         </div>
+
+        {/* Embedded Interactive SaaS Dashboard Demo */}
+        <div className="pt-2">
+          <SaaSDashboardDemo />
+        </div>
+      </section>
+
+      {/* DESKTOP Interactive Demo Section */}
+      <section className="hidden lg:block max-w-4xl mx-auto px-6 py-12 relative z-20">
+        <div className="text-center mb-8">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#C8A97E] bg-[#C8A97E]/10 px-3 py-1 rounded-full border border-[#C8A97E]/20">
+            {lang === 'es' ? 'Simulador en Vivo' : 'Live Interactive Simulator'}
+          </span>
+          <h3 className="text-2xl font-bold text-neutral-50 mt-3 font-sans">
+            {lang === 'es' ? 'Prueba la Facturacion y Cuotas en Vivo' : 'Test Live Billing & Quota Governance'}
+          </h3>
+          <p className="text-sm text-neutral-400 mt-1 max-w-lg mx-auto">
+            {lang === 'es'
+              ? 'Prueba el cambio dinamico de planes, cobros simulados via Stripe y rotacion de claves API.'
+              : 'Test real-time tier switching, simulated Stripe charges, and scoped API key rotation.'}
+          </p>
+        </div>
+        <SaaSDashboardDemo />
       </section>
 
       {/* Features List */}

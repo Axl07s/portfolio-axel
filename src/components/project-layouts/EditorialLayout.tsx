@@ -312,7 +312,14 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
                     src={screen.url} 
                     alt={lang === 'es' ? screen.titleES : screen.titleEN} 
                     className="w-full h-full object-cover object-top select-none"
-                    style={{ imageRendering: 'auto' }}
+                    style={{ 
+                      imageRendering: '-webkit-optimize-contrast',
+                      transform: 'translateZ(0)',
+                      WebkitBackfaceVisibility: 'hidden',
+                      backfaceVisibility: 'hidden'
+                    }}
+                    loading="eager"
+                    decoding="sync"
                   />
                 </div>
 
@@ -400,7 +407,14 @@ export function EditorialLayout({ project }: { project: PersonalProject }) {
                 className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-700 ease-in-out ${
                   index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
-                style={{ imageRendering: 'auto' }}
+                style={{ 
+                  imageRendering: '-webkit-optimize-contrast',
+                  transform: 'translateZ(0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden'
+                }}
+                loading="eager"
+                decoding="sync"
               />
             ))}
 

@@ -5,6 +5,7 @@ import { VirtualCanvas } from '../VirtualCanvas';
 import { ScrollAffordance } from '../ScrollAffordance';
 import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
+import { JarvisVoiceDemo } from '../InteractiveSimulators';
 
 const getCommandSections = (lang: 'es' | 'en') => [
   { id: 'command-interactive', label: lang === 'es' ? 'Interfaz' : 'Interface' },
@@ -200,6 +201,11 @@ export function CommandCenterLayout({ project }: { project: Project }) {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Embedded Interactive Jarvis Assistant Test Harness */}
+          <div className="mt-6">
+            <JarvisVoiceDemo />
           </div>
         </section>
 

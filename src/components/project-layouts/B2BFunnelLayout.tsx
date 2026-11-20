@@ -4,6 +4,7 @@ import { Target, TrendingUp, Filter, BarChart, Zap, Briefcase } from 'lucide-rea
 import { ScrollAffordance } from '../ScrollAffordance';
 import { Lightbox } from '../Lightbox';
 import { useLanguage } from '../../context/LanguageContext';
+import { NexusRoiCalculatorDemo } from '../InteractiveSimulators';
 
 const getB2BSections = (lang: 'es' | 'en') => [
   { id: 'b2b-hero', label: 'Intro' },
@@ -188,12 +189,9 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
                </ul>
             </div>
 
-            {/* Right: Actual Image */}
-            <div className="relative group">
-               <div className="absolute -inset-4 bg-indigo-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-               <div className="relative rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl">
-                 <img src={project.images[1]?.url} alt="ROI Calculator" className="w-full h-auto object-cover" />
-               </div>
+            {/* Right: Interactive ROI Calculator Engine */}
+            <div className="w-full">
+              <NexusRoiCalculatorDemo />
             </div>
 
           </div>
