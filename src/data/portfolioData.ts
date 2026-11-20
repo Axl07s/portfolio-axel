@@ -40,7 +40,7 @@ const projectsES: Project[] = [
     category: 'Sistemas Web & Cobros',
     description: 'Sistema base para cobrar membresías y suscripciones automáticas con tarjeta, con espacios privados y aislados para cada cliente.',
     architecture: 'Aislamiento multi-tenant en Supabase mediante Row-Level Security (RLS), conciliación asíncrona de webhooks con Stripe Checkout y Server Actions en Next.js 15.',
-    role: 'Full-Stack Architect',
+    role: 'Arquitectura & Desarrollo',
     stack: ['Next.js 15', 'React 19', 'Supabase', 'Stripe', 'Tailwind CSS', 'TypeScript'],
     metrics: [
       { label: 'Cobros', value: '100% Automáticos' },
@@ -68,7 +68,7 @@ const projectsES: Project[] = [
     category: 'Automatización con IA',
     description: 'Panel de asistentes inteligentes 24/7 diseñado para atender clientes, procesar datos y ejecutar tareas operativas en paralelo mientras te enfocas en vender.',
     architecture: 'Malla operativa orquestando 9 subagentes de IA en paralelo, streaming de voz neural ElevenLabs (<180ms) con Web Audio API y búsqueda semántica con RAG/pgvector.',
-    role: 'Lead Frontend Engineer',
+    role: 'Ingeniería Frontend & IA',
     stack: ['Next.js 15', 'React 19', 'Framer Motion', 'ElevenLabs', 'Tailwind CSS', 'TypeScript'],
     metrics: [
       { label: 'Disponibilidad', value: '24/7 Continua' },
@@ -96,12 +96,12 @@ const projectsES: Project[] = [
     category: 'Portales & Reservas',
     description: 'Plataforma de reservas directas diseñada para restaurantes y negocios de hospitalidad que buscan proyectar estatus y dejar de pagar comisiones del 15% a apps intermediarias.',
     architecture: 'Motor de reservas multipaso en tiempo real, validación de formularios en memoria, menú categorizado dinámico y arquitectura React 18 optimizada a 60 FPS sin dependencias de CMS pesados.',
-    role: 'Frontend Developer & Designer',
+    role: 'Diseño UI & Desarrollo',
     stack: ['React 18', 'Tailwind CSS', 'Vite', 'Lucide Icons'],
     metrics: [
       { label: 'Comisiones', value: '0% a Terceros' },
       { label: 'Reservas', value: 'Multi-Paso Directa' },
-      { label: 'Mobile', value: '100% Fluido' },
+      { label: 'Experiencia Móvil', value: '100% Fluida' },
     ],
     features: [
       'Navegador de menú categorizado con tarjetas de platos, precios y descripciones',
@@ -124,12 +124,12 @@ const projectsES: Project[] = [
     category: 'Captación de Clientes',
     description: 'Embudo de captación comercial para empresas y firmas de servicios con calculadora interactiva que califica prospectos antes de agendar llamadas, descartando contactos sin presupuesto.',
     architecture: 'Simulador matemático reactivo en cliente que proyecta pipeline comercial en milisegundos, wizard modular de cualificación en 3 pasos y modales de retos técnicos desacoplados en Vite y Tailwind.',
-    role: 'Frontend Developer & UX',
+    role: 'Desarrollo Web & UX',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
     metrics: [
       { label: 'Filtro Comercial', value: 'Wizard 3 Etapas' },
-      { label: 'Calculadora', value: 'ROI Real-Time' },
-      { label: 'Segmento', value: 'Enterprise B2B' },
+      { label: 'Calculadora', value: 'ROI en Tiempo Real' },
+      { label: 'Segmento', value: 'Empresas B2B' },
     ],
     features: [
       'Simulador de ROI reactivo que modela pipeline comercial y retornos con sliders interactivos',
@@ -149,9 +149,9 @@ const projectsES: Project[] = [
   {
     id: 'ai-rag-knowledge',
     title: 'Enterprise RAG Engine',
-    category: 'AI Knowledge Base',
+    category: 'Base de Conocimiento IA',
     description: 'Buscador inteligente con IA y citación exacta de fuentes en bases documentales privadas. Localiza respuestas verificadas en milisegundos con cero alucinaciones.',
-    role: 'AI/ML Engineer',
+    role: 'Ingeniería de IA & Búsqueda',
     stack: ['Python', 'FastAPI', 'pgvector', 'OpenAI', 'LangChain', 'React'],
     metrics: [
       { label: 'Precisión', value: '99.2%' },

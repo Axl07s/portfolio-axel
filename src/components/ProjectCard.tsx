@@ -155,7 +155,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <span>{lang === 'es' ? 'Ver Repositorio GitHub' : 'View GitHub Repo'}</span>
                 </a>
                 <span className="text-[10px] font-mono text-[#A3A39E]/60">
-                  Código de Producción
+                  {lang === 'es' ? 'Código de Producción' : 'Production Code'}
                 </span>
               </div>
             )}

@@ -1,4 +1,3 @@
-import { ExpertiseSection } from '../components/ExpertiseSection';
 import { EcuadorB2BSection } from '../components/EcuadorB2BSection';
 import { Hero } from '../components/Hero';
 import { ProjectCard } from '../components/ProjectCard';
@@ -18,11 +17,11 @@ export function Home() {
     <main className="w-full overflow-x-hidden">
       <Hero />
 
-      <div className="h-16 md:h-28"></div>
-      <ExpertiseSection />
+      {/* Prioritized 3 Clear Packages Section (Light Editorial Contrast) */}
+      <EcuadorB2BSection />
 
-      <div className="h-16 md:h-28"></div>
-      <section id="solutions" className="py-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto w-full scroll-mt-24">
+      {/* Interactive Solutions & Live Demos Section (Dark Editorial Contrast) */}
+      <section id="solutions" className="py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto w-full scroll-mt-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl space-y-3">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F5F5F0]">
@@ -42,7 +41,7 @@ export function Home() {
             to="/projects" 
             className="group flex items-center gap-2 text-xs font-mono font-medium tracking-widest uppercase text-[#A3A39E] hover:text-[#F5F5F0] transition-colors"
           >
-            <span>{lang === 'es' ? 'Ver Catálogo Completo' : 'View Full Catalog'}</span>
+            <span>{lang === 'es' ? 'Ver Catalogo Completo' : 'View Full Catalog'}</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#C8A97E]" />
           </Link>
         </div>
@@ -57,9 +56,6 @@ export function Home() {
         </div>
       </section>
 
-      <div className="h-16 md:h-28"></div>
-      <EcuadorB2BSection />
-
       {/* Discrete footer invitation to Labs for CTOs & Technical Founders */}
       <section className="py-20 px-4 sm:px-6 text-center border-t border-white/[0.06]">
         <div className="max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 text-xs font-mono">
@@ -72,7 +68,7 @@ export function Home() {
             to="/labs"
             className="inline-flex items-center gap-1.5 text-[#A3A39E] hover:text-[#C8A97E] font-medium transition-colors uppercase tracking-wider"
           >
-            <span>{lang === 'es' ? 'Laboratorio Técnico (/labs)' : 'Technical Lab (/labs)'}</span>
+            <span>{lang === 'es' ? 'Laboratorio Tecnico (/labs)' : 'Technical Lab (/labs)'}</span>
             <ArrowRight className="w-3 h-3 text-[#C8A97E]" />
           </Link>
         </div>
