@@ -9,8 +9,8 @@ export function Labs() {
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-h-screen animate-fadeIn">
       <Helmet>
-        <title>{lang === 'es' ? 'Laboratorio & Sistemas Deep Tech - Axel Molineros' : 'Labs & Deep Tech Systems - Axel Molineros'}</title>
-        <meta name="description" content={lang === 'es' ? 'Ingeniería de sistemas a bajo nivel en C/C++ (EDR/ETW) y arquitecturas móviles offline-first desarrolladas por Axel Molineros.' : 'Low-level systems engineering in C/C++ (EDR/ETW) and offline-first mobile architectures by Axel Molineros.'} />
+        <title>{lang === 'es' ? 'Laboratorio & Sistemas Deep Tech - Axel.dev' : 'Labs & Deep Tech Systems - Axel.dev'}</title>
+        <meta name="description" content={lang === 'es' ? 'Ingeniería de sistemas a bajo nivel en C/C++ (EDR/ETW) y arquitecturas móviles offline-first desarrolladas por Axel.dev.' : 'Low-level systems engineering in C/C++ (EDR/ETW) and offline-first mobile architectures by Axel.dev.'} />
       </Helmet>
 
       <div className="max-w-4xl mb-12 space-y-6">

@@ -55,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-base tracking-tight text-[#F5F5F0]">AXEL MOLINEROS</span>
+              <span className="font-bold text-base tracking-tight text-[#F5F5F0]">AXEL.DEV</span>
               <span className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-mono font-medium bg-[#1f1f1d] text-[#A3A39E] border border-white/[0.08] uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C8A97E]" />
                 {lang === 'es' ? 'DISPONIBLE' : 'AVAILABLE'}

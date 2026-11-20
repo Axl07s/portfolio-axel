@@ -12,19 +12,19 @@ const DOMAIN = 'https://portfolio-axel-nine.vercel.app';
 const routes = [
   {
     path: '/',
-    title: 'Axel Molineros — Sistemas Web y Automatización para Negocios',
+    title: 'Axel.dev: Sistemas Web y Automatización para Negocios',
     description: 'Estudio de consultoría y desarrollo web. Plataformas de cobro directo, sistemas de reservas, asistentes inteligentes 24/7 y paneles de control a medida para hacer crecer tu negocio.',
     image: '/projects/syntrosaas_01.png',
   },
   {
     path: '/labs',
-    title: 'Laboratorio & Sistemas Deep Tech — Axel Molineros',
+    title: 'Laboratorio & Sistemas Deep Tech: Axel.dev',
     description: 'Investigación y desarrollo de software de misión crítica: detección de amenazas a nivel de kernel en C/C++ (EDR/ETW) y arquitecturas móviles offline-first con persistencia local ultrarrápida.',
     image: '/projects/suitesecurity_01.png',
   },
   {
     path: '/projects',
-    title: 'Soluciones y Demos Interactivas B2B — Axel Molineros',
+    title: 'Soluciones y Demos Interactivas B2B: Axel.dev',
     description: 'Catálogo de plataformas SaaS multi-tenant, sistemas de IA y aplicaciones B2B en producción listas para desplegar y adaptar en menos de 2 semanas.',
     image: '/projects/syntrosaas_01.png',
   },
@@ -94,8 +94,8 @@ async function prerender() {
     <title>${route.title}</title>
     <meta name="title" content="${route.title}" />
     <meta name="description" content="${route.description}" />
-    <meta name="keywords" content="Axel Molineros, Software Engineer, Full-Stack Developer, SaaS, AI Agents, Tailwind CSS, Portfolio, Vercel, Ecuador" />
-    <meta name="author" content="Axel Molineros" />
+    <meta name="keywords" content="Axel.dev, Sistemas Web, Automatización, SaaS, Agentes IA, React, Next.js, Vercel, Ecuador" />
+    <meta name="author" content="Axel.dev" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="${canonicalUrl}" />
 

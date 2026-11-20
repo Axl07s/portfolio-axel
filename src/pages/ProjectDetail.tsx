@@ -57,9 +57,9 @@ export function ProjectDetail() {
   return (
     <>
       <Helmet>
-        <title>{`${title} - Axel Molineros`}</title>
+        <title>{`${title} - Axel.dev`}</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={`${title} - Axel Molineros`} />
+        <meta property="og:title" content={`${title} - Axel.dev`} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={`https://portfolio-axel-nine.vercel.app${image}`} />
         <meta property="og:url" content={`https://portfolio-axel-nine.vercel.app/project/${id}`} />

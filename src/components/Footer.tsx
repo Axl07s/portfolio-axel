@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               A
             </div>
             <div>
-              <span className="font-bold text-sm text-[#F5F5F0]">AXEL MOLINEROS</span>
+              <span className="font-bold text-sm text-[#F5F5F0]">AXEL.DEV</span>
               <p className="text-[11px] text-[#A3A39E] font-medium">
                 {lang === 'es' ? 'Sistemas Web y Automatización para Negocios' : 'Web Systems & Business Automation'}
               </p>
@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A3A39E]/80">
-          <p>© {new Date().getFullYear()} Axel Molineros. {t('footer.legal')}</p>
+          <p>© {new Date().getFullYear()} Axel.dev. {t('footer.legal')}</p>
           <div className="flex items-center gap-2 font-mono text-[11px] text-[#A3A39E]/70">
             <span>Quito, Ecuador &bull; {lang === 'es' ? 'Remoto Global' : 'Worldwide Remote'}</span>
           </div>
