@@ -1,13 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { LanguageProvider } from './context/LanguageContext'
+import { StrictMode } from 'react';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.tsx';
+import { LanguageProvider } from './context/LanguageContext';
 
-createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById('root')!;
+
+const app = (
   <StrictMode>
     <LanguageProvider>
       <App />
     </LanguageProvider>
-  </StrictMode>,
-)
+  </StrictMode>
+);
+
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(rootElement, app);
+} else {
+  createRoot(rootElement).render(app);
+}

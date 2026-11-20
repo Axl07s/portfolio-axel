@@ -25,3 +25,10 @@ dist-ssr
 
 .vercel
 .env*
+
+test-results/
+test-*.mjs
+record-clips.mjs
+kure_test.png
+clips/
+meta-ads-promo/

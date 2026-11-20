@@ -57,7 +57,7 @@ export function ProjectDetail() {
   return (
     <>
       <Helmet>
-        <title>{title} - Axel Molineros</title>
+        <title>{`${title} - Axel Molineros`}</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={`${title} - Axel Molineros`} />
         <meta property="og:description" content={description} />
