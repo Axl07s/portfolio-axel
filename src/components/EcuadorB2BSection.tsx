@@ -9,6 +9,7 @@ export const EcuadorB2BSection: React.FC = () => {
     {
       title: lang === 'es' ? 'Web Corporativa & Landing Page' : 'Corporate Web & Landing Page',
       badge: lang === 'es' ? 'Mas Solicitado' : 'Most Popular',
+      price: lang === 'es' ? 'Desde $450' : 'From $450',
       description: lang === 'es'
         ? 'Paginas web modernas de alto impacto visual, optimizadas para moviles, con carga ultra rapida (<1s) y captacion directa por WhatsApp.'
         : 'Modern high-impact visual websites, mobile-optimized, ultra-fast loading (<1s), and direct WhatsApp customer acquisition.',
@@ -31,6 +32,7 @@ export const EcuadorB2BSection: React.FC = () => {
     {
       title: lang === 'es' ? 'Cotizador Inteligente & Bot IA' : 'Smart Quoter & AI Assistant',
       badge: lang === 'es' ? 'Mayor Retorno' : 'Highest ROI',
+      price: lang === 'es' ? 'Desde $850' : 'From $850',
       description: lang === 'es'
         ? 'Calculadoras interactivas de presupuesto y asistentes de IA para atender clientes las 24 horas y cerrar ventas en piloto automatico.'
         : 'Interactive budget calculators and AI assistants to serve clients 24/7 and close sales on autopilot.',
@@ -53,6 +55,7 @@ export const EcuadorB2BSection: React.FC = () => {
     {
       title: lang === 'es' ? 'Plataforma Web & Sistema a Medida' : 'Custom Web Platform & Portal',
       badge: lang === 'es' ? 'Solucion Completa' : 'Full Solution',
+      price: lang === 'es' ? 'Desde $1,400' : 'From $1,400',
       description: lang === 'es'
         ? 'Plataformas web completas con panel de control, base de datos en la nube, gestion de clientes y pasarelas de pago integradas.'
         : 'Complete web platforms with control panel, cloud database, client management, and integrated payment gateways.',
@@ -138,6 +141,13 @@ export const EcuadorB2BSection: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl font-bold text-[#141413] tracking-tight leading-snug">
                   {srv.title}
                 </h3>
+
+                <div className="pt-1 pb-1 flex items-baseline gap-2">
+                  <span className="text-2xl sm:text-3xl font-display font-bold text-[#141413] tracking-tight">
+                    {srv.price}
+                  </span>
+                  <span className="text-xs font-mono text-[#73736C]">USD</span>
+                </div>
                 
                 <p className="text-xs sm:text-sm text-[#575752] leading-relaxed font-normal">
                   {srv.description}
@@ -184,6 +194,13 @@ export const EcuadorB2BSection: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* Discreet Pricing Disclaimer Note */}
+        <p className="text-center text-xs font-mono text-[#73736C] mt-8 max-w-2xl mx-auto leading-relaxed">
+          {lang === 'es'
+            ? 'Valores referenciales para paquetes base. Proyectos corporativos o sistemas a medida se cotizan según alcance.'
+            : 'Reference prices for base packages. Enterprise projects or custom systems are quoted based on scope.'}
+        </p>
 
         {/* Bottom Banner Callout (Light Editorial) */}
         <div className="mt-16 rounded-3xl p-8 sm:p-10 bg-white border border-black/[0.08] shadow-[0_15px_40px_rgba(0,0,0,0.04)] flex flex-col md:flex-row items-center justify-between gap-8">

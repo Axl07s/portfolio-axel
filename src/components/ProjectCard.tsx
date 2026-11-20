@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Project } from '../data/portfolioData';
-import { ArrowUpRight, ExternalLink, Code2, Layers } from 'lucide-react';
+import { ArrowUpRight, Code2, Layers } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectCardProps {
@@ -70,19 +70,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] transition-all shadow-sm min-h-[44px]"
-                title={lang === 'es' ? 'Probar Demo en Vivo' : 'Try Live Demo'}
-              >
-                <span>{lang === 'es' ? 'Probar Demo en Vivo' : 'Try Live Demo'}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/project/${project.id}#interactive-demo`);
+              }}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] transition-all shadow-sm min-h-[44px]"
+              title={lang === 'es' ? 'Probar Simulador Interactivo' : 'Try Interactive Simulator'}
+            >
+              <span>{lang === 'es' ? 'Probar Demo en Vivo' : 'Try Live Demo'}</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
             <div className="w-11 h-11 rounded-full bg-white/[0.06] group-hover:bg-[#F5F5F0] text-[#A3A39E] group-hover:text-[#141413] flex items-center justify-center transition-all duration-300 shrink-0">
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>

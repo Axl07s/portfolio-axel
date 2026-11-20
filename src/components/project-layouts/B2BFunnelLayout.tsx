@@ -190,7 +190,7 @@ export function B2BFunnelLayout({ project }: { project: Project }) {
             </div>
 
             {/* Right: Interactive ROI Calculator Engine */}
-            <div className="w-full">
+            <div id="interactive-demo" data-interactive-demo="true" className="w-full scroll-mt-24">
               <NexusRoiCalculatorDemo />
             </div>
 

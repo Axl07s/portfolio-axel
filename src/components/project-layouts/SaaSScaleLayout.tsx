@@ -271,13 +271,13 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
         </div>
 
         {/* Embedded Interactive SaaS Dashboard Demo */}
-        <div className="pt-2">
+        <div id="interactive-demo-mobile" data-interactive-demo="true" className="pt-2 scroll-mt-24">
           <SaaSDashboardDemo />
         </div>
       </section>
 
       {/* DESKTOP Interactive Demo Section */}
-      <section className="hidden lg:block max-w-4xl mx-auto px-6 py-12 relative z-20">
+      <section id="interactive-demo-desktop" data-interactive-demo="true" className="hidden lg:block max-w-4xl mx-auto px-6 py-12 relative z-20 scroll-mt-24">
         <div className="text-center mb-8">
           <span className="text-xs font-mono uppercase tracking-widest text-[#C8A97E] bg-[#C8A97E]/10 px-3 py-1 rounded-full border border-[#C8A97E]/20">
             {lang === 'es' ? 'Simulador en Vivo' : 'Live Interactive Simulator'}

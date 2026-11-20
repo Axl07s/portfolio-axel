@@ -200,14 +200,14 @@ export function LuxuryEditorialLayout({ project }: { project: Project }) {
         </div>
 
         {/* Embedded Interactive Reservation Demo (Mobile) */}
-        <div className="pt-4">
+        <div id="interactive-demo-mobile" data-interactive-demo="true" className="pt-4 scroll-mt-24">
           <KureBookingDemo />
         </div>
 
       </section>
 
       {/* Embedded Interactive Reservation Demo (Desktop) */}
-      <section className="hidden lg:block max-w-4xl mx-auto px-6 py-12 relative z-20">
+      <section id="interactive-demo-desktop" data-interactive-demo="true" className="hidden lg:block max-w-4xl mx-auto px-6 py-12 relative z-20 scroll-mt-24">
         <div className="text-center mb-8">
           <span className="text-xs font-mono uppercase tracking-widest text-[#c9a96e] bg-[#c9a96e]/10 px-4 py-1.5 rounded-full border border-[#c9a96e]/20">
             {lang === 'es' ? 'Experiencia Interactiva' : 'Interactive Experience'}

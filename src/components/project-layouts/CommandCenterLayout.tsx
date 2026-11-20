@@ -204,7 +204,7 @@ export function CommandCenterLayout({ project }: { project: Project }) {
           </div>
 
           {/* Embedded Interactive Jarvis Assistant Test Harness */}
-          <div className="mt-6">
+          <div id="interactive-demo-mobile" data-interactive-demo="true" className="mt-6 scroll-mt-24">
             <JarvisVoiceDemo />
           </div>
         </section>
@@ -213,7 +213,8 @@ export function CommandCenterLayout({ project }: { project: Project }) {
         {/* DESKTOP 3D HOLOGRAM (lg+) */}
         {/* ========================================================== */}
         <section id="command-interactive-desktop"
-          className="hidden lg:flex relative z-10 w-full overflow-hidden"
+          data-interactive-demo="true"
+          className="hidden lg:flex relative z-10 w-full overflow-hidden scroll-mt-24"
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setMousePos({ x: 0.5, y: 0.5 })}
