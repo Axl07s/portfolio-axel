@@ -126,13 +126,13 @@ export function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3 py-2 text-neutral-400 hover:text-neutral-50 hover:bg-white/[0.06] rounded-full transition-colors text-xs font-mono min-h-[44px] shrink-0"
-              title={lang === 'es' ? 'Abrir versión completa para computadoras de escritorio' : 'Open full desktop version'}
+              title={lang === 'es' ? 'Abrir aplicación completa en pestaña nueva' : 'Open full application in new tab'}
             >
               <span className="hidden md:inline">
-                {lang === 'es' ? 'Abrir versión completa (Escritorio) ↗' : 'Open full desktop version ↗'}
+                {lang === 'es' ? 'Abrir app completa ↗' : 'Open full app ↗'}
               </span>
               <span className="md:hidden">
-                {lang === 'es' ? 'Escritorio ↗' : 'Desktop ↗'}
+                {lang === 'es' ? 'Abrir app ↗' : 'Open app ↗'}
               </span>
             </a>
           )}
