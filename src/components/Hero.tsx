@@ -38,7 +38,7 @@ export const Hero: React.FC = () => {
               <span>{lang === 'es' ? 'ESTUDIO DIGITAL & CONSULTORÍA' : 'DIGITAL STUDIO & CONSULTING'}</span>
             </div>
 
-            <h1 className="font-display text-[3.25rem] leading-[1.08] sm:text-[4rem] md:text-[76px] lg:text-[86px] font-bold tracking-[-0.04em] text-[#F5F5F0]">
+            <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-[84px] leading-[1.12] sm:leading-[1.08] font-bold tracking-tight text-[#F5F5F0]">
               {lang === 'es' ? 'Hola, soy Axel.' : "Hey, I'm Axel."}
               <br/>
               <span className="text-[#A3A39E]">
@@ -47,25 +47,25 @@ export const Hero: React.FC = () => {
             </h1>
           </motion.div>
 
-          <motion.p variants={item} className="text-lg md:text-xl text-[#A3A39E] font-normal leading-relaxed max-w-[44ch]">
+          <motion.p variants={item} className="text-base sm:text-lg md:text-xl text-[#A3A39E] font-normal leading-relaxed max-w-[44ch]">
             {lang === 'es'
               ? 'Consultoría y desarrollo a medida. Creo páginas web de alto impacto, plataformas de cobro directo y asistentes inteligentes que convierten visitas en clientes y eliminan tareas manuales.'
               : 'Bespoke consulting and development. I engineer high-impact websites, direct payment platforms, and smart assistants that turn visitors into clients and eliminate manual chores.'}
           </motion.p>
 
-          <motion.div variants={item} className="pt-2 flex flex-wrap items-center gap-4">
+          <motion.div variants={item} className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
             <a
               href={lang === 'es' ? "https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto" : "https://wa.me/593995267503?text=Hi%20Axel,%20I%20would%20like%20to%20quote%20a%20project"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-bold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] transition-all duration-300 shadow-md"
+              className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm font-bold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] transition-all duration-300 shadow-md min-h-[48px]"
             >
               <span>{t('hero.cta.primary')}</span>
               <ArrowRight className="w-4 h-4 text-[#141413] group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#solutions"
-              className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm font-medium text-[#F5F5F0] hover:bg-white/[0.05] border border-white/10 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-medium text-[#F5F5F0] hover:bg-white/[0.05] border border-white/10 transition-all duration-300 min-h-[48px]"
             >
               <span>{lang === 'es' ? 'Ver Soluciones' : 'View Solutions'}</span>
             </a>
@@ -132,9 +132,9 @@ export const Hero: React.FC = () => {
 
           {/* SOBER INDUSTRY / SECTOR STRIP (Replaces code languages marquee) */}
           <motion.div variants={item} className="pt-6">
-            <div className="py-2.5 px-4 rounded-xl bg-[#1f1f1d] border border-white/[0.06] flex items-center justify-between text-xs text-[#A3A39E] overflow-x-auto gap-4 whitespace-nowrap">
-              <span>{lang === 'es' ? 'Sectores:' : 'Sectors:'}</span>
-              <span className="text-[#F5F5F0] font-medium">
+            <div className="py-3 px-4 rounded-xl bg-[#1f1f1d] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#A3A39E] gap-2 sm:gap-4">
+              <span className="font-semibold text-[#C8A97E]">{lang === 'es' ? 'Sectores:' : 'Sectors:'}</span>
+              <span className="text-[#F5F5F0] font-medium leading-relaxed">
                 {lang === 'es'
                   ? 'Restaurantes · Clínicas y Consultorios · Empresas de Servicios · Tiendas Online · Atención 24/7'
                   : 'Restaurants · Clinics & Practices · Service Companies · Online Stores · 24/7 Customer Care'}

@@ -116,61 +116,85 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 rounded-md bg-[#1f1f1d] border border-white/[0.08] text-[#A3A39E] hover:text-[#F5F5F0] md:hidden"
-          aria-label={lang === 'es' ? 'Abrir menú de navegación' : 'Open navigation menu'}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile Language Switcher & Hamburger Button */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button 
+            onClick={toggleLanguage} 
+            className="flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#1f1f1d] border border-white/[0.08] text-[#A3A39E] hover:text-[#F5F5F0] text-xs font-mono font-bold min-h-[44px] min-w-[44px]"
+            aria-label={lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'}
+          >
+            <Globe className="w-3.5 h-3.5" />
+            <span>{lang === 'es' ? 'EN' : 'ES'}</span>
+          </button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2.5 rounded-lg bg-[#1f1f1d] border border-white/[0.08] text-[#A3A39E] hover:text-[#F5F5F0] min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label={lang === 'es' ? 'Abrir menú de navegación' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
 
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#141413]/98 backdrop-blur-md border-b border-white/[0.08] px-6 py-4 space-y-3 animate-fadeIn">
-          {navLinks.map((link) => {
-            const isServices = link.path === '/#services';
-            if (isServices) {
+        <div className="md:hidden bg-[#141413]/98 backdrop-blur-xl border-b border-white/[0.08] px-6 py-5 space-y-4 animate-fadeIn shadow-2xl">
+          <div className="space-y-1">
+            {navLinks.map((link) => {
+              const isServices = link.path === '/#services';
+              if (isServices) {
+                return (
+                  <a
+                    key={link.path}
+                    href="/#services"
+                    onClick={(e) => {
+                      setMobileMenuOpen(false);
+                      handleServicesClick(e);
+                    }}
+                    className="flex items-center min-h-[48px] px-3 rounded-xl text-base font-medium text-[#A3A39E] hover:text-[#F5F5F0] hover:bg-white/[0.04] transition-colors"
+                  >
+                    {lang === 'es' ? link.labelES : link.labelEN}
+                  </a>
+                );
+              }
+              const isActive = location.pathname.startsWith(link.path);
               return (
-                <a
+                <Link
                   key={link.path}
-                  href="/#services"
-                  onClick={(e) => {
-                    setMobileMenuOpen(false);
-                    handleServicesClick(e);
-                  }}
-                  className="block text-sm py-1.5 font-medium text-[#A3A39E] hover:text-[#F5F5F0]"
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center min-h-[48px] px-3 rounded-xl text-base font-medium transition-colors ${
+                    isActive 
+                      ? 'text-[#F5F5F0] font-bold bg-white/[0.06]' 
+                      : 'text-[#A3A39E] hover:text-[#F5F5F0] hover:bg-white/[0.04]'
+                  }`}
                 >
                   {lang === 'es' ? link.labelES : link.labelEN}
-                </a>
+                </Link>
               );
-            }
-            const isActive = location.pathname.startsWith(link.path);
-            return (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block text-sm py-1.5 font-medium ${isActive ? 'text-[#F5F5F0] font-bold' : 'text-[#A3A39E] hover:text-[#F5F5F0]'}`}
-              >
-                {lang === 'es' ? link.labelES : link.labelEN}
-              </Link>
-            );
-          })}
-          <button onClick={() => { toggleLanguage(); setMobileMenuOpen(false); }} className="w-full mt-4 bg-[#1f1f1d] border border-white/[0.08] text-[#A3A39E] hover:text-[#F5F5F0] rounded-md px-4 py-3 flex items-center justify-center gap-2 font-bold uppercase text-xs tracking-widest"><Globe className="w-4 h-4" />{lang === "es" ? "Switch to English" : "Cambiar a Español"}</button>
-          <div className="pt-2 border-t border-white/[0.08]">
+            })}
+          </div>
+
+          <div className="pt-3 border-t border-white/[0.08] space-y-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenContact();
               }}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-md text-xs font-bold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2]"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] min-h-[48px] shadow-md"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 text-[#141413]" />
               <span>{t('hero.cta.primary')}</span>
+            </button>
+            <button 
+              onClick={() => { toggleLanguage(); setMobileMenuOpen(false); }} 
+              className="w-full bg-[#1f1f1d] border border-white/[0.08] text-[#A3A39E] hover:text-[#F5F5F0] rounded-xl px-4 py-3 flex items-center justify-center gap-2 font-bold uppercase text-xs tracking-widest min-h-[44px]"
+            >
+              <Globe className="w-4 h-4" />
+              <span>{lang === "es" ? "Switch to English (EN)" : "Cambiar a Español (ES)"}</span>
             </button>
           </div>
         </div>
