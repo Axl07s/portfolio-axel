@@ -62,11 +62,15 @@ export function SaaSScaleLayout({ project }: { project: Project }) {
           </p>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-3 gap-4 w-full max-w-2xl mx-auto mb-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-2xl mx-auto mb-4">
             {project.metrics.map((m, i) => (
-              <div key={i} className="bg-neutral-900/60 border border-neutral-800/80 rounded-xl p-3.5 text-center">
-                <div className="text-xl md:text-2xl font-bold text-neutral-50 tracking-tight">{m.value}</div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-indigo-400 mt-0.5">{m.label}</div>
+              <div key={i} className="bg-neutral-900/60 border border-neutral-800/80 rounded-xl p-2 sm:p-3.5 text-center flex flex-col items-center justify-center min-h-[76px] overflow-hidden">
+                <div className="text-xs sm:text-lg md:text-2xl font-bold text-neutral-50 tracking-tight leading-snug break-words hyphens-auto w-full">
+                  {m.value}
+                </div>
+                <div className="text-[9px] sm:text-[11px] font-mono uppercase tracking-wider text-indigo-400 mt-1">
+                  {m.label}
+                </div>
               </div>
             ))}
           </div>

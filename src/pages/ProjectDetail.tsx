@@ -97,8 +97,9 @@ export function ProjectDetail() {
         
         {renderLayout()}
 
-        {/* Global Floating Dock for Actions */}
-        <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-1.5 bg-neutral-950/90 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.8)] max-w-[95vw]">
+        {/* Mobile & Desktop Conversion Action Bar */}
+        <div className="fixed bottom-0 inset-x-0 z-50 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-[#141413]/95 backdrop-blur-2xl border-t border-white/[0.08] shadow-[0_-10px_30px_rgba(0,0,0,0.8)] sm:bottom-6 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:rounded-full sm:border sm:border-white/10 sm:p-1.5 sm:max-w-max">
+          <div className="flex items-center gap-2 max-w-md mx-auto w-full">
           {/* Main Action: WhatsApp Quote */}
           <a
             href={`https://wa.me/593995267503?text=${encodeURIComponent(
@@ -108,15 +109,10 @@ export function ProjectDetail() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-[#F5F5F0] hover:bg-[#E8E8E2] text-[#141413] rounded-full transition-all font-bold text-xs sm:text-sm shadow-md hover:scale-[1.02] min-h-[44px] shrink-0"
+            className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 bg-[#F5F5F0] hover:bg-[#E8E8E2] active:bg-[#E8E8E2] text-[#141413] rounded-xl sm:rounded-full transition-all font-bold text-xs sm:text-sm shadow-md active:scale-[0.98] min-h-[44px]"
           >
-            <MessageCircle className="w-4 h-4 text-emerald-600" />
-            <span className="hidden sm:inline">
-              {lang === 'es' ? 'Cotizar este Sistema por WhatsApp' : 'Quote this System on WhatsApp'}
-            </span>
-            <span className="sm:hidden">
-              {lang === 'es' ? 'Cotizar por WhatsApp' : 'Quote on WhatsApp'}
-            </span>
+            <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>{lang === 'es' ? 'Cotizar por WhatsApp' : 'Quote on WhatsApp'}</span>
           </a>
 
           {/* Secondary Action: Discrete Desktop Version Link */}
@@ -125,17 +121,14 @@ export function ProjectDetail() {
               href={personalProject?.liveUrl || freelanceProject?.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3 py-2 text-neutral-400 hover:text-neutral-50 hover:bg-white/[0.06] rounded-full transition-colors text-xs font-mono min-h-[44px] shrink-0"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-white/[0.06] hover:bg-white/10 active:bg-white/[0.12] text-[#F5F5F0] border border-white/10 rounded-xl sm:rounded-full transition-colors text-xs font-medium min-h-[44px] shrink-0"
               title={lang === 'es' ? 'Abrir aplicación completa en pestaña nueva' : 'Open full application in new tab'}
             >
-              <span className="hidden md:inline">
-                {lang === 'es' ? 'Abrir app completa ↗' : 'Open full app ↗'}
-              </span>
-              <span className="md:hidden">
-                {lang === 'es' ? 'Abrir app ↗' : 'Open app ↗'}
-              </span>
+              <span>{lang === 'es' ? 'Probar App' : 'Live App'}</span>
+              <span className="text-xs text-[#C8A97E]">↗</span>
             </a>
           )}
+          </div>
 
           {/* GitHub Repo Button if available */}
           {(personalProject?.githubUrl || freelanceProject?.githubUrl) && (

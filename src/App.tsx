@@ -41,15 +41,15 @@ export function AppContent() {
       {!isProjectDetail && (
         <aside 
           aria-label={lang === 'es' ? 'Acciones rápidas para móvil' : 'Mobile quick actions'}
-          className="md:hidden fixed bottom-0 inset-x-0 z-40 p-2.5 bg-[#141413]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] flex items-center gap-2"
+          className="md:hidden fixed bottom-0 inset-x-0 z-40 px-3.5 py-2.5 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-[#141413]/95 backdrop-blur-2xl border-t border-white/[0.08] shadow-[0_-10px_30px_rgba(0,0,0,0.8)] flex items-center gap-2"
         >
           <a
             href={lang === 'es' ? "https://wa.me/593995267503?text=Hola%20Axel,%20quiero%20cotizar%20un%20proyecto" : "https://wa.me/593995267503?text=Hi%20Axel,%20I%20would%20like%20to%20quote%20a%20project"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-[#F5F5F0] hover:bg-[#E8E8E2] text-[#141413] rounded-xl font-bold text-xs shadow-md transition-all min-h-[48px]"
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 bg-[#F5F5F0] hover:bg-[#E8E8E2] active:bg-[#E8E8E2] text-[#141413] rounded-xl font-bold text-xs shadow-md transition-all active:scale-[0.98] min-h-[44px]"
           >
-            <MessageCircle className="w-4 h-4 text-emerald-600" />
+            <MessageCircle className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>{lang === 'es' ? 'Cotizar por WhatsApp' : 'Quote on WhatsApp'}</span>
           </a>
 
@@ -62,7 +62,7 @@ export function AppContent() {
                 navigate('/#services');
               }
             }}
-            className="px-4 py-3 bg-[#1f1f1d] hover:bg-[#282825] border border-white/10 text-[#F5F5F0] rounded-xl font-medium text-xs transition-colors flex items-center justify-center gap-1.5 min-h-[48px] shrink-0"
+            className="px-3.5 py-2.5 bg-white/[0.06] hover:bg-white/10 active:bg-white/[0.12] border border-white/10 text-[#F5F5F0] rounded-xl font-medium text-xs transition-colors flex items-center justify-center gap-1.5 min-h-[44px] shrink-0"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C8A97E]" />
             <span>{lang === 'es' ? 'Servicios' : 'Services'}</span>
