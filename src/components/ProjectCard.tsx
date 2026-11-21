@@ -190,18 +190,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
 
-      {/* Mobile-Only Touch Action Bar (Thumb-friendly 48px buttons) */}
-      <div className="sm:hidden px-6 pb-6 pt-1 flex flex-col gap-2">
+      {/* Mobile-Only Touch Action Bar (Compact 2-column inline row) */}
+      <div className="sm:hidden px-5 pb-5 pt-0 grid grid-cols-2 gap-2">
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             navigate(`/project/${project.id}#interactive-demo`);
           }}
-          className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold bg-[#F5F5F0] text-[#141413] hover:bg-[#E8E8E2] transition-all min-h-[48px] shadow-md"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold bg-[#F5F5F0] text-[#141413] active:bg-[#E8E8E2] transition-all min-h-[42px] shadow-sm"
         >
-          <span>{lang === 'es' ? 'Probar Demo en Vivo' : 'Try Live Demo'}</span>
-          <ArrowUpRight className="w-4 h-4" />
+          <span>{lang === 'es' ? 'Probar Demo' : 'Try Demo'}</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
         </button>
         <button
           type="button"
@@ -209,9 +209,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             e.stopPropagation();
             navigate(`/project/${project.id}`);
           }}
-          className="w-full flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-medium text-[#A3A39E] hover:text-[#F5F5F0] bg-white/[0.04] border border-white/10 transition-colors min-h-[44px]"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-medium text-[#A3A39E] active:text-[#F5F5F0] bg-white/[0.04] border border-white/10 transition-colors min-h-[42px]"
         >
-          <span>{lang === 'es' ? 'Ver Caso de Estudio →' : 'View Case Study →'}</span>
+          <span>{lang === 'es' ? 'Ver Caso' : 'Case Study'}</span>
+          <span className="text-[10px]">→</span>
         </button>
       </div>
     </div>
